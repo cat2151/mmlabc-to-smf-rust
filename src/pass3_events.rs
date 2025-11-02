@@ -1,0 +1,83 @@
+//! Pass 3: Convert AST to MIDI events
+//! Outputs debug JSON.
+
+use crate::types::{Ast, MidiEvent};
+use anyhow::Result;
+use serde::Serialize;
+use std::fs::File;
+use std::io::Write;
+
+/// Convert AST to MIDI event list
+///
+/// # Arguments
+/// * `ast` - AST structure from Pass 2
+///
+/// # Returns
+/// List of MIDI event structures
+pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
+    let mut events = Vec::new();
+    let mut time = 0;
+    let duration = 480; // Default duration in ticks (quarter note at 480 ticks per beat)
+
+    for note in &ast.notes {
+        // Note on event
+        events.push(MidiEvent {
+            event_type: "note_on".to_string(),
+            time,
+            note: note.pitch,
+            velocity: 64,
+        });
+
+        // Note off event
+        events.push(MidiEvent {
+            event_type: "note_off".to_string(),
+            time: time + duration,
+            note: note.pitch,
+            velocity: 0,
+        });
+
+        time += duration;
+    }
+
+    events
+}
+
+#[derive(Serialize)]
+struct EventOutput {
+    pass: u8,
+    description: String,
+    events: Vec<MidiEvent>,
+}
+
+/// Save events to JSON file for debugging
+///
+/// # Arguments
+/// * `events` - List of MIDI event structures
+/// * `filepath` - Output JSON file path
+pub fn save_events_to_json(events: &[MidiEvent], filepath: &str) -> Result<()> {
+    let output = EventOutput {
+        pass: 3,
+        description: "MIDI events".to_string(),
+        events: events.to_vec(),
+    };
+
+    let json = serde_json::to_string_pretty(&output)?;
+    let mut file = File::create(filepath)?;
+    file.write_all(json.as_bytes())?;
+
+    Ok(())
+}
+
+/// Execute Pass 3: Create MIDI events from AST
+///
+/// # Arguments
+/// * `ast` - AST structure from Pass 2
+/// * `output_json` - Output JSON file path
+///
+/// # Returns
+/// List of MIDI events
+pub fn process_pass3(ast: &Ast, output_json: &str) -> Result<Vec<MidiEvent>> {
+    let events = ast_to_events(ast);
+    save_events_to_json(&events, output_json)?;
+    Ok(events)
+}
