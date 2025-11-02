@@ -19,9 +19,13 @@ use tree_sitter::{Parser, TreeCursor};
 pub fn parse_mml(mml_string: &str) -> Vec<Token> {
     let mut parser = Parser::new();
     let language = tree_sitter_mml::language();
-    parser.set_language(&language).unwrap();
+    parser
+        .set_language(&language)
+        .expect("Failed to set tree-sitter language");
 
-    let tree = parser.parse(mml_string, None).unwrap();
+    let tree = parser
+        .parse(mml_string, None)
+        .expect("Failed to parse MML string");
     let root_node = tree.root_node();
 
     let mut tokens = Vec::new();
@@ -32,11 +36,12 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
         let kind = node.kind();
 
         if kind == "note" {
-            let text = node.utf8_text(source.as_bytes()).unwrap();
-            tokens.push(Token {
-                token_type: "note".to_string(),
-                value: text.to_ascii_lowercase(),
-            });
+            if let Ok(text) = node.utf8_text(source.as_bytes()) {
+                tokens.push(Token {
+                    token_type: "note".to_string(),
+                    value: text.to_ascii_lowercase(),
+                });
+            }
         }
 
         if cursor.goto_first_child() {
