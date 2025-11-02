@@ -13,12 +13,9 @@ Music Macro Language形式の文字列を、包括的なデバッグ出力を備
 
 ## 今後の見通し
 
-- リポジトリ設定（formatter等）
-- tree-sitter化
-- tree-sitterを活用し、MMLコマンドを楽に追加
-- ゴール：
-  - mmlabcフォーマットのMMLコマンドを実装しきること
-  - mmlabcについては、mml2abcリポジトリを参照のこと
+- ほかの2つのリポジトリが一通りPython to Rustできるまで待つ
+- cat-play-mmlリポジトリに、ほかの2つのリポジトリとあわせて、3つのリポジトリを統合する
+  - 目的はBluesky投稿を参照
 
 ## 特徴
 
