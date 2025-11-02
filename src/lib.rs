@@ -7,4 +7,5 @@ pub mod pass1_parser;
 pub mod pass2_ast;
 pub mod pass3_events;
 pub mod pass4_midi;
+pub mod tree_sitter_mml;
 pub mod types;
