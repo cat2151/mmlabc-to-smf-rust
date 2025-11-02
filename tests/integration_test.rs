@@ -6,27 +6,32 @@ use std::path::Path;
 
 #[test]
 fn test_full_pipeline_cde() {
-    let test_dir = "/tmp/test_integration";
-    fs::create_dir_all(test_dir).unwrap();
+    use std::env;
+
+    let test_dir = env::temp_dir().join("test_integration");
+    fs::create_dir_all(&test_dir).unwrap();
 
     // Pass 1
-    let tokens = pass1_parser::process_pass1("cde", &format!("{}/pass1.json", test_dir)).unwrap();
+    let pass1_file = test_dir.join("pass1.json");
+    let tokens = pass1_parser::process_pass1("cde", pass1_file.to_str().unwrap()).unwrap();
     assert_eq!(tokens.len(), 3);
 
     // Pass 2
-    let ast = pass2_ast::process_pass2(&tokens, &format!("{}/pass2.json", test_dir)).unwrap();
+    let pass2_file = test_dir.join("pass2.json");
+    let ast = pass2_ast::process_pass2(&tokens, pass2_file.to_str().unwrap()).unwrap();
     assert_eq!(ast.notes.len(), 3);
     assert_eq!(ast.notes[0].pitch, 60); // C
     assert_eq!(ast.notes[1].pitch, 62); // D
     assert_eq!(ast.notes[2].pitch, 64); // E
 
     // Pass 3
-    let events = pass3_events::process_pass3(&ast, &format!("{}/pass3.json", test_dir)).unwrap();
+    let pass3_file = test_dir.join("pass3.json");
+    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap()).unwrap();
     assert_eq!(events.len(), 6); // 3 notes * 2 events each
 
     // Pass 4
-    let output_file = format!("{}/output.mid", test_dir);
-    let midi_data = pass4_midi::process_pass4(&events, &output_file).unwrap();
+    let output_file = test_dir.join("output.mid");
+    let midi_data = pass4_midi::process_pass4(&events, output_file.to_str().unwrap()).unwrap();
     assert!(Path::new(&output_file).exists());
     assert!(!midi_data.is_empty());
 
@@ -34,9 +39,9 @@ fn test_full_pipeline_cde() {
     assert_eq!(&midi_data[0..4], b"MThd");
 
     // Verify all debug JSONs exist
-    assert!(Path::new(&format!("{}/pass1.json", test_dir)).exists());
-    assert!(Path::new(&format!("{}/pass2.json", test_dir)).exists());
-    assert!(Path::new(&format!("{}/pass3.json", test_dir)).exists());
+    assert!(Path::new(&pass1_file).exists());
+    assert!(Path::new(&pass2_file).exists());
+    assert!(Path::new(&pass3_file).exists());
 
     // Cleanup
     let _ = fs::remove_dir_all(test_dir);
@@ -44,12 +49,18 @@ fn test_full_pipeline_cde() {
 
 #[test]
 fn test_notes_60_62_64() {
-    let test_dir = "/tmp/test_notes";
-    fs::create_dir_all(test_dir).unwrap();
+    use std::env;
 
-    let tokens = pass1_parser::process_pass1("cde", &format!("{}/pass1.json", test_dir)).unwrap();
-    let ast = pass2_ast::process_pass2(&tokens, &format!("{}/pass2.json", test_dir)).unwrap();
-    let events = pass3_events::process_pass3(&ast, &format!("{}/pass3.json", test_dir)).unwrap();
+    let test_dir = env::temp_dir().join("test_notes");
+    fs::create_dir_all(&test_dir).unwrap();
+
+    let pass1_file = test_dir.join("pass1.json");
+    let pass2_file = test_dir.join("pass2.json");
+    let pass3_file = test_dir.join("pass3.json");
+
+    let tokens = pass1_parser::process_pass1("cde", pass1_file.to_str().unwrap()).unwrap();
+    let ast = pass2_ast::process_pass2(&tokens, pass2_file.to_str().unwrap()).unwrap();
+    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap()).unwrap();
 
     // Check that we have the right notes
     let note_on_events: Vec<_> = events
@@ -63,23 +74,29 @@ fn test_notes_60_62_64() {
     assert_eq!(note_on_events[2].note, 64);
 
     // Cleanup
-    let _ = fs::remove_dir_all(test_dir);
+    let _ = fs::remove_dir_all(&test_dir);
 }
 
 #[test]
 fn test_output_file_option() {
-    let test_dir = "/tmp/test_custom_output";
-    fs::create_dir_all(test_dir).unwrap();
+    use std::env;
 
-    let tokens = pass1_parser::process_pass1("c", &format!("{}/pass1.json", test_dir)).unwrap();
-    let ast = pass2_ast::process_pass2(&tokens, &format!("{}/pass2.json", test_dir)).unwrap();
-    let events = pass3_events::process_pass3(&ast, &format!("{}/pass3.json", test_dir)).unwrap();
+    let test_dir = env::temp_dir().join("test_custom_output");
+    fs::create_dir_all(&test_dir).unwrap();
 
-    let custom_output = format!("{}/custom_song.mid", test_dir);
-    pass4_midi::process_pass4(&events, &custom_output).unwrap();
+    let pass1_file = test_dir.join("pass1.json");
+    let pass2_file = test_dir.join("pass2.json");
+    let pass3_file = test_dir.join("pass3.json");
+
+    let tokens = pass1_parser::process_pass1("c", pass1_file.to_str().unwrap()).unwrap();
+    let ast = pass2_ast::process_pass2(&tokens, pass2_file.to_str().unwrap()).unwrap();
+    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap()).unwrap();
+
+    let custom_output = test_dir.join("custom_song.mid");
+    pass4_midi::process_pass4(&events, custom_output.to_str().unwrap()).unwrap();
 
     assert!(Path::new(&custom_output).exists());
 
     // Cleanup
-    let _ = fs::remove_dir_all(test_dir);
+    let _ = fs::remove_dir_all(&test_dir);
 }

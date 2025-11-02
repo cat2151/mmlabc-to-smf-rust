@@ -80,6 +80,7 @@ fn test_empty_tokens() {
 
 #[test]
 fn test_save_ast_to_json() {
+    use std::env;
     use std::fs;
     use std::path::Path;
 
@@ -88,11 +89,11 @@ fn test_save_ast_to_json() {
         value: "c".to_string(),
     }];
     let ast = tokens_to_ast(&tokens);
-    let filepath = "/tmp/test_pass2_ast.json";
+    let filepath = env::temp_dir().join("test_pass2_ast.json");
 
-    let result = save_ast_to_json(&ast, filepath);
+    let result = save_ast_to_json(&ast, filepath.to_str().unwrap());
     assert!(result.is_ok());
-    assert!(Path::new(filepath).exists());
+    assert!(Path::new(&filepath).exists());
 
     // Clean up
     let _ = fs::remove_file(filepath);

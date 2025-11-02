@@ -51,6 +51,7 @@ fn test_midi_file_structure() {
 
 #[test]
 fn test_save_midi_file() {
+    use std::env;
     use std::fs;
     use std::path::Path;
 
@@ -70,11 +71,11 @@ fn test_save_midi_file() {
     ];
 
     let midi_data = events_to_midi(&events).unwrap();
-    let filepath = "/tmp/test_output.mid";
+    let filepath = env::temp_dir().join("test_output.mid");
 
-    let result = save_midi_file(&midi_data, filepath);
+    let result = save_midi_file(&midi_data, filepath.to_str().unwrap());
     assert!(result.is_ok());
-    assert!(Path::new(filepath).exists());
+    assert!(Path::new(&filepath).exists());
 
     // Clean up
     let _ = fs::remove_file(filepath);
@@ -82,6 +83,7 @@ fn test_save_midi_file() {
 
 #[test]
 fn test_process_pass4() {
+    use std::env;
     use std::fs;
     use std::path::Path;
 
@@ -100,11 +102,11 @@ fn test_process_pass4() {
         },
     ];
 
-    let filepath = "/tmp/test_process_pass4.mid";
-    let result = process_pass4(&events, filepath);
+    let filepath = env::temp_dir().join("test_process_pass4.mid");
+    let result = process_pass4(&events, filepath.to_str().unwrap());
 
     assert!(result.is_ok());
-    assert!(Path::new(filepath).exists());
+    assert!(Path::new(&filepath).exists());
 
     // Clean up
     let _ = fs::remove_file(filepath);

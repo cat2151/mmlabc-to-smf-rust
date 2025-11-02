@@ -106,6 +106,7 @@ fn test_empty_ast() {
 
 #[test]
 fn test_save_events_to_json() {
+    use std::env;
     use std::fs;
     use std::path::Path;
 
@@ -118,11 +119,11 @@ fn test_save_events_to_json() {
         }],
     };
     let events = ast_to_events(&ast);
-    let filepath = "/tmp/test_pass3_events.json";
+    let filepath = env::temp_dir().join("test_pass3_events.json");
 
-    let result = save_events_to_json(&events, filepath);
+    let result = save_events_to_json(&events, filepath.to_str().unwrap());
     assert!(result.is_ok());
-    assert!(Path::new(filepath).exists());
+    assert!(Path::new(&filepath).exists());
 
     // Clean up
     let _ = fs::remove_file(filepath);

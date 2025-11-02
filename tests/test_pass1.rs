@@ -57,15 +57,16 @@ fn test_empty_string() {
 
 #[test]
 fn test_save_tokens_to_json() {
+    use std::env;
     use std::fs;
     use std::path::Path;
 
     let tokens = parse_mml("cde");
-    let filepath = "/tmp/test_pass1_tokens.json";
+    let filepath = env::temp_dir().join("test_pass1_tokens.json");
 
-    let result = save_tokens_to_json(&tokens, filepath);
+    let result = save_tokens_to_json(&tokens, filepath.to_str().unwrap());
     assert!(result.is_ok());
-    assert!(Path::new(filepath).exists());
+    assert!(Path::new(&filepath).exists());
 
     // Clean up
     let _ = fs::remove_file(filepath);
