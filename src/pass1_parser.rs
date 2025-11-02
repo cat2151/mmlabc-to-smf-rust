@@ -1,13 +1,15 @@
-//! Pass 1: Parse MML string and create token list
+//! Pass 1: Parse MML string and create token list using tree-sitter
 //! Outputs debug JSON.
 
+use crate::tree_sitter_mml;
 use crate::types::Token;
 use anyhow::Result;
 use serde::Serialize;
 use std::fs::File;
 use std::io::Write;
+use tree_sitter::{Parser, TreeCursor};
 
-/// Parse MML string into tokens
+/// Parse MML string into tokens using tree-sitter
 ///
 /// # Arguments
 /// * `mml_string` - MML format string (e.g., "cde")
@@ -15,18 +17,40 @@ use std::io::Write;
 /// # Returns
 /// List of token structures with type and value
 pub fn parse_mml(mml_string: &str) -> Vec<Token> {
-    let mut tokens = Vec::new();
+    let mut parser = Parser::new();
+    let language = tree_sitter_mml::language();
+    parser.set_language(&language).unwrap();
 
-    for ch in mml_string.chars() {
-        let lower_ch = ch.to_ascii_lowercase();
-        if matches!(lower_ch, 'c' | 'd' | 'e' | 'f' | 'g' | 'a' | 'b') {
+    let tree = parser.parse(mml_string, None).unwrap();
+    let root_node = tree.root_node();
+
+    let mut tokens = Vec::new();
+    let mut cursor = root_node.walk();
+
+    fn extract_tokens(cursor: &mut TreeCursor, source: &str, tokens: &mut Vec<Token>) {
+        let node = cursor.node();
+        let kind = node.kind();
+
+        if kind == "note" {
+            let text = node.utf8_text(source.as_bytes()).unwrap();
             tokens.push(Token {
                 token_type: "note".to_string(),
-                value: lower_ch.to_string(),
+                value: text.to_ascii_lowercase(),
             });
+        }
+
+        if cursor.goto_first_child() {
+            loop {
+                extract_tokens(cursor, source, tokens);
+                if !cursor.goto_next_sibling() {
+                    break;
+                }
+            }
+            cursor.goto_parent();
         }
     }
 
+    extract_tokens(&mut cursor, mml_string, &mut tokens);
     tokens
 }
 
