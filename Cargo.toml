@@ -6,6 +6,10 @@ authors = ["cat2151"]
 license = "MIT"
 description = "Music Macro Language to Standard MIDI File converter"
 
+[lib]
+name = "mmlabc_to_smf"
+path = "src/lib.rs"
+
 [[bin]]
 name = "mmlabc-to-smf"
 path = "src/main.rs"
