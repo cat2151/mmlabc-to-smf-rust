@@ -37,12 +37,12 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 .get(token.value.as_str())
                 .copied()
                 .unwrap_or(60);
-            
+
             // Assign channel based on chord_group
             // If chord_group is present, it means this note is part of a chord
             // Each note in a chord gets its own channel (0-based in chord_group)
             let channel = token.chord_group.map(|g| g as u8);
-            
+
             notes.push(AstNote {
                 note_type: "note".to_string(),
                 pitch: midi_note,

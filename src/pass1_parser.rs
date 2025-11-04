@@ -20,7 +20,7 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
     // Split by semicolons to identify chord groups
     let chord_groups: Vec<&str> = mml_string.split(';').collect();
     let mut tokens = Vec::new();
-    
+
     for (group_idx, group) in chord_groups.iter().enumerate() {
         let mut parser = Parser::new();
         let language = tree_sitter_mml::language();
@@ -35,7 +35,12 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
 
         let mut cursor = root_node.walk();
 
-        fn extract_tokens(cursor: &mut TreeCursor, source: &str, tokens: &mut Vec<Token>, chord_group: Option<usize>) {
+        fn extract_tokens(
+            cursor: &mut TreeCursor,
+            source: &str,
+            tokens: &mut Vec<Token>,
+            chord_group: Option<usize>,
+        ) {
             let node = cursor.node();
             let kind = node.kind();
 
@@ -66,10 +71,10 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
         } else {
             None
         };
-        
+
         extract_tokens(&mut cursor, group, &mut tokens, chord_group);
     }
-    
+
     tokens
 }
 

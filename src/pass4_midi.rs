@@ -17,7 +17,7 @@ use std::io::Write;
 pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
     // Check if we have multiple channels (chord)
     let has_multiple_channels = events.iter().any(|e| e.channel > 0);
-    
+
     // Create header: Use Format 1 if multiple channels, Format 0 otherwise
     let format = if has_multiple_channels {
         Format::Parallel
@@ -27,36 +27,38 @@ pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
     let header = Header::new(format, Timing::Metrical(480.into()));
 
     let mut tracks = Vec::new();
-    
+
     if has_multiple_channels {
         // Format 1: Separate tracks for each channel
         // First, create a tempo track
-        let mut tempo_track = Vec::new();
-        tempo_track.push(TrackEvent {
-            delta: 0.into(),
-            kind: TrackEventKind::Meta(MetaMessage::Tempo(500000.into())),
-        });
-        tempo_track.push(TrackEvent {
-            delta: 0.into(),
-            kind: TrackEventKind::Meta(MetaMessage::EndOfTrack),
-        });
+        let tempo_track = vec![
+            TrackEvent {
+                delta: 0.into(),
+                kind: TrackEventKind::Meta(MetaMessage::Tempo(500000.into())),
+            },
+            TrackEvent {
+                delta: 0.into(),
+                kind: TrackEventKind::Meta(MetaMessage::EndOfTrack),
+            },
+        ];
         tracks.push(tempo_track);
-        
+
         // Get unique channels and create a track for each
         let mut channels: Vec<u8> = events.iter().map(|e| e.channel).collect();
         channels.sort_unstable();
         channels.dedup();
-        
+
         for channel in channels {
             let mut track = Vec::new();
-            
+
             // Filter events for this channel and sort by time
-            let mut channel_events: Vec<_> = events.iter()
+            let mut channel_events: Vec<_> = events
+                .iter()
                 .filter(|e| e.channel == channel)
                 .cloned()
                 .collect();
             channel_events.sort_by_key(|e| e.time);
-            
+
             let mut prev_time = 0;
             for event in channel_events {
                 let delta_time = event.time - prev_time;
@@ -83,13 +85,13 @@ pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
 
                 prev_time = event.time;
             }
-            
+
             // Add end of track
             track.push(TrackEvent {
                 delta: 0.into(),
                 kind: TrackEventKind::Meta(MetaMessage::EndOfTrack),
             });
-            
+
             tracks.push(track);
         }
     } else {
@@ -138,15 +140,12 @@ pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
             delta: 0.into(),
             kind: TrackEventKind::Meta(MetaMessage::EndOfTrack),
         });
-        
+
         tracks.push(track);
     }
 
     // Create SMF structure
-    let smf = midly::Smf {
-        header,
-        tracks,
-    };
+    let smf = midly::Smf { header, tracks };
 
     // Write to bytes
     let mut buffer = Vec::new();

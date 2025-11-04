@@ -21,12 +21,12 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
 
     // Check if this is a chord (all notes have the same chord_group)
     let has_chord = ast.notes.iter().any(|n| n.channel.is_some());
-    
+
     if has_chord {
         // All notes in a chord play simultaneously at time 0
         for note in &ast.notes {
             let channel = note.channel.unwrap_or(0);
-            
+
             // Note on event
             events.push(MidiEvent {
                 event_type: "note_on".to_string(),
