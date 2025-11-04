@@ -13,30 +13,70 @@ use std::io::Write;
 /// * `ast` - AST structure from Pass 2
 ///
 /// # Returns
-/// List of MIDI event structures
+/// List of MIDI event structures with channel assignments
 pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
     let mut events = Vec::new();
     let mut time = 0;
     let duration = 480; // Default duration in ticks (quarter note at 480 ticks per beat)
 
-    for note in &ast.notes {
-        // Note on event
-        events.push(MidiEvent {
-            event_type: "note_on".to_string(),
-            time,
-            note: note.pitch,
-            velocity: 64,
-        });
+    // Check if notes have channel assignments (multi-channel mode)
+    // When notes have channel assignments, each note plays on a different channel (0, 1, 2, etc.)
+    let has_multiple_channels = ast.notes.iter().any(|n| n.channel.is_some());
 
-        // Note off event
-        events.push(MidiEvent {
-            event_type: "note_off".to_string(),
-            time: time + duration,
-            note: note.pitch,
-            velocity: 0,
-        });
+    if has_multiple_channels {
+        // Multi-channel mode: notes within each channel are sequential
+        // Track time separately for each channel
+        let mut channel_times: std::collections::HashMap<u8, u32> =
+            std::collections::HashMap::new();
 
-        time += duration;
+        for note in &ast.notes {
+            let channel = note.channel.unwrap_or(0);
+            let current_time = channel_times.get(&channel).copied().unwrap_or(0);
+
+            // Note on event
+            events.push(MidiEvent {
+                event_type: "note_on".to_string(),
+                time: current_time,
+                note: note.pitch,
+                velocity: 64,
+                channel,
+            });
+
+            // Note off event
+            events.push(MidiEvent {
+                event_type: "note_off".to_string(),
+                time: current_time + duration,
+                note: note.pitch,
+                velocity: 0,
+                channel,
+            });
+
+            // Advance time for this channel
+            channel_times.insert(channel, current_time + duration);
+        }
+    } else {
+        // Sequential notes (single channel)
+        for note in &ast.notes {
+            // Note on event
+            events.push(MidiEvent {
+                event_type: "note_on".to_string(),
+                time,
+                note: note.pitch,
+                velocity: 64,
+                channel: 0,
+            });
+
+            // Note off event
+            events.push(MidiEvent {
+                event_type: "note_off".to_string(),
+                time: time + duration,
+                note: note.pitch,
+                velocity: 0,
+                channel: 0,
+            });
+
+            time += duration;
+        }
     }
 
     events

@@ -12,50 +12,70 @@ use tree_sitter::{Parser, TreeCursor};
 /// Parse MML string into tokens using tree-sitter
 ///
 /// # Arguments
-/// * `mml_string` - MML format string (e.g., "cde")
+/// * `mml_string` - MML format string (e.g., "cde" or "c;e;g")
 ///
 /// # Returns
-/// List of token structures with type and value
+/// List of token structures with type, value, and channel_group
 pub fn parse_mml(mml_string: &str) -> Vec<Token> {
-    let mut parser = Parser::new();
-    let language = tree_sitter_mml::language();
-    parser
-        .set_language(&language)
-        .expect("Failed to set tree-sitter language");
-
-    let tree = parser
-        .parse(mml_string, None)
-        .expect("Failed to parse MML string");
-    let root_node = tree.root_node();
-
+    // Split by semicolons to identify channel groups
+    let channel_groups: Vec<&str> = mml_string.split(';').collect();
     let mut tokens = Vec::new();
-    let mut cursor = root_node.walk();
 
-    fn extract_tokens(cursor: &mut TreeCursor, source: &str, tokens: &mut Vec<Token>) {
-        let node = cursor.node();
-        let kind = node.kind();
+    // Only assign channel_group if there are multiple groups (i.e., semicolons present)
+    let has_multiple_channels = channel_groups.len() > 1;
 
-        if kind == "note" {
-            if let Ok(text) = node.utf8_text(source.as_bytes()) {
-                tokens.push(Token {
-                    token_type: "note".to_string(),
-                    value: text.to_ascii_lowercase(),
-                });
-            }
-        }
+    for (group_idx, group) in channel_groups.iter().enumerate() {
+        let channel_group = if has_multiple_channels {
+            Some(group_idx)
+        } else {
+            None
+        };
+        let mut parser = Parser::new();
+        let language = tree_sitter_mml::language();
+        parser
+            .set_language(&language)
+            .expect("Failed to set tree-sitter language");
 
-        if cursor.goto_first_child() {
-            loop {
-                extract_tokens(cursor, source, tokens);
-                if !cursor.goto_next_sibling() {
-                    break;
+        let tree = parser
+            .parse(group, None)
+            .expect("Failed to parse MML string");
+        let root_node = tree.root_node();
+
+        let mut cursor = root_node.walk();
+
+        fn extract_tokens(
+            cursor: &mut TreeCursor,
+            source: &str,
+            tokens: &mut Vec<Token>,
+            channel_group: Option<usize>,
+        ) {
+            let node = cursor.node();
+            let kind = node.kind();
+
+            if kind == "note" {
+                if let Ok(text) = node.utf8_text(source.as_bytes()) {
+                    tokens.push(Token {
+                        token_type: "note".to_string(),
+                        value: text.to_ascii_lowercase(),
+                        channel_group,
+                    });
                 }
             }
-            cursor.goto_parent();
+
+            if cursor.goto_first_child() {
+                loop {
+                    extract_tokens(cursor, source, tokens, channel_group);
+                    if !cursor.goto_next_sibling() {
+                        break;
+                    }
+                }
+                cursor.goto_parent();
+            }
         }
+
+        extract_tokens(&mut cursor, group, &mut tokens, channel_group);
     }
 
-    extract_tokens(&mut cursor, mml_string, &mut tokens);
     tokens
 }
 

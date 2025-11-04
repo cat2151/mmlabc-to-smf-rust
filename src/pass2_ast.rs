@@ -14,7 +14,7 @@ use std::io::Write;
 /// * `tokens` - List of token structures
 ///
 /// # Returns
-/// AST structure with note events
+/// AST structure with note events (with channel assignments for multi-channel notes)
 pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     let note_to_midi: HashMap<&str, u8> = [
         ("c", 60), // Middle C (C4)
@@ -37,10 +37,17 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 .get(token.value.as_str())
                 .copied()
                 .unwrap_or(60);
+
+            // Assign channel based on channel_group
+            // If channel_group is present, notes are assigned to separate channels
+            // Each channel group gets its own channel (0-based in channel_group)
+            let channel = token.channel_group.map(|g| g as u8);
+
             notes.push(AstNote {
                 note_type: "note".to_string(),
                 pitch: midi_note,
                 name: token.value.clone(),
+                channel,
             });
         }
     }
