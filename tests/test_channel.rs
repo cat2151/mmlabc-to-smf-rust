@@ -209,14 +209,29 @@ fn test_multi_note_per_channel() {
     assert_eq!(ast.notes[4].pitch, 67); // G
     assert_eq!(ast.notes[5].pitch, 69); // A
 
-    // All note_on events should be at time 0 (simultaneous)
+    // Notes within each channel should be sequential
     let note_on_events: Vec<_> = events
         .iter()
         .filter(|e| e.event_type == "note_on")
         .collect();
 
     assert_eq!(note_on_events.len(), 6);
-    for event in note_on_events {
-        assert_eq!(event.time, 0);
-    }
+
+    // Channel 0: c at time 0, d at time 480
+    assert_eq!(note_on_events[0].channel, 0);
+    assert_eq!(note_on_events[0].time, 0);
+    assert_eq!(note_on_events[1].channel, 0);
+    assert_eq!(note_on_events[1].time, 480);
+
+    // Channel 1: e at time 0, f at time 480
+    assert_eq!(note_on_events[2].channel, 1);
+    assert_eq!(note_on_events[2].time, 0);
+    assert_eq!(note_on_events[3].channel, 1);
+    assert_eq!(note_on_events[3].time, 480);
+
+    // Channel 2: g at time 0, a at time 480
+    assert_eq!(note_on_events[4].channel, 2);
+    assert_eq!(note_on_events[4].time, 0);
+    assert_eq!(note_on_events[5].channel, 2);
+    assert_eq!(note_on_events[5].time, 480);
 }

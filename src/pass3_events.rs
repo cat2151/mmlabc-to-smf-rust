@@ -24,14 +24,19 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
     let has_multiple_channels = ast.notes.iter().any(|n| n.channel.is_some());
 
     if has_multiple_channels {
-        // Multi-channel notes play simultaneously at time 0
+        // Multi-channel mode: notes within each channel are sequential
+        // Track time separately for each channel
+        let mut channel_times: std::collections::HashMap<u8, u32> =
+            std::collections::HashMap::new();
+
         for note in &ast.notes {
             let channel = note.channel.unwrap_or(0);
+            let current_time = channel_times.get(&channel).copied().unwrap_or(0);
 
             // Note on event
             events.push(MidiEvent {
                 event_type: "note_on".to_string(),
-                time: 0,
+                time: current_time,
                 note: note.pitch,
                 velocity: 64,
                 channel,
@@ -40,11 +45,14 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
             // Note off event
             events.push(MidiEvent {
                 event_type: "note_off".to_string(),
-                time: duration,
+                time: current_time + duration,
                 note: note.pitch,
                 velocity: 0,
                 channel,
             });
+
+            // Advance time for this channel
+            channel_times.insert(channel, current_time + duration);
         }
     } else {
         // Sequential notes (single channel)
