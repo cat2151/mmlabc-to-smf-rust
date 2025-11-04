@@ -15,17 +15,21 @@ use tree_sitter::{Parser, TreeCursor};
 /// * `mml_string` - MML format string (e.g., "cde" or "c;e;g")
 ///
 /// # Returns
-/// List of token structures with type, value, and chord_group
+/// List of token structures with type, value, and channel_group
 pub fn parse_mml(mml_string: &str) -> Vec<Token> {
-    // Split by semicolons to identify chord groups
-    let chord_groups: Vec<&str> = mml_string.split(';').collect();
+    // Split by semicolons to identify channel groups
+    let channel_groups: Vec<&str> = mml_string.split(';').collect();
     let mut tokens = Vec::new();
 
-    // Only assign chord_group if there are multiple groups (i.e., semicolons present)
-    let has_chord = chord_groups.len() > 1;
+    // Only assign channel_group if there are multiple groups (i.e., semicolons present)
+    let has_multiple_channels = channel_groups.len() > 1;
 
-    for (group_idx, group) in chord_groups.iter().enumerate() {
-        let chord_group = if has_chord { Some(group_idx) } else { None };
+    for (group_idx, group) in channel_groups.iter().enumerate() {
+        let channel_group = if has_multiple_channels {
+            Some(group_idx)
+        } else {
+            None
+        };
         let mut parser = Parser::new();
         let language = tree_sitter_mml::language();
         parser
@@ -43,7 +47,7 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
             cursor: &mut TreeCursor,
             source: &str,
             tokens: &mut Vec<Token>,
-            chord_group: Option<usize>,
+            channel_group: Option<usize>,
         ) {
             let node = cursor.node();
             let kind = node.kind();
@@ -53,14 +57,14 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                     tokens.push(Token {
                         token_type: "note".to_string(),
                         value: text.to_ascii_lowercase(),
-                        chord_group,
+                        channel_group,
                     });
                 }
             }
 
             if cursor.goto_first_child() {
                 loop {
-                    extract_tokens(cursor, source, tokens, chord_group);
+                    extract_tokens(cursor, source, tokens, channel_group);
                     if !cursor.goto_next_sibling() {
                         break;
                     }
@@ -69,7 +73,7 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
             }
         }
 
-        extract_tokens(&mut cursor, group, &mut tokens, chord_group);
+        extract_tokens(&mut cursor, group, &mut tokens, channel_group);
     }
 
     tokens

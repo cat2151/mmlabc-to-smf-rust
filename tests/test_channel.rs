@@ -1,20 +1,20 @@
-//! Tests for chord functionality (semicolon operator)
+//! Tests for channel functionality (semicolon operator)
 
 use mmlabc_to_smf::{pass1_parser, pass2_ast, pass3_events, pass4_midi};
 
 #[test]
-fn test_parse_simple_chord() {
+fn test_parse_simple_channel() {
     let tokens = pass1_parser::parse_mml("c;e;g");
     assert_eq!(tokens.len(), 3);
 
-    // All tokens should have chord_group assigned
-    assert_eq!(tokens[0].chord_group, Some(0));
-    assert_eq!(tokens[1].chord_group, Some(1));
-    assert_eq!(tokens[2].chord_group, Some(2));
+    // All tokens should have channel_group assigned
+    assert_eq!(tokens[0].channel_group, Some(0));
+    assert_eq!(tokens[1].channel_group, Some(1));
+    assert_eq!(tokens[2].channel_group, Some(2));
 }
 
 #[test]
-fn test_chord_to_ast() {
+fn test_channel_to_ast() {
     let tokens = pass1_parser::parse_mml("c;e;g");
     let ast = pass2_ast::tokens_to_ast(&tokens);
 
@@ -32,7 +32,7 @@ fn test_chord_to_ast() {
 }
 
 #[test]
-fn test_chord_events_simultaneous() {
+fn test_channel_events_simultaneous() {
     let tokens = pass1_parser::parse_mml("c;e;g");
     let ast = pass2_ast::tokens_to_ast(&tokens);
     let events = pass3_events::ast_to_events(&ast);
@@ -58,7 +58,7 @@ fn test_chord_events_simultaneous() {
 }
 
 #[test]
-fn test_chord_events_channels() {
+fn test_channel_events_channels() {
     let tokens = pass1_parser::parse_mml("c;e;g");
     let ast = pass2_ast::tokens_to_ast(&tokens);
     let events = pass3_events::ast_to_events(&ast);
@@ -83,7 +83,7 @@ fn test_chord_events_channels() {
 }
 
 #[test]
-fn test_chord_midi_format() {
+fn test_channel_midi_format() {
     let tokens = pass1_parser::parse_mml("c;e;g");
     let ast = pass2_ast::tokens_to_ast(&tokens);
     let events = pass3_events::ast_to_events(&ast);
@@ -95,12 +95,12 @@ fn test_chord_midi_format() {
 }
 
 #[test]
-fn test_full_pipeline_chord() {
+fn test_full_pipeline_channel() {
     use std::env;
     use std::fs;
     use std::path::Path;
 
-    let test_dir = env::temp_dir().join("test_chord");
+    let test_dir = env::temp_dir().join("test_channel");
     fs::create_dir_all(&test_dir).unwrap();
 
     // Pass 1
@@ -119,7 +119,7 @@ fn test_full_pipeline_chord() {
     assert_eq!(events.len(), 6);
 
     // Pass 4
-    let output_file = test_dir.join("output_chord.mid");
+    let output_file = test_dir.join("output_channel.mid");
     let midi_data = pass4_midi::process_pass4(&events, output_file.to_str().unwrap()).unwrap();
     assert!(Path::new(&output_file).exists());
     assert!(!midi_data.is_empty());
@@ -134,7 +134,7 @@ fn test_full_pipeline_chord() {
 }
 
 #[test]
-fn test_two_note_chord() {
+fn test_two_note_channel() {
     let tokens = pass1_parser::parse_mml("c;e");
     let ast = pass2_ast::tokens_to_ast(&tokens);
     let events = pass3_events::ast_to_events(&ast);
@@ -162,10 +162,10 @@ fn test_sequential_notes_unchanged() {
     let ast = pass2_ast::tokens_to_ast(&tokens);
     let events = pass3_events::ast_to_events(&ast);
 
-    // All tokens should have chord_group None
-    assert_eq!(tokens[0].chord_group, None);
-    assert_eq!(tokens[1].chord_group, None);
-    assert_eq!(tokens[2].chord_group, None);
+    // All tokens should have channel_group None
+    assert_eq!(tokens[0].channel_group, None);
+    assert_eq!(tokens[1].channel_group, None);
+    assert_eq!(tokens[2].channel_group, None);
 
     // All notes should have channel None
     assert_eq!(ast.notes[0].channel, None);
@@ -181,4 +181,42 @@ fn test_sequential_notes_unchanged() {
     assert_eq!(note_on_events[0].time, 0);
     assert_eq!(note_on_events[1].time, 480);
     assert_eq!(note_on_events[2].time, 960);
+}
+
+#[test]
+fn test_multi_note_per_channel() {
+    // Test cd;ef;ga where ch0=cd, ch1=ef, ch2=ga
+    let tokens = pass1_parser::parse_mml("cd;ef;ga");
+    let ast = pass2_ast::tokens_to_ast(&tokens);
+    let events = pass3_events::ast_to_events(&ast);
+
+    assert_eq!(tokens.len(), 6);
+    assert_eq!(ast.notes.len(), 6);
+
+    // Verify channel assignments
+    assert_eq!(ast.notes[0].channel, Some(0)); // c on channel 0
+    assert_eq!(ast.notes[1].channel, Some(0)); // d on channel 0
+    assert_eq!(ast.notes[2].channel, Some(1)); // e on channel 1
+    assert_eq!(ast.notes[3].channel, Some(1)); // f on channel 1
+    assert_eq!(ast.notes[4].channel, Some(2)); // g on channel 2
+    assert_eq!(ast.notes[5].channel, Some(2)); // a on channel 2
+
+    // Verify pitches
+    assert_eq!(ast.notes[0].pitch, 60); // C
+    assert_eq!(ast.notes[1].pitch, 62); // D
+    assert_eq!(ast.notes[2].pitch, 64); // E
+    assert_eq!(ast.notes[3].pitch, 65); // F
+    assert_eq!(ast.notes[4].pitch, 67); // G
+    assert_eq!(ast.notes[5].pitch, 69); // A
+
+    // All note_on events should be at time 0 (simultaneous)
+    let note_on_events: Vec<_> = events
+        .iter()
+        .filter(|e| e.event_type == "note_on")
+        .collect();
+
+    assert_eq!(note_on_events.len(), 6);
+    for event in note_on_events {
+        assert_eq!(event.time, 0);
+    }
 }

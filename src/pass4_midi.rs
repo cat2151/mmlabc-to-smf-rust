@@ -19,7 +19,7 @@ const DEFAULT_TEMPO_USEC_PER_BEAT: u32 = 500000;
 /// # Returns
 /// SMF data as bytes
 pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
-    // Check if we have multiple channels (chord)
+    // Check if we have multiple channels
     let has_multiple_channels = events.iter().any(|e| e.channel > 0);
 
     // Create header: Use Format 1 if multiple channels, Format 0 otherwise

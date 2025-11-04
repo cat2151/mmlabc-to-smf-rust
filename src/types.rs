@@ -9,7 +9,7 @@ pub struct Token {
     pub token_type: String,
     pub value: String,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub chord_group: Option<usize>,
+    pub channel_group: Option<usize>,
 }
 
 /// A note in the Abstract Syntax Tree

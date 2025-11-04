@@ -19,12 +19,12 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
     let mut time = 0;
     let duration = 480; // Default duration in ticks (quarter note at 480 ticks per beat)
 
-    // Check if this is a chord (any notes have channel assignments)
-    // When notes are part of a chord, each note has a different channel (0, 1, 2, etc.)
-    let has_chord = ast.notes.iter().any(|n| n.channel.is_some());
+    // Check if notes have channel assignments (multi-channel mode)
+    // When notes have channel assignments, each note plays on a different channel (0, 1, 2, etc.)
+    let has_multiple_channels = ast.notes.iter().any(|n| n.channel.is_some());
 
-    if has_chord {
-        // All notes in a chord play simultaneously at time 0
+    if has_multiple_channels {
+        // Multi-channel notes play simultaneously at time 0
         for note in &ast.notes {
             let channel = note.channel.unwrap_or(0);
 
@@ -47,7 +47,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
             });
         }
     } else {
-        // Sequential notes (no chord)
+        // Sequential notes (single channel)
         for note in &ast.notes {
             // Note on event
             events.push(MidiEvent {
