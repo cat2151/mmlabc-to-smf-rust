@@ -15,59 +15,137 @@ use std::io::Write;
 /// # Returns
 /// SMF data as bytes
 pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
-    // Create header: Format 0 (single track), 480 ticks per beat
-    let header = Header::new(Format::SingleTrack, Timing::Metrical(480.into()));
+    // Check if we have multiple channels (chord)
+    let has_multiple_channels = events.iter().any(|e| e.channel > 0);
+    
+    // Create header: Use Format 1 if multiple channels, Format 0 otherwise
+    let format = if has_multiple_channels {
+        Format::Parallel
+    } else {
+        Format::SingleTrack
+    };
+    let header = Header::new(format, Timing::Metrical(480.into()));
 
-    // Create track
-    let mut track = Vec::new();
+    let mut tracks = Vec::new();
+    
+    if has_multiple_channels {
+        // Format 1: Separate tracks for each channel
+        // First, create a tempo track
+        let mut tempo_track = Vec::new();
+        tempo_track.push(TrackEvent {
+            delta: 0.into(),
+            kind: TrackEventKind::Meta(MetaMessage::Tempo(500000.into())),
+        });
+        tempo_track.push(TrackEvent {
+            delta: 0.into(),
+            kind: TrackEventKind::Meta(MetaMessage::EndOfTrack),
+        });
+        tracks.push(tempo_track);
+        
+        // Get unique channels and create a track for each
+        let mut channels: Vec<u8> = events.iter().map(|e| e.channel).collect();
+        channels.sort_unstable();
+        channels.dedup();
+        
+        for channel in channels {
+            let mut track = Vec::new();
+            
+            // Filter events for this channel and sort by time
+            let mut channel_events: Vec<_> = events.iter()
+                .filter(|e| e.channel == channel)
+                .cloned()
+                .collect();
+            channel_events.sort_by_key(|e| e.time);
+            
+            let mut prev_time = 0;
+            for event in channel_events {
+                let delta_time = event.time - prev_time;
 
-    // Add tempo (500000 microseconds per beat = 120 BPM)
-    track.push(TrackEvent {
-        delta: 0.into(),
-        kind: TrackEventKind::Meta(MetaMessage::Tempo(500000.into())),
-    });
+                let midi_msg = match event.event_type.as_str() {
+                    "note_on" => MidiMessage::NoteOn {
+                        key: event.note.into(),
+                        vel: event.velocity.into(),
+                    },
+                    "note_off" => MidiMessage::NoteOff {
+                        key: event.note.into(),
+                        vel: event.velocity.into(),
+                    },
+                    _ => continue,
+                };
 
-    // Sort events by time
-    let mut sorted_events = events.to_vec();
-    sorted_events.sort_by_key(|e| e.time);
+                track.push(TrackEvent {
+                    delta: delta_time.into(),
+                    kind: TrackEventKind::Midi {
+                        channel: channel.into(),
+                        message: midi_msg,
+                    },
+                });
 
-    let mut prev_time = 0;
-    for event in sorted_events {
-        let delta_time = event.time - prev_time;
+                prev_time = event.time;
+            }
+            
+            // Add end of track
+            track.push(TrackEvent {
+                delta: 0.into(),
+                kind: TrackEventKind::Meta(MetaMessage::EndOfTrack),
+            });
+            
+            tracks.push(track);
+        }
+    } else {
+        // Format 0: Single track
+        let mut track = Vec::new();
 
-        let midi_msg = match event.event_type.as_str() {
-            "note_on" => MidiMessage::NoteOn {
-                key: event.note.into(),
-                vel: event.velocity.into(),
-            },
-            "note_off" => MidiMessage::NoteOff {
-                key: event.note.into(),
-                vel: event.velocity.into(),
-            },
-            _ => continue,
-        };
-
+        // Add tempo (500000 microseconds per beat = 120 BPM)
         track.push(TrackEvent {
-            delta: delta_time.into(),
-            kind: TrackEventKind::Midi {
-                channel: 0.into(),
-                message: midi_msg,
-            },
+            delta: 0.into(),
+            kind: TrackEventKind::Meta(MetaMessage::Tempo(500000.into())),
         });
 
-        prev_time = event.time;
-    }
+        // Sort events by time
+        let mut sorted_events = events.to_vec();
+        sorted_events.sort_by_key(|e| e.time);
 
-    // Add end of track
-    track.push(TrackEvent {
-        delta: 0.into(),
-        kind: TrackEventKind::Meta(MetaMessage::EndOfTrack),
-    });
+        let mut prev_time = 0;
+        for event in sorted_events {
+            let delta_time = event.time - prev_time;
+
+            let midi_msg = match event.event_type.as_str() {
+                "note_on" => MidiMessage::NoteOn {
+                    key: event.note.into(),
+                    vel: event.velocity.into(),
+                },
+                "note_off" => MidiMessage::NoteOff {
+                    key: event.note.into(),
+                    vel: event.velocity.into(),
+                },
+                _ => continue,
+            };
+
+            track.push(TrackEvent {
+                delta: delta_time.into(),
+                kind: TrackEventKind::Midi {
+                    channel: event.channel.into(),
+                    message: midi_msg,
+                },
+            });
+
+            prev_time = event.time;
+        }
+
+        // Add end of track
+        track.push(TrackEvent {
+            delta: 0.into(),
+            kind: TrackEventKind::Meta(MetaMessage::EndOfTrack),
+        });
+        
+        tracks.push(track);
+    }
 
     // Create SMF structure
     let smf = midly::Smf {
         header,
-        tracks: vec![track],
+        tracks,
     };
 
     // Write to bytes

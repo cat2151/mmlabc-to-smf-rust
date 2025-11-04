@@ -11,12 +11,14 @@ fn test_events_to_midi() {
             time: 0,
             note: 60,
             velocity: 64,
+            channel: 0,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
             time: 480,
             note: 60,
             velocity: 0,
+            channel: 0,
         },
     ];
 
@@ -34,12 +36,14 @@ fn test_midi_file_structure() {
             time: 0,
             note: 60,
             velocity: 64,
+            channel: 0,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
             time: 480,
             note: 60,
             velocity: 0,
+            channel: 0,
         },
     ];
 
@@ -61,12 +65,14 @@ fn test_save_midi_file() {
             time: 0,
             note: 60,
             velocity: 64,
+            channel: 0,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
             time: 480,
             note: 60,
             velocity: 0,
+            channel: 0,
         },
     ];
 
@@ -93,12 +99,14 @@ fn test_process_pass4() {
             time: 0,
             note: 60,
             velocity: 64,
+            channel: 0,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
             time: 480,
             note: 60,
             velocity: 0,
+            channel: 0,
         },
     ];
 

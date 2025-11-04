@@ -13,30 +13,61 @@ use std::io::Write;
 /// * `ast` - AST structure from Pass 2
 ///
 /// # Returns
-/// List of MIDI event structures
+/// List of MIDI event structures with channel assignments
 pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
     let mut events = Vec::new();
     let mut time = 0;
     let duration = 480; // Default duration in ticks (quarter note at 480 ticks per beat)
 
-    for note in &ast.notes {
-        // Note on event
-        events.push(MidiEvent {
-            event_type: "note_on".to_string(),
-            time,
-            note: note.pitch,
-            velocity: 64,
-        });
+    // Check if this is a chord (all notes have the same chord_group)
+    let has_chord = ast.notes.iter().any(|n| n.channel.is_some());
+    
+    if has_chord {
+        // All notes in a chord play simultaneously at time 0
+        for note in &ast.notes {
+            let channel = note.channel.unwrap_or(0);
+            
+            // Note on event
+            events.push(MidiEvent {
+                event_type: "note_on".to_string(),
+                time: 0,
+                note: note.pitch,
+                velocity: 64,
+                channel,
+            });
 
-        // Note off event
-        events.push(MidiEvent {
-            event_type: "note_off".to_string(),
-            time: time + duration,
-            note: note.pitch,
-            velocity: 0,
-        });
+            // Note off event
+            events.push(MidiEvent {
+                event_type: "note_off".to_string(),
+                time: duration,
+                note: note.pitch,
+                velocity: 0,
+                channel,
+            });
+        }
+    } else {
+        // Sequential notes (no chord)
+        for note in &ast.notes {
+            // Note on event
+            events.push(MidiEvent {
+                event_type: "note_on".to_string(),
+                time,
+                note: note.pitch,
+                velocity: 64,
+                channel: 0,
+            });
 
-        time += duration;
+            // Note off event
+            events.push(MidiEvent {
+                event_type: "note_off".to_string(),
+                time: time + duration,
+                note: note.pitch,
+                velocity: 0,
+                channel: 0,
+            });
+
+            time += duration;
+        }
     }
 
     events
