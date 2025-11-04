@@ -19,7 +19,8 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
     let mut time = 0;
     let duration = 480; // Default duration in ticks (quarter note at 480 ticks per beat)
 
-    // Check if this is a chord (all notes have the same chord_group)
+    // Check if this is a chord (any notes have channel assignments)
+    // When notes are part of a chord, each note has a different channel (0, 1, 2, etc.)
     let has_chord = ast.notes.iter().any(|n| n.channel.is_some());
 
     if has_chord {

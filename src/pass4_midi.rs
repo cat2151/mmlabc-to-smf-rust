@@ -4,8 +4,12 @@
 use crate::types::MidiEvent;
 use anyhow::Result;
 use midly::{Format, Header, MetaMessage, MidiMessage, Timing, TrackEvent, TrackEventKind};
+use std::collections::HashSet;
 use std::fs::File;
 use std::io::Write;
+
+// Default tempo: 500000 microseconds per beat = 120 BPM
+const DEFAULT_TEMPO_USEC_PER_BEAT: u32 = 500000;
 
 /// Convert MIDI events to SMF data
 ///
@@ -34,7 +38,7 @@ pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
         let tempo_track = vec![
             TrackEvent {
                 delta: 0.into(),
-                kind: TrackEventKind::Meta(MetaMessage::Tempo(500000.into())),
+                kind: TrackEventKind::Meta(MetaMessage::Tempo(DEFAULT_TEMPO_USEC_PER_BEAT.into())),
             },
             TrackEvent {
                 delta: 0.into(),
@@ -44,9 +48,16 @@ pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
         tracks.push(tempo_track);
 
         // Get unique channels and create a track for each
-        let mut channels: Vec<u8> = events.iter().map(|e| e.channel).collect();
-        channels.sort_unstable();
-        channels.dedup();
+        let channels: Vec<u8> = {
+            let mut unique_channels: Vec<u8> = events
+                .iter()
+                .map(|e| e.channel)
+                .collect::<HashSet<_>>()
+                .into_iter()
+                .collect();
+            unique_channels.sort_unstable();
+            unique_channels
+        };
 
         for channel in channels {
             let mut track = Vec::new();
@@ -98,10 +109,10 @@ pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
         // Format 0: Single track
         let mut track = Vec::new();
 
-        // Add tempo (500000 microseconds per beat = 120 BPM)
+        // Add tempo
         track.push(TrackEvent {
             delta: 0.into(),
-            kind: TrackEventKind::Meta(MetaMessage::Tempo(500000.into())),
+            kind: TrackEventKind::Meta(MetaMessage::Tempo(DEFAULT_TEMPO_USEC_PER_BEAT.into())),
         });
 
         // Sort events by time

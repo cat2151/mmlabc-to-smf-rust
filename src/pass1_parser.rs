@@ -21,7 +21,11 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
     let chord_groups: Vec<&str> = mml_string.split(';').collect();
     let mut tokens = Vec::new();
 
+    // Only assign chord_group if there are multiple groups (i.e., semicolons present)
+    let has_chord = chord_groups.len() > 1;
+
     for (group_idx, group) in chord_groups.iter().enumerate() {
+        let chord_group = if has_chord { Some(group_idx) } else { None };
         let mut parser = Parser::new();
         let language = tree_sitter_mml::language();
         parser
@@ -64,13 +68,6 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                 cursor.goto_parent();
             }
         }
-
-        // Only assign chord_group if there are multiple groups (i.e., semicolons present)
-        let chord_group = if chord_groups.len() > 1 {
-            Some(group_idx)
-        } else {
-            None
-        };
 
         extract_tokens(&mut cursor, group, &mut tokens, chord_group);
     }
