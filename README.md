@@ -1,93 +1,184 @@
 # mmlabc-to-smf-rust
 
-Music Macro Language (MML) から Standard MIDI File (SMF) への変換ツール（Rust版）
+A tool for converting Music Macro Language (MML) to Standard MIDI File (SMF) (Rust version)
 
-## 概要
+## Overview
 
-このプロジェクトは、[mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf) のRust実装版です。
-Music Macro Language形式の文字列を、包括的なデバッグ出力を備えた4パスアーキテクチャを使用してStandard MIDI Fileに変換します。
+This project is a Rust implementation of [mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf).
+It converts Music Macro Language format strings to Standard MIDI Files using a 4-pass architecture with comprehensive debug output.
 
-## 状況
+## Status
 
-- cdeからドレミのSMFが生成できます
+### Implemented Features ✅
+- **Basic Note Conversion**: `cdefgab` → MIDI note conversion
+- **4-Pass Architecture**: Fully implemented
+  - Pass 1: Tokenization of MML string (simple parser)
+  - Pass 2: Conversion from tokens to AST (Abstract Syntax Tree)
+  - Pass 3: Generation of MIDI events from AST
+  - Pass 4: Creation of Standard MIDI File from MIDI events
+- **Channel Functionality**: Multi-channel support using semicolons (`;`)
+- **JSON Debug Output**: Intermediate results of each pass outputted in JSON
+- **CLI**: Basic operations via command-line arguments
+- **Comprehensive Tests**: All 35 test cases pass
 
-## 今後の見通し
+### Usage Examples
+```bash
+# Basic scale conversion
+cargo run -- "cdefgab"
 
-- ほかの2つのリポジトリが一通りPython to Rustできるまで待つ
-- cat-play-mmlリポジトリに、ほかの2つのリポジトリとあわせて、3つのリポジトリを統合する
-  - 目的はBluesky投稿を参照
-  - 当リポジトリそのものは残して、参考にしやすい最小限の MML to SMF のRust実装のサンプル、として利用するつもり
+# Multi-channel
+cargo run -- "c;e;g"
 
-## 特徴
+# Custom output file
+cargo run -- "cde" -o my_song.mid
+```
 
-- **4パスアーキテクチャ**: 
-  - パス1: MML文字列をtree-sitterによりCSTに解析（予定。現在は単純tokenize）
-  - パス2: CSTを抽象構文木（AST）に変換（予定）
-  - パス3: ASTからMIDIイベントを生成
-  - パス4: Standard MIDI Fileを作成
-- **デバッグJSON出力**: 各パスは、デバッグ用に中間結果をJSONとして保存
-- **テスト駆動開発**: ユニットテストと統合テストを含む包括的なテストスイート
-- **モジュール設計**: Rustの型システムと所有権モデルを活用した安全な実装
+## Future Outlook
 
-## 必要要件
+### Short-term Goals 🚧
+- **tree-sitter integration**: For parsing more complex MML syntax
+- **Repository configuration**: Setting up formatters, linters, etc.
+- **Error handling**: More detailed error messages
 
-- Rust 1.70.0以上
+### Long-term Goals 🎯
+- **mmlabc command implementation**: Full support for mmlabc format
+  - Note length specification (quarter note, eighth note, etc.)
+  - Octave specification (`>`, `<`)
+  - Control commands like tempo, volume
+  - Extension of chord functionality
+- **Performance optimization**: Fast processing of large MML files
+
+### References
+- For mmlabc, refer to the [mml2abc](https://github.com/cat2151/mml2abc) repository.
+
+## Features
+
+- **4-Pass Architecture**:
+  - **Pass 1**: Parses MML string into tokens (currently: simple parser, future: tree-sitter)
+  - **Pass 2**: Converts tokens into an Abstract Syntax Tree (AST)
+  - **Pass 3**: Generates MIDI events from the AST
+  - **Pass 4**: Creates a Standard MIDI File
+- **Multi-channel Support**: Simultaneous sounding channel separation using semicolons (`;`)
+- **JSON Debug Output**: Intermediate results of each pass can be saved and reviewed in JSON format
+- **Comprehensive Tests**: Total of 35 unit and integration test cases
+- **Safe Design**: Memory safety ensured by Rust's type system and ownership model
+
+## Requirements
+
+- Rust 1.70.0 or higher
 - Cargo
 
-## インストール（実装後）
+## Installation
+
+### Development Version (Current State)
 
 ```bash
-cargo install --path .
+git clone https://github.com/cat2151/mmlabc-to-smf-rust
+cd mmlabc-to-smf-rust
+cargo build --release
 ```
 
-## 使い方（実装後）
-
-### 基本的な使い方
+### Direct Execution (via Cargo)
 
 ```bash
-# デフォルトでcat-play-mmlで自動再生されます
-mmlabc-to-smf "cde"
-
-# 自動再生を無効化
-mmlabc-to-smf "cde" --no-play
+cargo run -- "cdefgab"
 ```
 
-### カスタム出力ファイル
+## Usage
+
+### Basic Usage
 
 ```bash
-mmlabc-to-smf "cde" -o my_song.mid
+# Basic scale conversion (automatically played by cat-play-mml by default)
+cargo run -- "cdefgab"
+
+# Multi-channel (simultaneous notes)
+cargo run -- "c;e;g"  # C major chord
+
+# Custom output file
+cargo run -- "cde" -o my_song.mid
+
+# Disable auto-play
+cargo run -- "cde" --no-play
 ```
 
-### 自動再生機能
+### Auto-play Functionality
 
-デフォルトでは、MIDIファイル生成後に自動的に `cat-play-mml` コマンドで再生されます。
-自動再生を無効化するには `--no-play` オプションを使用してください。
+By default, after generating a MIDI file, it is automatically played using the `cat-play-mml` command.
+This allows immediate sound confirmation during MML development.
 
-## 開発
+- To disable auto-play, use the `--no-play` option.
+- If `cat-play-mml` is not installed, a warning message will be displayed, but the MIDI file will still be generated successfully.
 
-### ビルド
+### Output Files
+
+The following files are generated upon execution:
+- `pass1_tokens.json` - Token information from Pass 1 (for debugging)
+- `pass2_ast.json` - AST information from Pass 2 (for debugging)
+- `pass3_events.json` - MIDI event information from Pass 3 (for debugging)
+- `output.mid` - The final MIDI file
+
+### Supported MML Notation
+
+Currently supported notation:
+- **Basic Notes**: `c`, `d`, `e`, `f`, `g`, `a`, `b` (case-insensitive)
+- **Multi-channel**: Channel separation with `;` (simultaneous notes)
+
+Examples:
+```
+cdefgab     → Consecutive playback of CDEFGAB
+c;e;g       → Simultaneous playback of C, E, and G (C major chord)
+```
+
+## Development
+
+### Build
 
 ```bash
-cargo build
+cargo build        # Debug build
+cargo build --release  # Release build
 ```
 
-### テスト
+### Test
 
 ```bash
-cargo test
+cargo test         # Run all tests (35 test cases)
 ```
 
-### Lint
+### Format & Lint
 
 ```bash
-cargo clippy
-cargo fmt --check
+cargo clippy       # Code quality check
+cargo fmt --check  # Format check
+cargo fmt          # Apply format
 ```
 
-## ライセンス
+### Project Structure
 
-MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してください。
+```
+src/
+├── main.rs              # CLI entry point
+├── lib.rs               # Library root
+├── pass1_parser.rs      # Pass 1: Token parsing
+├── pass2_ast.rs         # Pass 2: AST conversion
+├── pass3_events.rs      # Pass 3: MIDI event generation
+├── pass4_midi.rs        # Pass 4: MIDI file creation
+├── tree_sitter_mml.rs   # tree-sitter MML integration
+└── types.rs             # Common type definitions
 
-## 参考
+tests/
+├── integration_test.rs  # Integration tests
+├── test_channel.rs      # Channel functionality tests
+├── test_pass1.rs        # Pass 1 tests
+├── test_pass2.rs        # Pass 2 tests
+├── test_pass3.rs        # Pass 3 tests
+└── test_pass4.rs        # Pass 4 tests
+```
 
-- オリジナルのPython実装: [cat2151/mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf)
+## License
+
+MIT License - See the [LICENSE](LICENSE) file for details.
+
+## References
+
+- Original Python implementation: [cat2151/mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf)
