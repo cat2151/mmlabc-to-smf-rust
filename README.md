@@ -45,7 +45,11 @@ cargo install --path .
 ### 基本的な使い方
 
 ```bash
+# デフォルトでcat-play-mmlで自動再生されます
 mmlabc-to-smf "cde"
+
+# 自動再生を無効化
+mmlabc-to-smf "cde" --no-play
 ```
 
 ### カスタム出力ファイル
@@ -53,6 +57,11 @@ mmlabc-to-smf "cde"
 ```bash
 mmlabc-to-smf "cde" -o my_song.mid
 ```
+
+### 自動再生機能
+
+デフォルトでは、MIDIファイル生成後に自動的に `cat-play-mml` コマンドで再生されます。
+自動再生を無効化するには `--no-play` オプションを使用してください。
 
 ## 開発
 
