@@ -29,3 +29,6 @@ target
 pass*.json
 *.mid
 !tests/**/*.mid
+
+# TOML configuration file (user-specific)
+mmlabc-to-smf-rust.toml

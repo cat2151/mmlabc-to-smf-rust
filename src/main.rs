@@ -5,7 +5,7 @@
 
 use anyhow::Result;
 use clap::Parser;
-use mmlabc_to_smf::{pass1_parser, pass2_ast, pass3_events, pass4_midi};
+use mmlabc_to_smf::{config::Config, pass1_parser, pass2_ast, pass3_events, pass4_midi};
 use std::process::Command;
 
 #[derive(Parser, Debug)]
@@ -18,13 +18,17 @@ struct Args {
     #[arg(short, long, default_value = "output.mid")]
     output: String,
 
-    /// Disable auto-playing the generated MIDI file with cat-play-mml
+    /// Disable auto-playing the generated MIDI file
+    /// Default player is cat-play-mml, configurable via mmlabc-to-smf-rust.toml
     #[arg(long, default_value_t = false)]
     no_play: bool,
 }
 
 fn main() -> Result<()> {
     let args = Args::parse();
+
+    // Load configuration
+    let config = Config::load().unwrap_or_default();
 
     println!("Converting MML: {}", args.mml_string);
 
@@ -58,12 +62,13 @@ fn main() -> Result<()> {
     println!("  - pass3_events.json (debug)");
     println!("  - {} (final output)", args.output);
 
-    // Auto-play the generated MIDI file with cat-play-mml (unless --no-play is specified)
+    // Auto-play the generated MIDI file (unless --no-play is specified)
     if !args.no_play {
-        println!("\nAttempting to play MIDI file with cat-play-mml...");
-        match Command::new("cat-play-mml").arg(&args.output).spawn() {
+        let player_command = config.get_player_command();
+        println!("\nAttempting to play MIDI file with {}...", player_command);
+        match Command::new(player_command).arg(&args.output).spawn() {
             Ok(mut child) => {
-                println!("Started cat-play-mml with {}", args.output);
+                println!("Started {} with {}", player_command, args.output);
                 // Wait for the player to finish
                 match child.wait() {
                     Ok(status) => {
@@ -74,14 +79,17 @@ fn main() -> Result<()> {
                         }
                     }
                     Err(e) => {
-                        eprintln!("Warning: Failed to wait for cat-play-mml: {}", e);
+                        eprintln!("Warning: Failed to wait for {}: {}", player_command, e);
                     }
                 }
             }
             Err(e) => {
-                eprintln!("Warning: Failed to start cat-play-mml: {}", e);
-                eprintln!("The MIDI file was generated successfully, but cat-play-mml could not be executed.");
-                eprintln!("To play the file, install cat-play-mml or use another MIDI player.");
+                eprintln!("Warning: Failed to start {}: {}", player_command, e);
+                eprintln!(
+                    "The MIDI file was generated successfully, but {} could not be executed.",
+                    player_command
+                );
+                eprintln!("To play the file, install {} or configure a different player in mmlabc-to-smf-rust.toml.", player_command);
                 eprintln!("To disable auto-play, use the --no-play flag.");
             }
         }
