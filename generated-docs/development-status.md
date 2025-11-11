@@ -1,50 +1,58 @@
-Last updated: 2025-11-10
+Last updated: 2025-11-12
 
 # Development Status
 
 ## 現在のIssues
-- プロジェクトには現在、オープン中のIssueがありません。
-- 全ての既知のタスクや懸念事項は対処済み、または完了状態にあります。
-- 今後は、次の機能拡張やプロジェクト改善のフェーズへの移行が計画されます。
+- 現在オープンされているIssueはありません。
+- 新しい機能開発や改善の作業は、既存のIssueがない状態で進められています。
+- 今後の開発は、この開発状況レポートを元に方向性を定めることが期待されます。
 
 ## 次の一手候補
-1. 開発状況レポートの精度向上と自動化の改善 [Issue #28](../issue-notes/28.md)
-   - 最初の小さな一歩: `development-status-prompt.md` の現在の出力がプロジェクトの現状を正確に反映しているか評価する。特に、「現在のIssues」セクションが空の場合の記述内容を検討する。
-   - Agent実行プロンプ:
-     ```
-     対象ファイル: .github/actions-tmp/.github_automation/project_summary/prompts/development-status-prompt.md および .github/actions-tmp/.github_automation/project_summary/scripts/development/DevelopmentStatusGenerator.cjs
+（注：現在オープンされているIssueがないため、以下の候補にはIssue番号は付与していません。これらはプロジェクトの現状と最近の活動に基づいて提案される次の一手の候補です。）
 
-     実行内容: `development-status-prompt.md` が「現在のオープンIssues」が空の場合の振る舞いを分析し、`DevelopmentStatusGenerator.cjs` がその情報をどのように処理しているかを確認してください。そして、より自然で情報価値のある記述を生成するための改善点を洗い出してください。
+1.  DevelopmentStatusGeneratorの挙動改善（オープンIssueなしの場合）
+    -   最初の小さな一歩: `development-status-prompt.md`と`DevelopmentStatusGenerator.cjs`を分析し、オープンIssueがない場合の出力挙動を確認する。
+    -   Agent実行プロンプト:
+        ```
+        対象ファイル: .github/actions-tmp/.github_automation/project_summary/prompts/development-status-prompt.md
+                    .github/actions-tmp/.github_automation/project_summary/scripts/development/DevelopmentStatusGenerator.cjs
 
-     確認事項: 既存のプロンプトの内容と、`DevelopmentStatusGenerator.cjs` 内でIssue情報を取得・整形しているロジックを確認し、ハルシネーションを避けるための制約を再確認してください。
+        実行内容: 対象ファイルを分析し、現在オープン中のIssueがない場合に、「現在のIssues」セクションがどのように生成されるかを確認してください。特に、要約が3行に満たない場合や、不自然な表現になっていないかを評価します。
 
-     期待する出力: `development-status-prompt.md` の現在のIssuesセクションの出力ロジックを改善するための具体的な提案をMarkdown形式で記述してください。これには、Issueがない場合の適切な代替記述例、またはスクリプト変更の方向性を含めてください。
-     ```
+        確認事項: `IssueTracker.cjs`がIssue情報をどのように取得し、`DevelopmentStatusGenerator.cjs`に渡しているかのフローを確認してください。また、`BaseGenerator.cjs`の共通処理も考慮に入れてください。
 
-2. MMLパーサーの機能拡張と記法対応の深化 [Issue #11](../issue-notes/11.md)
-   - 最初の小さな一歩: 現在実装されているMML記法の範囲を明確にし、未対応の主要なMML記法（例: Vコマンド、@コマンド）をリストアップする。
-   - Agent実行プロンプト:
-     ```
-     対象ファイル: src/pass1_parser.rs, src/pass2_ast.rs, src/pass3_events.rs, src/pass4_midi.rs, src/types.rs
+        期待する出力: `現在のIssues`セクションの生成ロジックについて、オープンIssueがない場合の現状の挙動と、より適切な出力を生成するための改善点をmarkdown形式で記述してください。具体的には、3行要約が常に満たされるための提案や、ハルシネーションを避けた適切な文言の生成方法を含めてください。
+        ```
 
-     実行内容: MMLからMIDIイベントへの変換パイプライン全体を分析し、現在対応しているMML記法（音符、休符、音長L、オクターブO、テンポTなど）と、未対応の主要な記法（例: Vコマンドによる音量制御、@コマンドによる音色変更）を洗い出してください。特に、既存の構造が新しい記法をどのように扱えるか、または変更が必要かという観点で分析してください。
+2.  `README`自動翻訳ワークフローの安定性確認
+    -   最初の小さな一歩: 最近の自動翻訳コミット履歴（`e91456f`、`103ed64`）を確認し、翻訳結果に問題がないか目視で確認する。
+    -   Agent実行プロンプト:
+        ```
+        対象ファイル: .github/workflows/call-translate-readme.yml
+                    .github/actions-tmp/.github_automation/translate/scripts/translate-readme.cjs
+                    README.ja.md
+                    README.md
 
-     確認事項: 各パス（pass1_parserからpass4_midi）でのデータ構造の受け渡しと、既存のMML記法処理ロジックの整合性を確認してください。新しい記法導入が既存機能に影響を与えないか検討してください。
+        実行内容: `call-translate-readme.yml`ワークフローと`translate-readme.cjs`スクリプトの実行ログ（利用可能であれば）および、最近の自動翻訳コミットによって生成された`README.md`と元の`README.ja.md`の内容を比較し、翻訳の精度と安定性を確認してください。特に、Markdownフォーマットの崩れや、意味の誤訳がないかを重点的にレビューします。
 
-     期待する出力: 未対応MML記法（特にVコマンドと@コマンド）を実装するための具体的なロードマップをMarkdown形式で提案してください。各記法について、どのファイルにどのような変更が必要か、またその際の課題と解決策を含めてください。
-     ```
+        確認事項: 翻訳に使用されているツールのバージョンや設定、ワークフローのトリガー条件（`on: push`等）を確認してください。翻訳スクリプトがエラーなく完了しているか、過去の実行履歴も参照できる場合は確認します。
 
-3. CLIツールと再生機能のユーザビリティ向上 [Issue #13](../issue-notes/13.md)
-   - 最初の小さな一歩: `src/main.rs` を確認し、現在のCLIオプションと`cat-play-mml`コマンドの基本的な挙動を把握する。エラーメッセージの明確さや、ユーザーにとって便利な追加機能の可能性を検討する。
-   - Agent実行プロンプト:
-     ```
-     対象ファイル: src/main.rs および tests/test_cli.rs
+        期待する出力: `README`自動翻訳ワークフローの現状の評価（精度、安定性、問題点）をmarkdown形式で記述してください。問題が発見された場合は、具体的な改善提案（例: 翻訳エンジンの変更、ポスト処理の追加、品質チェックステップの導入）を含めてください。
+        ```
 
-     実行内容: CLIツールの既存機能（特に`cat-play-mml`コマンドのオプションと動作）を分析し、ユーザーエクスペリエンスの観点から改善点を洗い出してください。具体的には、より直感的なオプション名の検討、ヘルプメッセージの充実、エラーメッセージの明確化、または便利なショートカット機能の追加などについて考察してください。
+3.  MMLパーサーのCLIテストカバレッジ向上
+    -   最初の小さな一歩: `tests/test_cli.rs`を分析し、既存のテストケースが`cat-play-mml`の自動再生機能と他のCLIオプションをどの程度カバーしているかを確認する。
+    -   Agent実行プロンプト:
+        ```
+        対象ファイル: src/main.rs
+                    tests/test_cli.rs
 
-     確認事項: 既存のCLIオプション解析ロジックとテストケースを確認し、提案される変更が後方互換性や既存のテストに与える影響を評価してください。
+        実行内容: `src/main.rs`で定義されているCLIコマンドとオプション（特に`cat-play-mml`の自動再生機能に関連するもの）を洗い出し、`tests/test_cli.rs`のテストカバレッジを評価してください。現状でカバーされていないCLIオプションや、エッジケース（例: 無効な入力ファイル、存在しないファイルパス、予期せぬ引数の組み合わせ）に対するテストケースの不足を特定します。
 
-     期待する出力: CLIツールのユーザビリティを向上させるための具体的な提案をMarkdown形式で記述してください。これには、新しいCLIオプションの候補、既存オプションの改善案、エラーハンドリングの強化、および関連するテストの変更案を含めてください。
+        確認事項: `Cargo.toml`で定義されている依存関係や、テスト実行方法について確認してください。テストが環境に依存しないように、モックやダミーツールが適切に利用されているかどうかも考慮します。
+
+        期待する出力: `cat-play-mml`を含むCLI機能のテストカバレッジ分析結果をmarkdown形式で記述してください。追加すべき具体的なテストケースのリストと、それぞれのテストが検証すべき挙動を提案してください。可能であれば、テストコードのサンプル構造も示してください。
+        ```
 
 ---
-Generated at: 2025-11-10 07:05:39 JST
+Generated at: 2025-11-12 07:06:18 JST

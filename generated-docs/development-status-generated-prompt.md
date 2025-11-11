@@ -1,4 +1,4 @@
-Last updated: 2025-11-10
+Last updated: 2025-11-12
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -159,6 +159,7 @@ Last updated: 2025-11-10
 - .github/actions-tmp/generated-docs/callgraph.js
 - .github/actions-tmp/generated-docs/development-status-generated-prompt.md
 - .github/actions-tmp/generated-docs/development-status.md
+- .github/actions-tmp/generated-docs/project-overview-generated-prompt.md
 - .github/actions-tmp/generated-docs/project-overview.md
 - .github/actions-tmp/generated-docs/style.css
 - .github/actions-tmp/issue-notes/10.md
@@ -183,6 +184,7 @@ Last updated: 2025-11-10
 - .github/actions-tmp/issue-notes/28.md
 - .github/actions-tmp/issue-notes/29.md
 - .github/actions-tmp/issue-notes/3.md
+- .github/actions-tmp/issue-notes/30.md
 - .github/actions-tmp/issue-notes/4.md
 - .github/actions-tmp/issue-notes/7.md
 - .github/actions-tmp/issue-notes/8.md
@@ -236,39 +238,30 @@ Last updated: 2025-11-10
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
+e91456f Auto-translate README.ja.md to README.md [auto]
+c3c9e02 Change project status to WIP
+9e82e5f Add WIP section to README
+1a51abf Update project summaries (overview & development status) [auto]
 103ed64 Auto-translate README.ja.md to README.md [auto]
 1ed8ace Merge pull request #13 from cat2151/copilot/update-smf-file-playback
 d73ac2a github-actionsリポジトリの共通ワークフローを導入
 67220d4 Add CLI tests for auto-play functionality
 c083297 Add auto-play functionality with cat-play-mml
 9b9aef4 Initial plan
-dfc27cd READMEの内容を更新し、実装済み機能や動作確認手順を明確化。短期・長期目標を整理し、プロジェクト構造を追加。
-db2c252 Merge pull request #11 from cat2151/copilot/implement-mml-sequence
-0c981f8 Fix multi-channel timing: notes within each channel are now sequential
-4b6a462 Replace 'chord' terminology with 'channel' throughout codebase
 
 ### 変更されたファイル:
-.editorconfig
 .github/workflows/call-daily-project-summary.yml
 .github/workflows/call-issue-note.yml
 .github/workflows/call-translate-readme.yml
-.vscode/settings.json
-Cargo.toml
 README.ja.md
 README.md
-_config.yml
+generated-docs/development-status-generated-prompt.md
+generated-docs/development-status.md
+generated-docs/project-overview-generated-prompt.md
+generated-docs/project-overview.md
 src/main.rs
-src/pass1_parser.rs
-src/pass2_ast.rs
-src/pass3_events.rs
-src/pass4_midi.rs
-src/types.rs
-tests/test_channel.rs
 tests/test_cli.rs
-tests/test_pass2.rs
-tests/test_pass3.rs
-tests/test_pass4.rs
 
 
 ---
-Generated at: 2025-11-10 07:05:03 JST
+Generated at: 2025-11-12 07:05:55 JST

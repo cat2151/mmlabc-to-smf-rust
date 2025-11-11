@@ -1,4 +1,4 @@
-Last updated: 2025-11-10
+Last updated: 2025-11-12
 
 
 # プロジェクト概要生成プロンプト（来訪者向け）
@@ -70,7 +70,9 @@ Music Macro Language (MML) から Standard MIDI File (SMF) への変換ツール
 このプロジェクトは、[mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf) のRust実装版です。
 Music Macro Language形式の文字列を、包括的なデバッグ出力を備えた4パスアーキテクチャを使用してStandard MIDI Fileに変換します。
 
-## 状況
+## WIP
+
+開発中です。現状、c～bを認識できるのみで、ほかのMMLはこれから実装します。
 
 ### 実装済み機能 ✅
 - **基本音符変換**: `cdefgab` → MIDI音符への変換
@@ -849,7 +851,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📄 _config.yml
                                                                     📄 build.rs
                                                                     📁 generated-docs/
-                                                                      📖 development-status-generated-prompt.md
                                                                     📁 src/
                                                                       📄 lib.rs
                                                                       📄 main.rs
@@ -881,7 +882,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📄 _config.yml
                                                                   📄 build.rs
                                                                   📁 generated-docs/
-                                                                    📖 development-status-generated-prompt.md
                                                                   📁 src/
                                                                     📄 lib.rs
                                                                     📄 main.rs
@@ -913,7 +913,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📄 _config.yml
                                                                 📄 build.rs
                                                                 📁 generated-docs/
-                                                                  📖 development-status-generated-prompt.md
                                                                 📁 src/
                                                                   📄 lib.rs
                                                                   📄 main.rs
@@ -945,7 +944,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📄 _config.yml
                                                               📄 build.rs
                                                               📁 generated-docs/
-                                                                📖 development-status-generated-prompt.md
                                                               📁 src/
                                                                 📄 lib.rs
                                                                 📄 main.rs
@@ -977,7 +975,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📄 _config.yml
                                                             📄 build.rs
                                                             📁 generated-docs/
-                                                              📖 development-status-generated-prompt.md
                                                             📁 src/
                                                               📄 lib.rs
                                                               📄 main.rs
@@ -1009,7 +1006,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📄 _config.yml
                                                           📄 build.rs
                                                           📁 generated-docs/
-                                                            📖 development-status-generated-prompt.md
                                                           📁 src/
                                                             📄 lib.rs
                                                             📄 main.rs
@@ -1041,7 +1037,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📄 _config.yml
                                                         📄 build.rs
                                                         📁 generated-docs/
-                                                          📖 development-status-generated-prompt.md
                                                         📁 src/
                                                           📄 lib.rs
                                                           📄 main.rs
@@ -1073,7 +1068,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📄 _config.yml
                                                       📄 build.rs
                                                       📁 generated-docs/
-                                                        📖 development-status-generated-prompt.md
                                                       📁 src/
                                                         📄 lib.rs
                                                         📄 main.rs
@@ -1105,7 +1099,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📄 _config.yml
                                                     📄 build.rs
                                                     📁 generated-docs/
-                                                      📖 development-status-generated-prompt.md
                                                     📁 src/
                                                       📄 lib.rs
                                                       📄 main.rs
@@ -1137,7 +1130,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📄 _config.yml
                                                   📄 build.rs
                                                   📁 generated-docs/
-                                                    📖 development-status-generated-prompt.md
                                                   📁 src/
                                                     📄 lib.rs
                                                     📄 main.rs
@@ -1169,7 +1161,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📄 _config.yml
                                                 📄 build.rs
                                                 📁 generated-docs/
-                                                  📖 development-status-generated-prompt.md
                                                 📁 src/
                                                   📄 lib.rs
                                                   📄 main.rs
@@ -1201,7 +1192,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📄 _config.yml
                                               📄 build.rs
                                               📁 generated-docs/
-                                                📖 development-status-generated-prompt.md
                                               📁 src/
                                                 📄 lib.rs
                                                 📄 main.rs
@@ -1233,7 +1223,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📄 _config.yml
                                             📄 build.rs
                                             📁 generated-docs/
-                                              📖 development-status-generated-prompt.md
                                             📁 src/
                                               📄 lib.rs
                                               📄 main.rs
@@ -1265,7 +1254,6 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📄 _config.yml
                                           📄 build.rs
                                           📁 generated-docs/
-                                            📖 development-status-generated-prompt.md
                                           📁 src/
                                             📄 lib.rs
                                             📄 main.rs
@@ -2186,4 +2174,4 @@ tree-sitter-mml/grammar.js
 
 
 ---
-Generated at: 2025-11-10 07:05:03 JST
+Generated at: 2025-11-12 07:05:55 JST
