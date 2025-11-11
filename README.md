@@ -2,6 +2,12 @@
 
 A tool for converting Music Macro Language (MML) to Standard MIDI File (SMF) (Rust version)
 
+## WIP
+
+開発中です。ここに書いてあるものは、「それを目指している」というレベルです。実装されていない可能性があります。
+
+実際にはc～bを認識できるのみで、ほかのMMLはこれから実装します。
+
 ## Overview
 
 This project is a Rust implementation of [mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf).
