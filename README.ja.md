@@ -7,7 +7,9 @@ Music Macro Language (MML) から Standard MIDI File (SMF) への変換ツール
 このプロジェクトは、[mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf) のRust実装版です。
 Music Macro Language形式の文字列を、包括的なデバッグ出力を備えた4パスアーキテクチャを使用してStandard MIDI Fileに変換します。
 
-## 状況
+## WIP
+
+開発中です。現状、c～bを認識できるのみで、ほかのMMLはこれから実装します。
 
 ### 実装済み機能 ✅
 - **基本音符変換**: `cdefgab` → MIDI音符への変換
