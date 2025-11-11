@@ -112,6 +112,26 @@ This allows you to immediately check the sound during MML development.
 - To disable auto-playback, use the `--no-play` option.
 - If `cat-play-mml` is not installed, a warning message will be displayed, but the MIDI file will still be generated successfully.
 
+#### Configuring a Custom Player
+
+You can configure a custom MIDI player by creating a `mmlabc-to-smf-rust.toml` file in the directory where you run the tool.
+
+Example configuration file:
+```toml
+# mmlabc-to-smf-rust.toml
+external_smf_player = "timidity"
+```
+
+Other common MIDI players you can configure:
+- `timidity` - TiMidity++ MIDI player
+- `fluidsynth` - FluidSynth software synthesizer  
+- `vlc` - VLC media player
+- `cat-play-mml` (default)
+
+If no configuration file is present, `cat-play-mml` will be used as the default player.
+
+See `mmlabc-to-smf-rust.toml.example` for a sample configuration file.
+
 ### Output Files
 
 The following files are generated upon execution:
