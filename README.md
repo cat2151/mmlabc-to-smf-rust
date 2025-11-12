@@ -1,21 +1,21 @@
 # mmlabc-to-smf-rust
 
-A conversion tool from Music Macro Language (MML) to Standard MIDI File (SMF) (Rust version)
+Music Macro Language (MML) to Standard MIDI File (SMF) conversion tool (Rust version)
 
 ## Overview
 
-This project is the Rust implementation of [mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf).
-It converts Music Macro Language strings to Standard MIDI File format using a 4-pass architecture with comprehensive debug output.
+This project is a Rust implementation of [mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf).
+It converts Music Macro Language strings to Standard MIDI Files using a 4-pass architecture with comprehensive debug output.
 
 ## WIP
 
-Currently under development. It only recognizes `c` through `b` at this stage; other MML features will be implemented later.
+Under development. Currently, only `c` through `b` are recognized; other MML features will be implemented later.
 
 ### Implemented Features ✅
-- **Basic Note Conversion**: `cdefgab` → Conversion to MIDI notes
+- **Basic Note Conversion**: ``cdefgab` → Conversion to MIDI notes`
 - **4-Pass Architecture**: Fully implemented
-  - Pass 1: Tokenization of MML string (simple parser)
-  - Pass 2: Conversion of tokens to AST (Abstract Syntax Tree)
+  - Pass 1: Tokenization of MML strings (simple parser)
+  - Pass 2: Conversion from tokens to AST (Abstract Syntax Tree)
   - Pass 3: Generation of MIDI events from AST
   - Pass 4: Creation of Standard MIDI File from MIDI events
 - **Channel Functionality**: Multi-channel support using semicolons (`;`)
@@ -35,19 +35,19 @@ cargo run -- "c;e;g"
 cargo run -- "cde" -o my_song.mid
 ```
 
-## Roadmap
+## Future Outlook
 
-### Short-term Goals 🚧
-- **tree-sitter integration**: For parsing more complex MML syntax
+### Short-Term Goals 🚧
+- **tree-sitter Integration**: For parsing more complex MML syntax
 - **Repository Configuration**: Setting up formatters, linters, etc.
 - **Error Handling**: More detailed error messages
 
-### Long-term Goals 🎯
-- **mmlabc Command Implementation**: Full mmlabc format support
-  - Note length specification (e.g., quarter notes, eighth notes)
-  - Octave specification (`>`, `<`)
+### Long-Term Goals 🎯
+- **mmlabc Command Implementation**: Full support for mmlabc format
+  - Note length specification (quarter notes, eighth notes, etc.)
+  - Octave specification (``>`, `<``)
   - Control commands for tempo, volume, etc.
-  - Chord functionality extensions
+  - Extension of chord functionality
 - **Performance Optimization**: Fast processing of large MML files
 
 ### References
@@ -56,14 +56,14 @@ cargo run -- "cde" -o my_song.mid
 ## Features
 
 - **4-Pass Architecture**:
-  - **Pass 1**: Parses MML strings into tokens (Currently: simple parser, Future: tree-sitter)
-  - **Pass 2**: Converts tokens to an Abstract Syntax Tree (AST)
+  - **Pass 1**: Parses MML strings into tokens (currently: simple parser, future: tree-sitter)
+  - **Pass 2**: Converts tokens into an Abstract Syntax Tree (AST)
   - **Pass 3**: Generates MIDI events from the AST
   - **Pass 4**: Creates a Standard MIDI File
-- **Multi-channel support**: Separation of simultaneous sounding channels using semicolons (`;`)
-- **JSON Debug Output**: Intermediate results of each pass can be saved and checked in JSON format
-- **Comprehensive Tests**: A total of 35 test cases, including unit and integration tests
-- **Safe Design**: Memory safety enabled by Rust's type system and ownership model
+- **Multi-Channel Support**: Separation of concurrent sound channels using semicolons (`;`)
+- **JSON Debug Output**: Intermediate results of each pass can be saved and viewed in JSON format
+- **Comprehensive Testing**: A total of 35 test cases including unit and integration tests
+- **Safe Design**: Memory safety ensured by Rust's type system and ownership model
 
 ## Requirements
 
@@ -94,7 +94,7 @@ cargo run -- "cdefgab"
 # Basic scale conversion (automatically played by cat-play-mml by default)
 cargo run -- "cdefgab"
 
-# Multi-channel (simultaneous playback)
+# Multi-channel (concurrent notes)
 cargo run -- "c;e;g"  # C major chord
 
 # Custom output file
@@ -104,15 +104,15 @@ cargo run -- "cde" -o my_song.mid
 cargo run -- "cde" --no-play
 ```
 
-### Auto-playback Feature
+### Auto-Playback Feature
 
-By default, after generating a MIDI file, it will automatically be played using the `cat-play-mml` command.
-This allows you to immediately check the sound during MML development.
+By default, after generating a MIDI file, it is automatically played using the `cat-play-mml` command.
+This allows immediate sound verification during MML development.
 
-- To disable auto-playback, use the `--no-play` option.
+- Use the `--no-play` option to disable auto-playback
 - If `cat-play-mml` is not installed, a warning message will be displayed, but the MIDI file will still be generated successfully.
 
-#### Configuring a Custom Player
+#### Custom Player Configuration
 
 You can configure a custom MIDI player by creating a `mmlabc-to-smf-rust.toml` file in the directory where you run the tool.
 
@@ -122,15 +122,15 @@ Example configuration file:
 external_smf_player = "timidity"
 ```
 
-Other common MIDI players you can configure:
+Common configurable MIDI players:
 - `timidity` - TiMidity++ MIDI player
-- `fluidsynth` - FluidSynth software synthesizer  
-- `vlc` - VLC media player
+- `fluidsynth` - FluidSynth software synthesizer
+- `vlc` - VLC Media Player
 - `cat-play-mml` (default)
 
-If no configuration file is present, `cat-play-mml` will be used as the default player.
+If the configuration file does not exist, `cat-play-mml` will be used by default.
 
-See `mmlabc-to-smf-rust.toml.example` for a sample configuration file.
+Refer to `mmlabc-to-smf-rust.toml.example` for a sample configuration file.
 
 ### Output Files
 
@@ -138,18 +138,18 @@ The following files are generated upon execution:
 - `pass1_tokens.json` - Pass 1 token information (for debugging)
 - `pass2_ast.json` - Pass 2 AST information (for debugging)
 - `pass3_events.json` - Pass 3 MIDI event information (for debugging)
-- `output.mid` - The final MIDI file
+- `output.mid` - Final MIDI file
 
 ### Supported MML Notation
 
 Currently supported notation:
-- **Basic Notes**: `c`, `d`, `e`, `f`, `g`, `a`, `b` (case-insensitive)
-- **Multi-channel**: `;` to separate channels (simultaneous playback)
+- **Basic Notes**: ``c`, `d`, `e`, `f`, `g`, `a`, `b` (case-insensitive)`
+- **Multi-Channel**: `;` for channel separation (concurrent notes)
 
 Examples:
 ```
-cdefgab     → Continuous playback of C, D, E, F, G, A, B
-c;e;g       → Simultaneous playback of C, E, G notes (C major chord)
+cdefgab     → Consecutive playback of C-D-E-F-G-A-B
+c;e;g       → Simultaneous playback of C, E, G (C major chord)
 ```
 
 ## Development
@@ -161,7 +161,7 @@ cargo build        # Debug build
 cargo build --release  # Release build
 ```
 
-### Tests
+### Test
 
 ```bash
 cargo test         # Run all tests (35 test cases)
@@ -172,7 +172,7 @@ cargo test         # Run all tests (35 test cases)
 ```bash
 cargo clippy       # Code quality check
 cargo fmt --check  # Format check
-cargo fmt          # Apply formatting
+cargo fmt          # Apply format
 ```
 
 ### Project Structure
@@ -181,7 +181,7 @@ cargo fmt          # Apply formatting
 src/
 ├── main.rs              # CLI entry point
 ├── lib.rs               # Library root
-├── pass1_parser.rs      # Pass 1: Token analysis
+├── pass1_parser.rs      # Pass 1: Token parsing
 ├── pass2_ast.rs         # Pass 2: AST conversion
 ├── pass3_events.rs      # Pass 3: MIDI event generation
 ├── pass4_midi.rs        # Pass 4: MIDI file creation
