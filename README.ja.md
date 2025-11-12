@@ -112,6 +112,26 @@ cargo run -- "cde" --no-play
 - 自動再生を無効化するには `--no-play` オプションを使用してください
 - `cat-play-mml` がインストールされていない場合、警告メッセージが表示されますがMIDIファイルは正常に生成されます
 
+#### カスタムプレイヤーの設定
+
+ツールを実行するディレクトリに `mmlabc-to-smf-rust.toml` ファイルを作成することで、カスタムMIDIプレイヤーを設定できます。
+
+設定ファイルの例：
+```toml
+# mmlabc-to-smf-rust.toml
+external_smf_player = "timidity"
+```
+
+設定可能な一般的なMIDIプレイヤー：
+- `timidity` - TiMidity++ MIDIプレイヤー
+- `fluidsynth` - FluidSynthソフトウェアシンセサイザー
+- `vlc` - VLCメディアプレイヤー
+- `cat-play-mml` (デフォルト)
+
+設定ファイルが存在しない場合、デフォルトで `cat-play-mml` が使用されます。
+
+サンプル設定ファイルは `mmlabc-to-smf-rust.toml.example` を参照してください。
+
 ### 出力ファイル
 
 実行すると以下のファイルが生成されます：

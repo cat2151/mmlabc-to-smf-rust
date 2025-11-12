@@ -8,7 +8,14 @@ use std::process::Command;
 #[test]
 fn test_cli_no_play() {
     let output = Command::new("cargo")
-        .args(&["run", "--", "cde", "--no-play", "-o", "/tmp/test_cli_output.mid"])
+        .args(&[
+            "run",
+            "--",
+            "cde",
+            "--no-play",
+            "-o",
+            "/tmp/test_cli_output.mid",
+        ])
         .output()
         .expect("Failed to execute command");
 

@@ -1,0 +1,17 @@
+# Sample configuration file for mmlabc-to-smf-rust
+# 
+# Place this file as "mmlabc-to-smf-rust.toml" in the directory where you run the tool.
+#
+# Configuration options:
+
+# external_smf_player: Command to use for playing generated MIDI files
+# Default: "cat-play-mml"
+# 
+# Examples:
+#   external_smf_player = "timidity"
+#   external_smf_player = "fluidsynth"
+#   external_smf_player = "vlc"
+#
+# If not specified, the tool will use "cat-play-mml" as the default player.
+
+external_smf_player = "cat-play-mml"
