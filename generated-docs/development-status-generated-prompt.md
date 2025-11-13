@@ -1,4 +1,4 @@
-Last updated: 2025-11-12
+Last updated: 2025-11-14
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -206,6 +206,10 @@ Last updated: 2025-11-12
 - _codeql_detected_source_root
 - _config.yml
 - build.rs
+- generated-docs/project-overview-generated-prompt.md
+- issue-notes/14.md
+- mmlabc-to-smf-rust.toml.example
+- src/config.rs
 - src/lib.rs
 - src/main.rs
 - src/pass1_parser.rs
@@ -217,6 +221,7 @@ Last updated: 2025-11-12
 - tests/integration_test.rs
 - tests/test_channel.rs
 - tests/test_cli.rs
+- tests/test_config.rs
 - tests/test_pass1.rs
 - tests/test_pass2.rs
 - tests/test_pass3.rs
@@ -238,30 +243,35 @@ Last updated: 2025-11-12
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
+3878791 Auto-translate README.ja.md to README.md [auto]
+c30ec1c Merge pull request #15 from cat2151/copilot/implement-toml-config-for-smf-player
+81492ee Update documentation for TOML configuration feature
+0fa980a Add TOML configuration support for external SMF player
+289b98e Initial plan
+f44aa2d Add issue note for #14 [auto]
+e6e4501 Update project summaries (overview & development status) [auto]
 e91456f Auto-translate README.ja.md to README.md [auto]
 c3c9e02 Change project status to WIP
 9e82e5f Add WIP section to README
-1a51abf Update project summaries (overview & development status) [auto]
-103ed64 Auto-translate README.ja.md to README.md [auto]
-1ed8ace Merge pull request #13 from cat2151/copilot/update-smf-file-playback
-d73ac2a github-actionsリポジトリの共通ワークフローを導入
-67220d4 Add CLI tests for auto-play functionality
-c083297 Add auto-play functionality with cat-play-mml
-9b9aef4 Initial plan
 
 ### 変更されたファイル:
-.github/workflows/call-daily-project-summary.yml
-.github/workflows/call-issue-note.yml
-.github/workflows/call-translate-readme.yml
+.gitignore
+Cargo.lock
+Cargo.toml
 README.ja.md
 README.md
 generated-docs/development-status-generated-prompt.md
 generated-docs/development-status.md
 generated-docs/project-overview-generated-prompt.md
 generated-docs/project-overview.md
+issue-notes/14.md
+mmlabc-to-smf-rust.toml.example
+src/config.rs
+src/lib.rs
 src/main.rs
 tests/test_cli.rs
+tests/test_config.rs
 
 
 ---
-Generated at: 2025-11-12 07:05:55 JST
+Generated at: 2025-11-14 07:05:57 JST

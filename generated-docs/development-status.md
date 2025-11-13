@@ -1,58 +1,48 @@
-Last updated: 2025-11-12
+Last updated: 2025-11-14
 
 # Development Status
 
 ## 現在のIssues
-- 現在オープンされているIssueはありません。
-- 新しい機能開発や改善の作業は、既存のIssueがない状態で進められています。
-- 今後の開発は、この開発状況レポートを元に方向性を定めることが期待されます。
+オープン中のIssueはありません。
 
 ## 次の一手候補
-（注：現在オープンされているIssueがないため、以下の候補にはIssue番号は付与していません。これらはプロジェクトの現状と最近の活動に基づいて提案される次の一手の候補です。）
+1. TOML設定の入力検証とエラーハンドリングを強化する (関連: [Issue #15](../issue-notes/15.md))
+   - 最初の小さな一歩: 現在の`src/config.rs`の設定解析ロジックを分析し、どのような無効なTOML入力（例: 必須フィールドの欠如、型不一致、範囲外の値）が存在しうるかをリストアップする。
+   - Agent実行プロンプト:
+     ```
+     対象ファイル: `src/config.rs`, `mmlabc-to-smf-rust.toml.example`
 
-1.  DevelopmentStatusGeneratorの挙動改善（オープンIssueなしの場合）
-    -   最初の小さな一歩: `development-status-prompt.md`と`DevelopmentStatusGenerator.cjs`を分析し、オープンIssueがない場合の出力挙動を確認する。
-    -   Agent実行プロンプト:
-        ```
-        対象ファイル: .github/actions-tmp/.github_automation/project_summary/prompts/development-status-prompt.md
-                    .github/actions-tmp/.github_automation/project_summary/scripts/development/DevelopmentStatusGenerator.cjs
+     実行内容: 現在のTOML設定解析ロジック（`src/config.rs`内）を分析し、どのような無効なTOML入力が存在しうるか、またそれらが現在どのように処理されているかを洗い出してください。特に、必須フィールドの欠如、型不一致、範囲外の値などのエラーケースに焦点を当ててください。
 
-        実行内容: 対象ファイルを分析し、現在オープン中のIssueがない場合に、「現在のIssues」セクションがどのように生成されるかを確認してください。特に、要約が3行に満たない場合や、不自然な表現になっていないかを評価します。
+     確認事項: `src/main.rs`での`config.rs`の利用箇所を確認し、エラーがどのように伝播・処理されているかを理解してください。
 
-        確認事項: `IssueTracker.cjs`がIssue情報をどのように取得し、`DevelopmentStatusGenerator.cjs`に渡しているかのフローを確認してください。また、`BaseGenerator.cjs`の共通処理も考慮に入れてください。
+     期待する出力: 検出された潜在的な無効なTOML入力のリストと、それらに対する現在のエラー処理の概要をMarkdown形式で出力してください。また、それぞれのケースでどのような改善が可能かについて簡単な考察を加えてください。
+     ```
 
-        期待する出力: `現在のIssues`セクションの生成ロジックについて、オープンIssueがない場合の現状の挙動と、より適切な出力を生成するための改善点をmarkdown形式で記述してください。具体的には、3行要約が常に満たされるための提案や、ハルシネーションを避けた適切な文言の生成方法を含めてください。
-        ```
+2. TOML設定機能に関するユーザー向けドキュメントを更新・拡充する (関連: [Issue #15](../issue-notes/15.md))
+   - 最初の小さな一歩: 既存の`README.ja.md`および`mmlabc-to-smf-rust.toml.example`を確認し、TOML設定機能に関する説明が不足している箇所や、更新が必要な箇所を特定する。
+   - Agent実行プロンプト:
+     ```
+     対象ファイル: `README.ja.md`, `README.md`, `mmlabc-to-smf-rust.toml.example`, `src/config.rs`
 
-2.  `README`自動翻訳ワークフローの安定性確認
-    -   最初の小さな一歩: 最近の自動翻訳コミット履歴（`e91456f`、`103ed64`）を確認し、翻訳結果に問題がないか目視で確認する。
-    -   Agent実行プロンプト:
-        ```
-        対象ファイル: .github/workflows/call-translate-readme.yml
-                    .github/actions-tmp/.github_automation/translate/scripts/translate-readme.cjs
-                    README.ja.md
-                    README.md
+     実行内容: `src/config.rs`に実装されたTOML設定機能の詳細に基づき、`README.ja.md`と`mmlabc-to-smf-rust.toml.example`のドキュメントが完全に最新であり、かつユーザーフレンドリーであるかを分析してください。特に、新しい設定オプションの説明、設定例、および注意点が明確に記載されているかを確認してください。
 
-        実行内容: `call-translate-readme.yml`ワークフローと`translate-readme.cjs`スクリプトの実行ログ（利用可能であれば）および、最近の自動翻訳コミットによって生成された`README.md`と元の`README.ja.md`の内容を比較し、翻訳の精度と安定性を確認してください。特に、Markdownフォーマットの崩れや、意味の誤訳がないかを重点的にレビューします。
+     確認事項: `README.md`が`README.ja.md`から正確に翻訳されるプロセス（`.github/workflows/call-translate-readme.yml`など）を考慮し、変更が適切に反映されることを確認してください。
 
-        確認事項: 翻訳に使用されているツールのバージョンや設定、ワークフローのトリガー条件（`on: push`等）を確認してください。翻訳スクリプトがエラーなく完了しているか、過去の実行履歴も参照できる場合は確認します。
+     期待する出力: `README.ja.md`と`mmlabc-to-smf-rust.toml.example`に追記または修正が必要な箇所のリストをMarkdown形式で提案してください。具体的な追記内容の草案も含めてください。
+     ```
 
-        期待する出力: `README`自動翻訳ワークフローの現状の評価（精度、安定性、問題点）をmarkdown形式で記述してください。問題が発見された場合は、具体的な改善提案（例: 翻訳エンジンの変更、ポスト処理の追加、品質チェックステップの導入）を含めてください。
-        ```
+3. `daily-project-summary`ワークフローのレビューと最適化
+   - 最初の小さな一歩: `.github/actions-tmp/.github/workflows/daily-project-summary.yml`ワークフローと、関連するスクリプトである`.github/actions-tmp/.github_automation/project_summary/scripts/ProjectSummaryCoordinator.cjs`の現在の実行フローと依存関係を理解する。
+   - Agent実行プロンプト:
+     ```
+     対象ファイル: `.github/actions-tmp/.github/workflows/daily-project-summary.yml`, `.github/actions-tmp/.github_automation/project_summary/scripts/ProjectSummaryCoordinator.cjs`
 
-3.  MMLパーサーのCLIテストカバレッジ向上
-    -   最初の小さな一歩: `tests/test_cli.rs`を分析し、既存のテストケースが`cat-play-mml`の自動再生機能と他のCLIオプションをどの程度カバーしているかを確認する。
-    -   Agent実行プロンプト:
-        ```
-        対象ファイル: src/main.rs
-                    tests/test_cli.rs
+     実行内容: `daily-project-summary.yml`ワークフローとその主要スクリプトである`ProjectSummaryCoordinator.cjs`の実行ロジック、依存関係、および設定を分析し、冗長なステップがないか、またはパフォーマンスを改善できる箇所がないかを確認してください。特に、ファイルの読み込み、API呼び出し、生成ロジックに焦点を当ててください。
 
-        実行内容: `src/main.rs`で定義されているCLIコマンドとオプション（特に`cat-play-mml`の自動再生機能に関連するもの）を洗い出し、`tests/test_cli.rs`のテストカバレッジを評価してください。現状でカバーされていないCLIオプションや、エッジケース（例: 無効な入力ファイル、存在しないファイルパス、予期せぬ引数の組み合わせ）に対するテストケースの不足を特定します。
+     確認事項: このワークフローが他の自動化（例：issue-note生成、README翻訳）とどのように連携しているか、または競合する可能性がないかを確認してください。
 
-        確認事項: `Cargo.toml`で定義されている依存関係や、テスト実行方法について確認してください。テストが環境に依存しないように、モックやダミーツールが適切に利用されているかどうかも考慮します。
-
-        期待する出力: `cat-play-mml`を含むCLI機能のテストカバレッジ分析結果をmarkdown形式で記述してください。追加すべき具体的なテストケースのリストと、それぞれのテストが検証すべき挙動を提案してください。可能であれば、テストコードのサンプル構造も示してください。
-        ```
+     期待する出力: `daily-project-summary.yml`ワークフローまたは`ProjectSummaryCoordinator.cjs`スクリプトの潜在的な最適化ポイントのリストをMarkdown形式で出力してください。具体的な改善案（例：キャッシュの利用、並列処理の検討、不要な処理の削除）を含めてください。
 
 ---
-Generated at: 2025-11-12 07:06:18 JST
+Generated at: 2025-11-14 07:06:14 JST

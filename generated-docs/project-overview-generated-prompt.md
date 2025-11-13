@@ -1,4 +1,4 @@
-Last updated: 2025-11-12
+Last updated: 2025-11-14
 
 
 # プロジェクト概要生成プロンプト（来訪者向け）
@@ -174,6 +174,26 @@ cargo run -- "cde" --no-play
 
 - 自動再生を無効化するには `--no-play` オプションを使用してください
 - `cat-play-mml` がインストールされていない場合、警告メッセージが表示されますがMIDIファイルは正常に生成されます
+
+#### カスタムプレイヤーの設定
+
+ツールを実行するディレクトリに `mmlabc-to-smf-rust.toml` ファイルを作成することで、カスタムMIDIプレイヤーを設定できます。
+
+設定ファイルの例：
+```toml
+# mmlabc-to-smf-rust.toml
+external_smf_player = "timidity"
+```
+
+設定可能な一般的なMIDIプレイヤー：
+- `timidity` - TiMidity++ MIDIプレイヤー
+- `fluidsynth` - FluidSynthソフトウェアシンセサイザー
+- `vlc` - VLCメディアプレイヤー
+- `cat-play-mml` (デフォルト)
+
+設定ファイルが存在しない場合、デフォルトで `cat-play-mml` が使用されます。
+
+サンプル設定ファイルは `mmlabc-to-smf-rust.toml.example` を参照してください。
 
 ### 出力ファイル
 
@@ -665,7 +685,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📄 _config.yml
                                                                                 📄 build.rs
                                                                                 📁 generated-docs/
+                                                                                📁 issue-notes/
+                                                                                  📖 14.md
+                                                                                📄 mmlabc-to-smf-rust.toml.example
                                                                                 📁 src/
+                                                                                  📄 config.rs
                                                                                   📄 lib.rs
                                                                                   📄 main.rs
                                                                                   📄 pass1_parser.rs
@@ -678,6 +702,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                   📄 integration_test.rs
                                                                                   📄 test_channel.rs
                                                                                   📄 test_cli.rs
+                                                                                  📄 test_config.rs
                                                                                   📄 test_pass1.rs
                                                                                   📄 test_pass2.rs
                                                                                   📄 test_pass3.rs
@@ -696,7 +721,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📄 _config.yml
                                                                               📄 build.rs
                                                                               📁 generated-docs/
+                                                                              📁 issue-notes/
+                                                                                📖 14.md
+                                                                              📄 mmlabc-to-smf-rust.toml.example
                                                                               📁 src/
+                                                                                📄 config.rs
                                                                                 📄 lib.rs
                                                                                 📄 main.rs
                                                                                 📄 pass1_parser.rs
@@ -709,6 +738,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📄 integration_test.rs
                                                                                 📄 test_channel.rs
                                                                                 📄 test_cli.rs
+                                                                                📄 test_config.rs
                                                                                 📄 test_pass1.rs
                                                                                 📄 test_pass2.rs
                                                                                 📄 test_pass3.rs
@@ -727,7 +757,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📄 _config.yml
                                                                             📄 build.rs
                                                                             📁 generated-docs/
+                                                                            📁 issue-notes/
+                                                                              📖 14.md
+                                                                            📄 mmlabc-to-smf-rust.toml.example
                                                                             📁 src/
+                                                                              📄 config.rs
                                                                               📄 lib.rs
                                                                               📄 main.rs
                                                                               📄 pass1_parser.rs
@@ -740,6 +774,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📄 integration_test.rs
                                                                               📄 test_channel.rs
                                                                               📄 test_cli.rs
+                                                                              📄 test_config.rs
                                                                               📄 test_pass1.rs
                                                                               📄 test_pass2.rs
                                                                               📄 test_pass3.rs
@@ -758,7 +793,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📄 _config.yml
                                                                           📄 build.rs
                                                                           📁 generated-docs/
+                                                                          📁 issue-notes/
+                                                                            📖 14.md
+                                                                          📄 mmlabc-to-smf-rust.toml.example
                                                                           📁 src/
+                                                                            📄 config.rs
                                                                             📄 lib.rs
                                                                             📄 main.rs
                                                                             📄 pass1_parser.rs
@@ -771,6 +810,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📄 integration_test.rs
                                                                             📄 test_channel.rs
                                                                             📄 test_cli.rs
+                                                                            📄 test_config.rs
                                                                             📄 test_pass1.rs
                                                                             📄 test_pass2.rs
                                                                             📄 test_pass3.rs
@@ -789,7 +829,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📄 _config.yml
                                                                         📄 build.rs
                                                                         📁 generated-docs/
+                                                                        📁 issue-notes/
+                                                                          📖 14.md
+                                                                        📄 mmlabc-to-smf-rust.toml.example
                                                                         📁 src/
+                                                                          📄 config.rs
                                                                           📄 lib.rs
                                                                           📄 main.rs
                                                                           📄 pass1_parser.rs
@@ -802,6 +846,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📄 integration_test.rs
                                                                           📄 test_channel.rs
                                                                           📄 test_cli.rs
+                                                                          📄 test_config.rs
                                                                           📄 test_pass1.rs
                                                                           📄 test_pass2.rs
                                                                           📄 test_pass3.rs
@@ -820,7 +865,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📄 _config.yml
                                                                       📄 build.rs
                                                                       📁 generated-docs/
+                                                                      📁 issue-notes/
+                                                                        📖 14.md
+                                                                      📄 mmlabc-to-smf-rust.toml.example
                                                                       📁 src/
+                                                                        📄 config.rs
                                                                         📄 lib.rs
                                                                         📄 main.rs
                                                                         📄 pass1_parser.rs
@@ -833,6 +882,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📄 integration_test.rs
                                                                         📄 test_channel.rs
                                                                         📄 test_cli.rs
+                                                                        📄 test_config.rs
                                                                         📄 test_pass1.rs
                                                                         📄 test_pass2.rs
                                                                         📄 test_pass3.rs
@@ -851,7 +901,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📄 _config.yml
                                                                     📄 build.rs
                                                                     📁 generated-docs/
+                                                                    📁 issue-notes/
+                                                                      📖 14.md
+                                                                    📄 mmlabc-to-smf-rust.toml.example
                                                                     📁 src/
+                                                                      📄 config.rs
                                                                       📄 lib.rs
                                                                       📄 main.rs
                                                                       📄 pass1_parser.rs
@@ -864,6 +918,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📄 integration_test.rs
                                                                       📄 test_channel.rs
                                                                       📄 test_cli.rs
+                                                                      📄 test_config.rs
                                                                       📄 test_pass1.rs
                                                                       📄 test_pass2.rs
                                                                       📄 test_pass3.rs
@@ -882,7 +937,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📄 _config.yml
                                                                   📄 build.rs
                                                                   📁 generated-docs/
+                                                                  📁 issue-notes/
+                                                                    📖 14.md
+                                                                  📄 mmlabc-to-smf-rust.toml.example
                                                                   📁 src/
+                                                                    📄 config.rs
                                                                     📄 lib.rs
                                                                     📄 main.rs
                                                                     📄 pass1_parser.rs
@@ -895,6 +954,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📄 integration_test.rs
                                                                     📄 test_channel.rs
                                                                     📄 test_cli.rs
+                                                                    📄 test_config.rs
                                                                     📄 test_pass1.rs
                                                                     📄 test_pass2.rs
                                                                     📄 test_pass3.rs
@@ -913,7 +973,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📄 _config.yml
                                                                 📄 build.rs
                                                                 📁 generated-docs/
+                                                                📁 issue-notes/
+                                                                  📖 14.md
+                                                                📄 mmlabc-to-smf-rust.toml.example
                                                                 📁 src/
+                                                                  📄 config.rs
                                                                   📄 lib.rs
                                                                   📄 main.rs
                                                                   📄 pass1_parser.rs
@@ -926,6 +990,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📄 integration_test.rs
                                                                   📄 test_channel.rs
                                                                   📄 test_cli.rs
+                                                                  📄 test_config.rs
                                                                   📄 test_pass1.rs
                                                                   📄 test_pass2.rs
                                                                   📄 test_pass3.rs
@@ -944,7 +1009,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📄 _config.yml
                                                               📄 build.rs
                                                               📁 generated-docs/
+                                                              📁 issue-notes/
+                                                                📖 14.md
+                                                              📄 mmlabc-to-smf-rust.toml.example
                                                               📁 src/
+                                                                📄 config.rs
                                                                 📄 lib.rs
                                                                 📄 main.rs
                                                                 📄 pass1_parser.rs
@@ -957,6 +1026,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📄 integration_test.rs
                                                                 📄 test_channel.rs
                                                                 📄 test_cli.rs
+                                                                📄 test_config.rs
                                                                 📄 test_pass1.rs
                                                                 📄 test_pass2.rs
                                                                 📄 test_pass3.rs
@@ -975,7 +1045,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📄 _config.yml
                                                             📄 build.rs
                                                             📁 generated-docs/
+                                                            📁 issue-notes/
+                                                              📖 14.md
+                                                            📄 mmlabc-to-smf-rust.toml.example
                                                             📁 src/
+                                                              📄 config.rs
                                                               📄 lib.rs
                                                               📄 main.rs
                                                               📄 pass1_parser.rs
@@ -988,6 +1062,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📄 integration_test.rs
                                                               📄 test_channel.rs
                                                               📄 test_cli.rs
+                                                              📄 test_config.rs
                                                               📄 test_pass1.rs
                                                               📄 test_pass2.rs
                                                               📄 test_pass3.rs
@@ -1006,7 +1081,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📄 _config.yml
                                                           📄 build.rs
                                                           📁 generated-docs/
+                                                          📁 issue-notes/
+                                                            📖 14.md
+                                                          📄 mmlabc-to-smf-rust.toml.example
                                                           📁 src/
+                                                            📄 config.rs
                                                             📄 lib.rs
                                                             📄 main.rs
                                                             📄 pass1_parser.rs
@@ -1019,6 +1098,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📄 integration_test.rs
                                                             📄 test_channel.rs
                                                             📄 test_cli.rs
+                                                            📄 test_config.rs
                                                             📄 test_pass1.rs
                                                             📄 test_pass2.rs
                                                             📄 test_pass3.rs
@@ -1037,7 +1117,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📄 _config.yml
                                                         📄 build.rs
                                                         📁 generated-docs/
+                                                        📁 issue-notes/
+                                                          📖 14.md
+                                                        📄 mmlabc-to-smf-rust.toml.example
                                                         📁 src/
+                                                          📄 config.rs
                                                           📄 lib.rs
                                                           📄 main.rs
                                                           📄 pass1_parser.rs
@@ -1050,6 +1134,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📄 integration_test.rs
                                                           📄 test_channel.rs
                                                           📄 test_cli.rs
+                                                          📄 test_config.rs
                                                           📄 test_pass1.rs
                                                           📄 test_pass2.rs
                                                           📄 test_pass3.rs
@@ -1068,7 +1153,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📄 _config.yml
                                                       📄 build.rs
                                                       📁 generated-docs/
+                                                      📁 issue-notes/
+                                                        📖 14.md
+                                                      📄 mmlabc-to-smf-rust.toml.example
                                                       📁 src/
+                                                        📄 config.rs
                                                         📄 lib.rs
                                                         📄 main.rs
                                                         📄 pass1_parser.rs
@@ -1081,6 +1170,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📄 integration_test.rs
                                                         📄 test_channel.rs
                                                         📄 test_cli.rs
+                                                        📄 test_config.rs
                                                         📄 test_pass1.rs
                                                         📄 test_pass2.rs
                                                         📄 test_pass3.rs
@@ -1099,7 +1189,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📄 _config.yml
                                                     📄 build.rs
                                                     📁 generated-docs/
+                                                    📁 issue-notes/
+                                                      📖 14.md
+                                                    📄 mmlabc-to-smf-rust.toml.example
                                                     📁 src/
+                                                      📄 config.rs
                                                       📄 lib.rs
                                                       📄 main.rs
                                                       📄 pass1_parser.rs
@@ -1112,6 +1206,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📄 integration_test.rs
                                                       📄 test_channel.rs
                                                       📄 test_cli.rs
+                                                      📄 test_config.rs
                                                       📄 test_pass1.rs
                                                       📄 test_pass2.rs
                                                       📄 test_pass3.rs
@@ -1130,7 +1225,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📄 _config.yml
                                                   📄 build.rs
                                                   📁 generated-docs/
+                                                  📁 issue-notes/
+                                                    📖 14.md
+                                                  📄 mmlabc-to-smf-rust.toml.example
                                                   📁 src/
+                                                    📄 config.rs
                                                     📄 lib.rs
                                                     📄 main.rs
                                                     📄 pass1_parser.rs
@@ -1143,6 +1242,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📄 integration_test.rs
                                                     📄 test_channel.rs
                                                     📄 test_cli.rs
+                                                    📄 test_config.rs
                                                     📄 test_pass1.rs
                                                     📄 test_pass2.rs
                                                     📄 test_pass3.rs
@@ -1161,7 +1261,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📄 _config.yml
                                                 📄 build.rs
                                                 📁 generated-docs/
+                                                📁 issue-notes/
+                                                  📖 14.md
+                                                📄 mmlabc-to-smf-rust.toml.example
                                                 📁 src/
+                                                  📄 config.rs
                                                   📄 lib.rs
                                                   📄 main.rs
                                                   📄 pass1_parser.rs
@@ -1174,6 +1278,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📄 integration_test.rs
                                                   📄 test_channel.rs
                                                   📄 test_cli.rs
+                                                  📄 test_config.rs
                                                   📄 test_pass1.rs
                                                   📄 test_pass2.rs
                                                   📄 test_pass3.rs
@@ -1192,7 +1297,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📄 _config.yml
                                               📄 build.rs
                                               📁 generated-docs/
+                                              📁 issue-notes/
+                                                📖 14.md
+                                              📄 mmlabc-to-smf-rust.toml.example
                                               📁 src/
+                                                📄 config.rs
                                                 📄 lib.rs
                                                 📄 main.rs
                                                 📄 pass1_parser.rs
@@ -1205,6 +1314,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📄 integration_test.rs
                                                 📄 test_channel.rs
                                                 📄 test_cli.rs
+                                                📄 test_config.rs
                                                 📄 test_pass1.rs
                                                 📄 test_pass2.rs
                                                 📄 test_pass3.rs
@@ -1223,7 +1333,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📄 _config.yml
                                             📄 build.rs
                                             📁 generated-docs/
+                                            📁 issue-notes/
+                                              📖 14.md
+                                            📄 mmlabc-to-smf-rust.toml.example
                                             📁 src/
+                                              📄 config.rs
                                               📄 lib.rs
                                               📄 main.rs
                                               📄 pass1_parser.rs
@@ -1236,6 +1350,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📄 integration_test.rs
                                               📄 test_channel.rs
                                               📄 test_cli.rs
+                                              📄 test_config.rs
                                               📄 test_pass1.rs
                                               📄 test_pass2.rs
                                               📄 test_pass3.rs
@@ -1254,7 +1369,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📄 _config.yml
                                           📄 build.rs
                                           📁 generated-docs/
+                                          📁 issue-notes/
+                                            📖 14.md
+                                          📄 mmlabc-to-smf-rust.toml.example
                                           📁 src/
+                                            📄 config.rs
                                             📄 lib.rs
                                             📄 main.rs
                                             📄 pass1_parser.rs
@@ -1267,6 +1386,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📄 integration_test.rs
                                             📄 test_channel.rs
                                             📄 test_cli.rs
+                                            📄 test_config.rs
                                             📄 test_pass1.rs
                                             📄 test_pass2.rs
                                             📄 test_pass3.rs
@@ -1285,8 +1405,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📄 _config.yml
                                         📄 build.rs
                                         📁 generated-docs/
-                                          📖 development-status-generated-prompt.md
+                                        📁 issue-notes/
+                                          📖 14.md
+                                        📄 mmlabc-to-smf-rust.toml.example
                                         📁 src/
+                                          📄 config.rs
                                           📄 lib.rs
                                           📄 main.rs
                                           📄 pass1_parser.rs
@@ -1299,6 +1422,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📄 integration_test.rs
                                           📄 test_channel.rs
                                           📄 test_cli.rs
+                                          📄 test_config.rs
                                           📄 test_pass1.rs
                                           📄 test_pass2.rs
                                           📄 test_pass3.rs
@@ -1317,8 +1441,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📄 _config.yml
                                       📄 build.rs
                                       📁 generated-docs/
-                                        📖 development-status-generated-prompt.md
+                                      📁 issue-notes/
+                                        📖 14.md
+                                      📄 mmlabc-to-smf-rust.toml.example
                                       📁 src/
+                                        📄 config.rs
                                         📄 lib.rs
                                         📄 main.rs
                                         📄 pass1_parser.rs
@@ -1331,6 +1458,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📄 integration_test.rs
                                         📄 test_channel.rs
                                         📄 test_cli.rs
+                                        📄 test_config.rs
                                         📄 test_pass1.rs
                                         📄 test_pass2.rs
                                         📄 test_pass3.rs
@@ -1349,8 +1477,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📄 _config.yml
                                     📄 build.rs
                                     📁 generated-docs/
-                                      📖 development-status-generated-prompt.md
+                                    📁 issue-notes/
+                                      📖 14.md
+                                    📄 mmlabc-to-smf-rust.toml.example
                                     📁 src/
+                                      📄 config.rs
                                       📄 lib.rs
                                       📄 main.rs
                                       📄 pass1_parser.rs
@@ -1363,6 +1494,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📄 integration_test.rs
                                       📄 test_channel.rs
                                       📄 test_cli.rs
+                                      📄 test_config.rs
                                       📄 test_pass1.rs
                                       📄 test_pass2.rs
                                       📄 test_pass3.rs
@@ -1381,8 +1513,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📄 _config.yml
                                   📄 build.rs
                                   📁 generated-docs/
-                                    📖 development-status-generated-prompt.md
+                                  📁 issue-notes/
+                                    📖 14.md
+                                  📄 mmlabc-to-smf-rust.toml.example
                                   📁 src/
+                                    📄 config.rs
                                     📄 lib.rs
                                     📄 main.rs
                                     📄 pass1_parser.rs
@@ -1395,6 +1530,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📄 integration_test.rs
                                     📄 test_channel.rs
                                     📄 test_cli.rs
+                                    📄 test_config.rs
                                     📄 test_pass1.rs
                                     📄 test_pass2.rs
                                     📄 test_pass3.rs
@@ -1413,8 +1549,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📄 _config.yml
                                 📄 build.rs
                                 📁 generated-docs/
-                                  📖 development-status-generated-prompt.md
+                                📁 issue-notes/
+                                  📖 14.md
+                                📄 mmlabc-to-smf-rust.toml.example
                                 📁 src/
+                                  📄 config.rs
                                   📄 lib.rs
                                   📄 main.rs
                                   📄 pass1_parser.rs
@@ -1427,6 +1566,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📄 integration_test.rs
                                   📄 test_channel.rs
                                   📄 test_cli.rs
+                                  📄 test_config.rs
                                   📄 test_pass1.rs
                                   📄 test_pass2.rs
                                   📄 test_pass3.rs
@@ -1445,8 +1585,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📄 _config.yml
                               📄 build.rs
                               📁 generated-docs/
-                                📖 development-status-generated-prompt.md
+                              📁 issue-notes/
+                                📖 14.md
+                              📄 mmlabc-to-smf-rust.toml.example
                               📁 src/
+                                📄 config.rs
                                 📄 lib.rs
                                 📄 main.rs
                                 📄 pass1_parser.rs
@@ -1459,6 +1602,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📄 integration_test.rs
                                 📄 test_channel.rs
                                 📄 test_cli.rs
+                                📄 test_config.rs
                                 📄 test_pass1.rs
                                 📄 test_pass2.rs
                                 📄 test_pass3.rs
@@ -1477,8 +1621,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📄 _config.yml
                             📄 build.rs
                             📁 generated-docs/
-                              📖 development-status-generated-prompt.md
+                            📁 issue-notes/
+                              📖 14.md
+                            📄 mmlabc-to-smf-rust.toml.example
                             📁 src/
+                              📄 config.rs
                               📄 lib.rs
                               📄 main.rs
                               📄 pass1_parser.rs
@@ -1491,6 +1638,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📄 integration_test.rs
                               📄 test_channel.rs
                               📄 test_cli.rs
+                              📄 test_config.rs
                               📄 test_pass1.rs
                               📄 test_pass2.rs
                               📄 test_pass3.rs
@@ -1509,8 +1657,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📄 _config.yml
                           📄 build.rs
                           📁 generated-docs/
-                            📖 development-status-generated-prompt.md
+                          📁 issue-notes/
+                            📖 14.md
+                          📄 mmlabc-to-smf-rust.toml.example
                           📁 src/
+                            📄 config.rs
                             📄 lib.rs
                             📄 main.rs
                             📄 pass1_parser.rs
@@ -1523,6 +1674,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📄 integration_test.rs
                             📄 test_channel.rs
                             📄 test_cli.rs
+                            📄 test_config.rs
                             📄 test_pass1.rs
                             📄 test_pass2.rs
                             📄 test_pass3.rs
@@ -1541,8 +1693,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📄 _config.yml
                         📄 build.rs
                         📁 generated-docs/
-                          📖 development-status-generated-prompt.md
+                        📁 issue-notes/
+                          📖 14.md
+                        📄 mmlabc-to-smf-rust.toml.example
                         📁 src/
+                          📄 config.rs
                           📄 lib.rs
                           📄 main.rs
                           📄 pass1_parser.rs
@@ -1555,6 +1710,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📄 integration_test.rs
                           📄 test_channel.rs
                           📄 test_cli.rs
+                          📄 test_config.rs
                           📄 test_pass1.rs
                           📄 test_pass2.rs
                           📄 test_pass3.rs
@@ -1573,8 +1729,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📄 _config.yml
                       📄 build.rs
                       📁 generated-docs/
-                        📖 development-status-generated-prompt.md
+                      📁 issue-notes/
+                        📖 14.md
+                      📄 mmlabc-to-smf-rust.toml.example
                       📁 src/
+                        📄 config.rs
                         📄 lib.rs
                         📄 main.rs
                         📄 pass1_parser.rs
@@ -1587,6 +1746,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📄 integration_test.rs
                         📄 test_channel.rs
                         📄 test_cli.rs
+                        📄 test_config.rs
                         📄 test_pass1.rs
                         📄 test_pass2.rs
                         📄 test_pass3.rs
@@ -1605,8 +1765,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📄 _config.yml
                     📄 build.rs
                     📁 generated-docs/
-                      📖 development-status-generated-prompt.md
+                    📁 issue-notes/
+                      📖 14.md
+                    📄 mmlabc-to-smf-rust.toml.example
                     📁 src/
+                      📄 config.rs
                       📄 lib.rs
                       📄 main.rs
                       📄 pass1_parser.rs
@@ -1619,6 +1782,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📄 integration_test.rs
                       📄 test_channel.rs
                       📄 test_cli.rs
+                      📄 test_config.rs
                       📄 test_pass1.rs
                       📄 test_pass2.rs
                       📄 test_pass3.rs
@@ -1637,8 +1801,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📄 _config.yml
                   📄 build.rs
                   📁 generated-docs/
-                    📖 development-status-generated-prompt.md
+                  📁 issue-notes/
+                    📖 14.md
+                  📄 mmlabc-to-smf-rust.toml.example
                   📁 src/
+                    📄 config.rs
                     📄 lib.rs
                     📄 main.rs
                     📄 pass1_parser.rs
@@ -1651,6 +1818,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📄 integration_test.rs
                     📄 test_channel.rs
                     📄 test_cli.rs
+                    📄 test_config.rs
                     📄 test_pass1.rs
                     📄 test_pass2.rs
                     📄 test_pass3.rs
@@ -1669,8 +1837,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📄 _config.yml
                 📄 build.rs
                 📁 generated-docs/
-                  📖 development-status-generated-prompt.md
+                📁 issue-notes/
+                  📖 14.md
+                📄 mmlabc-to-smf-rust.toml.example
                 📁 src/
+                  📄 config.rs
                   📄 lib.rs
                   📄 main.rs
                   📄 pass1_parser.rs
@@ -1683,6 +1854,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📄 integration_test.rs
                   📄 test_channel.rs
                   📄 test_cli.rs
+                  📄 test_config.rs
                   📄 test_pass1.rs
                   📄 test_pass2.rs
                   📄 test_pass3.rs
@@ -1701,8 +1873,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📄 _config.yml
               📄 build.rs
               📁 generated-docs/
-                📖 development-status-generated-prompt.md
+              📁 issue-notes/
+                📖 14.md
+              📄 mmlabc-to-smf-rust.toml.example
               📁 src/
+                📄 config.rs
                 📄 lib.rs
                 📄 main.rs
                 📄 pass1_parser.rs
@@ -1715,6 +1890,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📄 integration_test.rs
                 📄 test_channel.rs
                 📄 test_cli.rs
+                📄 test_config.rs
                 📄 test_pass1.rs
                 📄 test_pass2.rs
                 📄 test_pass3.rs
@@ -1733,8 +1909,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📄 _config.yml
             📄 build.rs
             📁 generated-docs/
-              📖 development-status-generated-prompt.md
+            📁 issue-notes/
+              📖 14.md
+            📄 mmlabc-to-smf-rust.toml.example
             📁 src/
+              📄 config.rs
               📄 lib.rs
               📄 main.rs
               📄 pass1_parser.rs
@@ -1747,6 +1926,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📄 integration_test.rs
               📄 test_channel.rs
               📄 test_cli.rs
+              📄 test_config.rs
               📄 test_pass1.rs
               📄 test_pass2.rs
               📄 test_pass3.rs
@@ -1765,8 +1945,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📄 _config.yml
           📄 build.rs
           📁 generated-docs/
-            📖 development-status-generated-prompt.md
+          📁 issue-notes/
+            📖 14.md
+          📄 mmlabc-to-smf-rust.toml.example
           📁 src/
+            📄 config.rs
             📄 lib.rs
             📄 main.rs
             📄 pass1_parser.rs
@@ -1779,6 +1962,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📄 integration_test.rs
             📄 test_channel.rs
             📄 test_cli.rs
+            📄 test_config.rs
             📄 test_pass1.rs
             📄 test_pass2.rs
             📄 test_pass3.rs
@@ -1797,8 +1981,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📄 _config.yml
         📄 build.rs
         📁 generated-docs/
-          📖 development-status-generated-prompt.md
+        📁 issue-notes/
+          📖 14.md
+        📄 mmlabc-to-smf-rust.toml.example
         📁 src/
+          📄 config.rs
           📄 lib.rs
           📄 main.rs
           📄 pass1_parser.rs
@@ -1811,6 +1998,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📄 integration_test.rs
           📄 test_channel.rs
           📄 test_cli.rs
+          📄 test_config.rs
           📄 test_pass1.rs
           📄 test_pass2.rs
           📄 test_pass3.rs
@@ -1829,8 +2017,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📄 _config.yml
       📄 build.rs
       📁 generated-docs/
-        📖 development-status-generated-prompt.md
+      📁 issue-notes/
+        📖 14.md
+      📄 mmlabc-to-smf-rust.toml.example
       📁 src/
+        📄 config.rs
         📄 lib.rs
         📄 main.rs
         📄 pass1_parser.rs
@@ -1843,6 +2034,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📄 integration_test.rs
         📄 test_channel.rs
         📄 test_cli.rs
+        📄 test_config.rs
         📄 test_pass1.rs
         📄 test_pass2.rs
         📄 test_pass3.rs
@@ -1861,8 +2053,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📄 _config.yml
     📄 build.rs
     📁 generated-docs/
-      📖 development-status-generated-prompt.md
+    📁 issue-notes/
+      📖 14.md
+    📄 mmlabc-to-smf-rust.toml.example
     📁 src/
+      📄 config.rs
       📄 lib.rs
       📄 main.rs
       📄 pass1_parser.rs
@@ -1875,6 +2070,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📄 integration_test.rs
       📄 test_channel.rs
       📄 test_cli.rs
+      📄 test_config.rs
       📄 test_pass1.rs
       📄 test_pass2.rs
       📄 test_pass3.rs
@@ -1893,8 +2089,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📄 _config.yml
   📄 build.rs
   📁 generated-docs/
-    📖 development-status-generated-prompt.md
+  📁 issue-notes/
+    📖 14.md
+  📄 mmlabc-to-smf-rust.toml.example
   📁 src/
+    📄 config.rs
     📄 lib.rs
     📄 main.rs
     📄 pass1_parser.rs
@@ -1907,6 +2106,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📄 integration_test.rs
     📄 test_channel.rs
     📄 test_cli.rs
+    📄 test_config.rs
     📄 test_pass1.rs
     📄 test_pass2.rs
     📄 test_pass3.rs
@@ -1925,8 +2125,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 📄 _config.yml
 📄 build.rs
 📁 generated-docs/
-  📖 development-status-generated-prompt.md
+📁 issue-notes/
+  📖 14.md
+📄 mmlabc-to-smf-rust.toml.example
 📁 src/
+  📄 config.rs
   📄 lib.rs
   📄 main.rs
   📄 pass1_parser.rs
@@ -1939,6 +2142,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📄 integration_test.rs
   📄 test_channel.rs
   📄 test_cli.rs
+  📄 test_config.rs
   📄 test_pass1.rs
   📄 test_pass2.rs
   📄 test_pass3.rs
@@ -2154,14 +2358,23 @@ _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_sourc
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/.vscode/settings.json
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.ja.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.md
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/issue-notes/14.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/issue-notes/14.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/issue-notes/14.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/issue-notes/14.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/issue-notes/14.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/issue-notes/14.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js
+_codeql_detected_source_root/_codeql_detected_source_root/issue-notes/14.md
 _codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js
+_codeql_detected_source_root/issue-notes/14.md
 _codeql_detected_source_root/tree-sitter-mml/grammar.js
+issue-notes/14.md
 tree-sitter-mml/grammar.js
 
 上記の情報を基に、プロンプトで指定された形式でプロジェクト概要を生成してください。
@@ -2174,4 +2387,4 @@ tree-sitter-mml/grammar.js
 
 
 ---
-Generated at: 2025-11-12 07:05:55 JST
+Generated at: 2025-11-14 07:05:57 JST
