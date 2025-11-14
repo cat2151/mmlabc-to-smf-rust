@@ -30,13 +30,22 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     .collect();
 
     let mut notes = Vec::new();
+    // Track octave offset per channel (channel_group)
+    // Use None as key for single-channel mode, Some(n) for multi-channel mode
+    let mut octave_offsets: HashMap<Option<usize>, i8> = HashMap::new();
 
     for token in tokens {
         if token.token_type == "note" {
-            let midi_note = note_to_midi
+            let base_midi_note = note_to_midi
                 .get(token.value.as_str())
                 .copied()
                 .unwrap_or(60);
+
+            // Get octave offset for this channel (default to 0)
+            let octave_offset = *octave_offsets.get(&token.channel_group).unwrap_or(&0);
+
+            // Apply octave offset to the note
+            let midi_note = (base_midi_note as i8 + octave_offset) as u8;
 
             // Assign channel based on channel_group
             // If channel_group is present, notes are assigned to separate channels
@@ -49,6 +58,14 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 name: token.value.clone(),
                 channel,
             });
+        } else if token.token_type == "octave_up" {
+            // < means octave up (add 12 semitones)
+            let offset = octave_offsets.entry(token.channel_group).or_insert(0);
+            *offset += 12;
+        } else if token.token_type == "octave_down" {
+            // > means octave down (subtract 12 semitones)
+            let offset = octave_offsets.entry(token.channel_group).or_insert(0);
+            *offset -= 12;
         }
     }
 
