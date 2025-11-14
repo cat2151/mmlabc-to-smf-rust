@@ -2,7 +2,6 @@
   {
     "type": "source_file",
     "named": true,
-    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -11,12 +10,28 @@
         {
           "type": "note",
           "named": true
+        },
+        {
+          "type": "octave_down",
+          "named": true
+        },
+        {
+          "type": "octave_up",
+          "named": true
         }
       ]
     }
   },
   {
     "type": "note",
+    "named": true
+  },
+  {
+    "type": "octave_down",
+    "named": true
+  },
+  {
+    "type": "octave_up",
     "named": true
   }
 ]

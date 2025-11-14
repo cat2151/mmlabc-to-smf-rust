@@ -60,6 +60,18 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                         channel_group,
                     });
                 }
+            } else if kind == "octave_up" {
+                tokens.push(Token {
+                    token_type: "octave_up".to_string(),
+                    value: "<".to_string(),
+                    channel_group,
+                });
+            } else if kind == "octave_down" {
+                tokens.push(Token {
+                    token_type: "octave_down".to_string(),
+                    value: ">".to_string(),
+                    channel_group,
+                });
             }
 
             if cursor.goto_first_child() {
