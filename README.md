@@ -175,6 +175,23 @@ cargo fmt --check  # Format check
 cargo fmt          # Apply format
 ```
 
+### Tree-sitter Parser Files
+
+The tree-sitter parser files (located in `tree-sitter-mml/src/`) are auto-generated during the build process and are **not tracked in git**. 
+
+**Important Notes:**
+- The C source files (`parser.c`, `grammar.json`, `node-types.json`, and `tree_sitter/` directory) are automatically generated when you run `cargo build`
+- If the parser files don't exist, the build script will automatically run `npx tree-sitter generate` to create them
+- **Requirements**: Node.js and npx must be installed on your system for the auto-generation to work
+- You should never manually edit the generated parser files - instead, modify `tree-sitter-mml/grammar.js` and rebuild
+
+To manually regenerate the parser files:
+```bash
+cd tree-sitter-mml
+npm install  # Install tree-sitter-cli if not already installed
+npx tree-sitter generate
+```
+
 ### Project Structure
 
 ```

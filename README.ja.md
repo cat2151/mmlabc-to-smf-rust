@@ -175,6 +175,23 @@ cargo fmt --check  # フォーマットチェック
 cargo fmt          # フォーマット適用
 ```
 
+### tree-sitter パーサーファイル
+
+tree-sitter パーサーファイル（`tree-sitter-mml/src/` 配下）は、ビルド時に自動生成されるため、**git で追跡されていません**。
+
+**重要な注意事項：**
+- C言語ソースファイル（`parser.c`、`grammar.json`、`node-types.json`、および `tree_sitter/` ディレクトリ）は、`cargo build` 実行時に自動生成されます
+- パーサーファイルが存在しない場合、ビルドスクリプトが自動的に `npx tree-sitter generate` を実行して生成します
+- **必要条件**：自動生成を機能させるには、システムに Node.js と npx がインストールされている必要があります
+- 生成されたパーサーファイルを手動で編集しないでください。代わりに `tree-sitter-mml/grammar.js` を修正して再ビルドしてください
+
+パーサーファイルを手動で再生成する場合：
+```bash
+cd tree-sitter-mml
+npm install  # tree-sitter-cli がまだインストールされていない場合
+npx tree-sitter generate
+```
+
 ### プロジェクト構造
 
 ```
