@@ -25,16 +25,24 @@ module.exports = grammar({
 
     note_with_modifier: $ => seq(
       $.note,
-      optional($.modifier)
+      optional($.modifier),
+      optional($.note_length),
+      optional($.dots)
     ),
 
     note: $ => /[cdefgabCDEFGAB]/,
     modifier: $ => choice('+', '-'),
-    rest: $ => /[rR]/,
+    note_length: $ => /[0-9]+/,
+    dots: $ => /\.+/,
+    rest: $ => seq(
+      /[rR]/,
+      optional($.note_length),
+      optional($.dots)
+    ),
     octave_up: $ => '<',
     octave_down: $ => '>',
     octave_set: $ => seq('o', /[0-9]+/),
-    length_set: $ => seq('l', /[0-9]+/),
+    length_set: $ => seq('l', /[0-9]+/, optional($.dots)),
     program_change: $ => seq('@', /[0-9]+/),
     tempo_set: $ => seq('t', /[0-9]+/),
     velocity_set: $ => seq('v', /[0-9]+/),

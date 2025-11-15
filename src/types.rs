@@ -14,6 +14,10 @@ pub struct Token {
     pub chord_id: Option<usize>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub modifier: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub note_length: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub dots: Option<u32>,
 }
 
 /// A note in the Abstract Syntax Tree
@@ -29,6 +33,8 @@ pub struct AstNote {
     pub chord_id: Option<usize>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub length: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub dots: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub velocity: Option<u8>,
 }
