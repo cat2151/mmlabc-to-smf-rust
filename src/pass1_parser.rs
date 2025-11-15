@@ -118,6 +118,14 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                         modifier: None,
                     });
                 }
+            } else if kind == "rest" {
+                tokens.push(Token {
+                    token_type: "rest".to_string(),
+                    value: "r".to_string(),
+                    channel_group,
+                    chord_id: None,
+                    modifier: None,
+                });
             } else {
                 // For other node types, recurse into children
                 if cursor.goto_first_child() {

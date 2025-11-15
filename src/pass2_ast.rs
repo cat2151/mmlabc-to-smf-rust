@@ -85,6 +85,18 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                     current_octaves.insert(token.channel_group, octave_value);
                 }
             }
+        } else if token.token_type == "rest" {
+            // Rest command - add a special rest note
+            // Assign channel based on channel_group
+            let channel = token.channel_group.map(|g| g as u8);
+
+            notes.push(AstNote {
+                note_type: "rest".to_string(),
+                pitch: 0, // Pitch is not used for rests
+                name: "r".to_string(),
+                channel,
+                chord_id: token.chord_id,
+            });
         }
     }
 
