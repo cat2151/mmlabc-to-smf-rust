@@ -156,6 +156,16 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                         modifier: None,
                     });
                 }
+            } else if kind == "velocity_set" {
+                if let Ok(text) = node.utf8_text(source.as_bytes()) {
+                    tokens.push(Token {
+                        token_type: "velocity_set".to_string(),
+                        value: text.to_string(),
+                        channel_group,
+                        chord_id: None,
+                        modifier: None,
+                    });
+                }
             } else {
                 // For other node types, recurse into children
                 if cursor.goto_first_child() {

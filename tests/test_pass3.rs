@@ -15,6 +15,7 @@ fn test_ast_to_events() {
                 channel: None,
                 chord_id: None,
                 length: None,
+                velocity: Some(127),
             },
             AstNote {
                 note_type: "note".to_string(),
@@ -23,6 +24,7 @@ fn test_ast_to_events() {
                 channel: None,
                 chord_id: None,
                 length: None,
+                velocity: Some(127),
             },
             AstNote {
                 note_type: "note".to_string(),
@@ -31,6 +33,7 @@ fn test_ast_to_events() {
                 channel: None,
                 chord_id: None,
                 length: None,
+                velocity: Some(127),
             },
         ],
     };
@@ -50,6 +53,7 @@ fn test_event_types() {
             channel: None,
             chord_id: None,
             length: None,
+            velocity: Some(127),
         }],
     };
 
@@ -70,6 +74,7 @@ fn test_event_timing() {
                 channel: None,
                 chord_id: None,
                 length: None,
+                velocity: Some(127),
             },
             AstNote {
                 note_type: "note".to_string(),
@@ -78,6 +83,7 @@ fn test_event_timing() {
                 channel: None,
                 chord_id: None,
                 length: None,
+                velocity: Some(127),
             },
         ],
     };
@@ -104,12 +110,13 @@ fn test_note_properties() {
             channel: None,
             chord_id: None,
             length: None,
+            velocity: Some(127),
         }],
     };
 
     let events = ast_to_events(&ast);
     assert_eq!(events[0].note, Some(60));
-    assert_eq!(events[0].velocity, Some(64));
+    assert_eq!(events[0].velocity, Some(127)); // Changed from 64 to 127 (default)
     assert_eq!(events[1].note, Some(60));
     assert_eq!(events[1].velocity, Some(0));
 }
@@ -140,6 +147,7 @@ fn test_save_events_to_json() {
             channel: None,
             chord_id: None,
             length: None,
+            velocity: Some(127),
         }],
     };
     let events = ast_to_events(&ast);

@@ -14,6 +14,7 @@ module.exports = grammar({
       $.length_set,
       $.program_change,
       $.tempo_set,
+      $.velocity_set,
     ),
 
     chord: $ => seq(
@@ -36,5 +37,6 @@ module.exports = grammar({
     length_set: $ => seq('l', /[0-9]+/),
     program_change: $ => seq('@', /[0-9]+/),
     tempo_set: $ => seq('t', /[0-9]+/),
+    velocity_set: $ => seq('v', /[0-9]+/),
   }
 });
