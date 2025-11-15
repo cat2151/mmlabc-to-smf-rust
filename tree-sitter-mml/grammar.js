@@ -11,6 +11,7 @@ module.exports = grammar({
       $.octave_up,
       $.octave_down,
       $.octave_set,
+      $.length_set,
     ),
 
     chord: $ => seq(
@@ -30,5 +31,6 @@ module.exports = grammar({
     octave_up: $ => '<',
     octave_down: $ => '>',
     octave_set: $ => seq('o', /[0-9]+/),
+    length_set: $ => seq('l', /[0-9]+/),
   }
 });
