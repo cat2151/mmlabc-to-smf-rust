@@ -23,6 +23,9 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
     // When notes have channel assignments, each note plays on a different channel (0, 1, 2, etc.)
     let has_multiple_channels = ast.notes.iter().any(|n| n.channel.is_some());
 
+    // Check if we have any chords
+    let has_chords = ast.notes.iter().any(|n| n.chord_id.is_some());
+
     if has_multiple_channels {
         // Multi-channel mode: notes within each channel are sequential
         // Track time separately for each channel
@@ -53,6 +56,47 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
 
             // Advance time for this channel
             channel_times.insert(channel, current_time + duration);
+        }
+    } else if has_chords {
+        // Chord mode: notes with the same chord_id play simultaneously on the same channel
+        // Track the last chord_id processed
+        let mut last_chord_id: Option<usize> = None;
+
+        for note in &ast.notes {
+            // Determine if this note is part of a chord
+            let is_chord_note = note.chord_id.is_some();
+            let current_chord_id = note.chord_id;
+
+            // If this is a different chord or a non-chord note after a chord, advance time
+            if last_chord_id.is_some() && last_chord_id != current_chord_id {
+                time += duration;
+            }
+
+            // Note on event
+            events.push(MidiEvent {
+                event_type: "note_on".to_string(),
+                time,
+                note: note.pitch,
+                velocity: 64,
+                channel: 0,
+            });
+
+            // Note off event
+            events.push(MidiEvent {
+                event_type: "note_off".to_string(),
+                time: time + duration,
+                note: note.pitch,
+                velocity: 0,
+                channel: 0,
+            });
+
+            // If this is not a chord note, advance time
+            if !is_chord_note {
+                time += duration;
+                last_chord_id = None;
+            } else {
+                last_chord_id = current_chord_id;
+            }
         }
     } else {
         // Sequential notes (single channel)

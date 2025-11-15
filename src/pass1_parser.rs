@@ -24,6 +24,9 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
     // Only assign channel_group if there are multiple groups (i.e., semicolons present)
     let has_multiple_channels = channel_groups.len() > 1;
 
+    // Track chord ID across all channel groups
+    let mut global_chord_id = 0;
+
     for (group_idx, group) in channel_groups.iter().enumerate() {
         let channel_group = if has_multiple_channels {
             Some(group_idx)
@@ -48,16 +51,43 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
             source: &str,
             tokens: &mut Vec<Token>,
             channel_group: Option<usize>,
+            chord_id: &mut usize,
         ) {
             let node = cursor.node();
             let kind = node.kind();
 
-            if kind == "note" {
+            if kind == "chord" {
+                // Found a chord - increment chord_id for this chord group
+                let current_chord_id = *chord_id;
+                *chord_id += 1;
+
+                // Extract all notes within the chord
+                if cursor.goto_first_child() {
+                    loop {
+                        let child_node = cursor.node();
+                        if child_node.kind() == "note" {
+                            if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                                tokens.push(Token {
+                                    token_type: "note".to_string(),
+                                    value: text.to_ascii_lowercase(),
+                                    channel_group,
+                                    chord_id: Some(current_chord_id),
+                                });
+                            }
+                        }
+                        if !cursor.goto_next_sibling() {
+                            break;
+                        }
+                    }
+                    cursor.goto_parent();
+                }
+            } else if kind == "note" {
                 if let Ok(text) = node.utf8_text(source.as_bytes()) {
                     tokens.push(Token {
                         token_type: "note".to_string(),
                         value: text.to_ascii_lowercase(),
                         channel_group,
+                        chord_id: None,
                     });
                 }
             } else if kind == "octave_up" {
@@ -65,27 +95,36 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                     token_type: "octave_up".to_string(),
                     value: "<".to_string(),
                     channel_group,
+                    chord_id: None,
                 });
             } else if kind == "octave_down" {
                 tokens.push(Token {
                     token_type: "octave_down".to_string(),
                     value: ">".to_string(),
                     channel_group,
+                    chord_id: None,
                 });
-            }
-
-            if cursor.goto_first_child() {
-                loop {
-                    extract_tokens(cursor, source, tokens, channel_group);
-                    if !cursor.goto_next_sibling() {
-                        break;
+            } else {
+                // For other node types, recurse into children
+                if cursor.goto_first_child() {
+                    loop {
+                        extract_tokens(cursor, source, tokens, channel_group, chord_id);
+                        if !cursor.goto_next_sibling() {
+                            break;
+                        }
                     }
+                    cursor.goto_parent();
                 }
-                cursor.goto_parent();
             }
         }
 
-        extract_tokens(&mut cursor, group, &mut tokens, channel_group);
+        extract_tokens(
+            &mut cursor,
+            group,
+            &mut tokens,
+            channel_group,
+            &mut global_chord_id,
+        );
     }
 
     tokens

@@ -5,9 +5,16 @@ module.exports = grammar({
     source_file: $ => repeat($._item),
 
     _item: $ => choice(
+      $.chord,
       $.note,
       $.octave_up,
       $.octave_down,
+    ),
+
+    chord: $ => seq(
+      "'",
+      repeat1($.note),
+      "'"
     ),
 
     note: $ => /[cdefgabCDEFGAB]/,

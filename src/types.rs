@@ -10,6 +10,8 @@ pub struct Token {
     pub value: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub channel_group: Option<usize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub chord_id: Option<usize>,
 }
 
 /// A note in the Abstract Syntax Tree
@@ -21,6 +23,8 @@ pub struct AstNote {
     pub name: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub channel: Option<u8>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub chord_id: Option<usize>,
 }
 
 /// Abstract Syntax Tree representing the musical structure

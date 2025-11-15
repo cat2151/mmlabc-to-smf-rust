@@ -13,18 +13,21 @@ fn test_ast_to_events() {
                 pitch: 60,
                 name: "c".to_string(),
                 channel: None,
+                chord_id: None,
             },
             AstNote {
                 note_type: "note".to_string(),
                 pitch: 62,
                 name: "d".to_string(),
                 channel: None,
+                chord_id: None,
             },
             AstNote {
                 note_type: "note".to_string(),
                 pitch: 64,
                 name: "e".to_string(),
                 channel: None,
+                chord_id: None,
             },
         ],
     };
@@ -42,6 +45,7 @@ fn test_event_types() {
             pitch: 60,
             name: "c".to_string(),
             channel: None,
+            chord_id: None,
         }],
     };
 
@@ -60,12 +64,14 @@ fn test_event_timing() {
                 pitch: 60,
                 name: "c".to_string(),
                 channel: None,
+                chord_id: None,
             },
             AstNote {
                 note_type: "note".to_string(),
                 pitch: 62,
                 name: "d".to_string(),
                 channel: None,
+                chord_id: None,
             },
         ],
     };
@@ -90,6 +96,7 @@ fn test_note_properties() {
             pitch: 60,
             name: "c".to_string(),
             channel: None,
+            chord_id: None,
         }],
     };
 
@@ -124,6 +131,7 @@ fn test_save_events_to_json() {
             pitch: 60,
             name: "c".to_string(),
             channel: None,
+            chord_id: None,
         }],
     };
     let events = ast_to_events(&ast);
