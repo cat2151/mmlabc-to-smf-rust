@@ -104,6 +104,15 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                     channel_group,
                     chord_id: None,
                 });
+            } else if kind == "octave_set" {
+                if let Ok(text) = node.utf8_text(source.as_bytes()) {
+                    tokens.push(Token {
+                        token_type: "octave_set".to_string(),
+                        value: text.to_string(),
+                        channel_group,
+                        chord_id: None,
+                    });
+                }
             } else {
                 // For other node types, recurse into children
                 if cursor.goto_first_child() {

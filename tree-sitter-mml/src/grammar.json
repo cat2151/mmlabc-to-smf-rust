@@ -26,6 +26,10 @@
         {
           "type": "SYMBOL",
           "name": "octave_down"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "octave_set"
         }
       ]
     },
@@ -60,6 +64,19 @@
     "octave_down": {
       "type": "STRING",
       "value": ">"
+    },
+    "octave_set": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "o"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        }
+      ]
     }
   },
   "extras": [
