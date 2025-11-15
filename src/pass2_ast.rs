@@ -36,6 +36,10 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     // Use None as key for single-channel mode, Some(n) for multi-channel mode
     let mut current_octaves: HashMap<Option<usize>, u8> = HashMap::new();
 
+    // Track current length per channel
+    // Default length is 4 (quarter note)
+    let mut current_lengths: HashMap<Option<usize>, u32> = HashMap::new();
+
     for token in tokens {
         if token.token_type == "note" {
             let note_offset = note_to_offset
@@ -45,6 +49,9 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
 
             // Get current octave for this channel (default to 5)
             let octave = *current_octaves.get(&token.channel_group).unwrap_or(&5);
+
+            // Get current length for this channel (default to 4 = quarter note)
+            let length = *current_lengths.get(&token.channel_group).unwrap_or(&4);
 
             // Calculate MIDI note: octave * 12 + note_offset
             let mut midi_note = octave * 12 + note_offset;
@@ -69,6 +76,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 name: token.value.clone(),
                 channel,
                 chord_id: token.chord_id,
+                length: Some(length),
             });
         } else if token.token_type == "octave_up" {
             // < means octave up
@@ -85,10 +93,20 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                     current_octaves.insert(token.channel_group, octave_value);
                 }
             }
+        } else if token.token_type == "length_set" {
+            // l command sets default note length (e.g., "l8" sets to eighth note)
+            if let Some(length_str) = token.value.strip_prefix('l') {
+                if let Ok(length_value) = length_str.parse::<u32>() {
+                    current_lengths.insert(token.channel_group, length_value);
+                }
+            }
         } else if token.token_type == "rest" {
             // Rest command - add a special rest note
             // Assign channel based on channel_group
             let channel = token.channel_group.map(|g| g as u8);
+
+            // Get current length for this channel (default to 4 = quarter note)
+            let length = *current_lengths.get(&token.channel_group).unwrap_or(&4);
 
             notes.push(AstNote {
                 note_type: "rest".to_string(),
@@ -96,6 +114,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 name: "r".to_string(),
                 channel,
                 chord_id: token.chord_id,
+                length: Some(length),
             });
         }
     }

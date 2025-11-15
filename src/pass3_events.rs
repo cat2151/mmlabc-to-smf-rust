@@ -7,6 +7,19 @@ use serde::Serialize;
 use std::fs::File;
 use std::io::Write;
 
+/// Calculate duration in ticks for a given note length
+///
+/// # Arguments
+/// * `length` - Note length (1=whole, 4=quarter, 8=eighth, etc.)
+///
+/// # Returns
+/// Duration in ticks
+fn calculate_duration(length: u32) -> u32 {
+    // Whole note = 1920 ticks (480 ticks per quarter note * 4 beats)
+    // For any note length n: duration = 1920 / n
+    1920 / length
+}
+
 /// Convert AST to MIDI event list
 ///
 /// # Arguments
@@ -17,7 +30,7 @@ use std::io::Write;
 pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
     let mut events = Vec::new();
     let mut time = 0;
-    let duration = 480; // Default duration in ticks (quarter note at 480 ticks per beat)
+    let default_duration = 480; // Default duration in ticks (quarter note at 480 ticks per beat)
 
     // Check if notes have channel assignments (multi-channel mode)
     // When notes have channel assignments, each note plays on a different channel (0, 1, 2, etc.)
@@ -35,6 +48,10 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
         for note in &ast.notes {
             let channel = note.channel.unwrap_or(0);
             let current_time = channel_times.get(&channel).copied().unwrap_or(0);
+            let duration = note
+                .length
+                .map(calculate_duration)
+                .unwrap_or(default_duration);
 
             if note.note_type == "rest" {
                 // Rest: just advance time without generating events
@@ -68,6 +85,11 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
         let mut last_chord_id: Option<usize> = None;
 
         for note in &ast.notes {
+            let duration = note
+                .length
+                .map(calculate_duration)
+                .unwrap_or(default_duration);
+
             // Determine if this note is part of a chord
             let is_chord_note = note.chord_id.is_some();
             let current_chord_id = note.chord_id;
@@ -112,6 +134,11 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
     } else {
         // Sequential notes (single channel)
         for note in &ast.notes {
+            let duration = note
+                .length
+                .map(calculate_duration)
+                .unwrap_or(default_duration);
+
             if note.note_type == "rest" {
                 // Rest: just advance time without generating events
                 time += duration;

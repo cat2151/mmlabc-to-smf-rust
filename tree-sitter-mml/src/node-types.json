@@ -15,6 +15,11 @@
     }
   },
   {
+    "type": "length_set",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "modifier",
     "named": true,
     "fields": {}
@@ -56,6 +61,10 @@
           "named": true
         },
         {
+          "type": "length_set",
+          "named": true
+        },
+        {
           "type": "note_with_modifier",
           "named": true
         },
@@ -88,6 +97,10 @@
   },
   {
     "type": "-",
+    "named": false
+  },
+  {
+    "type": "l",
     "named": false
   },
   {

@@ -14,6 +14,7 @@ fn test_ast_to_events() {
                 name: "c".to_string(),
                 channel: None,
                 chord_id: None,
+                length: None,
             },
             AstNote {
                 note_type: "note".to_string(),
@@ -21,6 +22,7 @@ fn test_ast_to_events() {
                 name: "d".to_string(),
                 channel: None,
                 chord_id: None,
+                length: None,
             },
             AstNote {
                 note_type: "note".to_string(),
@@ -28,6 +30,7 @@ fn test_ast_to_events() {
                 name: "e".to_string(),
                 channel: None,
                 chord_id: None,
+                length: None,
             },
         ],
     };
@@ -46,6 +49,7 @@ fn test_event_types() {
             name: "c".to_string(),
             channel: None,
             chord_id: None,
+            length: None,
         }],
     };
 
@@ -65,6 +69,7 @@ fn test_event_timing() {
                 name: "c".to_string(),
                 channel: None,
                 chord_id: None,
+                length: None,
             },
             AstNote {
                 note_type: "note".to_string(),
@@ -72,6 +77,7 @@ fn test_event_timing() {
                 name: "d".to_string(),
                 channel: None,
                 chord_id: None,
+                length: None,
             },
         ],
     };
@@ -97,6 +103,7 @@ fn test_note_properties() {
             name: "c".to_string(),
             channel: None,
             chord_id: None,
+            length: None,
         }],
     };
 
@@ -132,6 +139,7 @@ fn test_save_events_to_json() {
             name: "c".to_string(),
             channel: None,
             chord_id: None,
+            length: None,
         }],
     };
     let events = ast_to_events(&ast);
