@@ -65,15 +65,16 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                 if cursor.goto_first_child() {
                     loop {
                         let child_node = cursor.node();
-                        if child_node.kind() == "note" {
-                            if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
-                                tokens.push(Token {
-                                    token_type: "note".to_string(),
-                                    value: text.to_ascii_lowercase(),
-                                    channel_group,
-                                    chord_id: Some(current_chord_id),
-                                });
-                            }
+                        if child_node.kind() == "note_with_modifier" {
+                            // Extract note and modifier from note_with_modifier
+                            let (note_value, modifier) = extract_note_and_modifier(cursor, source);
+                            tokens.push(Token {
+                                token_type: "note".to_string(),
+                                value: note_value,
+                                channel_group,
+                                chord_id: Some(current_chord_id),
+                                modifier,
+                            });
                         }
                         if !cursor.goto_next_sibling() {
                             break;
@@ -81,21 +82,23 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                     }
                     cursor.goto_parent();
                 }
-            } else if kind == "note" {
-                if let Ok(text) = node.utf8_text(source.as_bytes()) {
-                    tokens.push(Token {
-                        token_type: "note".to_string(),
-                        value: text.to_ascii_lowercase(),
-                        channel_group,
-                        chord_id: None,
-                    });
-                }
+            } else if kind == "note_with_modifier" {
+                // Extract note and modifier from note_with_modifier
+                let (note_value, modifier) = extract_note_and_modifier(cursor, source);
+                tokens.push(Token {
+                    token_type: "note".to_string(),
+                    value: note_value,
+                    channel_group,
+                    chord_id: None,
+                    modifier,
+                });
             } else if kind == "octave_up" {
                 tokens.push(Token {
                     token_type: "octave_up".to_string(),
                     value: "<".to_string(),
                     channel_group,
                     chord_id: None,
+                    modifier: None,
                 });
             } else if kind == "octave_down" {
                 tokens.push(Token {
@@ -103,6 +106,7 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                     value: ">".to_string(),
                     channel_group,
                     chord_id: None,
+                    modifier: None,
                 });
             } else if kind == "octave_set" {
                 if let Ok(text) = node.utf8_text(source.as_bytes()) {
@@ -111,6 +115,7 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                         value: text.to_string(),
                         channel_group,
                         chord_id: None,
+                        modifier: None,
                     });
                 }
             } else {
@@ -125,6 +130,38 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                     cursor.goto_parent();
                 }
             }
+        }
+
+        fn extract_note_and_modifier(
+            cursor: &mut TreeCursor,
+            source: &str,
+        ) -> (String, Option<String>) {
+            let mut note_value = String::new();
+            let mut modifier = None;
+
+            if cursor.goto_first_child() {
+                loop {
+                    let child_node = cursor.node();
+                    let child_kind = child_node.kind();
+
+                    if child_kind == "note" {
+                        if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                            note_value = text.to_ascii_lowercase();
+                        }
+                    } else if child_kind == "modifier" {
+                        if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                            modifier = Some(text.to_string());
+                        }
+                    }
+
+                    if !cursor.goto_next_sibling() {
+                        break;
+                    }
+                }
+                cursor.goto_parent();
+            }
+
+            (note_value, modifier)
         }
 
         extract_tokens(

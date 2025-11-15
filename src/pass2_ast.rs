@@ -47,7 +47,16 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
             let octave = *current_octaves.get(&token.channel_group).unwrap_or(&5);
 
             // Calculate MIDI note: octave * 12 + note_offset
-            let midi_note = octave * 12 + note_offset;
+            let mut midi_note = octave * 12 + note_offset;
+
+            // Apply modifier if present (+ for sharp, - for flat)
+            if let Some(modifier) = &token.modifier {
+                match modifier.as_str() {
+                    "+" => midi_note = midi_note.saturating_add(1),
+                    "-" => midi_note = midi_note.saturating_sub(1),
+                    _ => {}
+                }
+            }
 
             // Assign channel based on channel_group
             // If channel_group is present, notes are assigned to separate channels

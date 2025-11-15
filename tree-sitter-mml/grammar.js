@@ -6,7 +6,7 @@ module.exports = grammar({
 
     _item: $ => choice(
       $.chord,
-      $.note,
+      $.note_with_modifier,
       $.octave_up,
       $.octave_down,
       $.octave_set,
@@ -14,11 +14,17 @@ module.exports = grammar({
 
     chord: $ => seq(
       "'",
-      repeat1($.note),
+      repeat1($.note_with_modifier),
       "'"
     ),
 
+    note_with_modifier: $ => seq(
+      $.note,
+      optional($.modifier)
+    ),
+
     note: $ => /[cdefgabCDEFGAB]/,
+    modifier: $ => choice('+', '-'),
     octave_up: $ => '<',
     octave_down: $ => '>',
     octave_set: $ => seq('o', /[0-9]+/),

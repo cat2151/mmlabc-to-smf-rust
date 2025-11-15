@@ -36,18 +36,21 @@ fn test_octave_up_effect() {
             value: "c".to_string(),
             channel_group: None,
             chord_id: None,
+            modifier: None,
         },
         Token {
             token_type: "octave_up".to_string(),
             value: "<".to_string(),
             channel_group: None,
             chord_id: None,
+            modifier: None,
         },
         Token {
             token_type: "note".to_string(),
             value: "c".to_string(),
             channel_group: None,
             chord_id: None,
+            modifier: None,
         },
     ];
 
@@ -65,18 +68,21 @@ fn test_octave_down_effect() {
             value: "c".to_string(),
             channel_group: None,
             chord_id: None,
+            modifier: None,
         },
         Token {
             token_type: "octave_down".to_string(),
             value: ">".to_string(),
             channel_group: None,
             chord_id: None,
+            modifier: None,
         },
         Token {
             token_type: "note".to_string(),
             value: "c".to_string(),
             channel_group: None,
             chord_id: None,
+            modifier: None,
         },
     ];
 
