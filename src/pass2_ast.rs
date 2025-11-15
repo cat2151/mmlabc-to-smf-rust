@@ -40,6 +40,10 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     // Default length is 4 (quarter note)
     let mut current_lengths: HashMap<Option<usize>, u32> = HashMap::new();
 
+    // Track current velocity per channel
+    // Default velocity is v15 which maps to MIDI velocity 127
+    let mut current_velocities: HashMap<Option<usize>, u8> = HashMap::new();
+
     for token in tokens {
         if token.token_type == "note" {
             let note_offset = note_to_offset
@@ -52,6 +56,9 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
 
             // Get current length for this channel (default to 4 = quarter note)
             let length = *current_lengths.get(&token.channel_group).unwrap_or(&4);
+
+            // Get current velocity for this channel (default to 127 = v15)
+            let velocity = *current_velocities.get(&token.channel_group).unwrap_or(&127);
 
             // Calculate MIDI note: octave * 12 + note_offset
             let mut midi_note = octave * 12 + note_offset;
@@ -77,6 +84,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 channel,
                 chord_id: token.chord_id,
                 length: Some(length),
+                velocity: Some(velocity),
             });
         } else if token.token_type == "octave_up" {
             // < means octave up
@@ -100,6 +108,20 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                     current_lengths.insert(token.channel_group, length_value);
                 }
             }
+        } else if token.token_type == "velocity_set" {
+            // v command sets velocity (e.g., "v15" sets to MIDI velocity 127)
+            // Linear scaling: v_value * (127/15) = velocity
+            // v1 = 1 * (127/15) ≈ 8.47 → 8
+            // v15 = 15 * (127/15) ≈ 127 → 127
+            if let Some(velocity_str) = token.value.strip_prefix('v') {
+                if let Ok(v_value) = velocity_str.parse::<u32>() {
+                    // Clamp v_value to 1-15 range
+                    let v_clamped = v_value.clamp(1, 15);
+                    // Calculate MIDI velocity: round(v_value * 127 / 15)
+                    let velocity = ((v_clamped * 127 + 7) / 15) as u8; // +7 for rounding
+                    current_velocities.insert(token.channel_group, velocity);
+                }
+            }
         } else if token.token_type == "rest" {
             // Rest command - add a special rest note
             // Assign channel based on channel_group
@@ -115,6 +137,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 channel,
                 chord_id: token.chord_id,
                 length: Some(length),
+                velocity: None, // Velocity is not used for rests
             });
         } else if token.token_type == "program_change" {
             // @ command sets MIDI program (instrument)
@@ -130,6 +153,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                         channel,
                         chord_id: None,
                         length: None,
+                        velocity: None, // Velocity is not used for program changes
                     });
                 }
             }
@@ -151,6 +175,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                         channel,
                         chord_id: None,
                         length: None,
+                        velocity: None, // Velocity is not used for tempo changes
                     });
                 }
             }

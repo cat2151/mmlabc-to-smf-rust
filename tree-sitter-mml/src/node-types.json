@@ -96,12 +96,21 @@
         {
           "type": "tempo_set",
           "named": true
+        },
+        {
+          "type": "velocity_set",
+          "named": true
         }
       ]
     }
   },
   {
     "type": "tempo_set",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "velocity_set",
     "named": true,
     "fields": {}
   },
@@ -147,6 +156,10 @@
   },
   {
     "type": "t",
+    "named": false
+  },
+  {
+    "type": "v",
     "named": false
   }
 ]

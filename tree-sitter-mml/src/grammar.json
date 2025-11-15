@@ -46,6 +46,10 @@
         {
           "type": "SYMBOL",
           "name": "tempo_set"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "velocity_set"
         }
       ]
     },
@@ -164,6 +168,19 @@
         {
           "type": "STRING",
           "value": "t"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        }
+      ]
+    },
+    "velocity_set": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "v"
         },
         {
           "type": "PATTERN",

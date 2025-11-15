@@ -87,7 +87,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     event_type: "note_on".to_string(),
                     time: current_time,
                     note: Some(note.pitch),
-                    velocity: Some(64),
+                    velocity: Some(note.velocity.unwrap_or(127)), // Use note's velocity or default to 127
                     channel,
                     program: None,
                     tempo: None,
@@ -164,7 +164,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     event_type: "note_on".to_string(),
                     time,
                     note: Some(note.pitch),
-                    velocity: Some(64),
+                    velocity: Some(note.velocity.unwrap_or(127)), // Use note's velocity or default to 127
                     channel: 0,
                     program: None,
                     tempo: None,
@@ -231,7 +231,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     event_type: "note_on".to_string(),
                     time,
                     note: Some(note.pitch),
-                    velocity: Some(64),
+                    velocity: Some(note.velocity.unwrap_or(127)), // Use note's velocity or default to 127
                     channel: 0,
                     program: None,
                     tempo: None,

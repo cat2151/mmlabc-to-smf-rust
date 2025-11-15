@@ -29,6 +29,8 @@ pub struct AstNote {
     pub chord_id: Option<usize>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub length: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub velocity: Option<u8>,
 }
 
 /// Abstract Syntax Tree representing the musical structure
