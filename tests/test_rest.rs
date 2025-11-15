@@ -71,11 +71,11 @@ fn test_rest_events_timing() {
 
     // First C starts at time 0
     assert_eq!(note_on_events[0].time, 0);
-    assert_eq!(note_on_events[0].note, 60);
+    assert_eq!(note_on_events[0].note, Some(60));
 
     // Second C starts at time 960 (after first note duration 480 + rest duration 480)
     assert_eq!(note_on_events[1].time, 960);
-    assert_eq!(note_on_events[1].note, 60);
+    assert_eq!(note_on_events[1].note, Some(60));
 }
 
 #[test]
@@ -116,15 +116,15 @@ fn test_rest_between_different_notes() {
 
     // C at time 0
     assert_eq!(note_on_events[0].time, 0);
-    assert_eq!(note_on_events[0].note, 60); // C
+    assert_eq!(note_on_events[0].note, Some(60)); // C
 
     // D at time 960 (480 for C + 480 for rest)
     assert_eq!(note_on_events[1].time, 960);
-    assert_eq!(note_on_events[1].note, 62); // D
+    assert_eq!(note_on_events[1].note, Some(62)); // D
 
     // E at time 1920 (480 for C + 480 for rest + 480 for D + 480 for rest)
     assert_eq!(note_on_events[2].time, 1920);
-    assert_eq!(note_on_events[2].note, 64); // E
+    assert_eq!(note_on_events[2].note, Some(64)); // E
 }
 
 #[test]

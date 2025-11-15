@@ -45,7 +45,11 @@ pub struct MidiEvent {
     #[serde(rename = "type")]
     pub event_type: String,
     pub time: u32,
-    pub note: u8,
-    pub velocity: u8,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub note: Option<u8>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub velocity: Option<u8>,
     pub channel: u8,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub program: Option<u8>,
 }

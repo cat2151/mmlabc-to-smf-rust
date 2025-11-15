@@ -69,9 +69,9 @@ fn test_notes_60_62_64() {
         .collect();
 
     assert_eq!(note_on_events.len(), 3);
-    assert_eq!(note_on_events[0].note, 60);
-    assert_eq!(note_on_events[1].note, 62);
-    assert_eq!(note_on_events[2].note, 64);
+    assert_eq!(note_on_events[0].note, Some(60));
+    assert_eq!(note_on_events[1].note, Some(62));
+    assert_eq!(note_on_events[2].note, Some(64));
 
     // Cleanup
     let _ = fs::remove_dir_all(&test_dir);

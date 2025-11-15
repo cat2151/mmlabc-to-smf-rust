@@ -70,15 +70,15 @@ fn test_channel_events_channels() {
         .collect();
 
     // C on channel 0 (channel 1 in 1-based)
-    assert_eq!(note_on_events[0].note, 60);
+    assert_eq!(note_on_events[0].note, Some(60));
     assert_eq!(note_on_events[0].channel, 0);
 
     // E on channel 1 (channel 2 in 1-based)
-    assert_eq!(note_on_events[1].note, 64);
+    assert_eq!(note_on_events[1].note, Some(64));
     assert_eq!(note_on_events[1].channel, 1);
 
     // G on channel 2 (channel 3 in 1-based)
-    assert_eq!(note_on_events[2].note, 67);
+    assert_eq!(note_on_events[2].note, Some(67));
     assert_eq!(note_on_events[2].channel, 2);
 }
 

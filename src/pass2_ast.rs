@@ -116,6 +116,23 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 chord_id: token.chord_id,
                 length: Some(length),
             });
+        } else if token.token_type == "program_change" {
+            // @ command sets MIDI program (instrument)
+            if let Some(program_str) = token.value.strip_prefix('@') {
+                if let Ok(program_value) = program_str.parse::<u8>() {
+                    // Assign channel based on channel_group
+                    let channel = token.channel_group.map(|g| g as u8);
+
+                    notes.push(AstNote {
+                        note_type: "program_change".to_string(),
+                        pitch: program_value, // Store program number in pitch field
+                        name: token.value.clone(),
+                        channel,
+                        chord_id: None,
+                        length: None,
+                    });
+                }
+            }
         }
     }
 

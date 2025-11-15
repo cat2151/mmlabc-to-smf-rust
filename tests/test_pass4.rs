@@ -9,16 +9,18 @@ fn test_events_to_midi() {
         MidiEvent {
             event_type: "note_on".to_string(),
             time: 0,
-            note: 60,
-            velocity: 64,
+            note: Some(60),
+            velocity: Some(64),
             channel: 0,
+            program: None,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
             time: 480,
-            note: 60,
-            velocity: 0,
+            note: Some(60),
+            velocity: Some(0),
             channel: 0,
+            program: None,
         },
     ];
 
@@ -34,16 +36,18 @@ fn test_midi_file_structure() {
         MidiEvent {
             event_type: "note_on".to_string(),
             time: 0,
-            note: 60,
-            velocity: 64,
+            note: Some(60),
+            velocity: Some(64),
             channel: 0,
+            program: None,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
             time: 480,
-            note: 60,
-            velocity: 0,
+            note: Some(60),
+            velocity: Some(0),
             channel: 0,
+            program: None,
         },
     ];
 
@@ -63,16 +67,18 @@ fn test_save_midi_file() {
         MidiEvent {
             event_type: "note_on".to_string(),
             time: 0,
-            note: 60,
-            velocity: 64,
+            note: Some(60),
+            velocity: Some(64),
             channel: 0,
+            program: None,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
             time: 480,
-            note: 60,
-            velocity: 0,
+            note: Some(60),
+            velocity: Some(0),
             channel: 0,
+            program: None,
         },
     ];
 
@@ -97,16 +103,18 @@ fn test_process_pass4() {
         MidiEvent {
             event_type: "note_on".to_string(),
             time: 0,
-            note: 60,
-            velocity: 64,
+            note: Some(60),
+            velocity: Some(64),
             channel: 0,
+            program: None,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
             time: 480,
-            note: 60,
-            velocity: 0,
+            note: Some(60),
+            velocity: Some(0),
             channel: 0,
+            program: None,
         },
     ];
 
