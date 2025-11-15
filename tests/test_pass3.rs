@@ -108,10 +108,10 @@ fn test_note_properties() {
     };
 
     let events = ast_to_events(&ast);
-    assert_eq!(events[0].note, 60);
-    assert_eq!(events[0].velocity, 64);
-    assert_eq!(events[1].note, 60);
-    assert_eq!(events[1].velocity, 0);
+    assert_eq!(events[0].note, Some(60));
+    assert_eq!(events[0].velocity, Some(64));
+    assert_eq!(events[1].note, Some(60));
+    assert_eq!(events[1].velocity, Some(0));
 }
 
 #[test]

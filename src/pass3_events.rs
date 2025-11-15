@@ -56,23 +56,35 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
             if note.note_type == "rest" {
                 // Rest: just advance time without generating events
                 channel_times.insert(channel, current_time + duration);
+            } else if note.note_type == "program_change" {
+                // Program change: generate program_change event without advancing time
+                events.push(MidiEvent {
+                    event_type: "program_change".to_string(),
+                    time: current_time,
+                    note: None,
+                    velocity: None,
+                    channel,
+                    program: Some(note.pitch),
+                });
             } else {
                 // Note on event
                 events.push(MidiEvent {
                     event_type: "note_on".to_string(),
                     time: current_time,
-                    note: note.pitch,
-                    velocity: 64,
+                    note: Some(note.pitch),
+                    velocity: Some(64),
                     channel,
+                    program: None,
                 });
 
                 // Note off event
                 events.push(MidiEvent {
                     event_type: "note_off".to_string(),
                     time: current_time + duration,
-                    note: note.pitch,
-                    velocity: 0,
+                    note: Some(note.pitch),
+                    velocity: Some(0),
                     channel,
+                    program: None,
                 });
 
                 // Advance time for this channel
@@ -103,23 +115,36 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                 // Rest: just advance time without generating events
                 time += duration;
                 last_chord_id = None;
+            } else if note.note_type == "program_change" {
+                // Program change: generate program_change event without advancing time
+                events.push(MidiEvent {
+                    event_type: "program_change".to_string(),
+                    time,
+                    note: None,
+                    velocity: None,
+                    channel: 0,
+                    program: Some(note.pitch),
+                });
+                last_chord_id = None;
             } else {
                 // Note on event
                 events.push(MidiEvent {
                     event_type: "note_on".to_string(),
                     time,
-                    note: note.pitch,
-                    velocity: 64,
+                    note: Some(note.pitch),
+                    velocity: Some(64),
                     channel: 0,
+                    program: None,
                 });
 
                 // Note off event
                 events.push(MidiEvent {
                     event_type: "note_off".to_string(),
                     time: time + duration,
-                    note: note.pitch,
-                    velocity: 0,
+                    note: Some(note.pitch),
+                    velocity: Some(0),
                     channel: 0,
+                    program: None,
                 });
 
                 // If this is not a chord note, advance time
@@ -142,23 +167,35 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
             if note.note_type == "rest" {
                 // Rest: just advance time without generating events
                 time += duration;
+            } else if note.note_type == "program_change" {
+                // Program change: generate program_change event without advancing time
+                events.push(MidiEvent {
+                    event_type: "program_change".to_string(),
+                    time,
+                    note: None,
+                    velocity: None,
+                    channel: 0,
+                    program: Some(note.pitch),
+                });
             } else {
                 // Note on event
                 events.push(MidiEvent {
                     event_type: "note_on".to_string(),
                     time,
-                    note: note.pitch,
-                    velocity: 64,
+                    note: Some(note.pitch),
+                    velocity: Some(64),
                     channel: 0,
+                    program: None,
                 });
 
                 // Note off event
                 events.push(MidiEvent {
                     event_type: "note_off".to_string(),
                     time: time + duration,
-                    note: note.pitch,
-                    velocity: 0,
+                    note: Some(note.pitch),
+                    velocity: Some(0),
                     channel: 0,
+                    program: None,
                 });
 
                 time += duration;

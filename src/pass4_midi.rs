@@ -76,12 +76,15 @@ pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
 
                 let midi_msg = match event.event_type.as_str() {
                     "note_on" => MidiMessage::NoteOn {
-                        key: event.note.into(),
-                        vel: event.velocity.into(),
+                        key: event.note.unwrap().into(),
+                        vel: event.velocity.unwrap().into(),
                     },
                     "note_off" => MidiMessage::NoteOff {
-                        key: event.note.into(),
-                        vel: event.velocity.into(),
+                        key: event.note.unwrap().into(),
+                        vel: event.velocity.unwrap().into(),
+                    },
+                    "program_change" => MidiMessage::ProgramChange {
+                        program: event.program.unwrap().into(),
                     },
                     _ => continue,
                 };
@@ -125,12 +128,15 @@ pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
 
             let midi_msg = match event.event_type.as_str() {
                 "note_on" => MidiMessage::NoteOn {
-                    key: event.note.into(),
-                    vel: event.velocity.into(),
+                    key: event.note.unwrap().into(),
+                    vel: event.velocity.unwrap().into(),
                 },
                 "note_off" => MidiMessage::NoteOff {
-                    key: event.note.into(),
-                    vel: event.velocity.into(),
+                    key: event.note.unwrap().into(),
+                    vel: event.velocity.unwrap().into(),
+                },
+                "program_change" => MidiMessage::ProgramChange {
+                    program: event.program.unwrap().into(),
                 },
                 _ => continue,
             };
