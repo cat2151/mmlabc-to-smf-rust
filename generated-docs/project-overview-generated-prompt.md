@@ -1,4 +1,4 @@
-Last updated: 2025-11-14
+Last updated: 2025-11-16
 
 
 # プロジェクト概要生成プロンプト（来訪者向け）
@@ -236,6 +236,36 @@ cargo test         # 全テスト実行（35個のテストケース）
 cargo clippy       # コード品質チェック
 cargo fmt --check  # フォーマットチェック
 cargo fmt          # フォーマット適用
+```
+
+### tree-sitter パーサーファイル
+
+tree-sitter パーサーファイル（`tree-sitter-mml/src/` 配下）は、crates.io での信頼性のある配布のため、tree-sitter のベストプラクティスに従い **git で追跡されています**。
+
+**開発ワークフロー：**
+- C言語ソースファイル（`parser.c`、`grammar.json`、`node-types.json`、および `tree_sitter/` ディレクトリ）は、`grammar.js` が変更されたときに自動的に再生成されます
+- ビルドスクリプトがファイルの更新時刻をチェックし、必要な場合にのみ再生成します
+- **必要条件**：文法を更新する場合は、システムに Node.js と npx がインストールされている必要があります
+- 通常のビルド（文法変更なし）は、コミット済みのC言語ファイルを使用するため、Node.js なしで動作します
+
+**生成ファイルをコミットする理由**
+これは tree-sitter エコシステムのベストプラクティスに従っています：
+- crates.io からインストールするユーザーは Node.js や tree-sitter-cli を必要としません
+- 文法とパーサーのバージョンが正確に一致することを保証します
+- CI/CD とクロスプラットフォームビルドを簡素化します
+- すべての tree-sitter 言語クレートの標準的な慣行です
+
+**文法の更新：**
+`tree-sitter-mml/grammar.js` を変更する場合：
+1. `cargo build` を実行 - ビルドスクリプトが変更を検出し、パーサーファイルを再生成します
+2. grammar.js と再生成されたC言語ファイルの両方を一緒にコミットします
+3. これにより、文法とパーサーが同期した状態を保ちます
+
+パーサーファイルを手動で再生成する場合：
+```bash
+cd tree-sitter-mml
+npm install  # tree-sitter-cli がまだインストールされていない場合
+npx tree-sitter generate
 ```
 
 ### プロジェクト構造
@@ -687,6 +717,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📁 generated-docs/
                                                                                 📁 issue-notes/
                                                                                   📖 14.md
+                                                                                  📖 17.md
+                                                                                  📖 18.md
+                                                                                  📖 19.md
+                                                                                  📖 20.md
+                                                                                  📖 21.md
+                                                                                  📖 22.md
+                                                                                  📖 23.md
+                                                                                  📖 24.md
+                                                                                  📖 30.md
+                                                                                  📖 36.md
+                                                                                  📖 37.md
+                                                                                  📖 39.md
                                                                                 📄 mmlabc-to-smf-rust.toml.example
                                                                                 📁 src/
                                                                                   📄 config.rs
@@ -701,12 +743,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📁 tests/
                                                                                   📄 integration_test.rs
                                                                                   📄 test_channel.rs
+                                                                                  📄 test_chord.rs
                                                                                   📄 test_cli.rs
                                                                                   📄 test_config.rs
+                                                                                  📄 test_dotted_notes.rs
+                                                                                  📄 test_length.rs
+                                                                                  📄 test_modifier.rs
+                                                                                  📄 test_note_length.rs
+                                                                                  📄 test_octave.rs
                                                                                   📄 test_pass1.rs
                                                                                   📄 test_pass2.rs
                                                                                   📄 test_pass3.rs
                                                                                   📄 test_pass4.rs
+                                                                                  📄 test_program_change.rs
+                                                                                  📄 test_rest.rs
+                                                                                  📄 test_tempo.rs
+                                                                                  📄 test_velocity.rs
                                                                                 📁 tree-sitter-mml/
                                                                                   📜 grammar.js
                                                                                   📊 package.json
@@ -723,6 +775,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📁 generated-docs/
                                                                               📁 issue-notes/
                                                                                 📖 14.md
+                                                                                📖 17.md
+                                                                                📖 18.md
+                                                                                📖 19.md
+                                                                                📖 20.md
+                                                                                📖 21.md
+                                                                                📖 22.md
+                                                                                📖 23.md
+                                                                                📖 24.md
+                                                                                📖 30.md
+                                                                                📖 36.md
+                                                                                📖 37.md
+                                                                                📖 39.md
                                                                               📄 mmlabc-to-smf-rust.toml.example
                                                                               📁 src/
                                                                                 📄 config.rs
@@ -737,12 +801,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📁 tests/
                                                                                 📄 integration_test.rs
                                                                                 📄 test_channel.rs
+                                                                                📄 test_chord.rs
                                                                                 📄 test_cli.rs
                                                                                 📄 test_config.rs
+                                                                                📄 test_dotted_notes.rs
+                                                                                📄 test_length.rs
+                                                                                📄 test_modifier.rs
+                                                                                📄 test_note_length.rs
+                                                                                📄 test_octave.rs
                                                                                 📄 test_pass1.rs
                                                                                 📄 test_pass2.rs
                                                                                 📄 test_pass3.rs
                                                                                 📄 test_pass4.rs
+                                                                                📄 test_program_change.rs
+                                                                                📄 test_rest.rs
+                                                                                📄 test_tempo.rs
+                                                                                📄 test_velocity.rs
                                                                               📁 tree-sitter-mml/
                                                                                 📜 grammar.js
                                                                                 📊 package.json
@@ -759,6 +833,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📁 generated-docs/
                                                                             📁 issue-notes/
                                                                               📖 14.md
+                                                                              📖 17.md
+                                                                              📖 18.md
+                                                                              📖 19.md
+                                                                              📖 20.md
+                                                                              📖 21.md
+                                                                              📖 22.md
+                                                                              📖 23.md
+                                                                              📖 24.md
+                                                                              📖 30.md
+                                                                              📖 36.md
+                                                                              📖 37.md
+                                                                              📖 39.md
                                                                             📄 mmlabc-to-smf-rust.toml.example
                                                                             📁 src/
                                                                               📄 config.rs
@@ -773,12 +859,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📁 tests/
                                                                               📄 integration_test.rs
                                                                               📄 test_channel.rs
+                                                                              📄 test_chord.rs
                                                                               📄 test_cli.rs
                                                                               📄 test_config.rs
+                                                                              📄 test_dotted_notes.rs
+                                                                              📄 test_length.rs
+                                                                              📄 test_modifier.rs
+                                                                              📄 test_note_length.rs
+                                                                              📄 test_octave.rs
                                                                               📄 test_pass1.rs
                                                                               📄 test_pass2.rs
                                                                               📄 test_pass3.rs
                                                                               📄 test_pass4.rs
+                                                                              📄 test_program_change.rs
+                                                                              📄 test_rest.rs
+                                                                              📄 test_tempo.rs
+                                                                              📄 test_velocity.rs
                                                                             📁 tree-sitter-mml/
                                                                               📜 grammar.js
                                                                               📊 package.json
@@ -795,6 +891,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📁 generated-docs/
                                                                           📁 issue-notes/
                                                                             📖 14.md
+                                                                            📖 17.md
+                                                                            📖 18.md
+                                                                            📖 19.md
+                                                                            📖 20.md
+                                                                            📖 21.md
+                                                                            📖 22.md
+                                                                            📖 23.md
+                                                                            📖 24.md
+                                                                            📖 30.md
+                                                                            📖 36.md
+                                                                            📖 37.md
+                                                                            📖 39.md
                                                                           📄 mmlabc-to-smf-rust.toml.example
                                                                           📁 src/
                                                                             📄 config.rs
@@ -809,12 +917,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📁 tests/
                                                                             📄 integration_test.rs
                                                                             📄 test_channel.rs
+                                                                            📄 test_chord.rs
                                                                             📄 test_cli.rs
                                                                             📄 test_config.rs
+                                                                            📄 test_dotted_notes.rs
+                                                                            📄 test_length.rs
+                                                                            📄 test_modifier.rs
+                                                                            📄 test_note_length.rs
+                                                                            📄 test_octave.rs
                                                                             📄 test_pass1.rs
                                                                             📄 test_pass2.rs
                                                                             📄 test_pass3.rs
                                                                             📄 test_pass4.rs
+                                                                            📄 test_program_change.rs
+                                                                            📄 test_rest.rs
+                                                                            📄 test_tempo.rs
+                                                                            📄 test_velocity.rs
                                                                           📁 tree-sitter-mml/
                                                                             📜 grammar.js
                                                                             📊 package.json
@@ -831,6 +949,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📁 generated-docs/
                                                                         📁 issue-notes/
                                                                           📖 14.md
+                                                                          📖 17.md
+                                                                          📖 18.md
+                                                                          📖 19.md
+                                                                          📖 20.md
+                                                                          📖 21.md
+                                                                          📖 22.md
+                                                                          📖 23.md
+                                                                          📖 24.md
+                                                                          📖 30.md
+                                                                          📖 36.md
+                                                                          📖 37.md
+                                                                          📖 39.md
                                                                         📄 mmlabc-to-smf-rust.toml.example
                                                                         📁 src/
                                                                           📄 config.rs
@@ -845,12 +975,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📁 tests/
                                                                           📄 integration_test.rs
                                                                           📄 test_channel.rs
+                                                                          📄 test_chord.rs
                                                                           📄 test_cli.rs
                                                                           📄 test_config.rs
+                                                                          📄 test_dotted_notes.rs
+                                                                          📄 test_length.rs
+                                                                          📄 test_modifier.rs
+                                                                          📄 test_note_length.rs
+                                                                          📄 test_octave.rs
                                                                           📄 test_pass1.rs
                                                                           📄 test_pass2.rs
                                                                           📄 test_pass3.rs
                                                                           📄 test_pass4.rs
+                                                                          📄 test_program_change.rs
+                                                                          📄 test_rest.rs
+                                                                          📄 test_tempo.rs
+                                                                          📄 test_velocity.rs
                                                                         📁 tree-sitter-mml/
                                                                           📜 grammar.js
                                                                           📊 package.json
@@ -867,6 +1007,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📁 generated-docs/
                                                                       📁 issue-notes/
                                                                         📖 14.md
+                                                                        📖 17.md
+                                                                        📖 18.md
+                                                                        📖 19.md
+                                                                        📖 20.md
+                                                                        📖 21.md
+                                                                        📖 22.md
+                                                                        📖 23.md
+                                                                        📖 24.md
+                                                                        📖 30.md
+                                                                        📖 36.md
+                                                                        📖 37.md
+                                                                        📖 39.md
                                                                       📄 mmlabc-to-smf-rust.toml.example
                                                                       📁 src/
                                                                         📄 config.rs
@@ -881,12 +1033,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📁 tests/
                                                                         📄 integration_test.rs
                                                                         📄 test_channel.rs
+                                                                        📄 test_chord.rs
                                                                         📄 test_cli.rs
                                                                         📄 test_config.rs
+                                                                        📄 test_dotted_notes.rs
+                                                                        📄 test_length.rs
+                                                                        📄 test_modifier.rs
+                                                                        📄 test_note_length.rs
+                                                                        📄 test_octave.rs
                                                                         📄 test_pass1.rs
                                                                         📄 test_pass2.rs
                                                                         📄 test_pass3.rs
                                                                         📄 test_pass4.rs
+                                                                        📄 test_program_change.rs
+                                                                        📄 test_rest.rs
+                                                                        📄 test_tempo.rs
+                                                                        📄 test_velocity.rs
                                                                       📁 tree-sitter-mml/
                                                                         📜 grammar.js
                                                                         📊 package.json
@@ -903,6 +1065,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📁 generated-docs/
                                                                     📁 issue-notes/
                                                                       📖 14.md
+                                                                      📖 17.md
+                                                                      📖 18.md
+                                                                      📖 19.md
+                                                                      📖 20.md
+                                                                      📖 21.md
+                                                                      📖 22.md
+                                                                      📖 23.md
+                                                                      📖 24.md
+                                                                      📖 30.md
+                                                                      📖 36.md
+                                                                      📖 37.md
+                                                                      📖 39.md
                                                                     📄 mmlabc-to-smf-rust.toml.example
                                                                     📁 src/
                                                                       📄 config.rs
@@ -917,12 +1091,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📁 tests/
                                                                       📄 integration_test.rs
                                                                       📄 test_channel.rs
+                                                                      📄 test_chord.rs
                                                                       📄 test_cli.rs
                                                                       📄 test_config.rs
+                                                                      📄 test_dotted_notes.rs
+                                                                      📄 test_length.rs
+                                                                      📄 test_modifier.rs
+                                                                      📄 test_note_length.rs
+                                                                      📄 test_octave.rs
                                                                       📄 test_pass1.rs
                                                                       📄 test_pass2.rs
                                                                       📄 test_pass3.rs
                                                                       📄 test_pass4.rs
+                                                                      📄 test_program_change.rs
+                                                                      📄 test_rest.rs
+                                                                      📄 test_tempo.rs
+                                                                      📄 test_velocity.rs
                                                                     📁 tree-sitter-mml/
                                                                       📜 grammar.js
                                                                       📊 package.json
@@ -939,6 +1123,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📁 generated-docs/
                                                                   📁 issue-notes/
                                                                     📖 14.md
+                                                                    📖 17.md
+                                                                    📖 18.md
+                                                                    📖 19.md
+                                                                    📖 20.md
+                                                                    📖 21.md
+                                                                    📖 22.md
+                                                                    📖 23.md
+                                                                    📖 24.md
+                                                                    📖 30.md
+                                                                    📖 36.md
+                                                                    📖 37.md
+                                                                    📖 39.md
                                                                   📄 mmlabc-to-smf-rust.toml.example
                                                                   📁 src/
                                                                     📄 config.rs
@@ -953,12 +1149,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📁 tests/
                                                                     📄 integration_test.rs
                                                                     📄 test_channel.rs
+                                                                    📄 test_chord.rs
                                                                     📄 test_cli.rs
                                                                     📄 test_config.rs
+                                                                    📄 test_dotted_notes.rs
+                                                                    📄 test_length.rs
+                                                                    📄 test_modifier.rs
+                                                                    📄 test_note_length.rs
+                                                                    📄 test_octave.rs
                                                                     📄 test_pass1.rs
                                                                     📄 test_pass2.rs
                                                                     📄 test_pass3.rs
                                                                     📄 test_pass4.rs
+                                                                    📄 test_program_change.rs
+                                                                    📄 test_rest.rs
+                                                                    📄 test_tempo.rs
+                                                                    📄 test_velocity.rs
                                                                   📁 tree-sitter-mml/
                                                                     📜 grammar.js
                                                                     📊 package.json
@@ -975,6 +1181,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📁 generated-docs/
                                                                 📁 issue-notes/
                                                                   📖 14.md
+                                                                  📖 17.md
+                                                                  📖 18.md
+                                                                  📖 19.md
+                                                                  📖 20.md
+                                                                  📖 21.md
+                                                                  📖 22.md
+                                                                  📖 23.md
+                                                                  📖 24.md
+                                                                  📖 30.md
+                                                                  📖 36.md
+                                                                  📖 37.md
+                                                                  📖 39.md
                                                                 📄 mmlabc-to-smf-rust.toml.example
                                                                 📁 src/
                                                                   📄 config.rs
@@ -989,12 +1207,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📁 tests/
                                                                   📄 integration_test.rs
                                                                   📄 test_channel.rs
+                                                                  📄 test_chord.rs
                                                                   📄 test_cli.rs
                                                                   📄 test_config.rs
+                                                                  📄 test_dotted_notes.rs
+                                                                  📄 test_length.rs
+                                                                  📄 test_modifier.rs
+                                                                  📄 test_note_length.rs
+                                                                  📄 test_octave.rs
                                                                   📄 test_pass1.rs
                                                                   📄 test_pass2.rs
                                                                   📄 test_pass3.rs
                                                                   📄 test_pass4.rs
+                                                                  📄 test_program_change.rs
+                                                                  📄 test_rest.rs
+                                                                  📄 test_tempo.rs
+                                                                  📄 test_velocity.rs
                                                                 📁 tree-sitter-mml/
                                                                   📜 grammar.js
                                                                   📊 package.json
@@ -1011,6 +1239,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📁 generated-docs/
                                                               📁 issue-notes/
                                                                 📖 14.md
+                                                                📖 17.md
+                                                                📖 18.md
+                                                                📖 19.md
+                                                                📖 20.md
+                                                                📖 21.md
+                                                                📖 22.md
+                                                                📖 23.md
+                                                                📖 24.md
+                                                                📖 30.md
+                                                                📖 36.md
+                                                                📖 37.md
+                                                                📖 39.md
                                                               📄 mmlabc-to-smf-rust.toml.example
                                                               📁 src/
                                                                 📄 config.rs
@@ -1025,12 +1265,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📁 tests/
                                                                 📄 integration_test.rs
                                                                 📄 test_channel.rs
+                                                                📄 test_chord.rs
                                                                 📄 test_cli.rs
                                                                 📄 test_config.rs
+                                                                📄 test_dotted_notes.rs
+                                                                📄 test_length.rs
+                                                                📄 test_modifier.rs
+                                                                📄 test_note_length.rs
+                                                                📄 test_octave.rs
                                                                 📄 test_pass1.rs
                                                                 📄 test_pass2.rs
                                                                 📄 test_pass3.rs
                                                                 📄 test_pass4.rs
+                                                                📄 test_program_change.rs
+                                                                📄 test_rest.rs
+                                                                📄 test_tempo.rs
+                                                                📄 test_velocity.rs
                                                               📁 tree-sitter-mml/
                                                                 📜 grammar.js
                                                                 📊 package.json
@@ -1047,6 +1297,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📁 generated-docs/
                                                             📁 issue-notes/
                                                               📖 14.md
+                                                              📖 17.md
+                                                              📖 18.md
+                                                              📖 19.md
+                                                              📖 20.md
+                                                              📖 21.md
+                                                              📖 22.md
+                                                              📖 23.md
+                                                              📖 24.md
+                                                              📖 30.md
+                                                              📖 36.md
+                                                              📖 37.md
+                                                              📖 39.md
                                                             📄 mmlabc-to-smf-rust.toml.example
                                                             📁 src/
                                                               📄 config.rs
@@ -1061,12 +1323,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📁 tests/
                                                               📄 integration_test.rs
                                                               📄 test_channel.rs
+                                                              📄 test_chord.rs
                                                               📄 test_cli.rs
                                                               📄 test_config.rs
+                                                              📄 test_dotted_notes.rs
+                                                              📄 test_length.rs
+                                                              📄 test_modifier.rs
+                                                              📄 test_note_length.rs
+                                                              📄 test_octave.rs
                                                               📄 test_pass1.rs
                                                               📄 test_pass2.rs
                                                               📄 test_pass3.rs
                                                               📄 test_pass4.rs
+                                                              📄 test_program_change.rs
+                                                              📄 test_rest.rs
+                                                              📄 test_tempo.rs
+                                                              📄 test_velocity.rs
                                                             📁 tree-sitter-mml/
                                                               📜 grammar.js
                                                               📊 package.json
@@ -1083,6 +1355,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📁 generated-docs/
                                                           📁 issue-notes/
                                                             📖 14.md
+                                                            📖 17.md
+                                                            📖 18.md
+                                                            📖 19.md
+                                                            📖 20.md
+                                                            📖 21.md
+                                                            📖 22.md
+                                                            📖 23.md
+                                                            📖 24.md
+                                                            📖 30.md
+                                                            📖 36.md
+                                                            📖 37.md
+                                                            📖 39.md
                                                           📄 mmlabc-to-smf-rust.toml.example
                                                           📁 src/
                                                             📄 config.rs
@@ -1097,12 +1381,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📁 tests/
                                                             📄 integration_test.rs
                                                             📄 test_channel.rs
+                                                            📄 test_chord.rs
                                                             📄 test_cli.rs
                                                             📄 test_config.rs
+                                                            📄 test_dotted_notes.rs
+                                                            📄 test_length.rs
+                                                            📄 test_modifier.rs
+                                                            📄 test_note_length.rs
+                                                            📄 test_octave.rs
                                                             📄 test_pass1.rs
                                                             📄 test_pass2.rs
                                                             📄 test_pass3.rs
                                                             📄 test_pass4.rs
+                                                            📄 test_program_change.rs
+                                                            📄 test_rest.rs
+                                                            📄 test_tempo.rs
+                                                            📄 test_velocity.rs
                                                           📁 tree-sitter-mml/
                                                             📜 grammar.js
                                                             📊 package.json
@@ -1119,6 +1413,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📁 generated-docs/
                                                         📁 issue-notes/
                                                           📖 14.md
+                                                          📖 17.md
+                                                          📖 18.md
+                                                          📖 19.md
+                                                          📖 20.md
+                                                          📖 21.md
+                                                          📖 22.md
+                                                          📖 23.md
+                                                          📖 24.md
+                                                          📖 30.md
+                                                          📖 36.md
+                                                          📖 37.md
+                                                          📖 39.md
                                                         📄 mmlabc-to-smf-rust.toml.example
                                                         📁 src/
                                                           📄 config.rs
@@ -1133,12 +1439,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📁 tests/
                                                           📄 integration_test.rs
                                                           📄 test_channel.rs
+                                                          📄 test_chord.rs
                                                           📄 test_cli.rs
                                                           📄 test_config.rs
+                                                          📄 test_dotted_notes.rs
+                                                          📄 test_length.rs
+                                                          📄 test_modifier.rs
+                                                          📄 test_note_length.rs
+                                                          📄 test_octave.rs
                                                           📄 test_pass1.rs
                                                           📄 test_pass2.rs
                                                           📄 test_pass3.rs
                                                           📄 test_pass4.rs
+                                                          📄 test_program_change.rs
+                                                          📄 test_rest.rs
+                                                          📄 test_tempo.rs
+                                                          📄 test_velocity.rs
                                                         📁 tree-sitter-mml/
                                                           📜 grammar.js
                                                           📊 package.json
@@ -1155,6 +1471,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📁 generated-docs/
                                                       📁 issue-notes/
                                                         📖 14.md
+                                                        📖 17.md
+                                                        📖 18.md
+                                                        📖 19.md
+                                                        📖 20.md
+                                                        📖 21.md
+                                                        📖 22.md
+                                                        📖 23.md
+                                                        📖 24.md
+                                                        📖 30.md
+                                                        📖 36.md
+                                                        📖 37.md
+                                                        📖 39.md
                                                       📄 mmlabc-to-smf-rust.toml.example
                                                       📁 src/
                                                         📄 config.rs
@@ -1169,12 +1497,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📁 tests/
                                                         📄 integration_test.rs
                                                         📄 test_channel.rs
+                                                        📄 test_chord.rs
                                                         📄 test_cli.rs
                                                         📄 test_config.rs
+                                                        📄 test_dotted_notes.rs
+                                                        📄 test_length.rs
+                                                        📄 test_modifier.rs
+                                                        📄 test_note_length.rs
+                                                        📄 test_octave.rs
                                                         📄 test_pass1.rs
                                                         📄 test_pass2.rs
                                                         📄 test_pass3.rs
                                                         📄 test_pass4.rs
+                                                        📄 test_program_change.rs
+                                                        📄 test_rest.rs
+                                                        📄 test_tempo.rs
+                                                        📄 test_velocity.rs
                                                       📁 tree-sitter-mml/
                                                         📜 grammar.js
                                                         📊 package.json
@@ -1191,6 +1529,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📁 generated-docs/
                                                     📁 issue-notes/
                                                       📖 14.md
+                                                      📖 17.md
+                                                      📖 18.md
+                                                      📖 19.md
+                                                      📖 20.md
+                                                      📖 21.md
+                                                      📖 22.md
+                                                      📖 23.md
+                                                      📖 24.md
+                                                      📖 30.md
+                                                      📖 36.md
+                                                      📖 37.md
+                                                      📖 39.md
                                                     📄 mmlabc-to-smf-rust.toml.example
                                                     📁 src/
                                                       📄 config.rs
@@ -1205,12 +1555,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📁 tests/
                                                       📄 integration_test.rs
                                                       📄 test_channel.rs
+                                                      📄 test_chord.rs
                                                       📄 test_cli.rs
                                                       📄 test_config.rs
+                                                      📄 test_dotted_notes.rs
+                                                      📄 test_length.rs
+                                                      📄 test_modifier.rs
+                                                      📄 test_note_length.rs
+                                                      📄 test_octave.rs
                                                       📄 test_pass1.rs
                                                       📄 test_pass2.rs
                                                       📄 test_pass3.rs
                                                       📄 test_pass4.rs
+                                                      📄 test_program_change.rs
+                                                      📄 test_rest.rs
+                                                      📄 test_tempo.rs
+                                                      📄 test_velocity.rs
                                                     📁 tree-sitter-mml/
                                                       📜 grammar.js
                                                       📊 package.json
@@ -1227,6 +1587,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📁 generated-docs/
                                                   📁 issue-notes/
                                                     📖 14.md
+                                                    📖 17.md
+                                                    📖 18.md
+                                                    📖 19.md
+                                                    📖 20.md
+                                                    📖 21.md
+                                                    📖 22.md
+                                                    📖 23.md
+                                                    📖 24.md
+                                                    📖 30.md
+                                                    📖 36.md
+                                                    📖 37.md
+                                                    📖 39.md
                                                   📄 mmlabc-to-smf-rust.toml.example
                                                   📁 src/
                                                     📄 config.rs
@@ -1241,12 +1613,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📁 tests/
                                                     📄 integration_test.rs
                                                     📄 test_channel.rs
+                                                    📄 test_chord.rs
                                                     📄 test_cli.rs
                                                     📄 test_config.rs
+                                                    📄 test_dotted_notes.rs
+                                                    📄 test_length.rs
+                                                    📄 test_modifier.rs
+                                                    📄 test_note_length.rs
+                                                    📄 test_octave.rs
                                                     📄 test_pass1.rs
                                                     📄 test_pass2.rs
                                                     📄 test_pass3.rs
                                                     📄 test_pass4.rs
+                                                    📄 test_program_change.rs
+                                                    📄 test_rest.rs
+                                                    📄 test_tempo.rs
+                                                    📄 test_velocity.rs
                                                   📁 tree-sitter-mml/
                                                     📜 grammar.js
                                                     📊 package.json
@@ -1263,6 +1645,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📁 generated-docs/
                                                 📁 issue-notes/
                                                   📖 14.md
+                                                  📖 17.md
+                                                  📖 18.md
+                                                  📖 19.md
+                                                  📖 20.md
+                                                  📖 21.md
+                                                  📖 22.md
+                                                  📖 23.md
+                                                  📖 24.md
+                                                  📖 30.md
+                                                  📖 36.md
+                                                  📖 37.md
+                                                  📖 39.md
                                                 📄 mmlabc-to-smf-rust.toml.example
                                                 📁 src/
                                                   📄 config.rs
@@ -1277,12 +1671,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📁 tests/
                                                   📄 integration_test.rs
                                                   📄 test_channel.rs
+                                                  📄 test_chord.rs
                                                   📄 test_cli.rs
                                                   📄 test_config.rs
+                                                  📄 test_dotted_notes.rs
+                                                  📄 test_length.rs
+                                                  📄 test_modifier.rs
+                                                  📄 test_note_length.rs
+                                                  📄 test_octave.rs
                                                   📄 test_pass1.rs
                                                   📄 test_pass2.rs
                                                   📄 test_pass3.rs
                                                   📄 test_pass4.rs
+                                                  📄 test_program_change.rs
+                                                  📄 test_rest.rs
+                                                  📄 test_tempo.rs
+                                                  📄 test_velocity.rs
                                                 📁 tree-sitter-mml/
                                                   📜 grammar.js
                                                   📊 package.json
@@ -1299,6 +1703,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📁 generated-docs/
                                               📁 issue-notes/
                                                 📖 14.md
+                                                📖 17.md
+                                                📖 18.md
+                                                📖 19.md
+                                                📖 20.md
+                                                📖 21.md
+                                                📖 22.md
+                                                📖 23.md
+                                                📖 24.md
+                                                📖 30.md
+                                                📖 36.md
+                                                📖 37.md
+                                                📖 39.md
                                               📄 mmlabc-to-smf-rust.toml.example
                                               📁 src/
                                                 📄 config.rs
@@ -1313,12 +1729,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📁 tests/
                                                 📄 integration_test.rs
                                                 📄 test_channel.rs
+                                                📄 test_chord.rs
                                                 📄 test_cli.rs
                                                 📄 test_config.rs
+                                                📄 test_dotted_notes.rs
+                                                📄 test_length.rs
+                                                📄 test_modifier.rs
+                                                📄 test_note_length.rs
+                                                📄 test_octave.rs
                                                 📄 test_pass1.rs
                                                 📄 test_pass2.rs
                                                 📄 test_pass3.rs
                                                 📄 test_pass4.rs
+                                                📄 test_program_change.rs
+                                                📄 test_rest.rs
+                                                📄 test_tempo.rs
+                                                📄 test_velocity.rs
                                               📁 tree-sitter-mml/
                                                 📜 grammar.js
                                                 📊 package.json
@@ -1335,6 +1761,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📁 generated-docs/
                                             📁 issue-notes/
                                               📖 14.md
+                                              📖 17.md
+                                              📖 18.md
+                                              📖 19.md
+                                              📖 20.md
+                                              📖 21.md
+                                              📖 22.md
+                                              📖 23.md
+                                              📖 24.md
+                                              📖 30.md
+                                              📖 36.md
+                                              📖 37.md
+                                              📖 39.md
                                             📄 mmlabc-to-smf-rust.toml.example
                                             📁 src/
                                               📄 config.rs
@@ -1349,12 +1787,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📁 tests/
                                               📄 integration_test.rs
                                               📄 test_channel.rs
+                                              📄 test_chord.rs
                                               📄 test_cli.rs
                                               📄 test_config.rs
+                                              📄 test_dotted_notes.rs
+                                              📄 test_length.rs
+                                              📄 test_modifier.rs
+                                              📄 test_note_length.rs
+                                              📄 test_octave.rs
                                               📄 test_pass1.rs
                                               📄 test_pass2.rs
                                               📄 test_pass3.rs
                                               📄 test_pass4.rs
+                                              📄 test_program_change.rs
+                                              📄 test_rest.rs
+                                              📄 test_tempo.rs
+                                              📄 test_velocity.rs
                                             📁 tree-sitter-mml/
                                               📜 grammar.js
                                               📊 package.json
@@ -1371,6 +1819,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📁 generated-docs/
                                           📁 issue-notes/
                                             📖 14.md
+                                            📖 17.md
+                                            📖 18.md
+                                            📖 19.md
+                                            📖 20.md
+                                            📖 21.md
+                                            📖 22.md
+                                            📖 23.md
+                                            📖 24.md
+                                            📖 30.md
+                                            📖 36.md
+                                            📖 37.md
+                                            📖 39.md
                                           📄 mmlabc-to-smf-rust.toml.example
                                           📁 src/
                                             📄 config.rs
@@ -1385,12 +1845,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📁 tests/
                                             📄 integration_test.rs
                                             📄 test_channel.rs
+                                            📄 test_chord.rs
                                             📄 test_cli.rs
                                             📄 test_config.rs
+                                            📄 test_dotted_notes.rs
+                                            📄 test_length.rs
+                                            📄 test_modifier.rs
+                                            📄 test_note_length.rs
+                                            📄 test_octave.rs
                                             📄 test_pass1.rs
                                             📄 test_pass2.rs
                                             📄 test_pass3.rs
                                             📄 test_pass4.rs
+                                            📄 test_program_change.rs
+                                            📄 test_rest.rs
+                                            📄 test_tempo.rs
+                                            📄 test_velocity.rs
                                           📁 tree-sitter-mml/
                                             📜 grammar.js
                                             📊 package.json
@@ -1407,6 +1877,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📁 generated-docs/
                                         📁 issue-notes/
                                           📖 14.md
+                                          📖 17.md
+                                          📖 18.md
+                                          📖 19.md
+                                          📖 20.md
+                                          📖 21.md
+                                          📖 22.md
+                                          📖 23.md
+                                          📖 24.md
+                                          📖 30.md
+                                          📖 36.md
+                                          📖 37.md
+                                          📖 39.md
                                         📄 mmlabc-to-smf-rust.toml.example
                                         📁 src/
                                           📄 config.rs
@@ -1421,12 +1903,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📁 tests/
                                           📄 integration_test.rs
                                           📄 test_channel.rs
+                                          📄 test_chord.rs
                                           📄 test_cli.rs
                                           📄 test_config.rs
+                                          📄 test_dotted_notes.rs
+                                          📄 test_length.rs
+                                          📄 test_modifier.rs
+                                          📄 test_note_length.rs
+                                          📄 test_octave.rs
                                           📄 test_pass1.rs
                                           📄 test_pass2.rs
                                           📄 test_pass3.rs
                                           📄 test_pass4.rs
+                                          📄 test_program_change.rs
+                                          📄 test_rest.rs
+                                          📄 test_tempo.rs
+                                          📄 test_velocity.rs
                                         📁 tree-sitter-mml/
                                           📜 grammar.js
                                           📊 package.json
@@ -1443,6 +1935,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📁 generated-docs/
                                       📁 issue-notes/
                                         📖 14.md
+                                        📖 17.md
+                                        📖 18.md
+                                        📖 19.md
+                                        📖 20.md
+                                        📖 21.md
+                                        📖 22.md
+                                        📖 23.md
+                                        📖 24.md
+                                        📖 30.md
+                                        📖 36.md
+                                        📖 37.md
+                                        📖 39.md
                                       📄 mmlabc-to-smf-rust.toml.example
                                       📁 src/
                                         📄 config.rs
@@ -1457,12 +1961,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📁 tests/
                                         📄 integration_test.rs
                                         📄 test_channel.rs
+                                        📄 test_chord.rs
                                         📄 test_cli.rs
                                         📄 test_config.rs
+                                        📄 test_dotted_notes.rs
+                                        📄 test_length.rs
+                                        📄 test_modifier.rs
+                                        📄 test_note_length.rs
+                                        📄 test_octave.rs
                                         📄 test_pass1.rs
                                         📄 test_pass2.rs
                                         📄 test_pass3.rs
                                         📄 test_pass4.rs
+                                        📄 test_program_change.rs
+                                        📄 test_rest.rs
+                                        📄 test_tempo.rs
+                                        📄 test_velocity.rs
                                       📁 tree-sitter-mml/
                                         📜 grammar.js
                                         📊 package.json
@@ -1479,6 +1993,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📁 generated-docs/
                                     📁 issue-notes/
                                       📖 14.md
+                                      📖 17.md
+                                      📖 18.md
+                                      📖 19.md
+                                      📖 20.md
+                                      📖 21.md
+                                      📖 22.md
+                                      📖 23.md
+                                      📖 24.md
+                                      📖 30.md
+                                      📖 36.md
+                                      📖 37.md
+                                      📖 39.md
                                     📄 mmlabc-to-smf-rust.toml.example
                                     📁 src/
                                       📄 config.rs
@@ -1493,12 +2019,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📁 tests/
                                       📄 integration_test.rs
                                       📄 test_channel.rs
+                                      📄 test_chord.rs
                                       📄 test_cli.rs
                                       📄 test_config.rs
+                                      📄 test_dotted_notes.rs
+                                      📄 test_length.rs
+                                      📄 test_modifier.rs
+                                      📄 test_note_length.rs
+                                      📄 test_octave.rs
                                       📄 test_pass1.rs
                                       📄 test_pass2.rs
                                       📄 test_pass3.rs
                                       📄 test_pass4.rs
+                                      📄 test_program_change.rs
+                                      📄 test_rest.rs
+                                      📄 test_tempo.rs
+                                      📄 test_velocity.rs
                                     📁 tree-sitter-mml/
                                       📜 grammar.js
                                       📊 package.json
@@ -1515,6 +2051,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📁 generated-docs/
                                   📁 issue-notes/
                                     📖 14.md
+                                    📖 17.md
+                                    📖 18.md
+                                    📖 19.md
+                                    📖 20.md
+                                    📖 21.md
+                                    📖 22.md
+                                    📖 23.md
+                                    📖 24.md
+                                    📖 30.md
+                                    📖 36.md
+                                    📖 37.md
+                                    📖 39.md
                                   📄 mmlabc-to-smf-rust.toml.example
                                   📁 src/
                                     📄 config.rs
@@ -1529,12 +2077,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📁 tests/
                                     📄 integration_test.rs
                                     📄 test_channel.rs
+                                    📄 test_chord.rs
                                     📄 test_cli.rs
                                     📄 test_config.rs
+                                    📄 test_dotted_notes.rs
+                                    📄 test_length.rs
+                                    📄 test_modifier.rs
+                                    📄 test_note_length.rs
+                                    📄 test_octave.rs
                                     📄 test_pass1.rs
                                     📄 test_pass2.rs
                                     📄 test_pass3.rs
                                     📄 test_pass4.rs
+                                    📄 test_program_change.rs
+                                    📄 test_rest.rs
+                                    📄 test_tempo.rs
+                                    📄 test_velocity.rs
                                   📁 tree-sitter-mml/
                                     📜 grammar.js
                                     📊 package.json
@@ -1551,6 +2109,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📁 generated-docs/
                                 📁 issue-notes/
                                   📖 14.md
+                                  📖 17.md
+                                  📖 18.md
+                                  📖 19.md
+                                  📖 20.md
+                                  📖 21.md
+                                  📖 22.md
+                                  📖 23.md
+                                  📖 24.md
+                                  📖 30.md
+                                  📖 36.md
+                                  📖 37.md
+                                  📖 39.md
                                 📄 mmlabc-to-smf-rust.toml.example
                                 📁 src/
                                   📄 config.rs
@@ -1565,12 +2135,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📁 tests/
                                   📄 integration_test.rs
                                   📄 test_channel.rs
+                                  📄 test_chord.rs
                                   📄 test_cli.rs
                                   📄 test_config.rs
+                                  📄 test_dotted_notes.rs
+                                  📄 test_length.rs
+                                  📄 test_modifier.rs
+                                  📄 test_note_length.rs
+                                  📄 test_octave.rs
                                   📄 test_pass1.rs
                                   📄 test_pass2.rs
                                   📄 test_pass3.rs
                                   📄 test_pass4.rs
+                                  📄 test_program_change.rs
+                                  📄 test_rest.rs
+                                  📄 test_tempo.rs
+                                  📄 test_velocity.rs
                                 📁 tree-sitter-mml/
                                   📜 grammar.js
                                   📊 package.json
@@ -1587,6 +2167,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📁 generated-docs/
                               📁 issue-notes/
                                 📖 14.md
+                                📖 17.md
+                                📖 18.md
+                                📖 19.md
+                                📖 20.md
+                                📖 21.md
+                                📖 22.md
+                                📖 23.md
+                                📖 24.md
+                                📖 30.md
+                                📖 36.md
+                                📖 37.md
+                                📖 39.md
                               📄 mmlabc-to-smf-rust.toml.example
                               📁 src/
                                 📄 config.rs
@@ -1601,12 +2193,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📁 tests/
                                 📄 integration_test.rs
                                 📄 test_channel.rs
+                                📄 test_chord.rs
                                 📄 test_cli.rs
                                 📄 test_config.rs
+                                📄 test_dotted_notes.rs
+                                📄 test_length.rs
+                                📄 test_modifier.rs
+                                📄 test_note_length.rs
+                                📄 test_octave.rs
                                 📄 test_pass1.rs
                                 📄 test_pass2.rs
                                 📄 test_pass3.rs
                                 📄 test_pass4.rs
+                                📄 test_program_change.rs
+                                📄 test_rest.rs
+                                📄 test_tempo.rs
+                                📄 test_velocity.rs
                               📁 tree-sitter-mml/
                                 📜 grammar.js
                                 📊 package.json
@@ -1623,6 +2225,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📁 generated-docs/
                             📁 issue-notes/
                               📖 14.md
+                              📖 17.md
+                              📖 18.md
+                              📖 19.md
+                              📖 20.md
+                              📖 21.md
+                              📖 22.md
+                              📖 23.md
+                              📖 24.md
+                              📖 30.md
+                              📖 36.md
+                              📖 37.md
+                              📖 39.md
                             📄 mmlabc-to-smf-rust.toml.example
                             📁 src/
                               📄 config.rs
@@ -1637,12 +2251,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📁 tests/
                               📄 integration_test.rs
                               📄 test_channel.rs
+                              📄 test_chord.rs
                               📄 test_cli.rs
                               📄 test_config.rs
+                              📄 test_dotted_notes.rs
+                              📄 test_length.rs
+                              📄 test_modifier.rs
+                              📄 test_note_length.rs
+                              📄 test_octave.rs
                               📄 test_pass1.rs
                               📄 test_pass2.rs
                               📄 test_pass3.rs
                               📄 test_pass4.rs
+                              📄 test_program_change.rs
+                              📄 test_rest.rs
+                              📄 test_tempo.rs
+                              📄 test_velocity.rs
                             📁 tree-sitter-mml/
                               📜 grammar.js
                               📊 package.json
@@ -1659,6 +2283,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📁 generated-docs/
                           📁 issue-notes/
                             📖 14.md
+                            📖 17.md
+                            📖 18.md
+                            📖 19.md
+                            📖 20.md
+                            📖 21.md
+                            📖 22.md
+                            📖 23.md
+                            📖 24.md
+                            📖 30.md
+                            📖 36.md
+                            📖 37.md
+                            📖 39.md
                           📄 mmlabc-to-smf-rust.toml.example
                           📁 src/
                             📄 config.rs
@@ -1673,12 +2309,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📁 tests/
                             📄 integration_test.rs
                             📄 test_channel.rs
+                            📄 test_chord.rs
                             📄 test_cli.rs
                             📄 test_config.rs
+                            📄 test_dotted_notes.rs
+                            📄 test_length.rs
+                            📄 test_modifier.rs
+                            📄 test_note_length.rs
+                            📄 test_octave.rs
                             📄 test_pass1.rs
                             📄 test_pass2.rs
                             📄 test_pass3.rs
                             📄 test_pass4.rs
+                            📄 test_program_change.rs
+                            📄 test_rest.rs
+                            📄 test_tempo.rs
+                            📄 test_velocity.rs
                           📁 tree-sitter-mml/
                             📜 grammar.js
                             📊 package.json
@@ -1695,6 +2341,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📁 generated-docs/
                         📁 issue-notes/
                           📖 14.md
+                          📖 17.md
+                          📖 18.md
+                          📖 19.md
+                          📖 20.md
+                          📖 21.md
+                          📖 22.md
+                          📖 23.md
+                          📖 24.md
+                          📖 30.md
+                          📖 36.md
+                          📖 37.md
+                          📖 39.md
                         📄 mmlabc-to-smf-rust.toml.example
                         📁 src/
                           📄 config.rs
@@ -1709,12 +2367,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📁 tests/
                           📄 integration_test.rs
                           📄 test_channel.rs
+                          📄 test_chord.rs
                           📄 test_cli.rs
                           📄 test_config.rs
+                          📄 test_dotted_notes.rs
+                          📄 test_length.rs
+                          📄 test_modifier.rs
+                          📄 test_note_length.rs
+                          📄 test_octave.rs
                           📄 test_pass1.rs
                           📄 test_pass2.rs
                           📄 test_pass3.rs
                           📄 test_pass4.rs
+                          📄 test_program_change.rs
+                          📄 test_rest.rs
+                          📄 test_tempo.rs
+                          📄 test_velocity.rs
                         📁 tree-sitter-mml/
                           📜 grammar.js
                           📊 package.json
@@ -1731,6 +2399,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📁 generated-docs/
                       📁 issue-notes/
                         📖 14.md
+                        📖 17.md
+                        📖 18.md
+                        📖 19.md
+                        📖 20.md
+                        📖 21.md
+                        📖 22.md
+                        📖 23.md
+                        📖 24.md
+                        📖 30.md
+                        📖 36.md
+                        📖 37.md
+                        📖 39.md
                       📄 mmlabc-to-smf-rust.toml.example
                       📁 src/
                         📄 config.rs
@@ -1745,12 +2425,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📁 tests/
                         📄 integration_test.rs
                         📄 test_channel.rs
+                        📄 test_chord.rs
                         📄 test_cli.rs
                         📄 test_config.rs
+                        📄 test_dotted_notes.rs
+                        📄 test_length.rs
+                        📄 test_modifier.rs
+                        📄 test_note_length.rs
+                        📄 test_octave.rs
                         📄 test_pass1.rs
                         📄 test_pass2.rs
                         📄 test_pass3.rs
                         📄 test_pass4.rs
+                        📄 test_program_change.rs
+                        📄 test_rest.rs
+                        📄 test_tempo.rs
+                        📄 test_velocity.rs
                       📁 tree-sitter-mml/
                         📜 grammar.js
                         📊 package.json
@@ -1767,6 +2457,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📁 generated-docs/
                     📁 issue-notes/
                       📖 14.md
+                      📖 17.md
+                      📖 18.md
+                      📖 19.md
+                      📖 20.md
+                      📖 21.md
+                      📖 22.md
+                      📖 23.md
+                      📖 24.md
+                      📖 30.md
+                      📖 36.md
+                      📖 37.md
+                      📖 39.md
                     📄 mmlabc-to-smf-rust.toml.example
                     📁 src/
                       📄 config.rs
@@ -1781,12 +2483,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📁 tests/
                       📄 integration_test.rs
                       📄 test_channel.rs
+                      📄 test_chord.rs
                       📄 test_cli.rs
                       📄 test_config.rs
+                      📄 test_dotted_notes.rs
+                      📄 test_length.rs
+                      📄 test_modifier.rs
+                      📄 test_note_length.rs
+                      📄 test_octave.rs
                       📄 test_pass1.rs
                       📄 test_pass2.rs
                       📄 test_pass3.rs
                       📄 test_pass4.rs
+                      📄 test_program_change.rs
+                      📄 test_rest.rs
+                      📄 test_tempo.rs
+                      📄 test_velocity.rs
                     📁 tree-sitter-mml/
                       📜 grammar.js
                       📊 package.json
@@ -1803,6 +2515,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📁 generated-docs/
                   📁 issue-notes/
                     📖 14.md
+                    📖 17.md
+                    📖 18.md
+                    📖 19.md
+                    📖 20.md
+                    📖 21.md
+                    📖 22.md
+                    📖 23.md
+                    📖 24.md
+                    📖 30.md
+                    📖 36.md
+                    📖 37.md
+                    📖 39.md
                   📄 mmlabc-to-smf-rust.toml.example
                   📁 src/
                     📄 config.rs
@@ -1817,12 +2541,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📁 tests/
                     📄 integration_test.rs
                     📄 test_channel.rs
+                    📄 test_chord.rs
                     📄 test_cli.rs
                     📄 test_config.rs
+                    📄 test_dotted_notes.rs
+                    📄 test_length.rs
+                    📄 test_modifier.rs
+                    📄 test_note_length.rs
+                    📄 test_octave.rs
                     📄 test_pass1.rs
                     📄 test_pass2.rs
                     📄 test_pass3.rs
                     📄 test_pass4.rs
+                    📄 test_program_change.rs
+                    📄 test_rest.rs
+                    📄 test_tempo.rs
+                    📄 test_velocity.rs
                   📁 tree-sitter-mml/
                     📜 grammar.js
                     📊 package.json
@@ -1839,6 +2573,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📁 generated-docs/
                 📁 issue-notes/
                   📖 14.md
+                  📖 17.md
+                  📖 18.md
+                  📖 19.md
+                  📖 20.md
+                  📖 21.md
+                  📖 22.md
+                  📖 23.md
+                  📖 24.md
+                  📖 30.md
+                  📖 36.md
+                  📖 37.md
+                  📖 39.md
                 📄 mmlabc-to-smf-rust.toml.example
                 📁 src/
                   📄 config.rs
@@ -1853,12 +2599,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📁 tests/
                   📄 integration_test.rs
                   📄 test_channel.rs
+                  📄 test_chord.rs
                   📄 test_cli.rs
                   📄 test_config.rs
+                  📄 test_dotted_notes.rs
+                  📄 test_length.rs
+                  📄 test_modifier.rs
+                  📄 test_note_length.rs
+                  📄 test_octave.rs
                   📄 test_pass1.rs
                   📄 test_pass2.rs
                   📄 test_pass3.rs
                   📄 test_pass4.rs
+                  📄 test_program_change.rs
+                  📄 test_rest.rs
+                  📄 test_tempo.rs
+                  📄 test_velocity.rs
                 📁 tree-sitter-mml/
                   📜 grammar.js
                   📊 package.json
@@ -1875,6 +2631,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📁 generated-docs/
               📁 issue-notes/
                 📖 14.md
+                📖 17.md
+                📖 18.md
+                📖 19.md
+                📖 20.md
+                📖 21.md
+                📖 22.md
+                📖 23.md
+                📖 24.md
+                📖 30.md
+                📖 36.md
+                📖 37.md
+                📖 39.md
               📄 mmlabc-to-smf-rust.toml.example
               📁 src/
                 📄 config.rs
@@ -1889,12 +2657,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📁 tests/
                 📄 integration_test.rs
                 📄 test_channel.rs
+                📄 test_chord.rs
                 📄 test_cli.rs
                 📄 test_config.rs
+                📄 test_dotted_notes.rs
+                📄 test_length.rs
+                📄 test_modifier.rs
+                📄 test_note_length.rs
+                📄 test_octave.rs
                 📄 test_pass1.rs
                 📄 test_pass2.rs
                 📄 test_pass3.rs
                 📄 test_pass4.rs
+                📄 test_program_change.rs
+                📄 test_rest.rs
+                📄 test_tempo.rs
+                📄 test_velocity.rs
               📁 tree-sitter-mml/
                 📜 grammar.js
                 📊 package.json
@@ -1911,6 +2689,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📁 generated-docs/
             📁 issue-notes/
               📖 14.md
+              📖 17.md
+              📖 18.md
+              📖 19.md
+              📖 20.md
+              📖 21.md
+              📖 22.md
+              📖 23.md
+              📖 24.md
+              📖 30.md
+              📖 36.md
+              📖 37.md
+              📖 39.md
             📄 mmlabc-to-smf-rust.toml.example
             📁 src/
               📄 config.rs
@@ -1925,12 +2715,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📁 tests/
               📄 integration_test.rs
               📄 test_channel.rs
+              📄 test_chord.rs
               📄 test_cli.rs
               📄 test_config.rs
+              📄 test_dotted_notes.rs
+              📄 test_length.rs
+              📄 test_modifier.rs
+              📄 test_note_length.rs
+              📄 test_octave.rs
               📄 test_pass1.rs
               📄 test_pass2.rs
               📄 test_pass3.rs
               📄 test_pass4.rs
+              📄 test_program_change.rs
+              📄 test_rest.rs
+              📄 test_tempo.rs
+              📄 test_velocity.rs
             📁 tree-sitter-mml/
               📜 grammar.js
               📊 package.json
@@ -1947,6 +2747,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📁 generated-docs/
           📁 issue-notes/
             📖 14.md
+            📖 17.md
+            📖 18.md
+            📖 19.md
+            📖 20.md
+            📖 21.md
+            📖 22.md
+            📖 23.md
+            📖 24.md
+            📖 30.md
+            📖 36.md
+            📖 37.md
+            📖 39.md
           📄 mmlabc-to-smf-rust.toml.example
           📁 src/
             📄 config.rs
@@ -1961,12 +2773,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📁 tests/
             📄 integration_test.rs
             📄 test_channel.rs
+            📄 test_chord.rs
             📄 test_cli.rs
             📄 test_config.rs
+            📄 test_dotted_notes.rs
+            📄 test_length.rs
+            📄 test_modifier.rs
+            📄 test_note_length.rs
+            📄 test_octave.rs
             📄 test_pass1.rs
             📄 test_pass2.rs
             📄 test_pass3.rs
             📄 test_pass4.rs
+            📄 test_program_change.rs
+            📄 test_rest.rs
+            📄 test_tempo.rs
+            📄 test_velocity.rs
           📁 tree-sitter-mml/
             📜 grammar.js
             📊 package.json
@@ -1983,6 +2805,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📁 generated-docs/
         📁 issue-notes/
           📖 14.md
+          📖 17.md
+          📖 18.md
+          📖 19.md
+          📖 20.md
+          📖 21.md
+          📖 22.md
+          📖 23.md
+          📖 24.md
+          📖 30.md
+          📖 36.md
+          📖 37.md
+          📖 39.md
         📄 mmlabc-to-smf-rust.toml.example
         📁 src/
           📄 config.rs
@@ -1997,12 +2831,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📁 tests/
           📄 integration_test.rs
           📄 test_channel.rs
+          📄 test_chord.rs
           📄 test_cli.rs
           📄 test_config.rs
+          📄 test_dotted_notes.rs
+          📄 test_length.rs
+          📄 test_modifier.rs
+          📄 test_note_length.rs
+          📄 test_octave.rs
           📄 test_pass1.rs
           📄 test_pass2.rs
           📄 test_pass3.rs
           📄 test_pass4.rs
+          📄 test_program_change.rs
+          📄 test_rest.rs
+          📄 test_tempo.rs
+          📄 test_velocity.rs
         📁 tree-sitter-mml/
           📜 grammar.js
           📊 package.json
@@ -2019,6 +2863,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📁 generated-docs/
       📁 issue-notes/
         📖 14.md
+        📖 17.md
+        📖 18.md
+        📖 19.md
+        📖 20.md
+        📖 21.md
+        📖 22.md
+        📖 23.md
+        📖 24.md
+        📖 30.md
+        📖 36.md
+        📖 37.md
+        📖 39.md
       📄 mmlabc-to-smf-rust.toml.example
       📁 src/
         📄 config.rs
@@ -2033,12 +2889,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📁 tests/
         📄 integration_test.rs
         📄 test_channel.rs
+        📄 test_chord.rs
         📄 test_cli.rs
         📄 test_config.rs
+        📄 test_dotted_notes.rs
+        📄 test_length.rs
+        📄 test_modifier.rs
+        📄 test_note_length.rs
+        📄 test_octave.rs
         📄 test_pass1.rs
         📄 test_pass2.rs
         📄 test_pass3.rs
         📄 test_pass4.rs
+        📄 test_program_change.rs
+        📄 test_rest.rs
+        📄 test_tempo.rs
+        📄 test_velocity.rs
       📁 tree-sitter-mml/
         📜 grammar.js
         📊 package.json
@@ -2055,6 +2921,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📁 generated-docs/
     📁 issue-notes/
       📖 14.md
+      📖 17.md
+      📖 18.md
+      📖 19.md
+      📖 20.md
+      📖 21.md
+      📖 22.md
+      📖 23.md
+      📖 24.md
+      📖 30.md
+      📖 36.md
+      📖 37.md
+      📖 39.md
     📄 mmlabc-to-smf-rust.toml.example
     📁 src/
       📄 config.rs
@@ -2069,12 +2947,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📁 tests/
       📄 integration_test.rs
       📄 test_channel.rs
+      📄 test_chord.rs
       📄 test_cli.rs
       📄 test_config.rs
+      📄 test_dotted_notes.rs
+      📄 test_length.rs
+      📄 test_modifier.rs
+      📄 test_note_length.rs
+      📄 test_octave.rs
       📄 test_pass1.rs
       📄 test_pass2.rs
       📄 test_pass3.rs
       📄 test_pass4.rs
+      📄 test_program_change.rs
+      📄 test_rest.rs
+      📄 test_tempo.rs
+      📄 test_velocity.rs
     📁 tree-sitter-mml/
       📜 grammar.js
       📊 package.json
@@ -2091,6 +2979,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📁 generated-docs/
   📁 issue-notes/
     📖 14.md
+    📖 17.md
+    📖 18.md
+    📖 19.md
+    📖 20.md
+    📖 21.md
+    📖 22.md
+    📖 23.md
+    📖 24.md
+    📖 30.md
+    📖 36.md
+    📖 37.md
+    📖 39.md
   📄 mmlabc-to-smf-rust.toml.example
   📁 src/
     📄 config.rs
@@ -2105,12 +3005,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📁 tests/
     📄 integration_test.rs
     📄 test_channel.rs
+    📄 test_chord.rs
     📄 test_cli.rs
     📄 test_config.rs
+    📄 test_dotted_notes.rs
+    📄 test_length.rs
+    📄 test_modifier.rs
+    📄 test_note_length.rs
+    📄 test_octave.rs
     📄 test_pass1.rs
     📄 test_pass2.rs
     📄 test_pass3.rs
     📄 test_pass4.rs
+    📄 test_program_change.rs
+    📄 test_rest.rs
+    📄 test_tempo.rs
+    📄 test_velocity.rs
   📁 tree-sitter-mml/
     📜 grammar.js
     📊 package.json
@@ -2127,6 +3037,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 📁 generated-docs/
 📁 issue-notes/
   📖 14.md
+  📖 17.md
+  📖 18.md
+  📖 19.md
+  📖 20.md
+  📖 21.md
+  📖 22.md
+  📖 23.md
+  📖 24.md
+  📖 30.md
+  📖 36.md
+  📖 37.md
+  📖 39.md
 📄 mmlabc-to-smf-rust.toml.example
 📁 src/
   📄 config.rs
@@ -2141,12 +3063,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 📁 tests/
   📄 integration_test.rs
   📄 test_channel.rs
+  📄 test_chord.rs
   📄 test_cli.rs
   📄 test_config.rs
+  📄 test_dotted_notes.rs
+  📄 test_length.rs
+  📄 test_modifier.rs
+  📄 test_note_length.rs
+  📄 test_octave.rs
   📄 test_pass1.rs
   📄 test_pass2.rs
   📄 test_pass3.rs
   📄 test_pass4.rs
+  📄 test_program_change.rs
+  📄 test_rest.rs
+  📄 test_tempo.rs
+  📄 test_velocity.rs
 📁 tree-sitter-mml/
   📜 grammar.js
   📊 package.json
@@ -2160,167 +3092,167 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📄 parser.h
 
 ## ファイル詳細分析
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/tree-sitter-mml/grammar.js** (14行, 183バイト)
+**_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
-**tree-sitter-mml/grammar.js** (14行, 183バイト)
+**tree-sitter-mml/grammar.js** (51行, 1062バイト)
   - 関数: なし
   - インポート: なし
 
@@ -2387,4 +3319,4 @@ tree-sitter-mml/grammar.js
 
 
 ---
-Generated at: 2025-11-14 07:05:57 JST
+Generated at: 2025-11-16 07:04:28 JST

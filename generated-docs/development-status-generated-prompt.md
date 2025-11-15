@@ -1,4 +1,4 @@
-Last updated: 2025-11-14
+Last updated: 2025-11-16
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -208,6 +208,18 @@ Last updated: 2025-11-14
 - build.rs
 - generated-docs/project-overview-generated-prompt.md
 - issue-notes/14.md
+- issue-notes/17.md
+- issue-notes/18.md
+- issue-notes/19.md
+- issue-notes/20.md
+- issue-notes/21.md
+- issue-notes/22.md
+- issue-notes/23.md
+- issue-notes/24.md
+- issue-notes/30.md
+- issue-notes/36.md
+- issue-notes/37.md
+- issue-notes/39.md
 - mmlabc-to-smf-rust.toml.example
 - src/config.rs
 - src/lib.rs
@@ -220,12 +232,22 @@ Last updated: 2025-11-14
 - src/types.rs
 - tests/integration_test.rs
 - tests/test_channel.rs
+- tests/test_chord.rs
 - tests/test_cli.rs
 - tests/test_config.rs
+- tests/test_dotted_notes.rs
+- tests/test_length.rs
+- tests/test_modifier.rs
+- tests/test_note_length.rs
+- tests/test_octave.rs
 - tests/test_pass1.rs
 - tests/test_pass2.rs
 - tests/test_pass3.rs
 - tests/test_pass4.rs
+- tests/test_program_change.rs
+- tests/test_rest.rs
+- tests/test_tempo.rs
+- tests/test_velocity.rs
 - tree-sitter-mml/grammar.js
 - tree-sitter-mml/package.json
 - tree-sitter-mml/src/grammar.json
@@ -236,42 +258,124 @@ Last updated: 2025-11-14
 - tree-sitter-mml/src/tree_sitter/parser.h
 
 ## 現在のオープンIssues
-オープン中のIssueはありません
+## [Issue #39](../issue-notes/39.md): ktコマンドを実装する。key transposeである。`kt1 c`は、note number 61となる。`kt-1 c` は、note number 59となる。これはmmlabcフォーマット準拠である
+[issue-notes/39.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/39.md)
+
+...
+ラベル: 
+--- issue-notes/39.md の内容 ---
+
+```markdown
+# issue ktコマンドを実装する。key transposeである。は、note number 61となる。 は、note number 59となる。これはmmlabcフォーマット準拠である #39
+[issues #39](https://github.com/cat2151/mmlabc-to-smf-rust/issues/39)
+
+
+
+```
+
+## [Issue #37](../issue-notes/37.md): `@128`のあるtrack（trackとは「;」で区切られる文字列グループそれぞれを意味する）は、MIDI channel 9（0base）として扱う、つまりGeneral MIDIの慣習に準拠したdrum channelとして扱う。これはmmlabcフォーマットに準拠している
+[issue-notes/37.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/37.md)
+
+...
+ラベル: 
+--- issue-notes/37.md の内容 ---
+
+```markdown
+# issue のあるtrack（trackとは「;」で区切られる文字列グループそれぞれを意味する）は、MIDI channel 9（0base）として扱う、つまりGeneral MIDIの慣習に準拠したdrum channelとして扱う。これはmmlabcフォーマットに準拠している #37
+[issues #37](https://github.com/cat2151/mmlabc-to-smf-rust/issues/37)
+
+
+
+```
 
 ## ドキュメントで言及されているファイルの内容
+### .github/actions-tmp/issue-notes/7.md
+```md
+# issue issue note生成できるかのtest用 #7
+[issues #7](https://github.com/cat2151/github-actions/issues/7)
 
+- 生成できた
+- closeとする
+
+```
+
+### .github/actions-tmp/issue-notes/9.md
+```md
+# issue 関数コールグラフhtmlビジュアライズが0件なので、原因を可視化する #9
+[issues #9](https://github.com/cat2151/github-actions/issues/9)
+
+# agentに修正させたり、人力で修正したりした
+- agentがハルシネーションし、いろいろ根の深いバグにつながる、エラー隠蔽などを仕込んでいたため、検知が遅れた
+- 詳しくはcommit logを参照のこと
+- WSL + actの環境を少し変更、act起動時のコマンドライン引数を変更し、generated-docsをmountする（ほかはデフォルト挙動であるcpだけにする）ことで、デバッグ情報をコンテナ外に出力できるようにし、デバッグを効率化した
+
+# test green
+
+# closeとする
+
+```
+
+### issue-notes/37.md
+```md
+# issue のあるtrack（trackとは「;」で区切られる文字列グループそれぞれを意味する）は、MIDI channel 9（0base）として扱う、つまりGeneral MIDIの慣習に準拠したdrum channelとして扱う。これはmmlabcフォーマットに準拠している #37
+[issues #37](https://github.com/cat2151/mmlabc-to-smf-rust/issues/37)
+
+
+
+```
+
+### issue-notes/39.md
+```md
+# issue ktコマンドを実装する。key transposeである。は、note number 61となる。 は、note number 59となる。これはmmlabcフォーマット準拠である #39
+[issues #39](https://github.com/cat2151/mmlabc-to-smf-rust/issues/39)
+
+
+
+```
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-3878791 Auto-translate README.ja.md to README.md [auto]
-c30ec1c Merge pull request #15 from cat2151/copilot/implement-toml-config-for-smf-player
-81492ee Update documentation for TOML configuration feature
-0fa980a Add TOML configuration support for external SMF player
-289b98e Initial plan
-f44aa2d Add issue note for #14 [auto]
-e6e4501 Update project summaries (overview & development status) [auto]
-e91456f Auto-translate README.ja.md to README.md [auto]
-c3c9e02 Change project status to WIP
-9e82e5f Add WIP section to README
+246c76a Merge pull request #38 from cat2151/copilot/implement-duration-and-dotted-notes
+a584124 Apply cargo fmt formatting
+df29714 Add comprehensive tests for note lengths and dotted notes
+d6f4d0a Update grammar and types to support note lengths and dotted notes
+7d7a03f Add issue note for #39 [auto]
+3e69f50 Initial plan
+cdd87a3 Merge pull request #35 from cat2151/copilot/implement-v-command-midi-velocities
+7deb10a Add issue note for #37 [auto]
+ed264e8 Run cargo fmt to fix formatting
+3ed2ce5 Implement v command for velocity control (v1=velocity 8, v15=velocity 127)
 
 ### 変更されたファイル:
-.gitignore
-Cargo.lock
-Cargo.toml
-README.ja.md
-README.md
-generated-docs/development-status-generated-prompt.md
-generated-docs/development-status.md
-generated-docs/project-overview-generated-prompt.md
-generated-docs/project-overview.md
-issue-notes/14.md
-mmlabc-to-smf-rust.toml.example
-src/config.rs
-src/lib.rs
-src/main.rs
-tests/test_cli.rs
-tests/test_config.rs
+issue-notes/36.md
+issue-notes/37.md
+issue-notes/39.md
+src/pass1_parser.rs
+src/pass2_ast.rs
+src/pass3_events.rs
+src/pass4_midi.rs
+src/types.rs
+tests/integration_test.rs
+tests/test_channel.rs
+tests/test_dotted_notes.rs
+tests/test_modifier.rs
+tests/test_note_length.rs
+tests/test_octave.rs
+tests/test_pass2.rs
+tests/test_pass3.rs
+tests/test_pass4.rs
+tests/test_program_change.rs
+tests/test_rest.rs
+tests/test_tempo.rs
+tests/test_velocity.rs
+tree-sitter-mml/grammar.js
+tree-sitter-mml/src/grammar.json
+tree-sitter-mml/src/node-types.json
+tree-sitter-mml/src/parser.c
+tree-sitter-mml/src/tree_sitter/alloc.h
+tree-sitter-mml/src/tree_sitter/array.h
+tree-sitter-mml/src/tree_sitter/parser.h
 
 
 ---
-Generated at: 2025-11-14 07:05:57 JST
+Generated at: 2025-11-16 07:04:28 JST

@@ -1,48 +1,51 @@
-Last updated: 2025-11-14
+Last updated: 2025-11-16
 
 # Development Status
 
 ## 現在のIssues
-オープン中のIssueはありません。
+- [Issue #39](../issue-notes/39.md)は、MMLabcフォーマットに準拠した`kt`（key transpose）コマンドの実装を目指しています。
+- この`kt`コマンドは、指定された値だけノート番号を増減させ、キーの移調を可能にします。
+- [Issue #37](../issue-notes/37.md)では、mmlabcの`@128`指定があるトラックをMIDIチャンネル9（ドラムチャンネル）として処理する機能の実装が求められています。
 
 ## 次の一手候補
-1. TOML設定の入力検証とエラーハンドリングを強化する (関連: [Issue #15](../issue-notes/15.md))
-   - 最初の小さな一歩: 現在の`src/config.rs`の設定解析ロジックを分析し、どのような無効なTOML入力（例: 必須フィールドの欠如、型不一致、範囲外の値）が存在しうるかをリストアップする。
+1. [Issue #39](../issue-notes/39.md) ktコマンド（キー移調）の実装
+   - 最初の小さな一歩: `tree-sitter-mml/grammar.js` に `kt` コマンドの構文を追加し、パーサーがこれを認識できるようにする。
    - Agent実行プロンプト:
      ```
-     対象ファイル: `src/config.rs`, `mmlabc-to-smf-rust.toml.example`
+     対象ファイル: tree-sitter-mml/grammar.js, tree-sitter-mml/src/grammar.json, src/pass1_parser.rs
 
-     実行内容: 現在のTOML設定解析ロジック（`src/config.rs`内）を分析し、どのような無効なTOML入力が存在しうるか、またそれらが現在どのように処理されているかを洗い出してください。特に、必須フィールドの欠如、型不一致、範囲外の値などのエラーケースに焦点を当ててください。
+     実行内容: `tree-sitter-mml/grammar.js` に `kt` コマンド（例: `kt1 c`, `kt-1 c` の後にMMLシーケンスが続く形式）のパーシングルールを追加してください。その後、`tree-sitter-mml/src/grammar.json` を再生成し、`src/pass1_parser.rs` が新しいASTノードを適切に処理できるよう、変更の概要を提示してください。
 
-     確認事項: `src/main.rs`での`config.rs`の利用箇所を確認し、エラーがどのように伝播・処理されているかを理解してください。
+     確認事項: 既存のノートやオクターブ変更などのMMLコマンドのパースに影響を与えないこと。`kt`コマンドは数値（正負両方）とそれに続くMMLシーケンスを取ることを考慮すること。
 
-     期待する出力: 検出された潜在的な無効なTOML入力のリストと、それらに対する現在のエラー処理の概要をMarkdown形式で出力してください。また、それぞれのケースでどのような改善が可能かについて簡単な考察を加えてください。
+     期待する出力: 更新された `tree-sitter-mml/grammar.js` の関連部分と、`src/pass1_parser.rs` で`kt`コマンドをパースするために必要な変更点の概要をmarkdown形式で出力してください。
      ```
 
-2. TOML設定機能に関するユーザー向けドキュメントを更新・拡充する (関連: [Issue #15](../issue-notes/15.md))
-   - 最初の小さな一歩: 既存の`README.ja.md`および`mmlabc-to-smf-rust.toml.example`を確認し、TOML設定機能に関する説明が不足している箇所や、更新が必要な箇所を特定する。
+2. [Issue #37](../issue-notes/37.md) @128（ドラムチャンネル）の実装
+   - 最初の小さな一歩: `src/pass1_parser.rs` で `@128` の構文を認識し、ASTにドラムチャンネル指定として記録する。
    - Agent実行プロンプト:
      ```
-     対象ファイル: `README.ja.md`, `README.md`, `mmlabc-to-smf-rust.toml.example`, `src/config.rs`
+     対象ファイル: src/pass1_parser.rs, src/pass2_ast.rs, src/types.rs
 
-     実行内容: `src/config.rs`に実装されたTOML設定機能の詳細に基づき、`README.ja.md`と`mmlabc-to-smf-rust.toml.example`のドキュメントが完全に最新であり、かつユーザーフレンドリーであるかを分析してください。特に、新しい設定オプションの説明、設定例、および注意点が明確に記載されているかを確認してください。
+     実行内容: `src/pass1_parser.rs` にて、トラックの先頭に現れる `@128` コマンドを認識し、その情報をAST（`src/pass2_ast.rs` の関連構造体や、`src/types.rs` の定義）に適切に格納できるよう変更してください。具体的には、AST構造にドラムチャンネル指定のフラグや情報を追加することを検討してください。
 
-     確認事項: `README.md`が`README.ja.md`から正確に翻訳されるプロセス（`.github/workflows/call-translate-readme.yml`など）を考慮し、変更が適切に反映されることを確認してください。
+     確認事項: `@128`はトラック全体のプロパティとして扱われるべきであり、他のチャンネル変更コマンド（例: `@n`）との相互作用を考慮すること。既存のパーシングロジックに予期せぬ影響を与えないこと。
 
-     期待する出力: `README.ja.md`と`mmlabc-to-smf-rust.toml.example`に追記または修正が必要な箇所のリストをMarkdown形式で提案してください。具体的な追記内容の草案も含めてください。
+     期待する出力: `@128`コマンドを処理するための `src/pass1_parser.rs`, `src/pass2_ast.rs`, `src/types.rs` の変更点を具体的にmarkdown形式で提示してください。
      ```
 
-3. `daily-project-summary`ワークフローのレビューと最適化
-   - 最初の小さな一歩: `.github/actions-tmp/.github/workflows/daily-project-summary.yml`ワークフローと、関連するスクリプトである`.github/actions-tmp/.github_automation/project_summary/scripts/ProjectSummaryCoordinator.cjs`の現在の実行フローと依存関係を理解する。
+3. プログラムチェンジ (@n) コマンドの実装
+   - 最初の小さな一歩: `tree-sitter-mml/grammar.js` に `@n` コマンドの構文（`n`は数値）を追加し、パーサーがこれを認識できるようにする。
    - Agent実行プロンプト:
      ```
-     対象ファイル: `.github/actions-tmp/.github/workflows/daily-project-summary.yml`, `.github/actions-tmp/.github_automation/project_summary/scripts/ProjectSummaryCoordinator.cjs`
+     対象ファイル: tree-sitter-mml/grammar.js, tree-sitter-mml/src/grammar.json, src/pass1_parser.rs, src/pass2_ast.rs, src/pass3_events.rs, src/pass4_midi.rs
 
-     実行内容: `daily-project-summary.yml`ワークフローとその主要スクリプトである`ProjectSummaryCoordinator.cjs`の実行ロジック、依存関係、および設定を分析し、冗長なステップがないか、またはパフォーマンスを改善できる箇所がないかを確認してください。特に、ファイルの読み込み、API呼び出し、生成ロジックに焦点を当ててください。
+     実行内容: `tree-sitter-mml/grammar.js` に `@n` コマンド（例: `@0`, `@127`など）のパーシングルールを追加し、`src/pass1_parser.rs` がこれをASTに変換できるよう、また `src/pass3_events.rs` や `src/pass4_midi.rs` でMIDIプログラムチェンジイベントとして適切に処理できるよう、関連ファイルの変更の概要を提示してください。
 
-     確認事項: このワークフローが他の自動化（例：issue-note生成、README翻訳）とどのように連携しているか、または競合する可能性がないかを確認してください。
+     確認事項: `@n`コマンドはトラック内のどこにでも出現可能であり、その時点以降のノートに影響を与えることを考慮すること。また、既に存在する `@128`（ドラムチャンネル）との競合がないことを確認すること。
 
-     期待する出力: `daily-project-summary.yml`ワークフローまたは`ProjectSummaryCoordinator.cjs`スクリプトの潜在的な最適化ポイントのリストをMarkdown形式で出力してください。具体的な改善案（例：キャッシュの利用、並列処理の検討、不要な処理の削除）を含めてください。
+     期待する出力: `@n`コマンドをパースし、MIDIイベントとして生成するための `tree-sitter-mml/grammar.js` の関連部分と、`src/pass1_parser.rs`, `src/pass2_ast.rs`, `src/pass3_events.rs`, `src/pass4_midi.rs` で必要な変更点の概要をmarkdown形式で出力してください。
+     ```
 
 ---
-Generated at: 2025-11-14 07:06:14 JST
+Generated at: 2025-11-16 07:04:45 JST
