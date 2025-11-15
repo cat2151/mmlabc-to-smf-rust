@@ -12,6 +12,8 @@ pub struct Token {
     pub channel_group: Option<usize>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub chord_id: Option<usize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub modifier: Option<String>,
 }
 
 /// A note in the Abstract Syntax Tree

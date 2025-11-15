@@ -8,6 +8,30 @@
       "required": true,
       "types": [
         {
+          "type": "note_with_modifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "note_with_modifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
           "type": "note",
           "named": true
         }
@@ -22,6 +46,7 @@
   {
     "type": "source_file",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -32,7 +57,7 @@
           "named": true
         },
         {
-          "type": "note",
+          "type": "note_with_modifier",
           "named": true
         },
         {
@@ -52,6 +77,14 @@
   },
   {
     "type": "'",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": "-",
     "named": false
   },
   {
