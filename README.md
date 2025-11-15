@@ -177,15 +177,28 @@ cargo fmt          # Apply format
 
 ### Tree-sitter Parser Files
 
-The tree-sitter parser files (located in `tree-sitter-mml/src/`) are auto-generated during the build process and are **not tracked in git**. 
+The tree-sitter parser files (located in `tree-sitter-mml/src/`) are **tracked in git** for reliable crates.io distribution, following tree-sitter best practices.
 
-**Important Notes:**
-- The C source files (`parser.c`, `grammar.json`, `node-types.json`, and `tree_sitter/` directory) are automatically generated when you run `cargo build`
-- If the parser files don't exist, the build script will automatically run `npx tree-sitter generate` to create them
-- **Requirements**: Node.js and npx must be installed on your system for the auto-generation to work
-- You should never manually edit the generated parser files - instead, modify `tree-sitter-mml/grammar.js` and rebuild
+**Development Workflow:**
+- The C source files (`parser.c`, `grammar.json`, `node-types.json`, and `tree_sitter/` directory) are automatically regenerated when `grammar.js` is modified
+- The build script checks file modification times and only regenerates when necessary
+- **Requirements**: Node.js and npx must be installed for grammar updates
+- Normal builds (without grammar changes) work without Node.js, using the committed C files
 
-To manually regenerate the parser files:
+**Why are generated files committed?**
+This follows tree-sitter ecosystem best practices:
+- Users installing from crates.io don't need Node.js or tree-sitter-cli
+- Ensures the exact parser version matches the grammar
+- Simplifies CI/CD and cross-platform builds
+- Standard practice for all tree-sitter language crates
+
+**Updating the Grammar:**
+When you modify `tree-sitter-mml/grammar.js`:
+1. Run `cargo build` - the build script will detect the change and regenerate parser files
+2. Commit both grammar.js and the regenerated C files together
+3. This ensures grammar and parser stay in sync
+
+To manually regenerate:
 ```bash
 cd tree-sitter-mml
 npm install  # Install tree-sitter-cli if not already installed

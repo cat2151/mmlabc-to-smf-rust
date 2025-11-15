@@ -39,7 +39,3 @@ tree-sitter-mml/package-lock.json
 tree-sitter-mml/Cargo.toml
 tree-sitter-mml/binding.gyp
 tree-sitter-mml/bindings/
-tree-sitter-mml/src/parser.c
-tree-sitter-mml/src/grammar.json
-tree-sitter-mml/src/node-types.json
-tree-sitter-mml/src/tree_sitter/
