@@ -13,6 +13,7 @@ fn test_events_to_midi() {
             velocity: Some(64),
             channel: 0,
             program: None,
+            tempo: None,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
@@ -21,6 +22,7 @@ fn test_events_to_midi() {
             velocity: Some(0),
             channel: 0,
             program: None,
+            tempo: None,
         },
     ];
 
@@ -40,6 +42,7 @@ fn test_midi_file_structure() {
             velocity: Some(64),
             channel: 0,
             program: None,
+            tempo: None,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
@@ -48,6 +51,7 @@ fn test_midi_file_structure() {
             velocity: Some(0),
             channel: 0,
             program: None,
+            tempo: None,
         },
     ];
 
@@ -71,6 +75,7 @@ fn test_save_midi_file() {
             velocity: Some(64),
             channel: 0,
             program: None,
+            tempo: None,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
@@ -79,6 +84,7 @@ fn test_save_midi_file() {
             velocity: Some(0),
             channel: 0,
             program: None,
+            tempo: None,
         },
     ];
 
@@ -107,6 +113,7 @@ fn test_process_pass4() {
             velocity: Some(64),
             channel: 0,
             program: None,
+            tempo: None,
         },
         MidiEvent {
             event_type: "note_off".to_string(),
@@ -115,6 +122,7 @@ fn test_process_pass4() {
             velocity: Some(0),
             channel: 0,
             program: None,
+            tempo: None,
         },
     ];
 
