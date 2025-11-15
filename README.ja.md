@@ -175,6 +175,36 @@ cargo fmt --check  # フォーマットチェック
 cargo fmt          # フォーマット適用
 ```
 
+### tree-sitter パーサーファイル
+
+tree-sitter パーサーファイル（`tree-sitter-mml/src/` 配下）は、crates.io での信頼性のある配布のため、tree-sitter のベストプラクティスに従い **git で追跡されています**。
+
+**開発ワークフロー：**
+- C言語ソースファイル（`parser.c`、`grammar.json`、`node-types.json`、および `tree_sitter/` ディレクトリ）は、`grammar.js` が変更されたときに自動的に再生成されます
+- ビルドスクリプトがファイルの更新時刻をチェックし、必要な場合にのみ再生成します
+- **必要条件**：文法を更新する場合は、システムに Node.js と npx がインストールされている必要があります
+- 通常のビルド（文法変更なし）は、コミット済みのC言語ファイルを使用するため、Node.js なしで動作します
+
+**生成ファイルをコミットする理由**
+これは tree-sitter エコシステムのベストプラクティスに従っています：
+- crates.io からインストールするユーザーは Node.js や tree-sitter-cli を必要としません
+- 文法とパーサーのバージョンが正確に一致することを保証します
+- CI/CD とクロスプラットフォームビルドを簡素化します
+- すべての tree-sitter 言語クレートの標準的な慣行です
+
+**文法の更新：**
+`tree-sitter-mml/grammar.js` を変更する場合：
+1. `cargo build` を実行 - ビルドスクリプトが変更を検出し、パーサーファイルを再生成します
+2. grammar.js と再生成されたC言語ファイルの両方を一緒にコミットします
+3. これにより、文法とパーサーが同期した状態を保ちます
+
+パーサーファイルを手動で再生成する場合：
+```bash
+cd tree-sitter-mml
+npm install  # tree-sitter-cli がまだインストールされていない場合
+npx tree-sitter generate
+```
+
 ### プロジェクト構造
 
 ```
