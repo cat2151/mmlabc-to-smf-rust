@@ -9,27 +9,38 @@ It converts Music Macro Language strings into Standard MIDI Files using a 4-pass
 
 ## WIP
 
-Currently under development. At present, only `c` to `b` notes are recognized; other MML features will be implemented going forward.
+Currently under development. Most core MML features are now implemented.
 
 ### Implemented Features ✅
 - **Basic Note Conversion**: `cdefgab` → MIDI note conversion
+- **Note Length**: `l1` (whole), `l2` (half), `l4` (quarter), `l8` (eighth), `l16` (sixteenth), etc.
+- **Octave Control**: `<` (up), `>` (down), `o0`-`o8` (set absolute octave)
+- **Modifiers**: `+` (sharp), `-` (flat)
+- **Rest**: `r` (rest with current length)
+- **Chords**: `'ceg'` (simultaneous notes)
 - **4-Pass Architecture**: Fully implemented
-  - Pass 1: Tokenization of MML string (simple parser)
+  - Pass 1: Tokenization of MML string (tree-sitter parser)
   - Pass 2: Conversion from tokens to AST (Abstract Syntax Tree)
   - Pass 3: Generation of MIDI events from AST
   - Pass 4: Creation of Standard MIDI File from MIDI events
 - **Channel Functionality**: Multi-channel support using semicolons (`;`)
 - **JSON Debug Output**: Intermediate results of each pass outputted in JSON format
 - **CLI**: Basic operations via command-line arguments
-- **Comprehensive Tests**: All 35 test cases pass
+- **Comprehensive Tests**: All test cases pass (including 15 new length tests)
 
 ### Usage Examples
 ```bash
 # Basic scale conversion
 cargo run -- "cdefgab"
 
+# Eighth note melody
+cargo run -- "l8cdefgab"
+
 # Multi-channel
 cargo run -- "c;e;g"
+
+# Different note lengths
+cargo run -- "l8cl4cl1c"
 
 # Custom output file
 cargo run -- "cde" -o my_song.mid
@@ -38,16 +49,15 @@ cargo run -- "cde" -o my_song.mid
 ## Future Outlook
 
 ### Short-term Goals 🚧
-- **tree-sitter Integration**: For parsing more complex MML syntax
 - **Repository Setup**: Configuration of formatter, linter, etc.
 - **Error Handling**: More detailed error messages
 
 ### Long-term Goals 🎯
-- **mmlabc Command Implementation**: Full support for mmlabc format
-  - Note length specification (quarter note, eighth note, etc.)
-  - Octave specification (`>`, `<`)
-  - Control commands for tempo, volume, etc.
-  - Chord functionality extension
+- **mmlabc Command Implementation**: Additional mmlabc format features
+  - Dotted notes (e.g., `c.` for dotted quarter note)
+  - Tempo control commands
+  - Volume/velocity control
+  - Advanced chord functionality
 - **Performance Optimization**: Fast processing of large MML files
 
 ### References
@@ -144,12 +154,25 @@ Upon execution, the following files will be generated:
 
 Currently supported notation:
 - **Basic Notes**: `c`, `d`, `e`, `f`, `g`, `a`, `b` (case-insensitive)
+- **Note Length**: `l1` (whole), `l2` (half), `l4` (quarter), `l8` (eighth), `l16` (sixteenth), etc.
+  - Default length is `l4` (quarter note)
+  - Length setting affects all following notes until changed
+- **Octave Commands**: `<` (up), `>` (down), `o0`-`o8` (set absolute octave)
+- **Modifiers**: `+` (sharp), `-` (flat)
+- **Rest**: `r` (rest with current length)
+- **Chords**: `'ceg'` (notes between single quotes play simultaneously)
 - **Multi-channel**: `;` for channel separation (simultaneous playback)
 
 Examples:
 ```
-cdefgab     → Consecutive playback of C, D, E, F, G, A, B
+cdefgab     → Consecutive playback of C, D, E, F, G, A, B (quarter notes)
+l8cde       → Eighth note C, D, E
+l1c         → Whole note C
+l8cl4cl1c   → Eighth note C, quarter note C, whole note C
 c;e;g       → Simultaneous playback of C, E, G (C major chord)
+'ceg'       → Chord notation (equivalent to above for single-channel)
+o4cde       → C4, D4, E4
+c+d-e       → C#, Db, E
 ```
 
 ## Development
