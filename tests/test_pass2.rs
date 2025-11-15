@@ -10,16 +10,19 @@ fn test_tokens_to_ast() {
             token_type: "note".to_string(),
             value: "c".to_string(),
             channel_group: None,
+            chord_id: None,
         },
         Token {
             token_type: "note".to_string(),
             value: "d".to_string(),
             channel_group: None,
+            chord_id: None,
         },
         Token {
             token_type: "note".to_string(),
             value: "e".to_string(),
             channel_group: None,
+            chord_id: None,
         },
     ];
 
@@ -38,36 +41,43 @@ fn test_note_to_midi_mapping() {
             token_type: "note".to_string(),
             value: "c".to_string(),
             channel_group: None,
+            chord_id: None,
         },
         Token {
             token_type: "note".to_string(),
             value: "d".to_string(),
             channel_group: None,
+            chord_id: None,
         },
         Token {
             token_type: "note".to_string(),
             value: "e".to_string(),
             channel_group: None,
+            chord_id: None,
         },
         Token {
             token_type: "note".to_string(),
             value: "f".to_string(),
             channel_group: None,
+            chord_id: None,
         },
         Token {
             token_type: "note".to_string(),
             value: "g".to_string(),
             channel_group: None,
+            chord_id: None,
         },
         Token {
             token_type: "note".to_string(),
             value: "a".to_string(),
             channel_group: None,
+            chord_id: None,
         },
         Token {
             token_type: "note".to_string(),
             value: "b".to_string(),
             channel_group: None,
+            chord_id: None,
         },
     ];
 
@@ -98,6 +108,7 @@ fn test_save_ast_to_json() {
         token_type: "note".to_string(),
         value: "c".to_string(),
         channel_group: None,
+        chord_id: None,
     }];
     let ast = tokens_to_ast(&tokens);
     let filepath = env::temp_dir().join("test_pass2_ast.json");

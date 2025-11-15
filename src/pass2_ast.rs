@@ -57,6 +57,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 pitch: midi_note,
                 name: token.value.clone(),
                 channel,
+                chord_id: token.chord_id,
             });
         } else if token.token_type == "octave_up" {
             // < means octave up (add 12 semitones)
