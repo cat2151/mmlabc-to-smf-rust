@@ -16,36 +16,38 @@ use std::io::Write;
 /// # Returns
 /// AST structure with note events (with channel assignments for multi-channel notes)
 pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
-    let note_to_midi: HashMap<&str, u8> = [
-        ("c", 60), // Middle C (C4)
-        ("d", 62),
-        ("e", 64),
-        ("f", 65),
-        ("g", 67),
-        ("a", 69),
-        ("b", 71),
+    // Map note names to their offset within an octave (C=0, D=2, E=4, etc.)
+    let note_to_offset: HashMap<&str, u8> = [
+        ("c", 0),
+        ("d", 2),
+        ("e", 4),
+        ("f", 5),
+        ("g", 7),
+        ("a", 9),
+        ("b", 11),
     ]
     .iter()
     .cloned()
     .collect();
 
     let mut notes = Vec::new();
-    // Track octave offset per channel (channel_group)
+    // Track current octave per channel (channel_group)
+    // Default octave is 5 (where C5 = MIDI 60)
     // Use None as key for single-channel mode, Some(n) for multi-channel mode
-    let mut octave_offsets: HashMap<Option<usize>, i8> = HashMap::new();
+    let mut current_octaves: HashMap<Option<usize>, u8> = HashMap::new();
 
     for token in tokens {
         if token.token_type == "note" {
-            let base_midi_note = note_to_midi
+            let note_offset = note_to_offset
                 .get(token.value.as_str())
                 .copied()
-                .unwrap_or(60);
+                .unwrap_or(0);
 
-            // Get octave offset for this channel (default to 0)
-            let octave_offset = *octave_offsets.get(&token.channel_group).unwrap_or(&0);
+            // Get current octave for this channel (default to 5)
+            let octave = *current_octaves.get(&token.channel_group).unwrap_or(&5);
 
-            // Apply octave offset to the note
-            let midi_note = (base_midi_note as i8 + octave_offset) as u8;
+            // Calculate MIDI note: octave * 12 + note_offset
+            let midi_note = octave * 12 + note_offset;
 
             // Assign channel based on channel_group
             // If channel_group is present, notes are assigned to separate channels
@@ -60,13 +62,20 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 chord_id: token.chord_id,
             });
         } else if token.token_type == "octave_up" {
-            // < means octave up (add 12 semitones)
-            let offset = octave_offsets.entry(token.channel_group).or_insert(0);
-            *offset += 12;
+            // < means octave up
+            let octave = current_octaves.entry(token.channel_group).or_insert(5);
+            *octave = octave.saturating_add(1);
         } else if token.token_type == "octave_down" {
-            // > means octave down (subtract 12 semitones)
-            let offset = octave_offsets.entry(token.channel_group).or_insert(0);
-            *offset -= 12;
+            // > means octave down
+            let octave = current_octaves.entry(token.channel_group).or_insert(5);
+            *octave = octave.saturating_sub(1);
+        } else if token.token_type == "octave_set" {
+            // o command sets absolute octave (e.g., "o5" sets octave to 5)
+            if let Some(octave_str) = token.value.strip_prefix('o') {
+                if let Ok(octave_value) = octave_str.parse::<u8>() {
+                    current_octaves.insert(token.channel_group, octave_value);
+                }
+            }
         }
     }
 

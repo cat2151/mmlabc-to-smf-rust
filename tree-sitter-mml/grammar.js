@@ -9,6 +9,7 @@ module.exports = grammar({
       $.note,
       $.octave_up,
       $.octave_down,
+      $.octave_set,
     ),
 
     chord: $ => seq(
@@ -20,5 +21,6 @@ module.exports = grammar({
     note: $ => /[cdefgabCDEFGAB]/,
     octave_up: $ => '<',
     octave_down: $ => '>',
+    octave_set: $ => seq('o', /[0-9]+/),
   }
 });
