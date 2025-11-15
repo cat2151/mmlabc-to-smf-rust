@@ -1,5 +1,4 @@
 {
-  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "mml",
   "rules": {
     "source_file": {
@@ -19,6 +18,10 @@
         {
           "type": "SYMBOL",
           "name": "note_with_modifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rest"
         },
         {
           "type": "SYMBOL",
@@ -92,6 +95,10 @@
         }
       ]
     },
+    "rest": {
+      "type": "PATTERN",
+      "value": "[rR]"
+    },
     "octave_up": {
       "type": "STRING",
       "value": "<"
@@ -124,6 +131,6 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": [],
-  "reserved": {}
+  "supertypes": []
 }
+

@@ -36,26 +36,31 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
             let channel = note.channel.unwrap_or(0);
             let current_time = channel_times.get(&channel).copied().unwrap_or(0);
 
-            // Note on event
-            events.push(MidiEvent {
-                event_type: "note_on".to_string(),
-                time: current_time,
-                note: note.pitch,
-                velocity: 64,
-                channel,
-            });
+            if note.note_type == "rest" {
+                // Rest: just advance time without generating events
+                channel_times.insert(channel, current_time + duration);
+            } else {
+                // Note on event
+                events.push(MidiEvent {
+                    event_type: "note_on".to_string(),
+                    time: current_time,
+                    note: note.pitch,
+                    velocity: 64,
+                    channel,
+                });
 
-            // Note off event
-            events.push(MidiEvent {
-                event_type: "note_off".to_string(),
-                time: current_time + duration,
-                note: note.pitch,
-                velocity: 0,
-                channel,
-            });
+                // Note off event
+                events.push(MidiEvent {
+                    event_type: "note_off".to_string(),
+                    time: current_time + duration,
+                    note: note.pitch,
+                    velocity: 0,
+                    channel,
+                });
 
-            // Advance time for this channel
-            channel_times.insert(channel, current_time + duration);
+                // Advance time for this channel
+                channel_times.insert(channel, current_time + duration);
+            }
         }
     } else if has_chords {
         // Chord mode: notes with the same chord_id play simultaneously on the same channel
@@ -72,54 +77,65 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                 time += duration;
             }
 
-            // Note on event
-            events.push(MidiEvent {
-                event_type: "note_on".to_string(),
-                time,
-                note: note.pitch,
-                velocity: 64,
-                channel: 0,
-            });
-
-            // Note off event
-            events.push(MidiEvent {
-                event_type: "note_off".to_string(),
-                time: time + duration,
-                note: note.pitch,
-                velocity: 0,
-                channel: 0,
-            });
-
-            // If this is not a chord note, advance time
-            if !is_chord_note {
+            if note.note_type == "rest" {
+                // Rest: just advance time without generating events
                 time += duration;
                 last_chord_id = None;
             } else {
-                last_chord_id = current_chord_id;
+                // Note on event
+                events.push(MidiEvent {
+                    event_type: "note_on".to_string(),
+                    time,
+                    note: note.pitch,
+                    velocity: 64,
+                    channel: 0,
+                });
+
+                // Note off event
+                events.push(MidiEvent {
+                    event_type: "note_off".to_string(),
+                    time: time + duration,
+                    note: note.pitch,
+                    velocity: 0,
+                    channel: 0,
+                });
+
+                // If this is not a chord note, advance time
+                if !is_chord_note {
+                    time += duration;
+                    last_chord_id = None;
+                } else {
+                    last_chord_id = current_chord_id;
+                }
             }
         }
     } else {
         // Sequential notes (single channel)
         for note in &ast.notes {
-            // Note on event
-            events.push(MidiEvent {
-                event_type: "note_on".to_string(),
-                time,
-                note: note.pitch,
-                velocity: 64,
-                channel: 0,
-            });
+            if note.note_type == "rest" {
+                // Rest: just advance time without generating events
+                time += duration;
+            } else {
+                // Note on event
+                events.push(MidiEvent {
+                    event_type: "note_on".to_string(),
+                    time,
+                    note: note.pitch,
+                    velocity: 64,
+                    channel: 0,
+                });
 
-            // Note off event
-            events.push(MidiEvent {
-                event_type: "note_off".to_string(),
-                time: time + duration,
-                note: note.pitch,
-                velocity: 0,
-                channel: 0,
-            });
+                // Note off event
+                events.push(MidiEvent {
+                    event_type: "note_off".to_string(),
+                    time: time + duration,
+                    note: note.pitch,
+                    velocity: 0,
+                    channel: 0,
+                });
 
-            time += duration;
+                time += duration;
+            }
         }
     }
 
