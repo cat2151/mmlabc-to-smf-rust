@@ -40,6 +40,10 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     // Default length is 4 (quarter note)
     let mut current_lengths: HashMap<Option<usize>, u32> = HashMap::new();
 
+    // Track current dots per channel
+    // Default dots is 0 (no dots)
+    let mut current_dots: HashMap<Option<usize>, u32> = HashMap::new();
+
     // Track current velocity per channel
     // Default velocity is v15 which maps to MIDI velocity 127
     let mut current_velocities: HashMap<Option<usize>, u8> = HashMap::new();
@@ -55,7 +59,16 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
             let octave = *current_octaves.get(&token.channel_group).unwrap_or(&5);
 
             // Get current length for this channel (default to 4 = quarter note)
-            let length = *current_lengths.get(&token.channel_group).unwrap_or(&4);
+            // Use note-specific length if present, otherwise use current length
+            let length = token.note_length
+                .or_else(|| current_lengths.get(&token.channel_group).copied())
+                .unwrap_or(4);
+
+            // Get current dots for this channel (default to 0)
+            // Use note-specific dots if present, otherwise use current dots
+            let dots = token.dots
+                .or_else(|| current_dots.get(&token.channel_group).copied())
+                .unwrap_or(0);
 
             // Get current velocity for this channel (default to 127 = v15)
             let velocity = *current_velocities.get(&token.channel_group).unwrap_or(&127);
@@ -84,6 +97,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 channel,
                 chord_id: token.chord_id,
                 length: Some(length),
+                dots: Some(dots),
                 velocity: Some(velocity),
             });
         } else if token.token_type == "octave_up" {
@@ -103,10 +117,15 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
             }
         } else if token.token_type == "length_set" {
             // l command sets default note length (e.g., "l8" sets to eighth note)
-            if let Some(length_str) = token.value.strip_prefix('l') {
-                if let Ok(length_value) = length_str.parse::<u32>() {
-                    current_lengths.insert(token.channel_group, length_value);
-                }
+            // Also supports dots (e.g., "l4." sets to dotted quarter note)
+            if let Some(length_value) = token.note_length {
+                current_lengths.insert(token.channel_group, length_value);
+            }
+            if let Some(dots_value) = token.dots {
+                current_dots.insert(token.channel_group, dots_value);
+            } else {
+                // Reset dots to 0 when length_set has no dots
+                current_dots.insert(token.channel_group, 0);
             }
         } else if token.token_type == "velocity_set" {
             // v command sets velocity (e.g., "v15" sets to MIDI velocity 127)
@@ -128,7 +147,16 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
             let channel = token.channel_group.map(|g| g as u8);
 
             // Get current length for this channel (default to 4 = quarter note)
-            let length = *current_lengths.get(&token.channel_group).unwrap_or(&4);
+            // Use rest-specific length if present, otherwise use current length
+            let length = token.note_length
+                .or_else(|| current_lengths.get(&token.channel_group).copied())
+                .unwrap_or(4);
+
+            // Get current dots for this channel (default to 0)
+            // Use rest-specific dots if present, otherwise use current dots
+            let dots = token.dots
+                .or_else(|| current_dots.get(&token.channel_group).copied())
+                .unwrap_or(0);
 
             notes.push(AstNote {
                 note_type: "rest".to_string(),
@@ -137,6 +165,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 channel,
                 chord_id: token.chord_id,
                 length: Some(length),
+                dots: Some(dots),
                 velocity: None, // Velocity is not used for rests
             });
         } else if token.token_type == "program_change" {
@@ -153,6 +182,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                         channel,
                         chord_id: None,
                         length: None,
+                        dots: None,
                         velocity: None, // Velocity is not used for program changes
                     });
                 }
@@ -175,6 +205,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                         channel,
                         chord_id: None,
                         length: None,
+                        dots: None,
                         velocity: None, // Velocity is not used for tempo changes
                     });
                 }

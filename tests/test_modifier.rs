@@ -48,6 +48,8 @@ fn test_sharp_increases_pitch_by_one() {
         channel_group: None,
         chord_id: None,
         modifier: Some("+".to_string()),
+        note_length: None,
+        dots: None,
     }];
 
     let ast = tokens_to_ast(&tokens);
@@ -63,6 +65,8 @@ fn test_flat_decreases_pitch_by_one() {
         channel_group: None,
         chord_id: None,
         modifier: Some("-".to_string()),
+        note_length: None,
+        dots: None,
     }];
 
     let ast = tokens_to_ast(&tokens);
@@ -79,6 +83,8 @@ fn test_modifier_affects_only_preceding_note() {
             channel_group: None,
             chord_id: None,
             modifier: Some("+".to_string()),
+            note_length: None,
+            dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -86,6 +92,8 @@ fn test_modifier_affects_only_preceding_note() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+            note_length: None,
+            dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -93,6 +101,8 @@ fn test_modifier_affects_only_preceding_note() {
             channel_group: None,
             chord_id: None,
             modifier: Some("-".to_string()),
+            note_length: None,
+            dots: None,
         },
     ];
 

@@ -37,6 +37,8 @@ fn test_octave_up_effect() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+            note_length: None,
+            dots: None,
         },
         Token {
             token_type: "octave_up".to_string(),
@@ -44,6 +46,8 @@ fn test_octave_up_effect() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+            note_length: None,
+            dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -51,6 +55,8 @@ fn test_octave_up_effect() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+            note_length: None,
+            dots: None,
         },
     ];
 
@@ -69,6 +75,8 @@ fn test_octave_down_effect() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+            note_length: None,
+            dots: None,
         },
         Token {
             token_type: "octave_down".to_string(),
@@ -76,6 +84,8 @@ fn test_octave_down_effect() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+            note_length: None,
+            dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -83,6 +93,8 @@ fn test_octave_down_effect() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+            note_length: None,
+            dots: None,
         },
     ];
 

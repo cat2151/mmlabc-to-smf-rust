@@ -12,6 +12,8 @@ fn test_tokens_to_ast() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+        note_length: None,
+        dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -19,6 +21,8 @@ fn test_tokens_to_ast() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+        note_length: None,
+        dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -26,6 +30,8 @@ fn test_tokens_to_ast() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+        note_length: None,
+        dots: None,
         },
     ];
 
@@ -46,6 +52,8 @@ fn test_note_to_midi_mapping() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+        note_length: None,
+        dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -53,6 +61,8 @@ fn test_note_to_midi_mapping() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+        note_length: None,
+        dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -60,6 +70,8 @@ fn test_note_to_midi_mapping() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+        note_length: None,
+        dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -67,6 +79,8 @@ fn test_note_to_midi_mapping() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+        note_length: None,
+        dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -74,6 +88,8 @@ fn test_note_to_midi_mapping() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+        note_length: None,
+        dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -81,6 +97,8 @@ fn test_note_to_midi_mapping() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+        note_length: None,
+        dots: None,
         },
         Token {
             token_type: "note".to_string(),
@@ -88,6 +106,8 @@ fn test_note_to_midi_mapping() {
             channel_group: None,
             chord_id: None,
             modifier: None,
+        note_length: None,
+        dots: None,
         },
     ];
 
@@ -120,6 +140,8 @@ fn test_save_ast_to_json() {
         channel_group: None,
         chord_id: None,
         modifier: None,
+        note_length: None,
+        dots: None,
     }];
     let ast = tokens_to_ast(&tokens);
     let filepath = env::temp_dir().join("test_pass2_ast.json");

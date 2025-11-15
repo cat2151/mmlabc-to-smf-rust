@@ -7,17 +7,35 @@ use serde::Serialize;
 use std::fs::File;
 use std::io::Write;
 
-/// Calculate duration in ticks for a given note length
+/// Calculate duration in ticks for a given note length with optional dots
 ///
 /// # Arguments
 /// * `length` - Note length (1=whole, 4=quarter, 8=eighth, etc.)
+/// * `dots` - Number of dots (0=none, 1=dotted, 2=double-dotted, etc.)
 ///
 /// # Returns
 /// Duration in ticks
-fn calculate_duration(length: u32) -> u32 {
+fn calculate_duration(length: u32, dots: u32) -> u32 {
     // Whole note = 1920 ticks (480 ticks per quarter note * 4 beats)
-    // For any note length n: duration = 1920 / n
-    1920 / length
+    // For any note length n: base_duration = 1920 / n
+    let base_duration = 1920 / length;
+    
+    // For dotted notes, each dot adds half of the previous value
+    // 1 dot: duration = base + base/2 = base * 1.5
+    // 2 dots: duration = base + base/2 + base/4 = base * 1.75
+    // 3 dots: duration = base + base/2 + base/4 + base/8 = base * 1.875
+    // Formula: duration = base * (2 - 1/(2^dots))
+    if dots > 0 {
+        let mut total_duration = base_duration;
+        let mut additional = base_duration / 2;
+        for _ in 0..dots {
+            total_duration += additional;
+            additional /= 2;
+        }
+        total_duration
+    } else {
+        base_duration
+    }
 }
 
 /// Convert AST to MIDI event list
@@ -48,10 +66,11 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
         for note in &ast.notes {
             let channel = note.channel.unwrap_or(0);
             let current_time = channel_times.get(&channel).copied().unwrap_or(0);
-            let duration = note
-                .length
-                .map(calculate_duration)
-                .unwrap_or(default_duration);
+            let duration = if let Some(length) = note.length {
+                calculate_duration(length, note.dots.unwrap_or(0))
+            } else {
+                default_duration
+            };
 
             if note.note_type == "rest" {
                 // Rest: just advance time without generating events
@@ -114,10 +133,11 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
         let mut last_chord_id: Option<usize> = None;
 
         for note in &ast.notes {
-            let duration = note
-                .length
-                .map(calculate_duration)
-                .unwrap_or(default_duration);
+            let duration = if let Some(length) = note.length {
+                calculate_duration(length, note.dots.unwrap_or(0))
+            } else {
+                default_duration
+            };
 
             // Determine if this note is part of a chord
             let is_chord_note = note.chord_id.is_some();
@@ -193,10 +213,11 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
     } else {
         // Sequential notes (single channel)
         for note in &ast.notes {
-            let duration = note
-                .length
-                .map(calculate_duration)
-                .unwrap_or(default_duration);
+            let duration = if let Some(length) = note.length {
+                calculate_duration(length, note.dots.unwrap_or(0))
+            } else {
+                default_duration
+            };
 
             if note.note_type == "rest" {
                 // Rest: just advance time without generating events

@@ -66,14 +66,16 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                     loop {
                         let child_node = cursor.node();
                         if child_node.kind() == "note_with_modifier" {
-                            // Extract note and modifier from note_with_modifier
-                            let (note_value, modifier) = extract_note_and_modifier(cursor, source);
+                            // Extract note, modifier, length, and dots from note_with_modifier
+                            let (note_value, modifier, note_length, dots) = extract_note_and_modifier(cursor, source);
                             tokens.push(Token {
                                 token_type: "note".to_string(),
                                 value: note_value,
                                 channel_group,
                                 chord_id: Some(current_chord_id),
                                 modifier,
+                                note_length,
+                                dots,
                             });
                         }
                         if !cursor.goto_next_sibling() {
@@ -83,14 +85,16 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                     cursor.goto_parent();
                 }
             } else if kind == "note_with_modifier" {
-                // Extract note and modifier from note_with_modifier
-                let (note_value, modifier) = extract_note_and_modifier(cursor, source);
+                // Extract note, modifier, length, and dots from note_with_modifier
+                let (note_value, modifier, note_length, dots) = extract_note_and_modifier(cursor, source);
                 tokens.push(Token {
                     token_type: "note".to_string(),
                     value: note_value,
                     channel_group,
                     chord_id: None,
                     modifier,
+                    note_length,
+                    dots,
                 });
             } else if kind == "octave_up" {
                 tokens.push(Token {
@@ -99,6 +103,8 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                     channel_group,
                     chord_id: None,
                     modifier: None,
+                    note_length: None,
+                    dots: None,
                 });
             } else if kind == "octave_down" {
                 tokens.push(Token {
@@ -107,6 +113,8 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                     channel_group,
                     chord_id: None,
                     modifier: None,
+                    note_length: None,
+                    dots: None,
                 });
             } else if kind == "octave_set" {
                 if let Ok(text) = node.utf8_text(source.as_bytes()) {
@@ -116,24 +124,89 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                         channel_group,
                         chord_id: None,
                         modifier: None,
+                        note_length: None,
+                        dots: None,
                     });
                 }
             } else if kind == "rest" {
+                // Extract rest length and dots
+                let mut rest_length = None;
+                let mut rest_dots = None;
+                
+                if cursor.goto_first_child() {
+                    loop {
+                        let child_node = cursor.node();
+                        let child_kind = child_node.kind();
+                        
+                        if child_kind == "note_length" {
+                            if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                                if let Ok(length) = text.parse::<u32>() {
+                                    rest_length = Some(length);
+                                }
+                            }
+                        } else if child_kind == "dots" {
+                            if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                                rest_dots = Some(text.len() as u32);
+                            }
+                        }
+                        
+                        if !cursor.goto_next_sibling() {
+                            break;
+                        }
+                    }
+                    cursor.goto_parent();
+                }
+                
                 tokens.push(Token {
                     token_type: "rest".to_string(),
                     value: "r".to_string(),
                     channel_group,
                     chord_id: None,
                     modifier: None,
+                    note_length: rest_length,
+                    dots: rest_dots,
                 });
             } else if kind == "length_set" {
+                // Extract length_set length and dots
+                let mut length_value = None;
+                let mut length_dots = None;
+                
+                if cursor.goto_first_child() {
+                    loop {
+                        let child_node = cursor.node();
+                        let child_kind = child_node.kind();
+                        
+                        if child_kind == "dots" {
+                            if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                                length_dots = Some(text.len() as u32);
+                            }
+                        }
+                        
+                        if !cursor.goto_next_sibling() {
+                            break;
+                        }
+                    }
+                    cursor.goto_parent();
+                }
+                
+                // Parse the entire text to get the l value
                 if let Ok(text) = node.utf8_text(source.as_bytes()) {
+                    if let Some(length_str) = text.strip_prefix('l') {
+                        // Strip dots if present to get the numeric part
+                        let numeric_part = length_str.trim_end_matches('.');
+                        if let Ok(length) = numeric_part.parse::<u32>() {
+                            length_value = Some(length);
+                        }
+                    }
+                    
                     tokens.push(Token {
                         token_type: "length_set".to_string(),
                         value: text.to_string(),
                         channel_group,
                         chord_id: None,
                         modifier: None,
+                        note_length: length_value,
+                        dots: length_dots,
                     });
                 }
             } else if kind == "program_change" {
@@ -144,6 +217,8 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                         channel_group,
                         chord_id: None,
                         modifier: None,
+                        note_length: None,
+                        dots: None,
                     });
                 }
             } else if kind == "tempo_set" {
@@ -154,6 +229,8 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                         channel_group,
                         chord_id: None,
                         modifier: None,
+                        note_length: None,
+                        dots: None,
                     });
                 }
             } else if kind == "velocity_set" {
@@ -164,6 +241,8 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                         channel_group,
                         chord_id: None,
                         modifier: None,
+                        note_length: None,
+                        dots: None,
                     });
                 }
             } else {
@@ -183,9 +262,11 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
         fn extract_note_and_modifier(
             cursor: &mut TreeCursor,
             source: &str,
-        ) -> (String, Option<String>) {
+        ) -> (String, Option<String>, Option<u32>, Option<u32>) {
             let mut note_value = String::new();
             let mut modifier = None;
+            let mut note_length = None;
+            let mut dots = None;
 
             if cursor.goto_first_child() {
                 loop {
@@ -200,6 +281,16 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                         if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
                             modifier = Some(text.to_string());
                         }
+                    } else if child_kind == "note_length" {
+                        if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                            if let Ok(length) = text.parse::<u32>() {
+                                note_length = Some(length);
+                            }
+                        }
+                    } else if child_kind == "dots" {
+                        if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                            dots = Some(text.len() as u32);
+                        }
                     }
 
                     if !cursor.goto_next_sibling() {
@@ -209,7 +300,7 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                 cursor.goto_parent();
             }
 
-            (note_value, modifier)
+            (note_value, modifier, note_length, dots)
         }
 
         extract_tokens(

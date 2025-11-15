@@ -15,6 +15,7 @@ fn test_ast_to_events() {
                 channel: None,
                 chord_id: None,
                 length: None,
+            dots: None,
                 velocity: Some(127),
             },
             AstNote {
@@ -24,6 +25,7 @@ fn test_ast_to_events() {
                 channel: None,
                 chord_id: None,
                 length: None,
+            dots: None,
                 velocity: Some(127),
             },
             AstNote {
@@ -33,6 +35,7 @@ fn test_ast_to_events() {
                 channel: None,
                 chord_id: None,
                 length: None,
+            dots: None,
                 velocity: Some(127),
             },
         ],
@@ -53,6 +56,7 @@ fn test_event_types() {
             channel: None,
             chord_id: None,
             length: None,
+            dots: None,
             velocity: Some(127),
         }],
     };
@@ -74,6 +78,7 @@ fn test_event_timing() {
                 channel: None,
                 chord_id: None,
                 length: None,
+            dots: None,
                 velocity: Some(127),
             },
             AstNote {
@@ -83,6 +88,7 @@ fn test_event_timing() {
                 channel: None,
                 chord_id: None,
                 length: None,
+            dots: None,
                 velocity: Some(127),
             },
         ],
@@ -110,6 +116,7 @@ fn test_note_properties() {
             channel: None,
             chord_id: None,
             length: None,
+            dots: None,
             velocity: Some(127),
         }],
     };
@@ -147,6 +154,7 @@ fn test_save_events_to_json() {
             channel: None,
             chord_id: None,
             length: None,
+            dots: None,
             velocity: Some(127),
         }],
     };
