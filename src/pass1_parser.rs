@@ -67,7 +67,8 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                         let child_node = cursor.node();
                         if child_node.kind() == "note_with_modifier" {
                             // Extract note, modifier, length, and dots from note_with_modifier
-                            let (note_value, modifier, note_length, dots) = extract_note_and_modifier(cursor, source);
+                            let (note_value, modifier, note_length, dots) =
+                                extract_note_and_modifier(cursor, source);
                             tokens.push(Token {
                                 token_type: "note".to_string(),
                                 value: note_value,
@@ -86,7 +87,8 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                 }
             } else if kind == "note_with_modifier" {
                 // Extract note, modifier, length, and dots from note_with_modifier
-                let (note_value, modifier, note_length, dots) = extract_note_and_modifier(cursor, source);
+                let (note_value, modifier, note_length, dots) =
+                    extract_note_and_modifier(cursor, source);
                 tokens.push(Token {
                     token_type: "note".to_string(),
                     value: note_value,
@@ -132,12 +134,12 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                 // Extract rest length and dots
                 let mut rest_length = None;
                 let mut rest_dots = None;
-                
+
                 if cursor.goto_first_child() {
                     loop {
                         let child_node = cursor.node();
                         let child_kind = child_node.kind();
-                        
+
                         if child_kind == "note_length" {
                             if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
                                 if let Ok(length) = text.parse::<u32>() {
@@ -149,14 +151,14 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                                 rest_dots = Some(text.len() as u32);
                             }
                         }
-                        
+
                         if !cursor.goto_next_sibling() {
                             break;
                         }
                     }
                     cursor.goto_parent();
                 }
-                
+
                 tokens.push(Token {
                     token_type: "rest".to_string(),
                     value: "r".to_string(),
@@ -170,25 +172,25 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                 // Extract length_set length and dots
                 let mut length_value = None;
                 let mut length_dots = None;
-                
+
                 if cursor.goto_first_child() {
                     loop {
                         let child_node = cursor.node();
                         let child_kind = child_node.kind();
-                        
+
                         if child_kind == "dots" {
                             if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
                                 length_dots = Some(text.len() as u32);
                             }
                         }
-                        
+
                         if !cursor.goto_next_sibling() {
                             break;
                         }
                     }
                     cursor.goto_parent();
                 }
-                
+
                 // Parse the entire text to get the l value
                 if let Ok(text) = node.utf8_text(source.as_bytes()) {
                     if let Some(length_str) = text.strip_prefix('l') {
@@ -198,7 +200,7 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
                             length_value = Some(length);
                         }
                     }
-                    
+
                     tokens.push(Token {
                         token_type: "length_set".to_string(),
                         value: text.to_string(),

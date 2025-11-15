@@ -42,7 +42,7 @@ fn test_dotted_quarter_note_duration() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(4));
     assert_eq!(ast.notes[0].dots, Some(1));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 720); // 480 + 240
@@ -56,7 +56,7 @@ fn test_dotted_half_note_duration() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(2));
     assert_eq!(ast.notes[0].dots, Some(1));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 1440); // 960 + 480
@@ -70,7 +70,7 @@ fn test_dotted_eighth_note_duration() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(8));
     assert_eq!(ast.notes[0].dots, Some(1));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 360); // 240 + 120
@@ -84,7 +84,7 @@ fn test_double_dotted_quarter_note_duration() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(4));
     assert_eq!(ast.notes[0].dots, Some(2));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 840); // 480 + 240 + 120
@@ -98,7 +98,7 @@ fn test_triple_dotted_quarter_note_duration() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(4));
     assert_eq!(ast.notes[0].dots, Some(3));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 900); // 480 + 240 + 120 + 60
@@ -114,7 +114,7 @@ fn test_quadruple_dotted_whole_note_duration() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(1));
     assert_eq!(ast.notes[0].dots, Some(4));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 3720); // 1920 + 960 + 480 + 240 + 120
@@ -128,7 +128,7 @@ fn test_l_command_with_dot() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(4));
     assert_eq!(ast.notes[0].dots, Some(1));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 720); // Dotted quarter note
@@ -142,7 +142,7 @@ fn test_l_command_with_double_dot() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(4));
     assert_eq!(ast.notes[0].dots, Some(2));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 840); // Double-dotted quarter note
@@ -156,7 +156,7 @@ fn test_note_specific_dot_overrides_l() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(4));
     assert_eq!(ast.notes[0].dots, Some(1));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 720); // Dotted quarter note
@@ -172,7 +172,7 @@ fn test_note_uses_default_dots_from_l() {
     assert_eq!(ast.notes[0].dots, Some(1));
     assert_eq!(ast.notes[1].length, Some(4));
     assert_eq!(ast.notes[1].dots, Some(1));
-    
+
     let events = ast_to_events(&ast);
     // First note: 0-720
     assert_eq!(events[0].time, 0);
@@ -192,7 +192,7 @@ fn test_l_resets_dots_when_no_dots() {
     assert_eq!(ast.notes[0].dots, Some(1));
     assert_eq!(ast.notes[1].length, Some(8));
     assert_eq!(ast.notes[1].dots, Some(0));
-    
+
     let events = ast_to_events(&ast);
     // First note (c4.): 0-720
     assert_eq!(events[0].time, 0);
@@ -225,7 +225,7 @@ fn test_dotted_rest() {
     assert_eq!(ast.notes[0].dots, Some(1));
     assert_eq!(ast.notes[1].note_type, "note");
     assert_eq!(ast.notes[1].length, Some(8));
-    
+
     let events = ast_to_events(&ast);
     // First rest (r4.): 0-720 (no events)
     // Note (c8): 720-960
@@ -245,7 +245,7 @@ fn test_dotted_note_in_chord() {
     assert_eq!(ast.notes[1].dots, Some(1));
     assert_eq!(ast.notes[2].length, Some(4));
     assert_eq!(ast.notes[2].dots, Some(1));
-    
+
     let events = ast_to_events(&ast);
     // All chord notes start at 0 and end at 720
     assert_eq!(events[0].time, 0); // C on
@@ -269,7 +269,7 @@ fn test_mixed_dotted_and_non_dotted_notes() {
     assert_eq!(ast.notes[2].dots, Some(1)); // e4.
     assert_eq!(ast.notes[3].length, Some(8));
     assert_eq!(ast.notes[3].dots, Some(0)); // f8 - no dots means Some(0)
-    
+
     let events = ast_to_events(&ast);
     // c4.: 0-720
     assert_eq!(events[0].time, 0);
@@ -292,12 +292,12 @@ fn test_dotted_notes_independent_per_channel() {
     let tokens = parse_mml("c4.;e8.");
     let ast = tokens_to_ast(&tokens);
     assert_eq!(ast.notes.len(), 2);
-    
+
     // Channel 0 note
     assert_eq!(ast.notes[0].length, Some(4));
     assert_eq!(ast.notes[0].dots, Some(1));
     assert_eq!(ast.notes[0].channel, Some(0));
-    
+
     // Channel 1 note
     assert_eq!(ast.notes[1].length, Some(8));
     assert_eq!(ast.notes[1].dots, Some(1));

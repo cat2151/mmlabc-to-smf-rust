@@ -60,13 +60,15 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
 
             // Get current length for this channel (default to 4 = quarter note)
             // Use note-specific length if present, otherwise use current length
-            let length = token.note_length
+            let length = token
+                .note_length
                 .or_else(|| current_lengths.get(&token.channel_group).copied())
                 .unwrap_or(4);
 
             // Get current dots for this channel (default to 0)
             // Use note-specific dots if present, otherwise use current dots
-            let dots = token.dots
+            let dots = token
+                .dots
                 .or_else(|| current_dots.get(&token.channel_group).copied())
                 .unwrap_or(0);
 
@@ -148,13 +150,15 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
 
             // Get current length for this channel (default to 4 = quarter note)
             // Use rest-specific length if present, otherwise use current length
-            let length = token.note_length
+            let length = token
+                .note_length
                 .or_else(|| current_lengths.get(&token.channel_group).copied())
                 .unwrap_or(4);
 
             // Get current dots for this channel (default to 0)
             // Use rest-specific dots if present, otherwise use current dots
-            let dots = token.dots
+            let dots = token
+                .dots
                 .or_else(|| current_dots.get(&token.channel_group).copied())
                 .unwrap_or(0);
 

@@ -20,7 +20,7 @@ fn test_note_specific_length_overrides_l() {
     let ast = tokens_to_ast(&tokens);
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(8));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 240); // Eighth note duration
@@ -33,7 +33,7 @@ fn test_note_uses_default_length_when_no_specific_length() {
     let ast = tokens_to_ast(&tokens);
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(8));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 240); // Eighth note duration
@@ -47,7 +47,7 @@ fn test_multiple_notes_with_different_lengths() {
     assert_eq!(ast.notes[0].length, Some(4)); // Quarter note
     assert_eq!(ast.notes[1].length, Some(8)); // Eighth note
     assert_eq!(ast.notes[2].length, Some(2)); // Half note
-    
+
     let events = ast_to_events(&ast);
     // First note (c4): 0-480
     assert_eq!(events[0].time, 0);
@@ -68,7 +68,7 @@ fn test_note_specific_length_with_l_command() {
     assert_eq!(ast.notes.len(), 2);
     assert_eq!(ast.notes[0].length, Some(8)); // c8
     assert_eq!(ast.notes[1].length, Some(4)); // d uses l4
-    
+
     let events = ast_to_events(&ast);
     // First note (c8): 0-240
     assert_eq!(events[0].time, 0);
@@ -84,7 +84,7 @@ fn test_whole_note_specific_length() {
     let ast = tokens_to_ast(&tokens);
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(1));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 1920); // Whole note duration
@@ -96,7 +96,7 @@ fn test_sixteenth_note_specific_length() {
     let ast = tokens_to_ast(&tokens);
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(16));
-    
+
     let events = ast_to_events(&ast);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 120); // Sixteenth note duration
@@ -135,7 +135,7 @@ fn test_rest_with_specific_length() {
     assert_eq!(ast.notes[1].length, Some(4));
     assert_eq!(ast.notes[2].note_type, "rest");
     assert_eq!(ast.notes[2].length, Some(2));
-    
+
     let events = ast_to_events(&ast);
     // First rest (r8): 0-240 (no events)
     // Note (c4): 240-720
@@ -153,7 +153,7 @@ fn test_note_length_in_chord() {
     assert_eq!(ast.notes[0].length, Some(8));
     assert_eq!(ast.notes[1].length, Some(8));
     assert_eq!(ast.notes[2].length, Some(8));
-    
+
     let events = ast_to_events(&ast);
     // All chord notes start at 0 and end at 240
     assert_eq!(events[0].time, 0); // C on
@@ -171,11 +171,11 @@ fn test_note_length_independent_per_channel() {
     let tokens = parse_mml("c8;e4");
     let ast = tokens_to_ast(&tokens);
     assert_eq!(ast.notes.len(), 2);
-    
+
     // Channel 0 note
     assert_eq!(ast.notes[0].length, Some(8));
     assert_eq!(ast.notes[0].channel, Some(0));
-    
+
     // Channel 1 note
     assert_eq!(ast.notes[1].length, Some(4));
     assert_eq!(ast.notes[1].channel, Some(1));

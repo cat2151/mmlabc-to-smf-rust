@@ -19,7 +19,7 @@ fn calculate_duration(length: u32, dots: u32) -> u32 {
     // Whole note = 1920 ticks (480 ticks per quarter note * 4 beats)
     // For any note length n: base_duration = 1920 / n
     let base_duration = 1920 / length;
-    
+
     // For dotted notes, each dot adds half of the previous value
     // 1 dot: duration = base + base/2 = base * 1.5
     // 2 dots: duration = base + base/2 + base/4 = base * 1.75
