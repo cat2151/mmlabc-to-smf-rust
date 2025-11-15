@@ -34,23 +34,45 @@ pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
 
     if has_multiple_channels {
         // Format 1: Separate tracks for each channel
-        // First, create a tempo track
-        let tempo_track = vec![
-            TrackEvent {
-                delta: 0.into(),
-                kind: TrackEventKind::Meta(MetaMessage::Tempo(DEFAULT_TEMPO_USEC_PER_BEAT.into())),
-            },
-            TrackEvent {
-                delta: 0.into(),
-                kind: TrackEventKind::Meta(MetaMessage::EndOfTrack),
-            },
-        ];
+        // First, create a tempo track with all tempo events
+        let mut tempo_track = Vec::new();
+
+        // Add default tempo at time 0
+        tempo_track.push(TrackEvent {
+            delta: 0.into(),
+            kind: TrackEventKind::Meta(MetaMessage::Tempo(DEFAULT_TEMPO_USEC_PER_BEAT.into())),
+        });
+
+        // Collect all tempo_set events and add to tempo track
+        let mut tempo_events: Vec<_> = events
+            .iter()
+            .filter(|e| e.event_type == "tempo_set")
+            .cloned()
+            .collect();
+        tempo_events.sort_by_key(|e| e.time);
+
+        let mut prev_time = 0;
+        for event in tempo_events {
+            let delta_time = event.time - prev_time;
+            tempo_track.push(TrackEvent {
+                delta: delta_time.into(),
+                kind: TrackEventKind::Meta(MetaMessage::Tempo(event.tempo.unwrap().into())),
+            });
+            prev_time = event.time;
+        }
+
+        // End of tempo track
+        tempo_track.push(TrackEvent {
+            delta: 0.into(),
+            kind: TrackEventKind::Meta(MetaMessage::EndOfTrack),
+        });
         tracks.push(tempo_track);
 
         // Get unique channels and create a track for each
         let channels: Vec<u8> = {
             let mut unique_channels: Vec<u8> = events
                 .iter()
+                .filter(|e| e.event_type != "tempo_set") // Exclude tempo events
                 .map(|e| e.channel)
                 .collect::<HashSet<_>>()
                 .into_iter()
@@ -62,10 +84,10 @@ pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
         for channel in channels {
             let mut track = Vec::new();
 
-            // Filter events for this channel and sort by time
+            // Filter events for this channel and sort by time (exclude tempo events)
             let mut channel_events: Vec<_> = events
                 .iter()
-                .filter(|e| e.channel == channel)
+                .filter(|e| e.channel == channel && e.event_type != "tempo_set")
                 .cloned()
                 .collect();
             channel_events.sort_by_key(|e| e.time);
@@ -125,6 +147,16 @@ pub fn events_to_midi(events: &[MidiEvent]) -> Result<Vec<u8>> {
         let mut prev_time = 0;
         for event in sorted_events {
             let delta_time = event.time - prev_time;
+
+            // Handle tempo_set events (Meta messages)
+            if event.event_type == "tempo_set" {
+                track.push(TrackEvent {
+                    delta: delta_time.into(),
+                    kind: TrackEventKind::Meta(MetaMessage::Tempo(event.tempo.unwrap().into())),
+                });
+                prev_time = event.time;
+                continue;
+            }
 
             let midi_msg = match event.event_type.as_str() {
                 "note_on" => MidiMessage::NoteOn {

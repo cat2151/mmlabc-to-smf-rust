@@ -133,6 +133,27 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                     });
                 }
             }
+        } else if token.token_type == "tempo_set" {
+            // t command sets tempo (BPM)
+            if let Some(tempo_str) = token.value.strip_prefix('t') {
+                if let Ok(tempo_value) = tempo_str.parse::<u32>() {
+                    // Assign channel based on channel_group
+                    let channel = token.channel_group.map(|g| g as u8);
+
+                    // Store BPM value in pitch field (we'll convert to usec/beat in pass3)
+                    // Clamp to reasonable BPM range (1-255)
+                    let bpm = tempo_value.clamp(1, 255) as u8;
+
+                    notes.push(AstNote {
+                        note_type: "tempo_set".to_string(),
+                        pitch: bpm, // Store BPM in pitch field
+                        name: token.value.clone(),
+                        channel,
+                        chord_id: None,
+                        length: None,
+                    });
+                }
+            }
         }
     }
 

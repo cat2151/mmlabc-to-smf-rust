@@ -65,6 +65,21 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     velocity: None,
                     channel,
                     program: Some(note.pitch),
+                    tempo: None,
+                });
+            } else if note.note_type == "tempo_set" {
+                // Tempo change: generate tempo_set event without advancing time
+                // Convert BPM to microseconds per beat: usec_per_beat = 60,000,000 / BPM
+                let bpm = note.pitch as u32;
+                let usec_per_beat = 60_000_000 / bpm;
+                events.push(MidiEvent {
+                    event_type: "tempo_set".to_string(),
+                    time: current_time,
+                    note: None,
+                    velocity: None,
+                    channel,
+                    program: None,
+                    tempo: Some(usec_per_beat),
                 });
             } else {
                 // Note on event
@@ -75,6 +90,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     velocity: Some(64),
                     channel,
                     program: None,
+                    tempo: None,
                 });
 
                 // Note off event
@@ -85,6 +101,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     velocity: Some(0),
                     channel,
                     program: None,
+                    tempo: None,
                 });
 
                 // Advance time for this channel
@@ -124,6 +141,21 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     velocity: None,
                     channel: 0,
                     program: Some(note.pitch),
+                    tempo: None,
+                });
+                last_chord_id = None;
+            } else if note.note_type == "tempo_set" {
+                // Tempo change: generate tempo_set event without advancing time
+                let bpm = note.pitch as u32;
+                let usec_per_beat = 60_000_000 / bpm;
+                events.push(MidiEvent {
+                    event_type: "tempo_set".to_string(),
+                    time,
+                    note: None,
+                    velocity: None,
+                    channel: 0,
+                    program: None,
+                    tempo: Some(usec_per_beat),
                 });
                 last_chord_id = None;
             } else {
@@ -135,6 +167,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     velocity: Some(64),
                     channel: 0,
                     program: None,
+                    tempo: None,
                 });
 
                 // Note off event
@@ -145,6 +178,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     velocity: Some(0),
                     channel: 0,
                     program: None,
+                    tempo: None,
                 });
 
                 // If this is not a chord note, advance time
@@ -176,6 +210,20 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     velocity: None,
                     channel: 0,
                     program: Some(note.pitch),
+                    tempo: None,
+                });
+            } else if note.note_type == "tempo_set" {
+                // Tempo change: generate tempo_set event without advancing time
+                let bpm = note.pitch as u32;
+                let usec_per_beat = 60_000_000 / bpm;
+                events.push(MidiEvent {
+                    event_type: "tempo_set".to_string(),
+                    time,
+                    note: None,
+                    velocity: None,
+                    channel: 0,
+                    program: None,
+                    tempo: Some(usec_per_beat),
                 });
             } else {
                 // Note on event
@@ -186,6 +234,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     velocity: Some(64),
                     channel: 0,
                     program: None,
+                    tempo: None,
                 });
 
                 // Note off event
@@ -196,6 +245,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     velocity: Some(0),
                     channel: 0,
                     program: None,
+                    tempo: None,
                 });
 
                 time += duration;

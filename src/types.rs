@@ -52,4 +52,6 @@ pub struct MidiEvent {
     pub channel: u8,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub program: Option<u8>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tempo: Option<u32>,
 }

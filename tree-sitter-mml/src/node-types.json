@@ -56,7 +56,6 @@
   {
     "type": "source_file",
     "named": true,
-    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -93,9 +92,18 @@
         {
           "type": "rest",
           "named": true
+        },
+        {
+          "type": "tempo_set",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "tempo_set",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "'",
@@ -136,5 +144,9 @@
   {
     "type": "rest",
     "named": true
+  },
+  {
+    "type": "t",
+    "named": false
   }
 ]
