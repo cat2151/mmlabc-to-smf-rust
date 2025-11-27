@@ -1,46 +1,47 @@
 # mmlabc-to-smf-rust
 
-A tool for converting Music Macro Language (MML) to Standard MIDI File (SMF) (Rust version)
+<p align="left">
+  <a href="README.ja.md"><img src="https://img.shields.io/badge/🇯🇵-Japanese-red.svg" alt="Japanese"></a>
+  <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸-English-blue.svg" alt="English"></a>
+</p>
+
+A library for converting Music Macro Language (MML) to Standard MIDI File (SMF).
 
 ## Overview
 
-This project is a Rust implementation of [mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf).
-It converts Music Macro Language strings into Standard MIDI Files using a 4-pass architecture with comprehensive debug output.
+This library converts a Music Macro Language (MML) format string into a Standard MIDI File. It is written in Rust.
 
-## WIP
+## Usage
 
-Currently under development. Most core MML features are now implemented.
+Used as a library by `cat-play-mml`.
+
+## Status
+
+Frequent breaking changes are being made.
+
+The README is outdated. Many more MML commands are actually implemented. The README will be updated later.
+
+To understand the implemented MML, please refer to `tree-sitter-mml/grammar.js` first (though this will also be subject to breaking changes in the future).
 
 ### Implemented Features ✅
-- **Basic Note Conversion**: `cdefgab` → MIDI note conversion
-- **Note Length**: `l1` (whole), `l2` (half), `l4` (quarter), `l8` (eighth), `l16` (sixteenth), etc.
-- **Octave Control**: `<` (up), `>` (down), `o0`-`o8` (set absolute octave)
-- **Modifiers**: `+` (sharp), `-` (flat)
-- **Rest**: `r` (rest with current length)
-- **Chords**: `'ceg'` (simultaneous notes)
+- **Basic Note Conversion**: `cdefgab` → Conversion to MIDI notes
 - **4-Pass Architecture**: Fully implemented
-  - Pass 1: Tokenization of MML string (tree-sitter parser)
-  - Pass 2: Conversion from tokens to AST (Abstract Syntax Tree)
+  - Pass 1: Tokenization of MML string (simple parser)
+  - Pass 2: Conversion of tokens to AST (Abstract Syntax Tree)
   - Pass 3: Generation of MIDI events from AST
   - Pass 4: Creation of Standard MIDI File from MIDI events
 - **Channel Functionality**: Multi-channel support using semicolons (`;`)
-- **JSON Debug Output**: Intermediate results of each pass outputted in JSON format
+- **JSON Debug Output**: Output intermediate results of each pass in JSON
 - **CLI**: Basic operations via command-line arguments
-- **Comprehensive Tests**: All test cases pass (including 15 new length tests)
+- **Comprehensive Tests**: All 35 test cases are passing
 
-### Usage Examples
+### Verification
 ```bash
 # Basic scale conversion
 cargo run -- "cdefgab"
 
-# Eighth note melody
-cargo run -- "l8cdefgab"
-
 # Multi-channel
 cargo run -- "c;e;g"
-
-# Different note lengths
-cargo run -- "l8cl4cl1c"
 
 # Custom output file
 cargo run -- "cde" -o my_song.mid
@@ -49,15 +50,16 @@ cargo run -- "cde" -o my_song.mid
 ## Future Outlook
 
 ### Short-term Goals 🚧
-- **Repository Setup**: Configuration of formatter, linter, etc.
+- **tree-sitter Integration**: For parsing more complex MML syntax
+- **Repository Setup**: Set up formatter, linter, etc.
 - **Error Handling**: More detailed error messages
 
 ### Long-term Goals 🎯
-- **mmlabc Command Implementation**: Additional mmlabc format features
-  - Dotted notes (e.g., `c.` for dotted quarter note)
-  - Tempo control commands
-  - Volume/velocity control
-  - Advanced chord functionality
+- **mmlabc Command Implementation**: Full mmlabc format support
+  - Note length specification (quarter note, eighth note, etc.)
+  - Octave specification (`>`, `<`)
+  - Control commands for tempo, volume, etc.
+  - Chord functionality expansion
 - **Performance Optimization**: Fast processing of large MML files
 
 ### References
@@ -67,12 +69,12 @@ cargo run -- "cde" -o my_song.mid
 
 - **4-Pass Architecture**:
   - **Pass 1**: Parses MML string into tokens (Current: simple parser, Future: tree-sitter)
-  - **Pass 2**: Converts tokens into an Abstract Syntax Tree (AST)
+  - **Pass 2**: Converts tokens to an Abstract Syntax Tree (AST)
   - **Pass 3**: Generates MIDI events from the AST
-  - **Pass 4**: Creates the Standard MIDI File
-- **Multi-channel Support**: Semicolons (`;`) separate simultaneous playback channels
+  - **Pass 4**: Creates a Standard MIDI File
+- **Multi-channel Support**: Semicolons (`;`) separate concurrent channels
 - **JSON Debug Output**: Intermediate results of each pass can be saved and reviewed in JSON format
-- **Comprehensive Tests**: A total of 35 unit and integration test cases
+- **Comprehensive Tests**: A total of 35 test cases, including unit and integration tests
 - **Safe Design**: Memory safety ensured by Rust's type system and ownership model
 
 ## Requirements
@@ -101,10 +103,10 @@ cargo run -- "cdefgab"
 ### Basic Usage
 
 ```bash
-# Basic scale conversion (automatically played by cat-play-mml by default)
+# Convert basic scale (automatically played by cat-play-mml by default)
 cargo run -- "cdefgab"
 
-# Multi-channel (simultaneous playback)
+# Multi-channel (concurrent notes)
 cargo run -- "c;e;g"  # C major chord
 
 # Custom output file
@@ -116,15 +118,15 @@ cargo run -- "cde" --no-play
 
 ### Auto-playback Feature
 
-By default, after generating a MIDI file, it is automatically played using the `cat-play-mml` command.
-This allows for immediate sound confirmation during MML development.
+By default, after generating a MIDI file, it will be automatically played using the `cat-play-mml` command.
+This allows you to immediately check the sound during MML development.
 
 - Use the `--no-play` option to disable auto-playback.
-- If `cat-play-mml` is not installed, a warning message will appear, but the MIDI file will still be generated correctly.
+- If `cat-play-mml` is not installed, a warning message will be displayed, but the MIDI file will still be generated correctly.
 
-#### Custom Player Configuration
+#### Configuring a Custom Player
 
-You can configure a custom MIDI player by creating an `mmlabc-to-smf-rust.toml` file in the directory where the tool is executed.
+You can configure a custom MIDI player by creating a `mmlabc-to-smf-rust.toml` file in the directory where you run the tool.
 
 Example configuration file:
 ```toml
@@ -132,7 +134,7 @@ Example configuration file:
 external_smf_player = "timidity"
 ```
 
-Configurable common MIDI players:
+Common configurable MIDI players:
 - `timidity` - TiMidity++ MIDI player
 - `fluidsynth` - FluidSynth software synthesizer
 - `vlc` - VLC media player
@@ -144,7 +146,7 @@ Refer to `mmlabc-to-smf-rust.toml.example` for a sample configuration file.
 
 ### Output Files
 
-Upon execution, the following files will be generated:
+Running the command will generate the following files:
 - `pass1_tokens.json` - Pass 1 token information (for debugging)
 - `pass2_ast.json` - Pass 2 AST information (for debugging)
 - `pass3_events.json` - Pass 3 MIDI event information (for debugging)
@@ -154,25 +156,12 @@ Upon execution, the following files will be generated:
 
 Currently supported notation:
 - **Basic Notes**: `c`, `d`, `e`, `f`, `g`, `a`, `b` (case-insensitive)
-- **Note Length**: `l1` (whole), `l2` (half), `l4` (quarter), `l8` (eighth), `l16` (sixteenth), etc.
-  - Default length is `l4` (quarter note)
-  - Length setting affects all following notes until changed
-- **Octave Commands**: `<` (up), `>` (down), `o0`-`o8` (set absolute octave)
-- **Modifiers**: `+` (sharp), `-` (flat)
-- **Rest**: `r` (rest with current length)
-- **Chords**: `'ceg'` (notes between single quotes play simultaneously)
-- **Multi-channel**: `;` for channel separation (simultaneous playback)
+- **Multi-channel**: `;` for channel separation (concurrent notes)
 
 Examples:
 ```
-cdefgab     → Consecutive playback of C, D, E, F, G, A, B (quarter notes)
-l8cde       → Eighth note C, D, E
-l1c         → Whole note C
-l8cl4cl1c   → Eighth note C, quarter note C, whole note C
+cdefgab     → Consecutive playback of C, D, E, F, G, A, B
 c;e;g       → Simultaneous playback of C, E, G (C major chord)
-'ceg'       → Chord notation (equivalent to above for single-channel)
-o4cde       → C4, D4, E4
-c+d-e       → C#, Db, E
 ```
 
 ## Development
@@ -184,7 +173,7 @@ cargo build        # Debug build
 cargo build --release  # Release build
 ```
 
-### Test
+### Tests
 
 ```bash
 cargo test         # Run all tests (35 test cases)
@@ -200,31 +189,31 @@ cargo fmt          # Apply formatting
 
 ### tree-sitter Parser Files
 
-tree-sitter parser files (under `tree-sitter-mml/src/`) are **git-tracked** following tree-sitter best practices for reliable distribution on crates.io.
+The tree-sitter parser files (under `tree-sitter-mml/src/`) are **git-tracked** following tree-sitter best practices for reliable distribution on crates.io.
 
 **Development Workflow:**
 - The C source files (`parser.c`, `grammar.json`, `node-types.json`, and the `tree_sitter/` directory) are automatically regenerated when `grammar.js` is modified.
-- The build script checks file modification times and regenerates only when necessary.
-- **Prerequisite**: You need Node.js and `npx` installed on your system if you intend to update the grammar.
-- Regular builds (without grammar changes) will use the committed C files and work without Node.js.
+- The build script checks the file modification times and regenerates them only if necessary.
+- **Prerequisite**: If you update the grammar, Node.js and npx must be installed on your system.
+- Regular builds (without grammar changes) use the committed C files and therefore do not require Node.js.
 
-**Why commit generated files:**
+**Why commit generated files?**
 This follows best practices in the tree-sitter ecosystem:
 - Users installing from crates.io do not need Node.js or `tree-sitter-cli`.
-- Ensures that the grammar and parser versions precisely match.
-- Simplifies CI/CD and cross-platform builds.
-- It's a standard practice for all tree-sitter language crates.
+- It ensures that the grammar and parser versions precisely match.
+- It simplifies CI/CD and cross-platform builds.
+- It is standard practice for all tree-sitter language crates.
 
 **Updating the Grammar:**
 If you modify `tree-sitter-mml/grammar.js`:
-1. Run `cargo build` - the build script will detect changes and regenerate the parser files.
+1. Run `cargo build` - the build script will detect the change and regenerate the parser files.
 2. Commit both `grammar.js` and the regenerated C files together.
 3. This keeps the grammar and parser synchronized.
 
-To manually regenerate parser files:
+To manually regenerate the parser files:
 ```bash
 cd tree-sitter-mml
-npm install  # If tree-sitter-cli is not already installed
+npm install  # if tree-sitter-cli is not yet installed
 npx tree-sitter generate
 ```
 
@@ -234,26 +223,26 @@ npx tree-sitter generate
 src/
 ├── main.rs              # CLI entry point
 ├── lib.rs               # Library root
-├── pass1_parser.rs      # Pass 1: Token parsing
-├── pass2_ast.rs         # Pass 2: AST conversion
-├── pass3_events.rs      # Pass 3: MIDI event generation
-├── pass4_midi.rs        # Pass 4: MIDI file creation
-├── tree_sitter_mml.rs   # tree-sitter MML integration
-└── types.rs             # Common type definitions
+├── pass1_parser.rs      # Pass 1: Token Parsing
+├── pass2_ast.rs         # Pass 2: AST Transformation
+├── pass3_events.rs      # Pass 3: MIDI Event Generation
+├── pass4_midi.rs        # Pass 4: MIDI File Creation
+├── tree_sitter_mml.rs   # tree-sitter MML Integration
+└── types.rs             # Common Type Definitions
 
 tests/
-├── integration_test.rs  # Integration tests
-├── test_channel.rs      # Channel functionality tests
-├── test_pass1.rs        # Pass 1 tests
-├── test_pass2.rs        # Pass 2 tests
-├── test_pass3.rs        # Pass 3 tests
-└── test_pass4.rs        # Pass 4 tests
+├── integration_test.rs  # Integration Tests
+├── test_channel.rs      # Channel Feature Tests
+├── test_pass1.rs        # Pass 1 Tests
+├── test_pass2.rs        # Pass 2 Tests
+├── test_pass3.rs        # Pass 3 Tests
+└── test_pass4.rs        # Pass 4 Tests
 ```
 
 ## License
 
 MIT License - See the [LICENSE](LICENSE) file for details.
 
-## References
+## Reference
 
 - Original Python implementation: [cat2151/mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf)
