@@ -1,51 +1,51 @@
-Last updated: 2025-11-16
+Last updated: 2025-11-28
 
 # Development Status
 
 ## 現在のIssues
-- [Issue #39](../issue-notes/39.md)は、MMLabcフォーマットに準拠した`kt`（key transpose）コマンドの実装を目指しています。
-- この`kt`コマンドは、指定された値だけノート番号を増減させ、キーの移調を可能にします。
-- [Issue #37](../issue-notes/37.md)では、mmlabcの`@128`指定があるトラックをMIDIチャンネル9（ドラムチャンネル）として処理する機能の実装が求められています。
+- [Issue #39](../issue-notes/39.md)は、mmlabcフォーマット準拠のktコマンド（key transpose）の実装に焦点を当てています。
+- [Issue #37](../issue-notes/37.md)は、`@128`を含むトラックをMIDIチャンネル9（ドラムチャンネル）として扱うmmlabcフォーマット準拠の機能追加を目指しています。
+- これらのissueは、mmlabcフォーマットへの準拠を強化し、MIDI変換の正確性を向上させるための機能拡張です。
 
 ## 次の一手候補
-1. [Issue #39](../issue-notes/39.md) ktコマンド（キー移調）の実装
-   - 最初の小さな一歩: `tree-sitter-mml/grammar.js` に `kt` コマンドの構文を追加し、パーサーがこれを認識できるようにする。
+1. [Issue #39](../issue-notes/39.md) ktコマンドの実装
+   - 最初の小さな一歩: `tree-sitter-mml/grammar.js`に`kt`コマンドの構文規則を追加し、`kt`コマンドが数値と音名を取る形式に対応させる。
    - Agent実行プロンプト:
      ```
-     対象ファイル: tree-sitter-mml/grammar.js, tree-sitter-mml/src/grammar.json, src/pass1_parser.rs
+     対象ファイル: tree-sitter-mml/grammar.js, src/pass1_parser.rs, src/pass2_ast.rs
 
-     実行内容: `tree-sitter-mml/grammar.js` に `kt` コマンド（例: `kt1 c`, `kt-1 c` の後にMMLシーケンスが続く形式）のパーシングルールを追加してください。その後、`tree-sitter-mml/src/grammar.json` を再生成し、`src/pass1_parser.rs` が新しいASTノードを適切に処理できるよう、変更の概要を提示してください。
+     実行内容: `tree-sitter-mml/grammar.js`に`kt`コマンドの構文規則を追加し、`kt`コマンドが数値と音名を取る形式（例: `kt1 c`）に対応させる。その後、`src/pass1_parser.rs`でこの新しいトークンを認識し、`src/pass2_ast.rs`で適切なASTノードを生成できるように変更してください。
 
-     確認事項: 既存のノートやオクターブ変更などのMMLコマンドのパースに影響を与えないこと。`kt`コマンドは数値（正負両方）とそれに続くMMLシーケンスを取ることを考慮すること。
+     確認事項: 既存のMML文法との衝突がないか、`kt`コマンドの引数（数値と音名）の解釈がmmlabcフォーマットに準拠しているかを確認してください。既存のテストが壊れないことを確認してください。
 
-     期待する出力: 更新された `tree-sitter-mml/grammar.js` の関連部分と、`src/pass1_parser.rs` で`kt`コマンドをパースするために必要な変更点の概要をmarkdown形式で出力してください。
+     期待する出力: `grammar.js`の更新内容、`pass1_parser.rs`と`pass2_ast.rs`における変更点の概要と関連するコードスニペットをmarkdown形式で出力してください。
      ```
 
-2. [Issue #37](../issue-notes/37.md) @128（ドラムチャンネル）の実装
-   - 最初の小さな一歩: `src/pass1_parser.rs` で `@128` の構文を認識し、ASTにドラムチャンネル指定として記録する。
+2. [Issue #37](../issue-notes/37.md) `@128`トラックのMIDIチャンネル9割り当て
+   - 最初の小さな一歩: `src/pass2_ast.rs`において、各トラックのASTノードを走査し、`@128`が存在するかどうかを検出して、その情報（例: `is_drum_track: true`のようなフラグ）をAST構造に追加することを検討する。
    - Agent実行プロンプト:
      ```
-     対象ファイル: src/pass1_parser.rs, src/pass2_ast.rs, src/types.rs
+     対象ファイル: src/pass2_ast.rs, src/pass3_events.rs, src/pass4_midi.rs
 
-     実行内容: `src/pass1_parser.rs` にて、トラックの先頭に現れる `@128` コマンドを認識し、その情報をAST（`src/pass2_ast.rs` の関連構造体や、`src/types.rs` の定義）に適切に格納できるよう変更してください。具体的には、AST構造にドラムチャンネル指定のフラグや情報を追加することを検討してください。
+     実行内容: `src/pass2_ast.rs`において、各トラックのASTノードを走査し、`@128`が存在するかどうかを検出して、その情報（例: `is_drum_track: true`のようなフラグ）をAST構造に追加してください。次に、`src/pass3_events.rs`でMIDIイベントを生成する際にこのフラグを参照し、`is_drum_track`がtrueの場合にそのトラックのすべてのイベントをMIDIチャンネル9（0-indexed）に設定するように`src/pass4_midi.rs`の処理を調整してください。
 
-     確認事項: `@128`はトラック全体のプロパティとして扱われるべきであり、他のチャンネル変更コマンド（例: `@n`）との相互作用を考慮すること。既存のパーシングロジックに予期せぬ影響を与えないこと。
+     確認事項: `@128`が正しく検出されること、他のチャンネル設定と競合しないこと、および既存のMIDI生成ロジックが意図せず変更されないことを確認してください。mmlabcの「track」の定義とMIDIチャンネル割り当ての関連性を確認してください。
 
-     期待する出力: `@128`コマンドを処理するための `src/pass1_parser.rs`, `src/pass2_ast.rs`, `src/types.rs` の変更点を具体的にmarkdown形式で提示してください。
+     期待する出力: `@128`検出ロジックの実装方法、ASTへのフラグ追加方法、およびMIDIチャンネル割り当て変更に関する`pass2_ast.rs`, `pass3_events.rs`, `pass4_midi.rs`の変更点をmarkdown形式で出力してください。
      ```
 
-3. プログラムチェンジ (@n) コマンドの実装
-   - 最初の小さな一歩: `tree-sitter-mml/grammar.js` に `@n` コマンドの構文（`n`は数値）を追加し、パーサーがこれを認識できるようにする。
+3. 既存MML構文のテストカバレッジ拡充と安定化
+   - 最初の小さな一歩: `tests/test_pass1.rs`と`tests/test_pass2.rs`に、mmlabcフォーマットにおける複雑な音符、修飾子、制御コマンドの組み合わせを網羅する新しいテストケースを追加する。
    - Agent実行プロンプト:
      ```
-     対象ファイル: tree-sitter-mml/grammar.js, tree-sitter-mml/src/grammar.json, src/pass1_parser.rs, src/pass2_ast.rs, src/pass3_events.rs, src/pass4_midi.rs
+     対象ファイル: tests/test_pass1.rs, tests/test_pass2.rs, src/pass1_parser.rs, src/pass2_ast.rs
 
-     実行内容: `tree-sitter-mml/grammar.js` に `@n` コマンド（例: `@0`, `@127`など）のパーシングルールを追加し、`src/pass1_parser.rs` がこれをASTに変換できるよう、また `src/pass3_events.rs` や `src/pass4_midi.rs` でMIDIプログラムチェンジイベントとして適切に処理できるよう、関連ファイルの変更の概要を提示してください。
+     実行内容: `tests/test_pass1.rs`と`tests/test_pass2.rs`に、mmlabcフォーマットにおける様々なMML構文（特に複雑な音符、修飾子、制御コマンドの組み合わせ）を網羅する新しいテストケースを追加してください。これにより、パーサーとAST変換のロバスト性を向上させます。新しいテストケースは、成功ケースだけでなく、エラーハンドリングが必要な不正な構文のケースも考慮してください。
 
-     確認事項: `@n`コマンドはトラック内のどこにでも出現可能であり、その時点以降のノートに影響を与えることを考慮すること。また、既に存在する `@128`（ドラムチャンネル）との競合がないことを確認すること。
+     確認事項: 新しいテストケースが既存の正常な動作を妨げないこと、およびテストカバレッジが実際に向上することを確認してください。追加するテストケースがmmlabcフォーマットの公式仕様または慣習に準拠していることを確認してください。
 
-     期待する出力: `@n`コマンドをパースし、MIDIイベントとして生成するための `tree-sitter-mml/grammar.js` の関連部分と、`src/pass1_parser.rs`, `src/pass2_ast.rs`, `src/pass3_events.rs`, `src/pass4_midi.rs` で必要な変更点の概要をmarkdown形式で出力してください。
+     期待する出力: `test_pass1.rs`と`test_pass2.rs`に追加するテストケースの例と、それらがカバーするMML構文の特徴をmarkdown形式で記述してください。
      ```
 
 ---
-Generated at: 2025-11-16 07:04:45 JST
+Generated at: 2025-11-28 07:05:32 JST

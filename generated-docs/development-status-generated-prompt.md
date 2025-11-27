@@ -1,4 +1,4 @@
-Last updated: 2025-11-16
+Last updated: 2025-11-28
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -206,7 +206,6 @@ Last updated: 2025-11-16
 - _codeql_detected_source_root
 - _config.yml
 - build.rs
-- generated-docs/project-overview-generated-prompt.md
 - issue-notes/14.md
 - issue-notes/17.md
 - issue-notes/18.md
@@ -335,47 +334,35 @@ Last updated: 2025-11-16
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-246c76a Merge pull request #38 from cat2151/copilot/implement-duration-and-dotted-notes
-a584124 Apply cargo fmt formatting
-df29714 Add comprehensive tests for note lengths and dotted notes
-d6f4d0a Update grammar and types to support note lengths and dotted notes
-7d7a03f Add issue note for #39 [auto]
-3e69f50 Initial plan
-cdd87a3 Merge pull request #35 from cat2151/copilot/implement-v-command-midi-velocities
-7deb10a Add issue note for #37 [auto]
-ed264e8 Run cargo fmt to fix formatting
-3ed2ce5 Implement v command for velocity control (v1=velocity 8, v15=velocity 127)
+1865449 Auto-translate README.ja.md to README.md [auto]
+c3f38a6 READMEの内容を更新し、ライブラリの説明を明確化。用途と状況セクションを追加。
 
 ### 変更されたファイル:
-issue-notes/36.md
+README.ja.md
+README.md
+generated-docs/development-status-generated-prompt.md
+generated-docs/development-status.md
+generated-docs/project-overview-generated-prompt.md
+generated-docs/project-overview.md
 issue-notes/37.md
 issue-notes/39.md
 src/pass1_parser.rs
 src/pass2_ast.rs
 src/pass3_events.rs
-src/pass4_midi.rs
 src/types.rs
-tests/integration_test.rs
-tests/test_channel.rs
 tests/test_dotted_notes.rs
 tests/test_modifier.rs
 tests/test_note_length.rs
 tests/test_octave.rs
 tests/test_pass2.rs
 tests/test_pass3.rs
-tests/test_pass4.rs
-tests/test_program_change.rs
-tests/test_rest.rs
-tests/test_tempo.rs
 tests/test_velocity.rs
 tree-sitter-mml/grammar.js
 tree-sitter-mml/src/grammar.json
 tree-sitter-mml/src/node-types.json
 tree-sitter-mml/src/parser.c
-tree-sitter-mml/src/tree_sitter/alloc.h
-tree-sitter-mml/src/tree_sitter/array.h
 tree-sitter-mml/src/tree_sitter/parser.h
 
 
 ---
-Generated at: 2025-11-16 07:04:28 JST
+Generated at: 2025-11-28 07:05:19 JST

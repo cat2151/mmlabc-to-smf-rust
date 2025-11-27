@@ -1,4 +1,4 @@
-Last updated: 2025-11-16
+Last updated: 2025-11-28
 
 
 # プロジェクト概要生成プロンプト（来訪者向け）
@@ -63,16 +63,28 @@ Last updated: 2025-11-16
 名前: 
 説明: # mmlabc-to-smf-rust
 
-Music Macro Language (MML) から Standard MIDI File (SMF) への変換ツール（Rust版）
+<p align="left">
+  <a href="README.ja.md"><img src="https://img.shields.io/badge/🇯🇵-Japanese-red.svg" alt="Japanese"></a>
+  <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸-English-blue.svg" alt="English"></a>
+</p>
+
+Music Macro Language (MML) から Standard MIDI File (SMF) への変換ライブラリ
 
 ## 概要
 
-このプロジェクトは、[mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf) のRust実装版です。
-Music Macro Language形式の文字列を、包括的なデバッグ出力を備えた4パスアーキテクチャを使用してStandard MIDI Fileに変換します。
+このライブラリは、Music Macro Language（MML）形式の文字列を、Standard MIDI Fileに変換します。Rustで書かれています。
 
-## WIP
+## 用途
 
-開発中です。現状、c～bを認識できるのみで、ほかのMMLはこれから実装します。
+ライブラリとして `cat-play-mml` から利用しています
+
+## 状況
+
+頻繁に破壊的変更をしています
+
+READMEがメンテ不足です。実際はもっと多数のMMLコマンドが実装済みです。あとでREADMEをメンテ予定です
+
+実装されたMMLを知りたい場合、まず `tree-sitter-mml/grammer.js` をお読みください（ただし今後、破壊的変更されます）
 
 ### 実装済み機能 ✅
 - **基本音符変換**: `cdefgab` → MIDI音符への変換
@@ -2861,6 +2873,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📄 _config.yml
       📄 build.rs
       📁 generated-docs/
+        📖 development-status-generated-prompt.md
       📁 issue-notes/
         📖 14.md
         📖 17.md
@@ -2919,6 +2932,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📄 _config.yml
     📄 build.rs
     📁 generated-docs/
+      📖 development-status-generated-prompt.md
     📁 issue-notes/
       📖 14.md
       📖 17.md
@@ -2977,6 +2991,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📄 _config.yml
   📄 build.rs
   📁 generated-docs/
+    📖 development-status-generated-prompt.md
   📁 issue-notes/
     📖 14.md
     📖 17.md
@@ -3035,6 +3050,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 📄 _config.yml
 📄 build.rs
 📁 generated-docs/
+  📖 development-status-generated-prompt.md
 📁 issue-notes/
   📖 14.md
   📖 17.md
@@ -3319,4 +3335,4 @@ tree-sitter-mml/grammar.js
 
 
 ---
-Generated at: 2025-11-16 07:04:28 JST
+Generated at: 2025-11-28 07:05:19 JST
