@@ -1,6 +1,8 @@
 title: "mmlabc-to-smf-rust"
-description: "Music Macro Language to Standard MIDI File converter"
+description: "mmlabc-to-smf-rust"
 theme: jekyll-theme-slate
 github:
   is_project_page: true
   repository_url: https://github.com/cat2151/mmlabc-to-smf-rust
+plugins:
+  - jekyll-sitemap
