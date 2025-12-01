@@ -1,4 +1,4 @@
-Last updated: 2025-11-28
+Last updated: 2025-12-02
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -162,6 +162,7 @@ Last updated: 2025-11-28
 - .github/actions-tmp/generated-docs/project-overview-generated-prompt.md
 - .github/actions-tmp/generated-docs/project-overview.md
 - .github/actions-tmp/generated-docs/style.css
+- .github/actions-tmp/googled947dc864c270e07.html
 - .github/actions-tmp/issue-notes/10.md
 - .github/actions-tmp/issue-notes/11.md
 - .github/actions-tmp/issue-notes/12.md
@@ -206,6 +207,8 @@ Last updated: 2025-11-28
 - _codeql_detected_source_root
 - _config.yml
 - build.rs
+- generated-docs/project-overview-generated-prompt.md
+- googled947dc864c270e07.html
 - issue-notes/14.md
 - issue-notes/17.md
 - issue-notes/18.md
@@ -334,18 +337,21 @@ Last updated: 2025-11-28
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
+4691109 Google検索にindexさせる用
+beb34a5 Google検索にindexさせる用
+d898453 Update project summaries (overview & development status) [auto]
 1865449 Auto-translate README.ja.md to README.md [auto]
 c3f38a6 READMEの内容を更新し、ライブラリの説明を明確化。用途と状況セクションを追加。
 
 ### 変更されたファイル:
 README.ja.md
 README.md
+_config.yml
 generated-docs/development-status-generated-prompt.md
 generated-docs/development-status.md
 generated-docs/project-overview-generated-prompt.md
 generated-docs/project-overview.md
-issue-notes/37.md
-issue-notes/39.md
+googled947dc864c270e07.html
 src/pass1_parser.rs
 src/pass2_ast.rs
 src/pass3_events.rs
@@ -356,7 +362,6 @@ tests/test_note_length.rs
 tests/test_octave.rs
 tests/test_pass2.rs
 tests/test_pass3.rs
-tests/test_velocity.rs
 tree-sitter-mml/grammar.js
 tree-sitter-mml/src/grammar.json
 tree-sitter-mml/src/node-types.json
@@ -365,4 +370,4 @@ tree-sitter-mml/src/tree_sitter/parser.h
 
 
 ---
-Generated at: 2025-11-28 07:05:19 JST
+Generated at: 2025-12-02 07:04:47 JST
