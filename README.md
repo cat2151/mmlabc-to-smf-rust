@@ -27,10 +27,11 @@ To see which MML commands are implemented, please refer to `tree-sitter-mml/gram
 ### Implemented Features ✅
 - **Basic Note Conversion**: Converts `cdefgab` to MIDI notes.
 - **4-Pass Architecture**: Fully implemented.
-  - Pass 1: Tokenization of MML strings (simple parser)
+  - Pass 1: Tokenization of MML strings using tree-sitter parser
   - Pass 2: Conversion of tokens to AST (Abstract Syntax Tree)
   - Pass 3: Generation of MIDI events from AST
   - Pass 4: Creation of Standard MIDI Files from MIDI events
+- **tree-sitter Integration**: Full tree-sitter parser integration for MML syntax parsing.
 - **Channel Functionality**: Multi-channel support using semicolons (`;`).
 - **JSON Debug Output**: Outputs intermediate results of each pass in JSON format.
 - **CLI**: Basic operations via command-line arguments.
@@ -51,7 +52,6 @@ cargo run -- "cde" -o my_song.mid
 ## Future Prospects
 
 ### Short-Term Goals 🚧
-- **tree-sitter Integration**: For parsing more complex MML syntax.
 - **Repository Configuration**: Setting up formatters, linters, etc.
 - **Error Handling**: More detailed error messages.
 
@@ -69,7 +69,7 @@ cargo run -- "cde" -o my_song.mid
 ## Features
 
 - **4-Pass Architecture**:
-  - **Pass 1**: Parses MML strings into tokens (currently a simple parser, future: tree-sitter).
+  - **Pass 1**: Parses MML strings into tokens using tree-sitter.
   - **Pass 2**: Converts tokens into an Abstract Syntax Tree (AST).
   - **Pass 3**: Generates MIDI events from the AST.
   - **Pass 4**: Creates a Standard MIDI File.
