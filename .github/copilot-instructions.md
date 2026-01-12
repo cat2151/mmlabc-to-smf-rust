@@ -64,7 +64,7 @@ cargo run -- "cde" -o output.mid
 - `src/`: Primary source code
   - `main.rs`: CLI entry point
   - `lib.rs`: Library root
-  - `pass1_parser.rs`: Pass 1 - Parse MML to tokens (will use tree-sitter)
+  - `pass1_parser.rs`: Pass 1 - Parse MML to tokens using tree-sitter
   - `pass2_ast.rs`: Pass 2 - Convert tokens to Abstract Syntax Tree
   - `pass3_events.rs`: Pass 3 - Generate MIDI events from AST
   - `pass4_midi.rs`: Pass 4 - Create Standard MIDI File
@@ -96,7 +96,7 @@ The following files are generated during execution and should not be committed:
 - `midly`: MIDI file manipulation
 - `serde` & `serde_json`: JSON serialization for debug output
 - `clap`: Command-line argument parsing
-- `tree-sitter`: Parsing MML syntax (planned full integration)
+- `tree-sitter`: Parsing MML syntax (fully integrated)
 - `anyhow` & `thiserror`: Error handling
 
 ### Coding Standards
@@ -108,8 +108,8 @@ The following files are generated during execution and should not be committed:
 
 ### Architecture
 The project follows a **4-pass architecture**:
-1. **Pass 1**: Parse MML string into tokens (currently simple tokenizer; will use tree-sitter CST)
-2. **Pass 2**: Transform tokens/CST into Abstract Syntax Tree (AST)
+1. **Pass 1**: Parse MML string into tokens using tree-sitter
+2. **Pass 2**: Transform tokens into Abstract Syntax Tree (AST)
 3. **Pass 3**: Generate MIDI events from AST
 4. **Pass 4**: Create Standard MIDI File from events
 
@@ -164,11 +164,10 @@ When adding new MML commands:
 - ✅ Basic note conversion (c, d, e → MIDI)
 - ✅ 4-pass architecture implemented
 - ✅ Debug JSON output at each pass
-- 🚧 Tree-sitter integration (in progress)
+- ✅ Tree-sitter integration (fully implemented)
 
 ### Future Work
 - Repository configuration (formatter settings, etc.)
-- Full tree-sitter integration
 - Implement complete mmlabc MML command set
 - Reference: See mml2abc repository for mmlabc format specification
 
