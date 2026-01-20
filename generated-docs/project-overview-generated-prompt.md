@@ -1,4 +1,4 @@
-Last updated: 2025-12-02
+Last updated: 2026-01-21
 
 
 # プロジェクト概要生成プロンプト（来訪者向け）
@@ -66,6 +66,7 @@ Last updated: 2025-12-02
 <p align="left">
   <a href="README.ja.md"><img src="https://img.shields.io/badge/🇯🇵-Japanese-red.svg" alt="Japanese"></a>
   <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸-English-blue.svg" alt="English"></a>
+  <a href="https://deepwiki.com/cat2151/mmlabc-to-smf-rust"><img src="https://img.shields.io/badge/📖-DeepWiki-blue.svg" alt="DeepWiki"></a>
 </p>
 
 Music Macro Language (MML) から Standard MIDI File (SMF) への変換ライブラリ
@@ -84,15 +85,16 @@ Music Macro Language (MML) から Standard MIDI File (SMF) への変換ライブ
 
 READMEがメンテ不足です。実際はもっと多数のMMLコマンドが実装済みです。あとでREADMEをメンテ予定です
 
-実装されたMMLを知りたい場合、まず `tree-sitter-mml/grammer.js` をお読みください（ただし今後、破壊的変更されます）
+実装されたMMLを知りたい場合、まず `tree-sitter-mml/grammar.js` をお読みください（ただし今後、破壊的変更されます）
 
 ### 実装済み機能 ✅
 - **基本音符変換**: `cdefgab` → MIDI音符への変換
 - **4パスアーキテクチャ**: 完全実装済み
-  - パス1: MML文字列のトークン化（単純パーサー）
+  - パス1: MML文字列のトークン化（tree-sitterパーサー使用）
   - パス2: トークンからAST（抽象構文木）への変換
   - パス3: ASTからMIDIイベントの生成
   - パス4: MIDIイベントからStandard MIDI File作成
+- **tree-sitter統合**: MML構文解析のための完全なtree-sitterパーサー統合
 - **チャンネル機能**: セミコロン（`;`）による多チャンネル対応
 - **JSON デバッグ出力**: 各パスの中間結果をJSONで出力
 - **CLI**: コマンドライン引数による基本操作
@@ -113,7 +115,6 @@ cargo run -- "cde" -o my_song.mid
 ## 今後の見通し
 
 ### 短期目標 🚧
-- **tree-sitter統合**: より複雑なMML構文の解析に向けて
 - **リポジトリ設定**: フォーマッター、リンター等の設定整備
 - **エラーハンドリング**: より詳細なエラーメッセージ
 
@@ -131,7 +132,7 @@ cargo run -- "cde" -o my_song.mid
 ## 特徴
 
 - **4パスアーキテクチャ**:
-  - **パス1**: MML文字列をトークンに解析（現在：単純パーサー、将来：tree-sitter）
+  - **パス1**: MML文字列をトークンに解析（tree-sitterパーサー使用）
   - **パス2**: トークンを抽象構文木（AST）に変換
   - **パス3**: ASTからMIDIイベントを生成
   - **パス4**: Standard MIDI Fileを作成
@@ -742,6 +743,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                   📖 36.md
                                                                                   📖 37.md
                                                                                   📖 39.md
+                                                                                  📖 40.md
+                                                                                  📖 42.md
+                                                                                  📖 44.md
                                                                                 📄 mmlabc-to-smf-rust.toml.example
                                                                                 📁 src/
                                                                                   📄 config.rs
@@ -801,6 +805,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📖 36.md
                                                                                 📖 37.md
                                                                                 📖 39.md
+                                                                                📖 40.md
+                                                                                📖 42.md
+                                                                                📖 44.md
                                                                               📄 mmlabc-to-smf-rust.toml.example
                                                                               📁 src/
                                                                                 📄 config.rs
@@ -860,6 +867,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📖 36.md
                                                                               📖 37.md
                                                                               📖 39.md
+                                                                              📖 40.md
+                                                                              📖 42.md
+                                                                              📖 44.md
                                                                             📄 mmlabc-to-smf-rust.toml.example
                                                                             📁 src/
                                                                               📄 config.rs
@@ -919,6 +929,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📖 36.md
                                                                             📖 37.md
                                                                             📖 39.md
+                                                                            📖 40.md
+                                                                            📖 42.md
+                                                                            📖 44.md
                                                                           📄 mmlabc-to-smf-rust.toml.example
                                                                           📁 src/
                                                                             📄 config.rs
@@ -978,6 +991,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📖 36.md
                                                                           📖 37.md
                                                                           📖 39.md
+                                                                          📖 40.md
+                                                                          📖 42.md
+                                                                          📖 44.md
                                                                         📄 mmlabc-to-smf-rust.toml.example
                                                                         📁 src/
                                                                           📄 config.rs
@@ -1037,6 +1053,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📖 36.md
                                                                         📖 37.md
                                                                         📖 39.md
+                                                                        📖 40.md
+                                                                        📖 42.md
+                                                                        📖 44.md
                                                                       📄 mmlabc-to-smf-rust.toml.example
                                                                       📁 src/
                                                                         📄 config.rs
@@ -1096,6 +1115,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📖 36.md
                                                                       📖 37.md
                                                                       📖 39.md
+                                                                      📖 40.md
+                                                                      📖 42.md
+                                                                      📖 44.md
                                                                     📄 mmlabc-to-smf-rust.toml.example
                                                                     📁 src/
                                                                       📄 config.rs
@@ -1155,6 +1177,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📖 36.md
                                                                     📖 37.md
                                                                     📖 39.md
+                                                                    📖 40.md
+                                                                    📖 42.md
+                                                                    📖 44.md
                                                                   📄 mmlabc-to-smf-rust.toml.example
                                                                   📁 src/
                                                                     📄 config.rs
@@ -1214,6 +1239,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📖 36.md
                                                                   📖 37.md
                                                                   📖 39.md
+                                                                  📖 40.md
+                                                                  📖 42.md
+                                                                  📖 44.md
                                                                 📄 mmlabc-to-smf-rust.toml.example
                                                                 📁 src/
                                                                   📄 config.rs
@@ -1273,6 +1301,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📖 36.md
                                                                 📖 37.md
                                                                 📖 39.md
+                                                                📖 40.md
+                                                                📖 42.md
+                                                                📖 44.md
                                                               📄 mmlabc-to-smf-rust.toml.example
                                                               📁 src/
                                                                 📄 config.rs
@@ -1332,6 +1363,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📖 36.md
                                                               📖 37.md
                                                               📖 39.md
+                                                              📖 40.md
+                                                              📖 42.md
+                                                              📖 44.md
                                                             📄 mmlabc-to-smf-rust.toml.example
                                                             📁 src/
                                                               📄 config.rs
@@ -1391,6 +1425,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📖 36.md
                                                             📖 37.md
                                                             📖 39.md
+                                                            📖 40.md
+                                                            📖 42.md
+                                                            📖 44.md
                                                           📄 mmlabc-to-smf-rust.toml.example
                                                           📁 src/
                                                             📄 config.rs
@@ -1450,6 +1487,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📖 36.md
                                                           📖 37.md
                                                           📖 39.md
+                                                          📖 40.md
+                                                          📖 42.md
+                                                          📖 44.md
                                                         📄 mmlabc-to-smf-rust.toml.example
                                                         📁 src/
                                                           📄 config.rs
@@ -1509,6 +1549,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📖 36.md
                                                         📖 37.md
                                                         📖 39.md
+                                                        📖 40.md
+                                                        📖 42.md
+                                                        📖 44.md
                                                       📄 mmlabc-to-smf-rust.toml.example
                                                       📁 src/
                                                         📄 config.rs
@@ -1568,6 +1611,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📖 36.md
                                                       📖 37.md
                                                       📖 39.md
+                                                      📖 40.md
+                                                      📖 42.md
+                                                      📖 44.md
                                                     📄 mmlabc-to-smf-rust.toml.example
                                                     📁 src/
                                                       📄 config.rs
@@ -1627,6 +1673,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📖 36.md
                                                     📖 37.md
                                                     📖 39.md
+                                                    📖 40.md
+                                                    📖 42.md
+                                                    📖 44.md
                                                   📄 mmlabc-to-smf-rust.toml.example
                                                   📁 src/
                                                     📄 config.rs
@@ -1686,6 +1735,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📖 36.md
                                                   📖 37.md
                                                   📖 39.md
+                                                  📖 40.md
+                                                  📖 42.md
+                                                  📖 44.md
                                                 📄 mmlabc-to-smf-rust.toml.example
                                                 📁 src/
                                                   📄 config.rs
@@ -1745,6 +1797,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📖 36.md
                                                 📖 37.md
                                                 📖 39.md
+                                                📖 40.md
+                                                📖 42.md
+                                                📖 44.md
                                               📄 mmlabc-to-smf-rust.toml.example
                                               📁 src/
                                                 📄 config.rs
@@ -1804,6 +1859,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📖 36.md
                                               📖 37.md
                                               📖 39.md
+                                              📖 40.md
+                                              📖 42.md
+                                              📖 44.md
                                             📄 mmlabc-to-smf-rust.toml.example
                                             📁 src/
                                               📄 config.rs
@@ -1863,6 +1921,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📖 36.md
                                             📖 37.md
                                             📖 39.md
+                                            📖 40.md
+                                            📖 42.md
+                                            📖 44.md
                                           📄 mmlabc-to-smf-rust.toml.example
                                           📁 src/
                                             📄 config.rs
@@ -1922,6 +1983,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📖 36.md
                                           📖 37.md
                                           📖 39.md
+                                          📖 40.md
+                                          📖 42.md
+                                          📖 44.md
                                         📄 mmlabc-to-smf-rust.toml.example
                                         📁 src/
                                           📄 config.rs
@@ -1981,6 +2045,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📖 36.md
                                         📖 37.md
                                         📖 39.md
+                                        📖 40.md
+                                        📖 42.md
+                                        📖 44.md
                                       📄 mmlabc-to-smf-rust.toml.example
                                       📁 src/
                                         📄 config.rs
@@ -2040,6 +2107,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📖 36.md
                                       📖 37.md
                                       📖 39.md
+                                      📖 40.md
+                                      📖 42.md
+                                      📖 44.md
                                     📄 mmlabc-to-smf-rust.toml.example
                                     📁 src/
                                       📄 config.rs
@@ -2099,6 +2169,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📖 36.md
                                     📖 37.md
                                     📖 39.md
+                                    📖 40.md
+                                    📖 42.md
+                                    📖 44.md
                                   📄 mmlabc-to-smf-rust.toml.example
                                   📁 src/
                                     📄 config.rs
@@ -2158,6 +2231,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📖 36.md
                                   📖 37.md
                                   📖 39.md
+                                  📖 40.md
+                                  📖 42.md
+                                  📖 44.md
                                 📄 mmlabc-to-smf-rust.toml.example
                                 📁 src/
                                   📄 config.rs
@@ -2217,6 +2293,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📖 36.md
                                 📖 37.md
                                 📖 39.md
+                                📖 40.md
+                                📖 42.md
+                                📖 44.md
                               📄 mmlabc-to-smf-rust.toml.example
                               📁 src/
                                 📄 config.rs
@@ -2276,6 +2355,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📖 36.md
                               📖 37.md
                               📖 39.md
+                              📖 40.md
+                              📖 42.md
+                              📖 44.md
                             📄 mmlabc-to-smf-rust.toml.example
                             📁 src/
                               📄 config.rs
@@ -2320,6 +2402,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📄 _config.yml
                           📄 build.rs
                           📁 generated-docs/
+                            📖 development-status-generated-prompt.md
                           🌐 googled947dc864c270e07.html
                           📁 issue-notes/
                             📖 14.md
@@ -2335,6 +2418,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📖 36.md
                             📖 37.md
                             📖 39.md
+                            📖 40.md
+                            📖 42.md
+                            📖 44.md
                           📄 mmlabc-to-smf-rust.toml.example
                           📁 src/
                             📄 config.rs
@@ -2379,6 +2465,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📄 _config.yml
                         📄 build.rs
                         📁 generated-docs/
+                          📖 development-status-generated-prompt.md
                         🌐 googled947dc864c270e07.html
                         📁 issue-notes/
                           📖 14.md
@@ -2394,6 +2481,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📖 36.md
                           📖 37.md
                           📖 39.md
+                          📖 40.md
+                          📖 42.md
+                          📖 44.md
                         📄 mmlabc-to-smf-rust.toml.example
                         📁 src/
                           📄 config.rs
@@ -2438,6 +2528,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📄 _config.yml
                       📄 build.rs
                       📁 generated-docs/
+                        📖 development-status-generated-prompt.md
                       🌐 googled947dc864c270e07.html
                       📁 issue-notes/
                         📖 14.md
@@ -2453,6 +2544,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📖 36.md
                         📖 37.md
                         📖 39.md
+                        📖 40.md
+                        📖 42.md
+                        📖 44.md
                       📄 mmlabc-to-smf-rust.toml.example
                       📁 src/
                         📄 config.rs
@@ -2497,6 +2591,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📄 _config.yml
                     📄 build.rs
                     📁 generated-docs/
+                      📖 development-status-generated-prompt.md
                     🌐 googled947dc864c270e07.html
                     📁 issue-notes/
                       📖 14.md
@@ -2512,6 +2607,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📖 36.md
                       📖 37.md
                       📖 39.md
+                      📖 40.md
+                      📖 42.md
+                      📖 44.md
                     📄 mmlabc-to-smf-rust.toml.example
                     📁 src/
                       📄 config.rs
@@ -2556,6 +2654,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📄 _config.yml
                   📄 build.rs
                   📁 generated-docs/
+                    📖 development-status-generated-prompt.md
                   🌐 googled947dc864c270e07.html
                   📁 issue-notes/
                     📖 14.md
@@ -2571,6 +2670,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📖 36.md
                     📖 37.md
                     📖 39.md
+                    📖 40.md
+                    📖 42.md
+                    📖 44.md
                   📄 mmlabc-to-smf-rust.toml.example
                   📁 src/
                     📄 config.rs
@@ -2615,6 +2717,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📄 _config.yml
                 📄 build.rs
                 📁 generated-docs/
+                  📖 development-status-generated-prompt.md
                 🌐 googled947dc864c270e07.html
                 📁 issue-notes/
                   📖 14.md
@@ -2630,6 +2733,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📖 36.md
                   📖 37.md
                   📖 39.md
+                  📖 40.md
+                  📖 42.md
+                  📖 44.md
                 📄 mmlabc-to-smf-rust.toml.example
                 📁 src/
                   📄 config.rs
@@ -2674,6 +2780,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📄 _config.yml
               📄 build.rs
               📁 generated-docs/
+                📖 development-status-generated-prompt.md
               🌐 googled947dc864c270e07.html
               📁 issue-notes/
                 📖 14.md
@@ -2689,6 +2796,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📖 36.md
                 📖 37.md
                 📖 39.md
+                📖 40.md
+                📖 42.md
+                📖 44.md
               📄 mmlabc-to-smf-rust.toml.example
               📁 src/
                 📄 config.rs
@@ -2733,6 +2843,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📄 _config.yml
             📄 build.rs
             📁 generated-docs/
+              📖 development-status-generated-prompt.md
             🌐 googled947dc864c270e07.html
             📁 issue-notes/
               📖 14.md
@@ -2748,6 +2859,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📖 36.md
               📖 37.md
               📖 39.md
+              📖 40.md
+              📖 42.md
+              📖 44.md
             📄 mmlabc-to-smf-rust.toml.example
             📁 src/
               📄 config.rs
@@ -2792,6 +2906,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📄 _config.yml
           📄 build.rs
           📁 generated-docs/
+            📖 development-status-generated-prompt.md
           🌐 googled947dc864c270e07.html
           📁 issue-notes/
             📖 14.md
@@ -2807,6 +2922,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📖 36.md
             📖 37.md
             📖 39.md
+            📖 40.md
+            📖 42.md
+            📖 44.md
           📄 mmlabc-to-smf-rust.toml.example
           📁 src/
             📄 config.rs
@@ -2851,6 +2969,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📄 _config.yml
         📄 build.rs
         📁 generated-docs/
+          📖 development-status-generated-prompt.md
         🌐 googled947dc864c270e07.html
         📁 issue-notes/
           📖 14.md
@@ -2866,6 +2985,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📖 36.md
           📖 37.md
           📖 39.md
+          📖 40.md
+          📖 42.md
+          📖 44.md
         📄 mmlabc-to-smf-rust.toml.example
         📁 src/
           📄 config.rs
@@ -2910,6 +3032,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📄 _config.yml
       📄 build.rs
       📁 generated-docs/
+        📖 development-status-generated-prompt.md
       🌐 googled947dc864c270e07.html
       📁 issue-notes/
         📖 14.md
@@ -2925,6 +3048,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📖 36.md
         📖 37.md
         📖 39.md
+        📖 40.md
+        📖 42.md
+        📖 44.md
       📄 mmlabc-to-smf-rust.toml.example
       📁 src/
         📄 config.rs
@@ -2969,6 +3095,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📄 _config.yml
     📄 build.rs
     📁 generated-docs/
+      📖 development-status-generated-prompt.md
     🌐 googled947dc864c270e07.html
     📁 issue-notes/
       📖 14.md
@@ -2984,6 +3111,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📖 36.md
       📖 37.md
       📖 39.md
+      📖 40.md
+      📖 42.md
+      📖 44.md
     📄 mmlabc-to-smf-rust.toml.example
     📁 src/
       📄 config.rs
@@ -3028,6 +3158,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📄 _config.yml
   📄 build.rs
   📁 generated-docs/
+    📖 development-status-generated-prompt.md
   🌐 googled947dc864c270e07.html
   📁 issue-notes/
     📖 14.md
@@ -3043,6 +3174,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📖 36.md
     📖 37.md
     📖 39.md
+    📖 40.md
+    📖 42.md
+    📖 44.md
   📄 mmlabc-to-smf-rust.toml.example
   📁 src/
     📄 config.rs
@@ -3087,6 +3221,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 📄 _config.yml
 📄 build.rs
 📁 generated-docs/
+  📖 development-status-generated-prompt.md
 🌐 googled947dc864c270e07.html
 📁 issue-notes/
   📖 14.md
@@ -3102,6 +3237,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📖 36.md
   📖 37.md
   📖 39.md
+  📖 40.md
+  📖 42.md
+  📖 44.md
 📄 mmlabc-to-smf-rust.toml.example
 📁 src/
   📄 config.rs
@@ -3527,4 +3665,4 @@ googled947dc864c270e07.html
 
 
 ---
-Generated at: 2025-12-02 07:04:47 JST
+Generated at: 2026-01-21 07:05:55 JST

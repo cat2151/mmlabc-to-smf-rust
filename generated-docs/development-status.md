@@ -1,50 +1,51 @@
-Last updated: 2025-12-02
+Last updated: 2026-01-21
 
 # Development Status
 
 ## 現在のIssues
-- MIDI出力のmmlabcフォーマット準拠のため、`kt`コマンド ([Issue #39](../issue-notes/39.md)) の実装が進行中です。
-- 同様に、`@128`を持つトラックをドラムチャンネル ([Issue #37](../issue-notes/37.md)) として扱う機能の実装も進められています。
-- これらはMMLパーサーのセマンティック解析とMIDIイベント生成ロジックに影響を与えるため、テストと連携が重要です。
+- [Issue #44](../issue-notes/44.md) は、ブラウザでMMLからSMFへのバイナリ変換をWASM (WASI Reactor FFI export) で実現し、Tree-sitterのC言語依存を解決することを目指しています。
+- [Issue #39](../issue-notes/39.md) は、MMLabcフォーマット準拠の`kt`（key transpose）コマンドを実装し、音符番号の移調を可能にする機能追加を求めています。
+- [Issue #37](../issue-notes/37.md) は、mmlabcフォーマットに従い、`@128`が指定されたトラックをMIDIチャンネル9（ドラムチャンネル）として扱う機能を実装する予定です。
 
 ## 次の一手候補
-1. `kt`コマンド（キー移調）の実装 [Issue #39](../issue-notes/39.md)
-   - 最初の小さな一歩: `tree-sitter-mml/grammar.js`を更新し、`kt`コマンドをMML文法として認識できるようにする。
+1. [Issue #44](../issue-notes/44.md): ブラウザで MML to SMF 変換を可能とするWASM版クレートをWASI Reactorで実装する
+   - 最初の小さな一歩: Rustプロジェクトに`wasm32-wasi`ターゲットを追加し、`src/lib.rs`に`#[no_mangle]`と`pub extern "C"`を用いた最小限のFFI関数をエクスポートする。
    - Agent実行プロンプ:
      ```
-     対象ファイル: `tree-sitter-mml/grammar.js`, `src/pass1_parser.rs`
+     対象ファイル: `Cargo.toml`, `src/lib.rs`, `src/main.rs`
 
-     実行内容: `kt`コマンドをMML文法に追加し、`tree-sitter-mml/grammar.js`を更新する。これに伴い、`src/pass1_parser.rs`で生成される`tree-sitter`のASTで`kt`コマンドが認識されるように、既存のパーサロジックを分析し、必要に応じて変更点を特定してください。
+     実行内容: Rustプロジェクトに`wasm32-wasi`ターゲットを追加し、`mmlabc_to_smf_rust`クレートがWASI Reactorとしてコンパイル可能になるように設定してください。具体的には、`src/lib.rs`に`#[no_mangle]`と`pub extern "C"`を用いた最小限のFFI関数（例: `fn greet_wasm() -> i32`）を追加し、`Cargo.toml`に`crate-type = ["cdylib"]`を設定してください。
 
-     確認事項: `kt`コマンドの引数（移調量と対象ノート）の構文がmmlabcフォーマットに準拠しているか確認し、既存のMML文法との競合がないか検証してください。`npm install && npm test`による文法テストの実行を確認してください。
+     確認事項: 既存のCLI機能がwasmターゲット追加後も正常にビルド・動作することを確認してください。また、`tree-sitter-mml/src/parser.c`のようなC言語依存のファイルがWASI Reactorの文脈でどのように扱われるか、その可能性を簡単に調査してください。
 
-     期待する出力: `kt`コマンドの文法定義が追加された`tree-sitter-mml/grammar.js`の更新内容と、`src/pass1_parser.rs`における必要な変更の提案をMarkdown形式で出力してください。
+     期待する出力: WASI Reactorとしてビルド可能な`Cargo.toml`と`src/lib.rs`の変更内容。また、`wasm32-wasi`ターゲットの追加手順と、最小限のFFI関数の実装例およびそのコンパイル方法をmarkdown形式で出力してください。
      ```
 
-2. `@128`トラックのドラムチャンネル割り当て実装 [Issue #37](../issue-notes/37.md)
-   - 最初の小さな一歩: `src/pass2_ast.rs`にトラック情報を保持するASTノードに`@128`ディレクティブの有無を記録するフラグを追加する。
-   - Agent実行プロンプト:
+2. [Issue #39](../issue-notes/39.md): ktコマンドを実装する。key transposeである。
+   - 最初の小さな一歩: `tree-sitter-mml/grammar.js`に`kt`トークンと関連するルールを追加し、`src/tree_sitter_mml.rs`を更新して、Rust側で`kt`コマンドがパースツリーとして認識されるようにする。
+   - Agent実行プロンプ:
      ```
-     対象ファイル: `src/pass2_ast.rs`, `src/types.rs`
+     対象ファイル: `tree-sitter-mml/grammar.js`, `src/tree_sitter_mml.rs`
 
-     実行内容: `pass2_ast.rs`でASTを構築する際に、MMLトラック内に`@128`ディレクティブが存在するかを検出し、その情報をAST構造に保持するためのロジックを追加してください。具体的には、`src/types.rs`でトラックを表す構造体（例: `Track`や`MmlContext`）に`is_drum_track: bool`のようなフラグを追加し、`pass2_ast.rs`でパース時にそのフラグをセットする処理を実装してください。
+     実行内容: MMLの文法に`kt`コマンドを組み込むため、`tree-sitter-mml/grammar.js`に`kt`トークン（例: `anon_sym_kt`）と、それに続く数値引数（例: 符号付き整数）を認識するルールを追加してください。その後、`tree-sitter generate`を実行し、生成された`src/parser.c`に基づいて`src/tree_sitter_mml.rs`のバインディングを更新してください。最初の実装として、`kt`コマンドとその引数がAST（抽象構文木）に適切に表現されるまでを目標とします。
 
-     確認事項: `pass1_parser.rs`から`pass2_ast.rs`へのAST変換フローと、既存のチャネル割り当てロジック（`@channel`など）との優先順位を考慮してください。
+     確認事項: 既存のMML文法（ノート、オクターブ変更など）に影響を与えないことを確認してください。`tree-sitter-mml`のビルドプロセス（`tree-sitter generate`など）とRust側のバインディング更新手順を理解していることを前提とします。
 
-     期待する出力: `src/types.rs`と`src/pass2_ast.rs`における変更内容を記述したプルリクエスト形式のMarkdown出力。
+     期待する出力: `tree-sitter-mml/grammar.js`と`src/tree_sitter_mml.rs`の変更内容。および、`kt`コマンドを認識する新しいAST構造の簡単な説明をmarkdown形式で出力してください。
      ```
 
-3. `pass2_ast`における`length`コマンドの解析強化
-   - 最初の小さな一歩: `tests/test_length.rs`に、`length`コマンドが複数のノートに影響を与える場合のテストケースを追加する。
-   - Agent実行プロンプト:
+3. [Issue #37](../issue-notes/37.md): `@128`のあるtrackはMIDI channel 9として扱う。
+   - 最初の小さな一歩: `src/pass1_parser.rs`または`src/pass2_ast.rs`において、各MMLトラック（`;`で区切られる文字列グループ）内に`@128`コマンドが存在するかどうかを検出するロジックを実装し、検出結果をログ出力する。
+   - Agent実行プロンプ:
      ```
-     対象ファイル: `tests/test_length.rs`, `src/pass2_ast.rs`
+     対象ファイル: `src/pass1_parser.rs`, `src/pass2_ast.rs`, `src/pass3_events.rs`
 
-     実行内容: `tests/test_length.rs`を分析し、`length`コマンド（例: `l4`, `l8.`）が複数の連続するノートに正しく適用されることを検証するテストケースを複数追加してください。特に、`l`コマンドの後に複数のノートや休符が続く場合、および途中で`l`コマンドが変更される場合のシナリオをカバーするようにテストを拡充してください。
+     実行内容: MMLパース処理の初期段階（`src/pass1_parser.rs`または`src/pass2_ast.rs`）で、各MMLトラック（MML文字列が`;`で区切られたもの）のASTノードを走査し、そのトラック内に`@128`コマンドが存在するかどうかを検出する機能を実装してください。検出された場合、そのトラックはドラムトラックとみなされるため、最初のステップとして検出ロジックと結果をコンソールにログ出力するようにしてください。
 
-     確認事項: `src/pass2_ast.rs`の`length`コマンド処理ロジックと、`src/pass3_events.rs`でのMIDIイベント生成に与える影響を確認してください。追加するテストケースが既存のテストを壊さないことを確認してください。
+     確認事項: `track`の定義が「;」で区切られるMML文字列のグループであることを考慮に入れてください。既存のパース・AST構築ロジックに大きな変更を加えないよう、既存のデータ構造を拡張するか、適切な場所で検出処理を行うように配慮してください。
 
-     期待する出力: 追加されたテストケースを含む`tests/test_length.rs`の変更内容と、もし必要であれば`src/pass2_ast.rs`の修正案をMarkdown形式で出力してください。
+     期待する出力: `@128`の検出ロジックが追加された`src/pass1_parser.rs`または`src/pass2_ast.rs`の具体的な変更内容。および、検出ロジックの実装方針と、簡単なテストケースで検出が機能することを示す説明をmarkdown形式で出力してください。
+     ```
 
 ---
-Generated at: 2025-12-02 07:04:58 JST
+Generated at: 2026-01-21 07:06:13 JST
