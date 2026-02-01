@@ -8,6 +8,32 @@ This demo showcases the MML to SMF converter running entirely in the browser usi
 2. **Rust WASM Module**: Converts parsed tokens to Standard MIDI File (SMF) format
 3. **Browser Download**: Downloads the generated MIDI file
 
+## Setup
+
+Before running the demo, you need to build the WASM module and prepare the necessary files:
+
+1. **Install dependencies:**
+```bash
+cd demo
+npm install
+```
+
+2. **Copy web-tree-sitter WASM file:**
+```bash
+cp node_modules/web-tree-sitter/web-tree-sitter.wasm .
+```
+
+3. **Build the WASM module:**
+```bash
+cd ../mmlabc-to-smf-wasm
+wasm-pack build --target web
+```
+
+4. **Copy WASM module to demo:**
+```bash
+cp -r pkg ../demo/
+```
+
 ## Running the Demo
 
 ### Using Python HTTP Server

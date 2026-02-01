@@ -207,113 +207,104 @@
                             insideChord = false;
                             currentChordId = null;
                         } else if (nodeType === 'note_with_modifier') {
+                            // Extract note with all its modifiers, length, and dots as a single token
+                            let noteValue = null;
+                            let modifier = null;
+                            let noteLength = null;
+                            let dots = null;
+                            
                             if (cursor.gotoFirstChild()) {
-                                tokens.push(...extractTokens(cursor, channelGroup, currentChordId));
+                                do {
+                                    const childType = cursor.nodeType;
+                                    const childText = cursor.nodeText;
+                                    
+                                    if (childType === 'note') {
+                                        noteValue = childText.toLowerCase();
+                                    } else if (childType === 'modifier') {
+                                        modifier = childText;
+                                    } else if (childType === 'note_length') {
+                                        noteLength = parseInt(childText, 10);
+                                    } else if (childType === 'dots') {
+                                        dots = childText.length;
+                                    }
+                                } while (cursor.gotoNextSibling());
                                 cursor.gotoParent();
                             }
-                        } else if (nodeType === 'note') {
-                            tokens.push({
-                                token_type: 'note',
-                                value: nodeText.toLowerCase(),
-                                channel_group: channelGroup,
-                                chord_id: currentChordId
-                            });
-                        } else if (nodeType === 'modifier') {
-                            tokens.push({
-                                token_type: 'modifier',
-                                value: nodeText,
-                                channel_group: channelGroup,
-                                chord_id: null
-                            });
-                        } else if (nodeType === 'note_length') {
-                            tokens.push({
-                                token_type: 'note_length',
-                                value: nodeText,
-                                channel_group: channelGroup,
-                                chord_id: null
-                            });
-                        } else if (nodeType === 'dots') {
-                            tokens.push({
-                                token_type: 'dots',
-                                value: nodeText,
-                                channel_group: channelGroup,
-                                chord_id: null
-                            });
+                            
+                            const token = {
+                                type: 'note',
+                                value: noteValue
+                            };
+                            if (channelGroup !== null) token.channel_group = channelGroup;
+                            if (currentChordId !== null) token.chord_id = currentChordId;
+                            if (modifier !== null) token.modifier = modifier;
+                            if (noteLength !== null) token.note_length = noteLength;
+                            if (dots !== null) token.dots = dots;
+                            tokens.push(token);
                         } else if (nodeType === 'rest') {
-                            tokens.push({
-                                token_type: 'rest',
-                                value: nodeText.toLowerCase()[0],
-                                channel_group: channelGroup,
-                                chord_id: null
-                            });
+                            let restLength = null;
+                            let restDots = null;
+                            
                             if (cursor.gotoFirstChild()) {
-                                tokens.push(...extractTokens(cursor, channelGroup, null));
+                                do {
+                                    const childType = cursor.nodeType;
+                                    const childText = cursor.nodeText;
+                                    
+                                    if (childType === 'note_length') {
+                                        restLength = parseInt(childText, 10);
+                                    } else if (childType === 'dots') {
+                                        restDots = childText.length;
+                                    }
+                                } while (cursor.gotoNextSibling());
                                 cursor.gotoParent();
                             }
+                            
+                            const token = {
+                                type: 'rest',
+                                value: 'r'
+                            };
+                            if (channelGroup !== null) token.channel_group = channelGroup;
+                            if (restLength !== null) token.note_length = restLength;
+                            if (restDots !== null) token.dots = restDots;
+                            tokens.push(token);
                         } else if (nodeType === 'octave_up') {
-                            tokens.push({
-                                token_type: 'octave_up',
-                                value: '<',
-                                channel_group: channelGroup,
-                                chord_id: null
-                            });
+                            const token = { type: 'octave_up', value: '<' };
+                            if (channelGroup !== null) token.channel_group = channelGroup;
+                            tokens.push(token);
                         } else if (nodeType === 'octave_down') {
-                            tokens.push({
-                                token_type: 'octave_down',
-                                value: '>',
-                                channel_group: channelGroup,
-                                chord_id: null
-                            });
+                            const token = { type: 'octave_down', value: '>' };
+                            if (channelGroup !== null) token.channel_group = channelGroup;
+                            tokens.push(token);
                         } else if (nodeType === 'octave_set') {
-                            const octave = nodeText.substring(1);
-                            tokens.push({
-                                token_type: 'octave_set',
-                                value: octave,
-                                channel_group: channelGroup,
-                                chord_id: null
-                            });
+                            const token = { type: 'octave_set', value: nodeText };
+                            if (channelGroup !== null) token.channel_group = channelGroup;
+                            tokens.push(token);
                         } else if (nodeType === 'length_set') {
                             const match = nodeText.match(/l(\d+)(\.*)$/);
                             if (match) {
-                                tokens.push({
-                                    token_type: 'length_set',
-                                    value: match[1],
-                                    channel_group: channelGroup,
-                                    chord_id: null
-                                });
-                                if (match[2]) {
-                                    tokens.push({
-                                        token_type: 'dots',
-                                        value: match[2],
-                                        channel_group: channelGroup,
-                                        chord_id: null
-                                    });
-                                }
+                                const lengthValue = parseInt(match[1], 10);
+                                const dotsValue = match[2] ? match[2].length : null;
+                                const token = {
+                                    type: 'length_set',
+                                    value: nodeText
+                                };
+                                if (channelGroup !== null) token.channel_group = channelGroup;
+                                token.note_length = lengthValue;
+                                if (dotsValue !== null) token.dots = dotsValue;
+                                tokens.push(token);
                             }
                         } else if (nodeType === 'program_change') {
-                            const program = nodeText.substring(1);
-                            tokens.push({
-                                token_type: 'program_change',
-                                value: program,
-                                channel_group: channelGroup,
-                                chord_id: null
-                            });
+                            const token = { type: 'program_change', value: nodeText };
+                            if (channelGroup !== null) token.channel_group = channelGroup;
+                            tokens.push(token);
                         } else if (nodeType === 'tempo_set') {
-                            const tempo = nodeText.substring(1);
-                            tokens.push({
-                                token_type: 'tempo_set',
-                                value: tempo,
-                                channel_group: channelGroup,
-                                chord_id: null
-                            });
+                            const token = { type: 'tempo_set', value: nodeText };
+                            if (channelGroup !== null) token.channel_group = channelGroup;
+                            tokens.push(token);
                         } else if (nodeType === 'velocity_set') {
-                            const velocity = nodeText.substring(1);
-                            tokens.push({
-                                token_type: 'velocity_set',
-                                value: velocity,
-                                channel_group: channelGroup,
-                                chord_id: null
-                            });
+                            const token = { type: 'velocity_set', value: nodeText };
+                            if (channelGroup !== null) token.channel_group = channelGroup;
+                            tokens.push(token);
                         } else if (cursor.gotoFirstChild()) {
                             tokens.push(...extractTokens(cursor, channelGroup, currentChordId));
                             cursor.gotoParent();

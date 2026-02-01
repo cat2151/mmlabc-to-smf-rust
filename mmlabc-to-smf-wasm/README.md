@@ -77,12 +77,17 @@ Converts MML tokens (as JSON string) to Standard MIDI File binary data.
 Each token should have the following structure:
 ```javascript
 {
-  "token_type": "note" | "modifier" | "note_length" | "dots" | "rest" | ...,
-  "value": string,
-  "channel_group": number | null,
-  "chord_id": number | null
+  "type": string,                // e.g. "note", "rest", "octave_set", etc.
+  "value": string,               // token value (e.g. "c", "r", "o5", "@1", "t120")
+  "channel_group": number | null, // channel group index for multi-channel (omitted if null)
+  "chord_id": number | null,     // chord identifier for notes in a chord (omitted if null)
+  "modifier": string | null,     // note modifier (e.g. "+", "-") (omitted if null)
+  "note_length": number | null,  // parsed note length value (omitted if null)
+  "dots": number | null          // number of dots for dotted notes (omitted if null)
 }
 ```
+
+Note: Null/undefined fields should be omitted from the JSON to match Rust's serialization format.
 
 ## Dependencies
 
