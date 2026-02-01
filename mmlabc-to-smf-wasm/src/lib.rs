@@ -47,6 +47,7 @@ mod tests {
     use super::*;
 
     #[test]
+    #[cfg(target_arch = "wasm32")]
     fn test_mml_to_smf_basic() {
         let tokens_json = r#"[
             {"token_type":"note","value":"c","channel_group":null,"chord_id":null},
@@ -62,5 +63,55 @@ mod tests {
         
         // Check MIDI header signature "MThd"
         assert_eq!(&midi_data[0..4], b"MThd");
+    }
+    
+    // Test the underlying conversion logic (not the wasm-bindgen wrapper)
+    #[test]
+    #[cfg(not(target_arch = "wasm32"))]
+    fn test_conversion_logic() {
+        use crate::{pass2_ast, pass3_events, pass4_midi, types::Token};
+        
+        let tokens = vec![
+            Token {
+                token_type: "note".to_string(),
+                value: "c".to_string(),
+                channel_group: None,
+                chord_id: None,
+                modifier: None,
+                note_length: None,
+                dots: None,
+            },
+            Token {
+                token_type: "note".to_string(),
+                value: "d".to_string(),
+                channel_group: None,
+                chord_id: None,
+                modifier: None,
+                note_length: None,
+                dots: None,
+            },
+            Token {
+                token_type: "note".to_string(),
+                value: "e".to_string(),
+                channel_group: None,
+                chord_id: None,
+                modifier: None,
+                note_length: None,
+                dots: None,
+            },
+        ];
+
+        let ast = pass2_ast::tokens_to_ast(&tokens);
+        assert_eq!(ast.notes.len(), 3);
+
+        let events = pass3_events::ast_to_events(&ast);
+        assert!(!events.is_empty());
+
+        let midi_data = pass4_midi::events_to_midi(&events);
+        assert!(midi_data.is_ok());
+        
+        let data = midi_data.unwrap();
+        assert!(!data.is_empty());
+        assert_eq!(&data[0..4], b"MThd");
     }
 }
