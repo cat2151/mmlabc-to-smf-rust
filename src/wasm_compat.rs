@@ -121,7 +121,8 @@ pub extern "C" fn get_last_error() -> *const c_char {
     unsafe {
         match &LAST_ERROR {
             Some(err) => {
-                let c_str = CString::new(err.as_str()).unwrap_or_else(|_| CString::new("Error converting error message").unwrap());
+                let c_str = CString::new(err.as_str())
+                    .unwrap_or_else(|_| CString::new("Error converting error message").unwrap());
                 c_str.into_raw()
             }
             None => ptr::null(),
@@ -164,27 +165,25 @@ mod tests {
     #[test]
     fn test_tokens_to_smf_basic() {
         // Create a simple token list
-        let tokens = vec![
-            Token {
-                token_type: "note".to_string(),
-                value: "c".to_string(),
-                channel_group: None,
-                chord_id: None,
-                modifier: None,
-                note_length: None,
-                dots: None,
-            },
-        ];
+        let tokens = vec![Token {
+            token_type: "note".to_string(),
+            value: "c".to_string(),
+            channel_group: None,
+            chord_id: None,
+            modifier: None,
+            note_length: None,
+            dots: None,
+        }];
 
         let tokens_json = serde_json::to_string(&tokens).unwrap();
         let c_tokens = CString::new(tokens_json).unwrap();
-        
+
         let len = tokens_to_smf(c_tokens.as_ptr());
         assert!(len > 0, "Should generate MIDI data");
 
         let data_ptr = get_midi_data();
         assert!(!data_ptr.is_null(), "Should have MIDI data pointer");
-        
+
         let data_len = get_midi_data_length();
         assert_eq!(len, data_len, "Lengths should match");
     }
