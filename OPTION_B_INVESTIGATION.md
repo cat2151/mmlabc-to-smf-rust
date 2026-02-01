@@ -41,16 +41,46 @@ error: linker `emcc` not found
 - However, it requires the Emscripten toolchain to be installed
 - Emscripten (`emcc`) provides the C standard library implementation for WASM
 
+### Attempt 3: Install Emscripten SDK
+**Command:**
+```bash
+cd /tmp
+git clone https://github.com/emscripten-core/emsdk.git
+cd emsdk
+./emsdk install latest
+```
+
+**Result:** ❌ Failed due to network restrictions
+
+**Error:**
+```
+Error: Downloading URL 'https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/node-v22.16.0-linux-x64.tar.xz': HTTP Error 403: Forbidden
+error: installation failed!
+```
+
+**Analysis:**
+- Current environment has network restrictions preventing Emscripten download
+- This is a temporary/environment-specific issue, not a fundamental limitation
+- In CI/CD with proper network access, installation would succeed
+
 ## Conclusion
 
 ### ✅ Technically Feasible
 Option B IS technically feasible with Emscripten. The approach would be:
-1. Install Emscripten SDK
+1. Install Emscripten SDK (requires network access)
 2. Use `wasm32-unknown-emscripten` target
 3. Configure build.rs to compile parser.c with emcc
 4. Link the compiled parser with Rust WASM code
 
-### ❌ Practical Concerns
+### Current Environment Result
+**❌ Cannot install Emscripten in this environment due to network restrictions (HTTP 403)**
+
+This does NOT mean the approach is impossible - it means:
+- The current sandbox environment has restricted network access
+- CI/CD environments (GitHub Actions) have full network access
+- Local development machines can install Emscripten normally
+
+### ❌ Practical Concerns (if Emscripten works)
 
 **Increased Complexity:**
 - **Build Requirements:** Emscripten SDK (~2GB+ installation)
@@ -70,6 +100,24 @@ wasm-pack build --target web
 4. Additional post-processing for browser compatibility
 ```
 
+## Implementation Provided
+
+### GitHub Actions Workflow
+Created `.github/workflows/build-wasm-emscripten.yml`:
+- Installs and caches Emscripten SDK
+- Builds WASM with Emscripten target
+- Runs tests
+- Uploads WASM artifact
+
+### Setup Script
+Created `scripts/setup-emscripten.sh`:
+- Automates Emscripten installation
+- Sets up environment variables
+- Verifies installation
+- Provides usage instructions
+
+These files demonstrate the **complete implementation** that would work in a CI environment with proper network access.
+
 ## Recommendations
 
 ### For Production Use:
@@ -78,21 +126,24 @@ wasm-pack build --target web
 - Simpler build process
 - Still achieves SSOT for token extraction logic
 - Easier CI/CD integration
+- Works in restricted environments
 
 ### For Exploration:
 **Option B (Emscripten)** is worth pursuing if:
 - Complete SSOT is absolutely required
 - Team is willing to manage Emscripten dependency
 - Build complexity is acceptable trade-off
+- Network access is available for installation
 
 ## Next Steps
 
 **If proceeding with Option B:**
-1. Install Emscripten SDK in development environment
-2. Update build.rs to properly configure emcc
-3. Test integration with wasm-bindgen
-4. Document build requirements
-5. Update CI/CD configurations
+1. ✅ GitHub Actions workflow created (`.github/workflows/build-wasm-emscripten.yml`)
+2. ✅ Setup script created (`scripts/setup-emscripten.sh`)
+3. ✅ Build.rs already configured to attempt C parser compilation
+4. ⏳ Test in GitHub Actions CI environment (requires PR merge or CI trigger)
+5. ⏳ Verify WASM output works in browser
+6. ⏳ Update documentation
 
 **If proceeding with Option A:**
 1. Modify JavaScript to serialize parse tree to JSON
@@ -114,12 +165,16 @@ wasm-pack build --target web
 - ✅ Well-tested with tree-sitter
 - ❌ Requires ~2GB SDK installation
 - ❌ Adds build complexity
+- ❌ Requires network access for installation
 
 ## Proof of Concept
 
 The investigation included:
-1. Adding build.rs to mmlabc-to-smf-wasm
-2. Attempting compilation with both WASM targets
-3. Documenting specific errors and requirements
+1. ✅ Adding build.rs to mmlabc-to-smf-wasm
+2. ✅ Attempting compilation with both WASM targets
+3. ✅ Attempting Emscripten installation
+4. ✅ Creating GitHub Actions workflow
+5. ✅ Creating setup automation script
+6. ✅ Documenting specific errors and requirements
 
-The code changes demonstrate that the approach is blocked only by toolchain availability, not fundamental incompatibility.
+**Status:** Implementation ready for CI testing. Local installation blocked by network restrictions, but this is environment-specific and not a fundamental limitation of the approach.

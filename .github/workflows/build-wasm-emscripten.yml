@@ -1,0 +1,72 @@
+name: Build WASM with Emscripten (Option B)
+
+on:
+  push:
+    branches: [ main, copilot/add-wasm-crate-for-mml-to-smf ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-wasm-emscripten:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        profile: minimal
+        override: true
+    
+    - name: Install wasm32-unknown-emscripten target
+      run: rustup target add wasm32-unknown-emscripten
+    
+    - name: Cache Emscripten
+      uses: actions/cache@v3
+      with:
+        path: /tmp/emsdk
+        key: ${{ runner.os }}-emsdk-5.0.0
+    
+    - name: Install Emscripten SDK
+      run: |
+        cd /tmp
+        if [ ! -d "emsdk" ]; then
+          git clone https://github.com/emscripten-core/emsdk.git
+          cd emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+        fi
+    
+    - name: Setup Emscripten environment
+      run: |
+        source /tmp/emsdk/emsdk_env.sh
+        echo "EMSDK=$EMSDK" >> $GITHUB_ENV
+        echo "$EMSDK/upstream/emscripten" >> $GITHUB_PATH
+    
+    - name: Verify Emscripten installation
+      run: |
+        source /tmp/emsdk/emsdk_env.sh
+        emcc --version
+    
+    - name: Build tree-sitter grammar
+      run: |
+        cd tree-sitter-mml
+        npm install
+        npx tree-sitter generate
+    
+    - name: Build WASM module with Emscripten
+      run: |
+        source /tmp/emsdk/emsdk_env.sh
+        cd mmlabc-to-smf-wasm
+        cargo build --target wasm32-unknown-emscripten --release
+    
+    - name: Run tests
+      run: cargo test
+    
+    - name: Upload WASM artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: wasm-emscripten-build
+        path: mmlabc-to-smf-wasm/target/wasm32-unknown-emscripten/release/*.wasm
