@@ -49,6 +49,28 @@ cargo run -- "c;e;g"
 cargo run -- "cde" -o my_song.mid
 ```
 
+### WASM対応 🌐
+
+このライブラリはWebAssemblyにコンパイルして、ブラウザで使用することができます：
+
+```bash
+# WASMモジュールをビルド
+cargo build --target wasm32-wasip1 --lib --release
+
+# デモディレクトリにコピー
+cp target/wasm32-wasip1/release/mmlabc_to_smf.wasm demo/
+
+# デモサーバーを起動
+python3 demo/serve.py
+# ブラウザで http://localhost:8000 を開く
+```
+
+WASM実装ではWASI Reactor（FFI export）パターンを使用：
+- **パス1（パース処理）**: JavaScript側またはサーバー側で実行（tree-sitterはC言語依存のため）
+- **パス2～4（AST → イベント → MIDI）**: WebAssemblyで実行し、効率的にバイナリ生成
+
+詳細は [demo/README.md](demo/README.md) を参照してください。
+
 ## 今後の見通し
 
 ### 短期目標 🚧
