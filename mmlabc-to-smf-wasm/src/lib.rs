@@ -50,9 +50,9 @@ mod tests {
     #[cfg(target_arch = "wasm32")]
     fn test_mml_to_smf_basic() {
         let tokens_json = r#"[
-            {"token_type":"note","value":"c","channel_group":null,"chord_id":null},
-            {"token_type":"note","value":"d","channel_group":null,"chord_id":null},
-            {"token_type":"note","value":"e","channel_group":null,"chord_id":null}
+            {"type":"note","value":"c"},
+            {"type":"note","value":"d"},
+            {"type":"note","value":"e"}
         ]"#;
 
         let result = mml_to_smf(tokens_json);
