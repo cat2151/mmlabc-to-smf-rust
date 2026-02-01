@@ -177,7 +177,19 @@
         function writeStringToMemory(str) {
             const encoder = new TextEncoder();
             const bytes = encoder.encode(str + '\0'); // null-terminated
-            const ptr = wasmInstance.exports.__heap_base || 65536; // Use a safe offset
+            
+            // Allocate memory from WASM if available, otherwise use a fixed safe offset
+            // Note: For production use, implement proper memory allocation via WASM exports
+            let ptr;
+            if (wasmInstance.exports.malloc) {
+                ptr = wasmInstance.exports.malloc(bytes.length);
+            } else {
+                // Use a fixed offset for demo purposes
+                // WARNING: This overwrites previous data and is not thread-safe
+                // Only one conversion should be active at a time
+                ptr = wasmInstance.exports.__heap_base || 65536;
+            }
+            
             const memView = new Uint8Array(memory.buffer);
             memView.set(bytes, ptr);
             return ptr;
@@ -262,6 +274,7 @@
                 if (midiLength <= 0) {
                     const errorPtr = wasmInstance.exports.get_last_error();
                     const errorMsg = readStringFromMemory(errorPtr) || 'Unknown error';
+                    // Note: Error string is automatically managed by WASM module, no need to free
                     showStatus('Conversion failed: ' + errorMsg, 'error');
                     return;
                 }

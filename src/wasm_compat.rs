@@ -12,8 +12,9 @@
 //!
 //! # Memory Management
 //!
-//! Functions that return C strings (e.g., `get_last_error()`) allocate memory
-//! that must be freed by the caller using `free_error_string()` to avoid leaks.
+//! Error strings returned by `get_last_error()` are automatically managed and
+//! cached. They are freed automatically on the next conversion attempt.
+//! Callers do NOT need to (and should NOT) call `free_error_string()` on these pointers.
 
 use crate::{pass2_ast, pass3_events, pass4_midi, types::Token};
 use std::ffi::{CStr, CString};
@@ -23,6 +24,7 @@ use std::ptr;
 // Thread-local storage for the last generated MIDI data
 static mut LAST_MIDI_DATA: Option<Vec<u8>> = None;
 static mut LAST_ERROR: Option<String> = None;
+static mut LAST_ERROR_PTR: *mut c_char = ptr::null_mut();
 
 /// Convert MML tokens (as JSON string) to SMF binary buffer
 ///
@@ -36,10 +38,14 @@ static mut LAST_ERROR: Option<String> = None;
 /// * Length of generated MIDI data on success, -1 on error
 #[no_mangle]
 pub extern "C" fn tokens_to_smf(tokens_json_ptr: *const c_char) -> c_int {
-    // Clear previous data
+    // Clear previous data and free previous error string if any
     unsafe {
         LAST_MIDI_DATA = None;
         LAST_ERROR = None;
+        if !LAST_ERROR_PTR.is_null() {
+            let _ = CString::from_raw(LAST_ERROR_PTR);
+            LAST_ERROR_PTR = ptr::null_mut();
+        }
     }
 
     // Validate input pointer
@@ -125,27 +131,31 @@ pub extern "C" fn get_midi_data_length() -> c_int {
 
 /// Get error message for the last operation
 ///
-/// **Important**: The returned string is allocated and must be freed by calling
-/// `free_error_string()` to prevent memory leaks. Example usage:
+/// **Important**: The returned string is cached and reused on subsequent calls.
+/// You should NOT call `free_error_string()` on this pointer - it will be
+/// automatically freed on the next conversion attempt or when a new error occurs.
+/// If you need to store the error message, copy it to your own buffer.
 ///
-/// ```c
-/// const char* err = get_last_error();
-/// if (err != NULL) {
-///     printf("Error: %s\n", err);
-///     free_error_string((char*)err);  // Don't forget to free!
-/// }
-/// ```
+/// This function can be called multiple times for the same error without
+/// causing memory leaks - it will return the same pointer each time.
 ///
 /// # Returns
 /// * Pointer to null-terminated error string, or null if no error
 #[no_mangle]
 pub extern "C" fn get_last_error() -> *const c_char {
     unsafe {
+        // If we already have a cached error pointer, return it
+        if !LAST_ERROR_PTR.is_null() {
+            return LAST_ERROR_PTR;
+        }
+
+        // Otherwise, create a new error string if we have an error
         match &LAST_ERROR {
             Some(err) => {
                 let c_str = CString::new(err.as_str())
                     .unwrap_or_else(|_| CString::new("Error converting error message").unwrap());
-                c_str.into_raw()
+                LAST_ERROR_PTR = c_str.into_raw();
+                LAST_ERROR_PTR
             }
             None => ptr::null(),
         }
@@ -154,15 +164,17 @@ pub extern "C" fn get_last_error() -> *const c_char {
 
 /// Free the error string returned by get_last_error
 ///
+/// **Note**: This function is deprecated and should not be used with the current
+/// implementation. The error string is automatically managed and freed on the
+/// next conversion attempt. This function is kept for backward compatibility
+/// but does nothing.
+///
 /// # Arguments
-/// * `ptr` - Pointer returned by get_last_error()
+/// * `ptr` - Pointer returned by get_last_error() (ignored)
 #[no_mangle]
-pub extern "C" fn free_error_string(ptr: *mut c_char) {
-    if !ptr.is_null() {
-        unsafe {
-            let _ = CString::from_raw(ptr);
-        }
-    }
+pub extern "C" fn free_error_string(_ptr: *mut c_char) {
+    // No-op: error string is now managed automatically and freed in tokens_to_smf
+    // Kept for backward compatibility
 }
 
 /// Internal function to process tokens to MIDI bytes (Passes 2-4)
@@ -224,5 +236,30 @@ mod tests {
 
         let error_ptr = get_last_error();
         assert!(!error_ptr.is_null(), "Should have error message");
+
+        // Call get_last_error again to verify it returns the same pointer (cached)
+        let error_ptr2 = get_last_error();
+        assert_eq!(error_ptr, error_ptr2, "Should return cached error pointer");
+    }
+
+    #[test]
+    fn test_error_string_lifecycle() {
+        // First error
+        let invalid_json = CString::new("not valid json").unwrap();
+        let _ = tokens_to_smf(invalid_json.as_ptr());
+        let error_ptr1 = get_last_error();
+        assert!(!error_ptr1.is_null(), "Should have first error message");
+
+        // Second conversion with different error - should free old error and create new one
+        let _ = tokens_to_smf(ptr::null());
+        let error_ptr2 = get_last_error();
+        assert!(!error_ptr2.is_null(), "Should have second error message");
+
+        // Pointers should be different (old one was freed, new one allocated)
+        // Note: They might be the same if allocator reuses memory, so we just check both are valid
+        assert!(
+            !error_ptr1.is_null() && !error_ptr2.is_null(),
+            "Both error pointers should be valid"
+        );
     }
 }

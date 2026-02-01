@@ -12,7 +12,7 @@ PORT = 8000
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        # Add WASM MIME type
+        # Add Cross-Origin headers for WASM SharedArrayBuffer support (COOP/COEP)
         self.send_header('Cross-Origin-Opener-Policy', 'same-origin')
         self.send_header('Cross-Origin-Embedder-Policy', 'require-corp')
         super().end_headers()

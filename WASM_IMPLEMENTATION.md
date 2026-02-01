@@ -50,7 +50,7 @@ tree-sitter = "0.22"
 
 ### 2. WASM FFI Interface (src/wasm_compat.rs)
 
-Three main exported functions:
+Five exported functions:
 
 ```rust
 // Convert JSON tokens to MIDI binary
@@ -59,8 +59,14 @@ pub extern "C" fn tokens_to_smf(tokens_json_ptr: *const c_char) -> c_int
 // Get pointer to generated MIDI data
 pub extern "C" fn get_midi_data() -> *const u8
 
-// Get error message (must call free_error_string after use)
+// Get length of generated MIDI data
+pub extern "C" fn get_midi_data_length() -> c_int
+
+// Get cached error message (automatically managed, no need to free)
 pub extern "C" fn get_last_error() -> *const c_char
+
+// Deprecated: Error strings are now automatically managed
+pub extern "C" fn free_error_string(ptr: *mut c_char)
 ```
 
 **Input**: JSON-serialized Token array  

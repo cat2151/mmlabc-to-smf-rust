@@ -41,13 +41,16 @@ This demo uses the WASI Reactor (FFI export) pattern:
 ## Notes
 
 - The current demo uses a simplified MML parser in JavaScript for demonstration purposes
+- The simplified parser supports only basic notes (`a`-`g`) and rests (`r`), without chord brackets, octave changes, or other advanced MML features
 - For full MML support (including all mmlabc commands), integrate a proper MML parser
 - The WASM module is ~339KB in release mode
 - The module requires WASI support, which is provided by minimal WASI stubs in the JavaScript
 
 ## Example MML Inputs
 
+The simplified JavaScript parser in this demo currently supports:
 - Simple notes: `cde`
 - Scale: `cdefgab`
-- Chord: `[ceg]`
 - With rests: `c r e r g`
+
+For full MML features like chords (`[ceg]`), octaves (`>c<c`), lengths (`c4`), etc., you would need to integrate a complete MML parser.
