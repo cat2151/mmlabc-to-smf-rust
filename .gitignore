@@ -39,3 +39,13 @@ tree-sitter-mml/package-lock.json
 tree-sitter-mml/Cargo.toml
 tree-sitter-mml/binding.gyp
 tree-sitter-mml/bindings/
+
+# WASM build artifacts
+mmlabc-to-smf-wasm/pkg/
+mmlabc-to-smf-wasm/target/
+
+# Demo artifacts
+demo/node_modules/
+demo/package-lock.json
+demo/pkg/
+demo/web-tree-sitter.wasm

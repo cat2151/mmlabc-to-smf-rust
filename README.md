@@ -38,6 +38,8 @@ If you want to know which MML features are implemented, please refer to `tree-si
 - **Comprehensive Testing**: All 35 test cases pass
 
 ### Demo / How to Run
+
+#### Command Line (Native)
 ```bash
 # Basic scale conversion
 cargo run -- "cdefgab"
@@ -48,6 +50,22 @@ cargo run -- "c;e;g"
 # Custom output file
 cargo run -- "cde" -o my_song.mid
 ```
+
+#### Browser (WebAssembly)
+A browser demo is available in the `demo/` directory. See [demo/README.md](demo/README.md) for details.
+
+```bash
+# Build the WASM module
+cd mmlabc-to-smf-wasm
+wasm-pack build --target web
+
+# Serve the demo
+cd ../demo
+python3 -m http.server 8000
+# Open http://localhost:8000 in your browser
+```
+
+The browser demo uses tree-sitter for parsing and Rust WASM for conversion, allowing you to convert MML to MIDI files entirely in the browser.
 
 ## Future Outlook
 
@@ -230,6 +248,19 @@ src/
 ├── pass4_midi.rs        # Pass 4: MIDI file creation
 ├── tree_sitter_mml.rs   # tree-sitter MML integration
 └── types.rs             # Common type definitions
+
+mmlabc-to-smf-wasm/      # WebAssembly bindings
+├── src/
+│   ├── lib.rs           # WASM entry point
+│   ├── pass2_ast.rs     # Pass 2 (WASM-compatible)
+│   ├── pass3_events.rs  # Pass 3 (WASM-compatible)
+│   ├── pass4_midi.rs    # Pass 4 (WASM-compatible)
+│   └── types.rs         # Common types
+└── README.md            # WASM documentation
+
+demo/                    # Browser demo
+├── index.html           # Demo page
+└── README.md            # Demo documentation
 
 tests/
 ├── integration_test.rs  # Integration tests

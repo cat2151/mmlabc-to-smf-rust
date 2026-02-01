@@ -38,6 +38,8 @@ READMEがメンテ不足です。実際はもっと多数のMMLコマンドが�
 - **包括的テスト**: 35個のテストケースがすべて通過
 
 ### 動作確認
+
+#### コマンドライン（ネイティブ）
 ```bash
 # 基本音階変換
 cargo run -- "cdefgab"
@@ -48,6 +50,22 @@ cargo run -- "c;e;g"
 # カスタム出力ファイル
 cargo run -- "cde" -o my_song.mid
 ```
+
+#### ブラウザ（WebAssembly）
+`demo/` ディレクトリにブラウザデモがあります。詳細は [demo/README.md](demo/README.md) を参照してください。
+
+```bash
+# WASMモジュールをビルド
+cd mmlabc-to-smf-wasm
+wasm-pack build --target web
+
+# デモを起動
+cd ../demo
+python3 -m http.server 8000
+# ブラウザで http://localhost:8000 を開く
+```
+
+ブラウザデモでは、tree-sitterによるパースとRust WASMによる変換を使用し、ブラウザ内でMMLからMIDIファイルへの変換が完全に行えます。
 
 ## 今後の見通し
 

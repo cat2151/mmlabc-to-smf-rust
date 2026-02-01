@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MML to SMF - Browser Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .description {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        .examples {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+        .examples code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎵 MML to SMF Converter (Browser Demo)</h1>
+    
+    <div class="description">
+        <p><strong>Music Macro Language (MML)</strong>をブラウザでStandard MIDI File (SMF)に変換します。</p>
+        <p>tree-sitterパーサーとRust WASMを使用した高速変換デモです。</p>
+    </div>
+
+    <div class="container">
+        <label for="mmlInput">MML Input:</label>
+        <textarea id="mmlInput" placeholder="例: cde または cdefgab">cde</textarea>
+        
+        <div class="examples">
+            <strong>Examples:</strong><br>
+            <code>cde</code> - 基本的な音符<br>
+            <code>c;e;g</code> - 複数チャンネル (セミコロンで分割)<br>
+            <code>'ceg'</code> - 和音<br>
+            <code>c4 d8 e16</code> - 長さ指定付き音符<br>
+            <code>c+ d- e</code> - シャープ/フラット<br>
+            <code>o5 cde</code> - オクターブ設定<br>
+            <code>l4 cde</code> - デフォルト長さ設定<br>
+            <code>@1 cde</code> - プログラムチェンジ<br>
+            <code>t120 cde</code> - テンポ設定<br>
+            <code>v10 cde</code> - ベロシティ設定
+        </div>
+        
+        <div class="button-container">
+            <button id="exportButton" onclick="convertAndExport()">Export SMF</button>
+        </div>
+        
+        <div id="status" style="display: none;"></div>
+    </div>
+
+    <script type="module">
+        import init, { mml_to_smf } from './pkg/mmlabc_to_smf_wasm.js';
+        import TreeSitter from './node_modules/web-tree-sitter/web-tree-sitter.js';
+
+        // Global variables
+        let wasmInitialized = false;
+        let treeSitterParser = null;
+        let mmlLanguage = null;
+
+        // Initialize everything
+        async function initialize() {
+            const status = document.getElementById('status');
+            const button = document.getElementById('exportButton');
+            
+            try {
+                status.style.display = 'block';
+                status.className = 'info';
+                status.textContent = '初期化中...';
+                button.disabled = true;
+
+                // Initialize tree-sitter
+                await TreeSitter.init();
+                treeSitterParser = new TreeSitter();
+                
+                // Load MML language
+                mmlLanguage = await TreeSitter.Language.load('./tree-sitter-mml.wasm');
+                treeSitterParser.setLanguage(mmlLanguage);
+                
+                // Initialize Rust WASM
+                await init();
+                
+                wasmInitialized = true;
+                status.className = 'success';
+                status.textContent = '✓ 初期化完了！MMLを入力してExport SMFボタンを押してください。';
+                button.disabled = false;
+            } catch (error) {
+                status.className = 'error';
+                status.textContent = `初期化エラー: ${error.message}`;
+                console.error('Initialization error:', error);
+            }
+        }
+
+        // Parse MML using tree-sitter
+        function parseMML(mmlString) {
+            // Split by semicolons to identify channel groups
+            const channelGroups = mmlString.split(';');
+            const tokens = [];
+            
+            // Track if we have multiple channels
+            const hasMultipleChannels = channelGroups.length > 1;
+            
+            // Global chord ID counter
+            let globalChordId = 0;
+            
+            channelGroups.forEach((group, groupIdx) => {
+                const channelGroup = hasMultipleChannels ? groupIdx : null;
+                
+                const tree = treeSitterParser.parse(group);
+                const cursor = tree.walk();
+                
+                function extractTokens(cursor, channelGroup, chordId) {
+                    const tokens = [];
+                    let insideChord = false;
+                    let currentChordId = chordId;
+                    
+                    do {
+                        const nodeType = cursor.nodeType;
+                        const nodeText = cursor.nodeText;
+                        
+                        if (nodeType === 'chord') {
+                            insideChord = true;
+                            currentChordId = globalChordId++;
+                            if (cursor.gotoFirstChild()) {
+                                tokens.push(...extractTokens(cursor, channelGroup, currentChordId));
+                                cursor.gotoParent();
+                            }
+                            insideChord = false;
+                            currentChordId = null;
+                        } else if (nodeType === 'note_with_modifier') {
+                            if (cursor.gotoFirstChild()) {
+                                tokens.push(...extractTokens(cursor, channelGroup, currentChordId));
+                                cursor.gotoParent();
+                            }
+                        } else if (nodeType === 'note') {
+                            tokens.push({
+                                token_type: 'note',
+                                value: nodeText.toLowerCase(),
+                                channel_group: channelGroup,
+                                chord_id: currentChordId
+                            });
+                        } else if (nodeType === 'modifier') {
+                            tokens.push({
+                                token_type: 'modifier',
+                                value: nodeText,
+                                channel_group: channelGroup,
+                                chord_id: null
+                            });
+                        } else if (nodeType === 'note_length') {
+                            tokens.push({
+                                token_type: 'note_length',
+                                value: nodeText,
+                                channel_group: channelGroup,
+                                chord_id: null
+                            });
+                        } else if (nodeType === 'dots') {
+                            tokens.push({
+                                token_type: 'dots',
+                                value: nodeText,
+                                channel_group: channelGroup,
+                                chord_id: null
+                            });
+                        } else if (nodeType === 'rest') {
+                            tokens.push({
+                                token_type: 'rest',
+                                value: nodeText.toLowerCase()[0],
+                                channel_group: channelGroup,
+                                chord_id: null
+                            });
+                            if (cursor.gotoFirstChild()) {
+                                tokens.push(...extractTokens(cursor, channelGroup, null));
+                                cursor.gotoParent();
+                            }
+                        } else if (nodeType === 'octave_up') {
+                            tokens.push({
+                                token_type: 'octave_up',
+                                value: '<',
+                                channel_group: channelGroup,
+                                chord_id: null
+                            });
+                        } else if (nodeType === 'octave_down') {
+                            tokens.push({
+                                token_type: 'octave_down',
+                                value: '>',
+                                channel_group: channelGroup,
+                                chord_id: null
+                            });
+                        } else if (nodeType === 'octave_set') {
+                            const octave = nodeText.substring(1);
+                            tokens.push({
+                                token_type: 'octave_set',
+                                value: octave,
+                                channel_group: channelGroup,
+                                chord_id: null
+                            });
+                        } else if (nodeType === 'length_set') {
+                            const match = nodeText.match(/l(\d+)(\.*)$/);
+                            if (match) {
+                                tokens.push({
+                                    token_type: 'length_set',
+                                    value: match[1],
+                                    channel_group: channelGroup,
+                                    chord_id: null
+                                });
+                                if (match[2]) {
+                                    tokens.push({
+                                        token_type: 'dots',
+                                        value: match[2],
+                                        channel_group: channelGroup,
+                                        chord_id: null
+                                    });
+                                }
+                            }
+                        } else if (nodeType === 'program_change') {
+                            const program = nodeText.substring(1);
+                            tokens.push({
+                                token_type: 'program_change',
+                                value: program,
+                                channel_group: channelGroup,
+                                chord_id: null
+                            });
+                        } else if (nodeType === 'tempo_set') {
+                            const tempo = nodeText.substring(1);
+                            tokens.push({
+                                token_type: 'tempo_set',
+                                value: tempo,
+                                channel_group: channelGroup,
+                                chord_id: null
+                            });
+                        } else if (nodeType === 'velocity_set') {
+                            const velocity = nodeText.substring(1);
+                            tokens.push({
+                                token_type: 'velocity_set',
+                                value: velocity,
+                                channel_group: channelGroup,
+                                chord_id: null
+                            });
+                        } else if (cursor.gotoFirstChild()) {
+                            tokens.push(...extractTokens(cursor, channelGroup, currentChordId));
+                            cursor.gotoParent();
+                        }
+                    } while (cursor.gotoNextSibling());
+                    
+                    return tokens;
+                }
+                
+                tokens.push(...extractTokens(cursor, channelGroup, null));
+            });
+            
+            return tokens;
+        }
+
+        // Convert and export
+        window.convertAndExport = async function() {
+            const mmlInput = document.getElementById('mmlInput').value.trim();
+            const status = document.getElementById('status');
+            const button = document.getElementById('exportButton');
+            
+            if (!mmlInput) {
+                status.style.display = 'block';
+                status.className = 'error';
+                status.textContent = 'MMLを入力してください';
+                return;
+            }
+            
+            if (!wasmInitialized) {
+                status.style.display = 'block';
+                status.className = 'error';
+                status.textContent = 'まだ初期化中です。お待ちください。';
+                return;
+            }
+            
+            try {
+                button.disabled = true;
+                status.style.display = 'block';
+                status.className = 'info';
+                status.textContent = '変換中...';
+                
+                // Pass 1: Parse MML using tree-sitter
+                const tokens = parseMML(mmlInput);
+                console.log('Tokens:', tokens);
+                
+                // Convert tokens to JSON
+                const tokensJson = JSON.stringify(tokens);
+                
+                // Pass 2-4: Convert to SMF using Rust WASM
+                const smfData = mml_to_smf(tokensJson);
+                
+                // Create blob and download
+                const blob = new Blob([smfData], { type: 'audio/midi' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'output.mid';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                status.className = 'success';
+                status.textContent = `✓ 変換成功！${tokens.length}個のトークンから${smfData.length}バイトのSMFファイルを生成しました。`;
+                button.disabled = false;
+            } catch (error) {
+                status.className = 'error';
+                status.textContent = `エラー: ${error.message}`;
+                console.error('Conversion error:', error);
+                button.disabled = false;
+            }
+        };
+
+        // Initialize on page load
+        initialize();
+    </script>
+</body>
+</html>

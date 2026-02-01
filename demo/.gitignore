@@ -1,0 +1,3 @@
+# Demo artifacts (built files)
+pkg/
+web-tree-sitter.wasm
