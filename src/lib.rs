@@ -4,9 +4,15 @@
 //! strings to Standard MIDI Files (SMF) using a 4-pass architecture.
 
 pub mod config;
+#[cfg(not(target_family = "wasm"))]
 pub mod pass1_parser;
 pub mod pass2_ast;
 pub mod pass3_events;
 pub mod pass4_midi;
+#[cfg(not(target_family = "wasm"))]
 pub mod tree_sitter_mml;
 pub mod types;
+
+// WASM-compatible interface (bypasses tree-sitter)
+#[cfg(target_family = "wasm")]
+pub mod wasm_compat;

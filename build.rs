@@ -2,6 +2,13 @@ use std::path::PathBuf;
 use std::process::Command;
 
 fn main() {
+    // Skip tree-sitter compilation for WASM targets
+    let target = std::env::var("TARGET").unwrap_or_default();
+    if target.starts_with("wasm32") {
+        println!("cargo:warning=Skipping tree-sitter compilation for WASM target");
+        return;
+    }
+
     let grammar_path = PathBuf::from("tree-sitter-mml/grammar.js");
     let src_dir: PathBuf = ["tree-sitter-mml", "src"].iter().collect();
     let parser_c = src_dir.join("parser.c");

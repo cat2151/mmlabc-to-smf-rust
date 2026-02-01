@@ -9,6 +9,7 @@ description = "Music Macro Language to Standard MIDI File converter"
 [lib]
 name = "mmlabc_to_smf"
 path = "src/lib.rs"
+crate-type = ["rlib", "cdylib"]
 
 [[bin]]
 name = "mmlabc-to-smf"
@@ -24,8 +25,10 @@ serde_json = "1.0"
 clap = { version = "4.5", features = ["derive"] }
 anyhow = "1.0"
 thiserror = "1.0"
-tree-sitter = "0.22"
 toml = "0.8"
+
+[target.'cfg(not(target_family = "wasm"))'.dependencies]
+tree-sitter = "0.22"
 
 [dev-dependencies]
 tempfile = "3.12"
