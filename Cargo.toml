@@ -27,6 +27,8 @@ anyhow = "1.0"
 thiserror = "1.0"
 toml = "0.8"
 
+# tree-sitter cannot compile to WASM (uses POSIX functions not in WASI)
+# See WASI_REACTOR_VERIFICATION.md for verification details
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 tree-sitter = "0.22"
 

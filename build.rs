@@ -3,9 +3,13 @@ use std::process::Command;
 
 fn main() {
     // Skip tree-sitter compilation for WASM targets
+    // Verification complete: tree-sitter cannot compile to WASM with WASI Reactor pattern
+    // See WASI_REACTOR_VERIFICATION.md for details
     let target = std::env::var("TARGET").unwrap_or_default();
     if target.starts_with("wasm32") {
         println!("cargo:warning=Skipping tree-sitter compilation for WASM target");
+        println!("cargo:warning=VERIFIED: tree-sitter cannot compile to WASM (uses POSIX dup())");
+        println!("cargo:warning=See WASI_REACTOR_VERIFICATION.md for details");
         return;
     }
 
