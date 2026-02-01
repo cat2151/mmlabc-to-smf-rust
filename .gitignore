@@ -30,6 +30,9 @@ pass*.json
 *.mid
 !tests/**/*.mid
 
+# WASM build artifacts
+demo/*.wasm
+
 # TOML configuration file (user-specific)
 mmlabc-to-smf-rust.toml
 

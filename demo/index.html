@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MML to SMF Converter - WASM Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 10px;
+            font-family: monospace;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .example-buttons {
+            margin-bottom: 10px;
+        }
+        .example-buttons button {
+            background-color: #007bff;
+            margin-right: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        .example-buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 MML to SMF Converter (WASM Demo)</h1>
+        <p>Enter Music Macro Language (MML) in the text area below and click "Convert & Download" to generate a MIDI file.</p>
+        
+        <div class="example-buttons">
+            <strong>Examples:</strong>
+            <button onclick="loadExample('cde')">Simple (cde)</button>
+            <button onclick="loadExample('cdefgab')">Scale</button>
+            <button onclick="loadExample('[ceg]')">Chord</button>
+        </div>
+
+        <label for="mmlInput"><strong>MML Input:</strong></label>
+        <textarea id="mmlInput" placeholder="Enter MML here, e.g., cde">cde</textarea>
+
+        <button id="convertBtn" onclick="convertAndDownload()">Convert & Download MIDI</button>
+
+        <div id="status"></div>
+
+        <div style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 4px;">
+            <strong>Note:</strong> This demo uses WASI Reactor pattern. The MML is first parsed natively using tree-sitter (Pass 1), 
+            then the tokens are sent to WASM for conversion to MIDI (Passes 2-4).
+        </div>
+    </div>
+
+    <script type="module">
+        let wasmInstance = null;
+        let memory = null;
+
+        // Initialize WASM module
+        async function initWasm() {
+            try {
+                // For WASI support, we need to provide WASI imports
+                const wasiImports = {
+                    wasi_snapshot_preview1: {
+                        // Minimal WASI stubs - we don't use these but WASI modules expect them
+                        proc_exit: (code) => {
+                            console.log('WASI proc_exit called with code:', code);
+                        },
+                        fd_write: (fd, iovs, iovs_len, nwritten) => {
+                            console.log('WASI fd_write called');
+                            return 0;
+                        },
+                        fd_close: (fd) => {
+                            console.log('WASI fd_close called');
+                            return 0;
+                        },
+                        fd_seek: (fd, offset_low, offset_high, whence, newOffset) => {
+                            console.log('WASI fd_seek called');
+                            return 0;
+                        },
+                        environ_sizes_get: (environCount, environBufSize) => {
+                            console.log('WASI environ_sizes_get called');
+                            return 0;
+                        },
+                        environ_get: (environ, environBuf) => {
+                            console.log('WASI environ_get called');
+                            return 0;
+                        },
+                        fd_fdstat_get: (fd, stat) => {
+                            console.log('WASI fd_fdstat_get called');
+                            return 0;
+                        },
+                        fd_prestat_get: (fd, prestat) => {
+                            console.log('WASI fd_prestat_get called');
+                            return 8;
+                        },
+                        fd_prestat_dir_name: (fd, path, path_len) => {
+                            console.log('WASI fd_prestat_dir_name called');
+                            return 8;
+                        }
+                    }
+                };
+
+                const response = await fetch('mmlabc_to_smf.wasm');
+                const wasmBytes = await response.arrayBuffer();
+                const wasmModule = await WebAssembly.instantiate(wasmBytes, wasiImports);
+                
+                wasmInstance = wasmModule.instance;
+                memory = wasmInstance.exports.memory;
+                
+                console.log('WASM module loaded successfully');
+                console.log('Exports:', Object.keys(wasmInstance.exports));
+                
+                return true;
+            } catch (error) {
+                console.error('Failed to initialize WASM:', error);
+                showStatus('Failed to load WASM module: ' + error.message, 'error');
+                return false;
+            }
+        }
+
+        // Helper function to write string to WASM memory
+        function writeStringToMemory(str) {
+            const encoder = new TextEncoder();
+            const bytes = encoder.encode(str + '\0'); // null-terminated
+            const ptr = wasmInstance.exports.__heap_base || 65536; // Use a safe offset
+            const memView = new Uint8Array(memory.buffer);
+            memView.set(bytes, ptr);
+            return ptr;
+        }
+
+        // Helper function to read string from WASM memory
+        function readStringFromMemory(ptr) {
+            if (ptr === 0) return null;
+            const memView = new Uint8Array(memory.buffer);
+            let end = ptr;
+            while (memView[end] !== 0) end++;
+            const decoder = new TextDecoder();
+            return decoder.decode(memView.slice(ptr, end));
+        }
+
+        // Parse MML natively (this would normally be done server-side or with tree-sitter-wasm)
+        // For this demo, we'll create a simple token structure
+        function parseMmlToTokens(mml) {
+            const tokens = [];
+            const notes = mml.toLowerCase().match(/[a-gr]/g) || [];
+            
+            for (const note of notes) {
+                if (note === 'r') {
+                    // Rest
+                    tokens.push({
+                        token_type: "rest",
+                        value: "r",
+                        channel_group: null,
+                        chord_id: null,
+                        modifier: null,
+                        note_length: null,
+                        dots: null
+                    });
+                } else {
+                    tokens.push({
+                        token_type: "note",
+                        value: note,
+                        channel_group: null,
+                        chord_id: null,
+                        modifier: null,
+                        note_length: null,
+                        dots: null
+                    });
+                }
+            }
+            
+            return tokens;
+        }
+
+        // Convert MML to MIDI and download
+        async function convertAndDownload() {
+            const mmlInput = document.getElementById('mmlInput').value.trim();
+            
+            if (!mmlInput) {
+                showStatus('Please enter some MML text', 'error');
+                return;
+            }
+
+            if (!wasmInstance) {
+                showStatus('WASM module not loaded yet. Please wait...', 'info');
+                return;
+            }
+
+            try {
+                showStatus('Converting MML to MIDI...', 'info');
+
+                // Step 1: Parse MML to tokens (simplified - in production, use tree-sitter)
+                const tokens = parseMmlToTokens(mmlInput);
+                console.log('Tokens:', tokens);
+
+                // Step 2: Convert tokens to JSON
+                const tokensJson = JSON.stringify(tokens);
+                console.log('Tokens JSON:', tokensJson);
+
+                // Step 3: Write JSON to WASM memory
+                const tokensPtr = writeStringToMemory(tokensJson);
+
+                // Step 4: Call WASM function
+                const midiLength = wasmInstance.exports.tokens_to_smf(tokensPtr);
+                console.log('MIDI length:', midiLength);
+
+                if (midiLength <= 0) {
+                    const errorPtr = wasmInstance.exports.get_last_error();
+                    const errorMsg = readStringFromMemory(errorPtr) || 'Unknown error';
+                    showStatus('Conversion failed: ' + errorMsg, 'error');
+                    return;
+                }
+
+                // Step 5: Get MIDI data from WASM memory
+                const midiDataPtr = wasmInstance.exports.get_midi_data();
+                const midiData = new Uint8Array(memory.buffer, midiDataPtr, midiLength);
+                
+                // Copy to a new array to avoid memory issues
+                const midiBytes = new Uint8Array(midiData);
+
+                // Step 6: Create blob and download
+                const blob = new Blob([midiBytes], { type: 'audio/midi' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'output.mid';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                showStatus(`✓ Successfully generated MIDI file (${midiLength} bytes)!`, 'success');
+            } catch (error) {
+                console.error('Conversion error:', error);
+                showStatus('Conversion failed: ' + error.message, 'error');
+            }
+        }
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = 'status ' + type;
+        }
+
+        function loadExample(mml) {
+            document.getElementById('mmlInput').value = mml;
+        }
+
+        // Make functions available globally
+        window.convertAndDownload = convertAndDownload;
+        window.loadExample = loadExample;
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            showStatus('Loading WASM module...', 'info');
+            const success = await initWasm();
+            if (success) {
+                showStatus('Ready to convert! Enter MML and click Convert.', 'success');
+            }
+        });
+    </script>
+</body>
+</html>
