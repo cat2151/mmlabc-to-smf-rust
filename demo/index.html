@@ -89,7 +89,7 @@
             <strong>Examples:</strong>
             <button onclick="loadExample('cde')">Simple (cde)</button>
             <button onclick="loadExample('cdefgab')">Scale</button>
-            <button onclick="loadExample('[ceg]')">Chord</button>
+            <button onclick="loadExample('crcrcr')">With rests</button>
         </div>
 
         <label for="mmlInput"><strong>MML Input:</strong></label>
@@ -100,8 +100,9 @@
         <div id="status"></div>
 
         <div style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 4px;">
-            <strong>Note:</strong> This demo uses WASI Reactor pattern. The MML is first parsed natively using tree-sitter (Pass 1), 
-            then the tokens are sent to WASM for conversion to MIDI (Passes 2-4).
+            <strong>Note:</strong> This demo uses WASI Reactor pattern. The MML is first parsed using a simplified JavaScript parser 
+            (supporting basic notes a-g and rests r), then the tokens are sent to WASM for conversion to MIDI (Passes 2-4).
+            For full MML support including chords, octaves, and lengths, integrate a complete MML parser like tree-sitter.
         </div>
     </div>
 

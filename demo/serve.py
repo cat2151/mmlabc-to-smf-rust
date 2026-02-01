@@ -24,8 +24,9 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         return mimetype
 
 if __name__ == '__main__':
-    # Change to demo directory
-    os.chdir(os.path.join(os.path.dirname(__file__), 'demo'))
+    # Change to demo directory (script is already in demo directory)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(script_dir)
     
     with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:
         print(f"Server started at http://localhost:{PORT}")

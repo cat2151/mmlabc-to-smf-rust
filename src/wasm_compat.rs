@@ -3,6 +3,17 @@
 //! This module provides a WASM-compatible interface for converting
 //! parsed MML tokens to SMF binary data. It bypasses Pass 1 (tree-sitter parsing)
 //! to avoid C dependency issues in WASM.
+//!
+//! # Safety
+//!
+//! This module uses mutable static variables for storing conversion results.
+//! It is designed for single-threaded WASM environments (typical for browser usage).
+//! Do NOT use this module in multi-threaded contexts as it will cause data races.
+//!
+//! # Memory Management
+//!
+//! Functions that return C strings (e.g., `get_last_error()`) allocate memory
+//! that must be freed by the caller using `free_error_string()` to avoid leaks.
 
 use crate::{pass2_ast, pass3_events, pass4_midi, types::Token};
 use std::ffi::{CStr, CString};
@@ -113,6 +124,17 @@ pub extern "C" fn get_midi_data_length() -> c_int {
 }
 
 /// Get error message for the last operation
+///
+/// **Important**: The returned string is allocated and must be freed by calling
+/// `free_error_string()` to prevent memory leaks. Example usage:
+///
+/// ```c
+/// const char* err = get_last_error();
+/// if (err != NULL) {
+///     printf("Error: %s\n", err);
+///     free_error_string((char*)err);  // Don't forget to free!
+/// }
+/// ```
 ///
 /// # Returns
 /// * Pointer to null-terminated error string, or null if no error
