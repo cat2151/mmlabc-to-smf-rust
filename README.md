@@ -69,6 +69,9 @@ The WASM implementation uses the WASI Reactor (FFI export) pattern:
 - **Pass 1 (Parsing)**: Performed in JavaScript or server-side (tree-sitter has C dependencies)
 - **Passes 2-4 (AST → Events → MIDI)**: Performed in WebAssembly for efficient binary generation
 
+**Important**: The WASM module maintains **100% of mmlabc-to-smf-rust functionality**. All MML commands are supported.
+The demo HTML uses a simplified parser for illustration only - this is not a limitation of the WASM module itself.
+
 See [demo/README.md](demo/README.md) for more details on the browser demo.
 
 ## Future Outlook

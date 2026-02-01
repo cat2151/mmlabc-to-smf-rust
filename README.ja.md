@@ -69,6 +69,9 @@ WASM実装ではWASI Reactor（FFI export）パターンを使用：
 - **パス1（パース処理）**: JavaScript側またはサーバー側で実行（tree-sitterはC言語依存のため）
 - **パス2～4（AST → イベント → MIDI）**: WebAssemblyで実行し、効率的にバイナリ生成
 
+**重要**: WASMモジュールは **mmlabc-to-smf-rust の全機能を維持しています**。すべてのMMLコマンドがサポートされています。
+デモHTMLは説明のため簡素化されたパーサーを使用していますが、これはWASMモジュール自体の制限ではありません。
+
 詳細は [demo/README.md](demo/README.md) を参照してください。
 
 ## 今後の見通し

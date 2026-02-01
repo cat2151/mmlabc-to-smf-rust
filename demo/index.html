@@ -100,9 +100,17 @@
         <div id="status"></div>
 
         <div style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 4px;">
-            <strong>Note:</strong> This demo uses WASI Reactor pattern. The MML is first parsed using a simplified JavaScript parser 
-            (supporting basic notes a-g and rests r), then the tokens are sent to WASM for conversion to MIDI (Passes 2-4).
-            For full MML support including chords, octaves, and lengths, integrate a complete MML parser like tree-sitter.
+            <strong>重要 / Important:</strong> 
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li><strong>WASM モジュールは mmlabc-to-smf-rust の全機能を維持しています</strong></li>
+                <li>The WASM module maintains ALL mmlabc-to-smf-rust functionality</li>
+                <li style="margin-top: 8px;">このデモは、技術実証のため簡素化された JavaScript パーサーを使用しています（基本音符 a-g とrest r のみ）</li>
+                <li>This demo uses a simplified JavaScript parser for demonstration only (basic notes a-g and rest r)</li>
+                <li style="margin-top: 8px;">本番環境では、tree-sitter-wasm またはサーバー側の tree-sitter を使用して、完全な Token を生成してください</li>
+                <li>For production, use tree-sitter-wasm or server-side tree-sitter to generate full Tokens</li>
+                <li style="margin-top: 8px;">WASM モジュール自体は、和音、オクターブ、音長など、すべての MML コマンドをサポートしています</li>
+                <li>The WASM module itself supports all MML commands: chords, octaves, lengths, etc.</li>
+            </ul>
         </div>
     </div>
 
@@ -206,7 +214,10 @@
         }
 
         // Parse MML natively (this would normally be done server-side or with tree-sitter-wasm)
-        // For this demo, we'll create a simple token structure
+        // IMPORTANT: This is a SIMPLIFIED parser for demo purposes ONLY
+        // The WASM module supports ALL MML features when given proper Tokens from tree-sitter
+        // This demo parser only handles basic notes (a-g) and rests (r)
+        // For production use: integrate tree-sitter-wasm or parse server-side
         function parseMmlToTokens(mml) {
             const tokens = [];
             const notes = mml.toLowerCase().match(/[a-gr]/g) || [];

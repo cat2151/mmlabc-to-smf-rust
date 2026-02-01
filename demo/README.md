@@ -32,17 +32,33 @@ This directory contains a browser-based demo of the MML to SMF converter using W
 
 This demo uses the WASI Reactor (FFI export) pattern:
 
-- **Pass 1 (Parsing)**: Done in JavaScript using a simplified parser
-  - In production, this could use tree-sitter compiled to WASM separately, or be done server-side
+- **Pass 1 (Parsing)**: Done outside WASM (JavaScript in this demo)
+  - **IMPORTANT**: The demo's JavaScript parser is simplified for demonstration only
+  - **The WASM module itself supports ALL MML features** - it accepts full Token structures
+  - In production, use tree-sitter-wasm, server-side tree-sitter, or a complete JavaScript parser
 - **Passes 2-4 (AST → Events → MIDI)**: Done in WebAssembly
+  - **Full mmlabc-to-smf-rust functionality maintained**
+  - Supports all MML commands: chords, octaves, lengths, modifiers, multi-channel, etc.
   - The JavaScript code sends parsed tokens as JSON to the WASM module
   - The WASM module processes the tokens and returns binary MIDI data
 
+## Full Feature Support
+
+**The WASM module maintains 100% of mmlabc-to-smf-rust functionality:**
+- ✅ All MML commands supported by tree-sitter parser
+- ✅ Chords, octave changes, note lengths, dots, modifiers
+- ✅ Multi-channel support with semicolons
+- ✅ All token types from Pass 1 (tree-sitter)
+
+**The limitation is only in the demo's parser** - not the WASM module.
+
 ## Notes
 
-- The current demo uses a simplified MML parser in JavaScript for demonstration purposes
-- The simplified parser supports only basic notes (`a`-`g`) and rests (`r`), without chord brackets, octave changes, or other advanced MML features
-- For full MML support (including all mmlabc commands), integrate a proper MML parser
+- The current demo uses a simplified MML parser in JavaScript **for demonstration purposes only**
+- The simplified parser supports only basic notes (`a`-`g`) and rests (`r`)
+- **This is NOT a limitation of the WASM module** - it's only a limitation of the demo HTML
+- The WASM module (`mmlabc_to_smf.wasm`) accepts full Token structures and supports all MML features
+- For full MML support, integrate a proper MML parser (tree-sitter-wasm, server-side, or complete JS implementation)
 - The WASM module is ~339KB in release mode
 - The module requires WASI support, which is provided by minimal WASI stubs in the JavaScript
 

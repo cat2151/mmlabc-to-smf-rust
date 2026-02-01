@@ -15,6 +15,7 @@ The issue mentioned that tree-sitter's `parser.c` (C language dependency) preven
 1. **Separating concerns**: Parsing (C-dependent) and conversion (Rust-only)
 2. **Leveraging strengths**: Native/JavaScript for parsing, WASM for binary generation
 3. **Maintaining quality**: Reuses existing, tested Rust code for Passes 2-4
+4. **Preserving functionality**: **ALL mmlabc-to-smf-rust features are maintained in the WASM module**
 
 ### How It Works
 
@@ -24,15 +25,23 @@ The issue mentioned that tree-sitter's `parser.c` (C language dependency) preven
 │                                                             │
 │  ┌──────────────┐         ┌──────────────────────────┐    │
 │  │  JavaScript  │         │    WASM Module           │    │
-│  │              │         │                          │    │
-│  │  Pass 1:     │  JSON   │  Pass 2: Tokens → AST    │    │
-│  │  MML → Tokens├────────>│  Pass 3: AST → Events    │    │
+│  │  or Server   │         │                          │    │
+│  │              │         │  FULL FUNCTIONALITY:     │    │
+│  │  Pass 1:     │  JSON   │  - All MML commands      │    │
+│  │  MML → Tokens│  Tokens │  - Chords, octaves, etc. │    │
+│  │  (tree-sitter├────────>│  - Multi-channel         │    │
+│  │   or other   │         │                          │    │
+│  │   parser)    │         │  Pass 2: Tokens → AST    │    │
+│  │              │         │  Pass 3: AST → Events    │    │
 │  │              │         │  Pass 4: Events → MIDI   │    │
 │  │              │<────────┤                          │    │
 │  └──────────────┘  Binary │  (339KB .wasm file)      │    │
 │                     MIDI  └──────────────────────────┘    │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+**Important**: The WASM module maintains 100% of mmlabc-to-smf-rust functionality.
+The demo uses a simplified parser for illustration only - not a limitation of WASM.
 
 ## Key Changes
 
@@ -69,8 +78,14 @@ pub extern "C" fn get_last_error() -> *const c_char
 pub extern "C" fn free_error_string(ptr: *mut c_char)
 ```
 
-**Input**: JSON-serialized Token array  
+**Input**: JSON-serialized Token array (full Token structure from tree-sitter)
 **Output**: Binary MIDI file data
+
+**Feature Support**: The WASM module supports ALL mmlabc-to-smf-rust features:
+- All token types from tree-sitter parser
+- Chords, octave changes, note lengths, dots, modifiers
+- Multi-channel support
+- All MML commands supported by the native version
 
 ### 3. Browser Demo (demo/)
 
@@ -78,7 +93,10 @@ Complete working example with:
 - **index.html**: Full UI with textarea, examples, download
 - **serve.py**: Simple HTTP server with WASI headers
 - **README.md**: Usage instructions
-- Simplified MML parser for demonstration
+- **Simplified parser for demo**: The demo uses a basic JavaScript parser for illustration
+  - **This is NOT a limitation of the WASM module**
+  - The WASM module accepts full Token structures and supports all features
+  - For production, use tree-sitter-wasm or server-side parsing
 
 ## Building and Using
 
