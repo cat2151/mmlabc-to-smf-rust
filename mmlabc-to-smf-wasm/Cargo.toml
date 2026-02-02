@@ -1,0 +1,22 @@
+[package]
+name = "mmlabc-to-smf-wasm"
+version = "0.1.0"
+edition = "2021"
+authors = ["cat2151"]
+license = "MIT"
+description = "WASM bindings for MML to SMF conversion in browsers"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+mmlabc-to-smf = { path = "..", default-features = false }
+wasm-bindgen = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
