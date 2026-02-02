@@ -8,7 +8,25 @@ This achieves SSOT (Single Source of Truth) by keeping all token extraction logi
 
 ## Setup
 
-### 1. Build the WASM Module
+### 1. Install Dependencies
+
+```bash
+cd demo
+npm install
+```
+
+This installs `web-tree-sitter` which is needed for parsing.
+
+### 2. Copy web-tree-sitter Files
+
+```bash
+cp node_modules/web-tree-sitter/web-tree-sitter.js .
+cp node_modules/web-tree-sitter/web-tree-sitter.wasm .
+```
+
+These files need to be in the demo directory for the browser to load them.
+
+### 3. Build the WASM Module
 
 ```bash
 cd ../mmlabc-to-smf-wasm
@@ -17,20 +35,22 @@ wasm-pack build --target web
 
 This creates the `pkg/` directory with the WASM binary and JavaScript bindings.
 
-### 2. Build the Tree-sitter Grammar WASM
+### 4. Build the Tree-sitter Grammar WASM
 
 ```bash
 cd ../tree-sitter-mml
+npm install tree-sitter-cli  # If not already installed
 npx tree-sitter build-wasm
 ```
 
 This creates `tree-sitter-mml.wasm` for web-tree-sitter.
 
-### 3. Run the Demo
+### 5. Run the Demo
 
 Start a local web server from the repository root:
 
 ```bash
+cd ..
 python3 -m http.server 8000
 ```
 

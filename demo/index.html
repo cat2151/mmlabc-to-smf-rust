@@ -116,8 +116,8 @@
     </div>
 
     <script type="module">
-        // Import web-tree-sitter
-        import Parser from 'https://cdn.jsdelivr.net/npm/web-tree-sitter@0.24.5/+esm';
+        // Import web-tree-sitter (local copy)
+        import { Parser, Language } from './web-tree-sitter.js';
         
         // Import WASM module
         import init, { parse_tree_json_to_smf } from '../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js';
@@ -133,7 +133,7 @@
                 parser = new Parser();
                 
                 // Load MML grammar
-                const lang = await Parser.Language.load('../tree-sitter-mml/tree-sitter-mml.wasm');
+                const lang = await Language.load('../tree-sitter-mml/tree-sitter-mml.wasm');
                 parser.setLanguage(lang);
                 
                 // Initialize Rust WASM

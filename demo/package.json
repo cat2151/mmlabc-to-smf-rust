@@ -1,0 +1,15 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "This demo demonstrates browser-based MML to SMF conversion using Option A architecture: - **JavaScript (web-tree-sitter)**: Parses MML text and generates parse tree - **Rust WASM**: Receives parse tree JSON, extracts tokens, and generates SMF binary",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "web-tree-sitter": "^0.26.5"
+  }
+}

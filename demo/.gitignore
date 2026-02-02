@@ -1,0 +1,9 @@
+# Node.js dependencies
+node_modules/
+
+# Build output
+pkg/
+
+# Web tree-sitter files (copied from node_modules)
+web-tree-sitter.js
+web-tree-sitter.wasm
