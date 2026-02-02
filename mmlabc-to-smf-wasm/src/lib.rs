@@ -66,7 +66,7 @@ fn extract_tokens_from_node(
             for child in children {
                 if child.node_type == "note_with_modifier" {
                     let (note_value, modifier, note_length, dots) =
-                        extract_note_and_modifier(child, source);
+                        extract_note_and_modifier(child);
                     tokens.push(Token {
                         token_type: "note".to_string(),
                         value: note_value,
@@ -80,7 +80,7 @@ fn extract_tokens_from_node(
             }
         }
     } else if kind == "note_with_modifier" {
-        let (note_value, modifier, note_length, dots) = extract_note_and_modifier(node, source);
+        let (note_value, modifier, note_length, dots) = extract_note_and_modifier(node);
         tokens.push(Token {
             token_type: "note".to_string(),
             value: note_value,
@@ -231,7 +231,6 @@ fn extract_tokens_from_node(
 
 fn extract_note_and_modifier(
     node: &ParseTreeNode,
-    _source: &str,
 ) -> (String, Option<String>, Option<u32>, Option<u32>) {
     let mut note_value = String::new();
     let mut modifier = None;
@@ -270,6 +269,10 @@ fn extract_note_and_modifier(
 /// This is the main WASM function that takes parse tree JSON from web-tree-sitter
 /// and returns Standard MIDI File binary data.
 ///
+/// Note: For multi-channel MML (with semicolons), JavaScript should split the MML
+/// by semicolons and call this function separately for each channel, or call a
+/// wrapper that handles multiple parse trees.
+///
 /// # Arguments
 /// * `parse_tree_json` - JSON string representing the parse tree from web-tree-sitter
 /// * `mml_source` - Original MML source text (needed for extracting text from positions)
@@ -278,32 +281,16 @@ fn extract_note_and_modifier(
 /// SMF binary data as Uint8Array
 #[wasm_bindgen]
 pub fn parse_tree_json_to_smf(parse_tree_json: &str, mml_source: &str) -> Result<Vec<u8>, JsValue> {
-    // Split by semicolons to identify channel groups
-    let channel_groups: Vec<&str> = mml_source.split(';').collect();
-    let has_multiple_channels = channel_groups.len() > 1;
-    
-    let mut all_tokens = Vec::new();
-    let mut global_chord_id = 0;
+    // Parse the parse tree JSON
+    let parse_tree: ParseTreeNode = serde_json::from_str(parse_tree_json)
+        .map_err(|e| JsValue::from_str(&format!("Failed to parse JSON: {}", e)))?;
 
-    // Parse each channel group
-    for (group_idx, _group_source) in channel_groups.iter().enumerate() {
-        let channel_group = if has_multiple_channels {
-            Some(group_idx)
-        } else {
-            None
-        };
-
-        // Parse the parse tree JSON
-        let parse_tree: ParseTreeNode = serde_json::from_str(parse_tree_json)
-            .map_err(|e| JsValue::from_str(&format!("Failed to parse JSON: {}", e)))?;
-
-        // Extract tokens from parse tree
-        let tokens = parse_tree_to_tokens(&parse_tree, mml_source, channel_group, &mut global_chord_id);
-        all_tokens.extend(tokens);
-    }
+    // Extract tokens from parse tree (no channel group for single MML string)
+    let mut chord_id = 0;
+    let tokens = parse_tree_to_tokens(&parse_tree, mml_source, None, &mut chord_id);
 
     // Pass 2: Convert tokens to AST
-    let ast = pass2_ast::tokens_to_ast(&all_tokens);
+    let ast = pass2_ast::tokens_to_ast(&tokens);
 
     // Pass 3: Generate MIDI events
     let events = pass3_events::ast_to_events(&ast);
