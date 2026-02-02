@@ -44,6 +44,13 @@ tree-sitter-mml/bindings/
 demo/node_modules/
 demo/package-lock.json
 
+# Demo copied web-tree-sitter files
+demo/web-tree-sitter.js
+demo/web-tree-sitter.wasm
+
 # WASM package output
 mmlabc-to-smf-wasm/pkg/
 mmlabc-to-smf-wasm/target/
+
+# GitHub Pages deployment artifacts
+_site/
