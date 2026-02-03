@@ -3,7 +3,48 @@
   "name": "mml",
   "rules": {
     "source_file": {
-      "type": "REPEAT",
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "channel_groups"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_item"
+          }
+        }
+      ]
+    },
+    "channel_groups": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "channel_group"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ";"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "channel_group"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "channel_group": {
+      "type": "REPEAT1",
       "content": {
         "type": "SYMBOL",
         "name": "_item"

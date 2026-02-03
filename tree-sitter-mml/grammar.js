@@ -2,7 +2,17 @@ module.exports = grammar({
   name: 'mml',
 
   rules: {
-    source_file: $ => repeat($._item),
+    source_file: $ => choice(
+      $.channel_groups,
+      repeat($._item)
+    ),
+
+    channel_groups: $ => seq(
+      $.channel_group,
+      repeat1(seq(';', $.channel_group))
+    ),
+
+    channel_group: $ => repeat1($._item),
 
     _item: $ => choice(
       $.chord,

@@ -33,6 +33,10 @@ pass*.json
 # TOML configuration file (user-specific)
 mmlabc-to-smf-rust.toml
 
+# Node modules and npm artifacts
+node_modules/
+package-lock.json
+
 # tree-sitter generated files and npm artifacts
 tree-sitter-mml/node_modules/
 tree-sitter-mml/package-lock.json
