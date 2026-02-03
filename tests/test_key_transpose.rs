@@ -285,14 +285,14 @@ fn test_key_transpose_complex_sequence() {
     let tokens = parse_mml("o4kt2c<kt-1d>kt0e");
     let ast = tokens_to_ast(&tokens);
     assert_eq!(ast.notes.len(), 3);
-    
+
     // First note: o4 (C4=48) + kt2 = 50
     assert_eq!(ast.notes[0].pitch, 50);
-    
+
     // Second note: < makes it C5 (60) + kt-1 = 61... wait, D not C
     // After <, we're in octave 5, D5 = 62, kt-1 = 61
     assert_eq!(ast.notes[1].pitch, 61);
-    
+
     // Third note: > makes it back to octave 4, E4 = 52, kt0 = 52
     assert_eq!(ast.notes[2].pitch, 52);
 }

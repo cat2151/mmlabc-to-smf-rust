@@ -231,7 +231,11 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
         } else if token.token_type == "key_transpose" {
             // kt command sets key transpose (e.g., "kt1" transposes up 1 semitone, "kt-1" transposes down 1)
             // Format: kt[+/-]number where + is optional
-            if let Some(kt_str) = token.value.strip_prefix("kt").or_else(|| token.value.strip_prefix("KT")) {
+            if let Some(kt_str) = token
+                .value
+                .strip_prefix("kt")
+                .or_else(|| token.value.strip_prefix("KT"))
+            {
                 // Parse the transpose value (can be negative)
                 if let Ok(transpose_value) = kt_str.parse::<i8>() {
                     current_transposes.insert(token.channel_group, transpose_value);
