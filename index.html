@@ -192,7 +192,19 @@
             const mml = document.getElementById('mmlInput').value.trim();
             
             if (!mml) {
-                showStatus('Please enter some MML code.', 'error');
+                // For empty input during automatic conversion, clear status/debug instead of showing an error
+                const statusDiv = document.getElementById('status');
+                statusDiv.textContent = '';
+                statusDiv.className = 'hidden';
+
+                const debugSection = document.getElementById('debug');
+                if (debugSection) {
+                    debugSection.classList.add('hidden');
+                }
+                const debugInfo = document.getElementById('debugInfo');
+                if (debugInfo) {
+                    debugInfo.textContent = '';
+                }
                 return;
             }
 
@@ -242,6 +254,14 @@
             // Trigger input event to start automatic conversion
             input.dispatchEvent(new Event('input'));
         };
+
+        // Cleanup debounce timer when page is unloaded
+        window.addEventListener('beforeunload', () => {
+            if (debounceTimer) {
+                clearTimeout(debounceTimer);
+                debounceTimer = null;
+            }
+        });
 
         // Show status message
         function showStatus(message, type) {
