@@ -70,6 +70,18 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
     tokens
 }
 
+/// Extract tokens from a tree-sitter parse tree cursor
+///
+/// Recursively walks the tree-sitter parse tree and extracts tokens for all MML elements.
+/// Handles notes, chords, rests, octave commands, length settings, program changes,
+/// tempo settings, and velocity settings.
+///
+/// # Arguments
+/// * `cursor` - Tree-sitter cursor positioned at a node to extract tokens from
+/// * `source` - Original MML source string for extracting text from nodes
+/// * `tokens` - Mutable vector to append extracted tokens to
+/// * `channel_group` - Optional channel group index (for multi-channel MML with semicolons)
+/// * `chord_id` - Mutable counter for assigning unique IDs to chords
 fn extract_tokens(
     cursor: &mut TreeCursor,
     source: &str,
@@ -285,6 +297,21 @@ fn extract_tokens(
             }
         }
 
+/// Extract note and its modifiers from a note_with_modifier node
+///
+/// Parses a note_with_modifier node and extracts the note value, optional sharp/flat modifier,
+/// optional note length, and optional dots.
+///
+/// # Arguments
+/// * `cursor` - Tree-sitter cursor positioned at a note_with_modifier node
+/// * `source` - Original MML source string for extracting text from nodes
+///
+/// # Returns
+/// Tuple of (note_value, modifier, note_length, dots)
+/// - note_value: Lowercase note letter (c, d, e, f, g, a, or b)
+/// - modifier: Optional "+" (sharp) or "-" (flat)
+/// - note_length: Optional note length value (e.g., 4 for quarter note)
+/// - dots: Optional number of dots for dotted notes
 fn extract_note_and_modifier(
     cursor: &mut TreeCursor,
     source: &str,
