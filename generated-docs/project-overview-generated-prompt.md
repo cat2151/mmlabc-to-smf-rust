@@ -1,4 +1,4 @@
-Last updated: 2026-01-21
+Last updated: 2026-02-04
 
 
 # プロジェクト概要生成プロンプト（来訪者向け）
@@ -60,7 +60,7 @@ Last updated: 2026-01-21
 以下のプロジェクト情報を参考にして要約を生成してください：
 
 ## プロジェクト情報
-名前: 
+名前: Unknown
 説明: # mmlabc-to-smf-rust
 
 <p align="left">
@@ -313,7 +313,12 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 
 
 依存関係:
-{}
+{
+  "dependencies": {
+    "tree-sitter-cli": "^0.26.5"
+  },
+  "devDependencies": {}
+}
 
 ## ファイル階層ツリー
 📄 .editorconfig
@@ -322,7 +327,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📊 settings.json
 📄 Cargo.lock
 📄 Cargo.toml
+📖 IMPLEMENTATION_REPORT.md
 📄 LICENSE
+📖 OPTION_A_IMPLEMENTATION.md
 📖 README.ja.md
 📖 README.md
 📁 _codeql_detected_source_root/
@@ -332,7 +339,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📊 settings.json
   📄 Cargo.lock
   📄 Cargo.toml
+  📖 IMPLEMENTATION_REPORT.md
   📄 LICENSE
+  📖 OPTION_A_IMPLEMENTATION.md
   📖 README.ja.md
   📖 README.md
   📁 _codeql_detected_source_root/
@@ -342,7 +351,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📊 settings.json
     📄 Cargo.lock
     📄 Cargo.toml
+    📖 IMPLEMENTATION_REPORT.md
     📄 LICENSE
+    📖 OPTION_A_IMPLEMENTATION.md
     📖 README.ja.md
     📖 README.md
     📁 _codeql_detected_source_root/
@@ -352,7 +363,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📊 settings.json
       📄 Cargo.lock
       📄 Cargo.toml
+      📖 IMPLEMENTATION_REPORT.md
       📄 LICENSE
+      📖 OPTION_A_IMPLEMENTATION.md
       📖 README.ja.md
       📖 README.md
       📁 _codeql_detected_source_root/
@@ -362,7 +375,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📊 settings.json
         📄 Cargo.lock
         📄 Cargo.toml
+        📖 IMPLEMENTATION_REPORT.md
         📄 LICENSE
+        📖 OPTION_A_IMPLEMENTATION.md
         📖 README.ja.md
         📖 README.md
         📁 _codeql_detected_source_root/
@@ -372,7 +387,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📊 settings.json
           📄 Cargo.lock
           📄 Cargo.toml
+          📖 IMPLEMENTATION_REPORT.md
           📄 LICENSE
+          📖 OPTION_A_IMPLEMENTATION.md
           📖 README.ja.md
           📖 README.md
           📁 _codeql_detected_source_root/
@@ -382,7 +399,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📊 settings.json
             📄 Cargo.lock
             📄 Cargo.toml
+            📖 IMPLEMENTATION_REPORT.md
             📄 LICENSE
+            📖 OPTION_A_IMPLEMENTATION.md
             📖 README.ja.md
             📖 README.md
             📁 _codeql_detected_source_root/
@@ -392,7 +411,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📊 settings.json
               📄 Cargo.lock
               📄 Cargo.toml
+              📖 IMPLEMENTATION_REPORT.md
               📄 LICENSE
+              📖 OPTION_A_IMPLEMENTATION.md
               📖 README.ja.md
               📖 README.md
               📁 _codeql_detected_source_root/
@@ -402,7 +423,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📊 settings.json
                 📄 Cargo.lock
                 📄 Cargo.toml
+                📖 IMPLEMENTATION_REPORT.md
                 📄 LICENSE
+                📖 OPTION_A_IMPLEMENTATION.md
                 📖 README.ja.md
                 📖 README.md
                 📁 _codeql_detected_source_root/
@@ -412,7 +435,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📊 settings.json
                   📄 Cargo.lock
                   📄 Cargo.toml
+                  📖 IMPLEMENTATION_REPORT.md
                   📄 LICENSE
+                  📖 OPTION_A_IMPLEMENTATION.md
                   📖 README.ja.md
                   📖 README.md
                   📁 _codeql_detected_source_root/
@@ -422,7 +447,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📊 settings.json
                     📄 Cargo.lock
                     📄 Cargo.toml
+                    📖 IMPLEMENTATION_REPORT.md
                     📄 LICENSE
+                    📖 OPTION_A_IMPLEMENTATION.md
                     📖 README.ja.md
                     📖 README.md
                     📁 _codeql_detected_source_root/
@@ -432,7 +459,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📊 settings.json
                       📄 Cargo.lock
                       📄 Cargo.toml
+                      📖 IMPLEMENTATION_REPORT.md
                       📄 LICENSE
+                      📖 OPTION_A_IMPLEMENTATION.md
                       📖 README.ja.md
                       📖 README.md
                       📁 _codeql_detected_source_root/
@@ -442,7 +471,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📊 settings.json
                         📄 Cargo.lock
                         📄 Cargo.toml
+                        📖 IMPLEMENTATION_REPORT.md
                         📄 LICENSE
+                        📖 OPTION_A_IMPLEMENTATION.md
                         📖 README.ja.md
                         📖 README.md
                         📁 _codeql_detected_source_root/
@@ -452,7 +483,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📊 settings.json
                           📄 Cargo.lock
                           📄 Cargo.toml
+                          📖 IMPLEMENTATION_REPORT.md
                           📄 LICENSE
+                          📖 OPTION_A_IMPLEMENTATION.md
                           📖 README.ja.md
                           📖 README.md
                           📁 _codeql_detected_source_root/
@@ -462,7 +495,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📊 settings.json
                             📄 Cargo.lock
                             📄 Cargo.toml
+                            📖 IMPLEMENTATION_REPORT.md
                             📄 LICENSE
+                            📖 OPTION_A_IMPLEMENTATION.md
                             📖 README.ja.md
                             📖 README.md
                             📁 _codeql_detected_source_root/
@@ -472,7 +507,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📊 settings.json
                               📄 Cargo.lock
                               📄 Cargo.toml
+                              📖 IMPLEMENTATION_REPORT.md
                               📄 LICENSE
+                              📖 OPTION_A_IMPLEMENTATION.md
                               📖 README.ja.md
                               📖 README.md
                               📁 _codeql_detected_source_root/
@@ -482,7 +519,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📊 settings.json
                                 📄 Cargo.lock
                                 📄 Cargo.toml
+                                📖 IMPLEMENTATION_REPORT.md
                                 📄 LICENSE
+                                📖 OPTION_A_IMPLEMENTATION.md
                                 📖 README.ja.md
                                 📖 README.md
                                 📁 _codeql_detected_source_root/
@@ -492,7 +531,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📊 settings.json
                                   📄 Cargo.lock
                                   📄 Cargo.toml
+                                  📖 IMPLEMENTATION_REPORT.md
                                   📄 LICENSE
+                                  📖 OPTION_A_IMPLEMENTATION.md
                                   📖 README.ja.md
                                   📖 README.md
                                   📁 _codeql_detected_source_root/
@@ -502,7 +543,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📊 settings.json
                                     📄 Cargo.lock
                                     📄 Cargo.toml
+                                    📖 IMPLEMENTATION_REPORT.md
                                     📄 LICENSE
+                                    📖 OPTION_A_IMPLEMENTATION.md
                                     📖 README.ja.md
                                     📖 README.md
                                     📁 _codeql_detected_source_root/
@@ -512,7 +555,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📊 settings.json
                                       📄 Cargo.lock
                                       📄 Cargo.toml
+                                      📖 IMPLEMENTATION_REPORT.md
                                       📄 LICENSE
+                                      📖 OPTION_A_IMPLEMENTATION.md
                                       📖 README.ja.md
                                       📖 README.md
                                       📁 _codeql_detected_source_root/
@@ -522,7 +567,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📊 settings.json
                                         📄 Cargo.lock
                                         📄 Cargo.toml
+                                        📖 IMPLEMENTATION_REPORT.md
                                         📄 LICENSE
+                                        📖 OPTION_A_IMPLEMENTATION.md
                                         📖 README.ja.md
                                         📖 README.md
                                         📁 _codeql_detected_source_root/
@@ -532,7 +579,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📊 settings.json
                                           📄 Cargo.lock
                                           📄 Cargo.toml
+                                          📖 IMPLEMENTATION_REPORT.md
                                           📄 LICENSE
+                                          📖 OPTION_A_IMPLEMENTATION.md
                                           📖 README.ja.md
                                           📖 README.md
                                           📁 _codeql_detected_source_root/
@@ -542,7 +591,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📊 settings.json
                                             📄 Cargo.lock
                                             📄 Cargo.toml
+                                            📖 IMPLEMENTATION_REPORT.md
                                             📄 LICENSE
+                                            📖 OPTION_A_IMPLEMENTATION.md
                                             📖 README.ja.md
                                             📖 README.md
                                             📁 _codeql_detected_source_root/
@@ -552,7 +603,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📊 settings.json
                                               📄 Cargo.lock
                                               📄 Cargo.toml
+                                              📖 IMPLEMENTATION_REPORT.md
                                               📄 LICENSE
+                                              📖 OPTION_A_IMPLEMENTATION.md
                                               📖 README.ja.md
                                               📖 README.md
                                               📁 _codeql_detected_source_root/
@@ -562,7 +615,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📊 settings.json
                                                 📄 Cargo.lock
                                                 📄 Cargo.toml
+                                                📖 IMPLEMENTATION_REPORT.md
                                                 📄 LICENSE
+                                                📖 OPTION_A_IMPLEMENTATION.md
                                                 📖 README.ja.md
                                                 📖 README.md
                                                 📁 _codeql_detected_source_root/
@@ -572,7 +627,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📊 settings.json
                                                   📄 Cargo.lock
                                                   📄 Cargo.toml
+                                                  📖 IMPLEMENTATION_REPORT.md
                                                   📄 LICENSE
+                                                  📖 OPTION_A_IMPLEMENTATION.md
                                                   📖 README.ja.md
                                                   📖 README.md
                                                   📁 _codeql_detected_source_root/
@@ -582,7 +639,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📊 settings.json
                                                     📄 Cargo.lock
                                                     📄 Cargo.toml
+                                                    📖 IMPLEMENTATION_REPORT.md
                                                     📄 LICENSE
+                                                    📖 OPTION_A_IMPLEMENTATION.md
                                                     📖 README.ja.md
                                                     📖 README.md
                                                     📁 _codeql_detected_source_root/
@@ -592,7 +651,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📊 settings.json
                                                       📄 Cargo.lock
                                                       📄 Cargo.toml
+                                                      📖 IMPLEMENTATION_REPORT.md
                                                       📄 LICENSE
+                                                      📖 OPTION_A_IMPLEMENTATION.md
                                                       📖 README.ja.md
                                                       📖 README.md
                                                       📁 _codeql_detected_source_root/
@@ -602,7 +663,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📊 settings.json
                                                         📄 Cargo.lock
                                                         📄 Cargo.toml
+                                                        📖 IMPLEMENTATION_REPORT.md
                                                         📄 LICENSE
+                                                        📖 OPTION_A_IMPLEMENTATION.md
                                                         📖 README.ja.md
                                                         📖 README.md
                                                         📁 _codeql_detected_source_root/
@@ -612,7 +675,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📊 settings.json
                                                           📄 Cargo.lock
                                                           📄 Cargo.toml
+                                                          📖 IMPLEMENTATION_REPORT.md
                                                           📄 LICENSE
+                                                          📖 OPTION_A_IMPLEMENTATION.md
                                                           📖 README.ja.md
                                                           📖 README.md
                                                           📁 _codeql_detected_source_root/
@@ -622,7 +687,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📊 settings.json
                                                             📄 Cargo.lock
                                                             📄 Cargo.toml
+                                                            📖 IMPLEMENTATION_REPORT.md
                                                             📄 LICENSE
+                                                            📖 OPTION_A_IMPLEMENTATION.md
                                                             📖 README.ja.md
                                                             📖 README.md
                                                             📁 _codeql_detected_source_root/
@@ -632,7 +699,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📊 settings.json
                                                               📄 Cargo.lock
                                                               📄 Cargo.toml
+                                                              📖 IMPLEMENTATION_REPORT.md
                                                               📄 LICENSE
+                                                              📖 OPTION_A_IMPLEMENTATION.md
                                                               📖 README.ja.md
                                                               📖 README.md
                                                               📁 _codeql_detected_source_root/
@@ -642,7 +711,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📊 settings.json
                                                                 📄 Cargo.lock
                                                                 📄 Cargo.toml
+                                                                📖 IMPLEMENTATION_REPORT.md
                                                                 📄 LICENSE
+                                                                📖 OPTION_A_IMPLEMENTATION.md
                                                                 📖 README.ja.md
                                                                 📖 README.md
                                                                 📁 _codeql_detected_source_root/
@@ -652,7 +723,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📊 settings.json
                                                                   📄 Cargo.lock
                                                                   📄 Cargo.toml
+                                                                  📖 IMPLEMENTATION_REPORT.md
                                                                   📄 LICENSE
+                                                                  📖 OPTION_A_IMPLEMENTATION.md
                                                                   📖 README.ja.md
                                                                   📖 README.md
                                                                   📁 _codeql_detected_source_root/
@@ -662,7 +735,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📊 settings.json
                                                                     📄 Cargo.lock
                                                                     📄 Cargo.toml
+                                                                    📖 IMPLEMENTATION_REPORT.md
                                                                     📄 LICENSE
+                                                                    📖 OPTION_A_IMPLEMENTATION.md
                                                                     📖 README.ja.md
                                                                     📖 README.md
                                                                     📁 _codeql_detected_source_root/
@@ -672,7 +747,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📊 settings.json
                                                                       📄 Cargo.lock
                                                                       📄 Cargo.toml
+                                                                      📖 IMPLEMENTATION_REPORT.md
                                                                       📄 LICENSE
+                                                                      📖 OPTION_A_IMPLEMENTATION.md
                                                                       📖 README.ja.md
                                                                       📖 README.md
                                                                       📁 _codeql_detected_source_root/
@@ -682,7 +759,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📊 settings.json
                                                                         📄 Cargo.lock
                                                                         📄 Cargo.toml
+                                                                        📖 IMPLEMENTATION_REPORT.md
                                                                         📄 LICENSE
+                                                                        📖 OPTION_A_IMPLEMENTATION.md
                                                                         📖 README.ja.md
                                                                         📖 README.md
                                                                         📁 _codeql_detected_source_root/
@@ -692,7 +771,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📊 settings.json
                                                                           📄 Cargo.lock
                                                                           📄 Cargo.toml
+                                                                          📖 IMPLEMENTATION_REPORT.md
                                                                           📄 LICENSE
+                                                                          📖 OPTION_A_IMPLEMENTATION.md
                                                                           📖 README.ja.md
                                                                           📖 README.md
                                                                           📁 _codeql_detected_source_root/
@@ -702,7 +783,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📊 settings.json
                                                                             📄 Cargo.lock
                                                                             📄 Cargo.toml
+                                                                            📖 IMPLEMENTATION_REPORT.md
                                                                             📄 LICENSE
+                                                                            📖 OPTION_A_IMPLEMENTATION.md
                                                                             📖 README.ja.md
                                                                             📖 README.md
                                                                             📁 _codeql_detected_source_root/
@@ -712,7 +795,9 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📊 settings.json
                                                                               📄 Cargo.lock
                                                                               📄 Cargo.toml
+                                                                              📖 IMPLEMENTATION_REPORT.md
                                                                               📄 LICENSE
+                                                                              📖 OPTION_A_IMPLEMENTATION.md
                                                                               📖 README.ja.md
                                                                               📖 README.md
                                                                               📁 _codeql_detected_source_root/
@@ -722,13 +807,21 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                   📊 settings.json
                                                                                 📄 Cargo.lock
                                                                                 📄 Cargo.toml
+                                                                                📖 IMPLEMENTATION_REPORT.md
                                                                                 📄 LICENSE
+                                                                                📖 OPTION_A_IMPLEMENTATION.md
                                                                                 📖 README.ja.md
                                                                                 📖 README.md
                                                                                 📄 _config.yml
                                                                                 📄 build.rs
+                                                                                📁 demo/
+                                                                                  📄 .gitignore
+                                                                                  📖 README.md
+                                                                                  🌐 index.html
+                                                                                  📊 package.json
                                                                                 📁 generated-docs/
                                                                                 🌐 googled947dc864c270e07.html
+                                                                                🌐 index.html
                                                                                 📁 issue-notes/
                                                                                   📖 14.md
                                                                                   📖 17.md
@@ -746,7 +839,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                   📖 40.md
                                                                                   📖 42.md
                                                                                   📖 44.md
+                                                                                  📖 46.md
+                                                                                  📖 48.md
+                                                                                  📖 50.md
+                                                                                  📖 52.md
+                                                                                  📖 54.md
+                                                                                  📖 55.md
+                                                                                  📖 56.md
                                                                                 📄 mmlabc-to-smf-rust.toml.example
+                                                                                📁 mmlabc-to-smf-wasm/
+                                                                                  📄 Cargo.lock
+                                                                                  📄 Cargo.toml
+                                                                                  📁 src/
+                                                                                    📄 lib.rs
+                                                                                📊 package.json
+                                                                                📁 scripts/
+                                                                                  📖 README.md
+                                                                                  📄 build-demo.sh
                                                                                 📁 src/
                                                                                   📄 config.rs
                                                                                   📄 lib.rs
@@ -787,10 +896,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                       📄 alloc.h
                                                                                       📄 array.h
                                                                                       📄 parser.h
+                                                                                  📄 tree-sitter-mml.wasm
                                                                               📄 _config.yml
                                                                               📄 build.rs
+                                                                              📁 demo/
+                                                                                📄 .gitignore
+                                                                                📖 README.md
+                                                                                🌐 index.html
+                                                                                📊 package.json
                                                                               📁 generated-docs/
                                                                               🌐 googled947dc864c270e07.html
+                                                                              🌐 index.html
                                                                               📁 issue-notes/
                                                                                 📖 14.md
                                                                                 📖 17.md
@@ -808,7 +924,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📖 40.md
                                                                                 📖 42.md
                                                                                 📖 44.md
+                                                                                📖 46.md
+                                                                                📖 48.md
+                                                                                📖 50.md
+                                                                                📖 52.md
+                                                                                📖 54.md
+                                                                                📖 55.md
+                                                                                📖 56.md
                                                                               📄 mmlabc-to-smf-rust.toml.example
+                                                                              📁 mmlabc-to-smf-wasm/
+                                                                                📄 Cargo.lock
+                                                                                📄 Cargo.toml
+                                                                                📁 src/
+                                                                                  📄 lib.rs
+                                                                              📊 package.json
+                                                                              📁 scripts/
+                                                                                📖 README.md
+                                                                                📄 build-demo.sh
                                                                               📁 src/
                                                                                 📄 config.rs
                                                                                 📄 lib.rs
@@ -849,10 +981,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                     📄 alloc.h
                                                                                     📄 array.h
                                                                                     📄 parser.h
+                                                                                📄 tree-sitter-mml.wasm
                                                                             📄 _config.yml
                                                                             📄 build.rs
+                                                                            📁 demo/
+                                                                              📄 .gitignore
+                                                                              📖 README.md
+                                                                              🌐 index.html
+                                                                              📊 package.json
                                                                             📁 generated-docs/
                                                                             🌐 googled947dc864c270e07.html
+                                                                            🌐 index.html
                                                                             📁 issue-notes/
                                                                               📖 14.md
                                                                               📖 17.md
@@ -870,7 +1009,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📖 40.md
                                                                               📖 42.md
                                                                               📖 44.md
+                                                                              📖 46.md
+                                                                              📖 48.md
+                                                                              📖 50.md
+                                                                              📖 52.md
+                                                                              📖 54.md
+                                                                              📖 55.md
+                                                                              📖 56.md
                                                                             📄 mmlabc-to-smf-rust.toml.example
+                                                                            📁 mmlabc-to-smf-wasm/
+                                                                              📄 Cargo.lock
+                                                                              📄 Cargo.toml
+                                                                              📁 src/
+                                                                                📄 lib.rs
+                                                                            📊 package.json
+                                                                            📁 scripts/
+                                                                              📖 README.md
+                                                                              📄 build-demo.sh
                                                                             📁 src/
                                                                               📄 config.rs
                                                                               📄 lib.rs
@@ -911,10 +1066,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                   📄 alloc.h
                                                                                   📄 array.h
                                                                                   📄 parser.h
+                                                                              📄 tree-sitter-mml.wasm
                                                                           📄 _config.yml
                                                                           📄 build.rs
+                                                                          📁 demo/
+                                                                            📄 .gitignore
+                                                                            📖 README.md
+                                                                            🌐 index.html
+                                                                            📊 package.json
                                                                           📁 generated-docs/
                                                                           🌐 googled947dc864c270e07.html
+                                                                          🌐 index.html
                                                                           📁 issue-notes/
                                                                             📖 14.md
                                                                             📖 17.md
@@ -932,7 +1094,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📖 40.md
                                                                             📖 42.md
                                                                             📖 44.md
+                                                                            📖 46.md
+                                                                            📖 48.md
+                                                                            📖 50.md
+                                                                            📖 52.md
+                                                                            📖 54.md
+                                                                            📖 55.md
+                                                                            📖 56.md
                                                                           📄 mmlabc-to-smf-rust.toml.example
+                                                                          📁 mmlabc-to-smf-wasm/
+                                                                            📄 Cargo.lock
+                                                                            📄 Cargo.toml
+                                                                            📁 src/
+                                                                              📄 lib.rs
+                                                                          📊 package.json
+                                                                          📁 scripts/
+                                                                            📖 README.md
+                                                                            📄 build-demo.sh
                                                                           📁 src/
                                                                             📄 config.rs
                                                                             📄 lib.rs
@@ -973,10 +1151,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📄 alloc.h
                                                                                 📄 array.h
                                                                                 📄 parser.h
+                                                                            📄 tree-sitter-mml.wasm
                                                                         📄 _config.yml
                                                                         📄 build.rs
+                                                                        📁 demo/
+                                                                          📄 .gitignore
+                                                                          📖 README.md
+                                                                          🌐 index.html
+                                                                          📊 package.json
                                                                         📁 generated-docs/
                                                                         🌐 googled947dc864c270e07.html
+                                                                        🌐 index.html
                                                                         📁 issue-notes/
                                                                           📖 14.md
                                                                           📖 17.md
@@ -994,7 +1179,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📖 40.md
                                                                           📖 42.md
                                                                           📖 44.md
+                                                                          📖 46.md
+                                                                          📖 48.md
+                                                                          📖 50.md
+                                                                          📖 52.md
+                                                                          📖 54.md
+                                                                          📖 55.md
+                                                                          📖 56.md
                                                                         📄 mmlabc-to-smf-rust.toml.example
+                                                                        📁 mmlabc-to-smf-wasm/
+                                                                          📄 Cargo.lock
+                                                                          📄 Cargo.toml
+                                                                          📁 src/
+                                                                            📄 lib.rs
+                                                                        📊 package.json
+                                                                        📁 scripts/
+                                                                          📖 README.md
+                                                                          📄 build-demo.sh
                                                                         📁 src/
                                                                           📄 config.rs
                                                                           📄 lib.rs
@@ -1035,10 +1236,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📄 alloc.h
                                                                               📄 array.h
                                                                               📄 parser.h
+                                                                          📄 tree-sitter-mml.wasm
                                                                       📄 _config.yml
                                                                       📄 build.rs
+                                                                      📁 demo/
+                                                                        📄 .gitignore
+                                                                        📖 README.md
+                                                                        🌐 index.html
+                                                                        📊 package.json
                                                                       📁 generated-docs/
                                                                       🌐 googled947dc864c270e07.html
+                                                                      🌐 index.html
                                                                       📁 issue-notes/
                                                                         📖 14.md
                                                                         📖 17.md
@@ -1056,7 +1264,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📖 40.md
                                                                         📖 42.md
                                                                         📖 44.md
+                                                                        📖 46.md
+                                                                        📖 48.md
+                                                                        📖 50.md
+                                                                        📖 52.md
+                                                                        📖 54.md
+                                                                        📖 55.md
+                                                                        📖 56.md
                                                                       📄 mmlabc-to-smf-rust.toml.example
+                                                                      📁 mmlabc-to-smf-wasm/
+                                                                        📄 Cargo.lock
+                                                                        📄 Cargo.toml
+                                                                        📁 src/
+                                                                          📄 lib.rs
+                                                                      📊 package.json
+                                                                      📁 scripts/
+                                                                        📖 README.md
+                                                                        📄 build-demo.sh
                                                                       📁 src/
                                                                         📄 config.rs
                                                                         📄 lib.rs
@@ -1097,10 +1321,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📄 alloc.h
                                                                             📄 array.h
                                                                             📄 parser.h
+                                                                        📄 tree-sitter-mml.wasm
                                                                     📄 _config.yml
                                                                     📄 build.rs
+                                                                    📁 demo/
+                                                                      📄 .gitignore
+                                                                      📖 README.md
+                                                                      🌐 index.html
+                                                                      📊 package.json
                                                                     📁 generated-docs/
                                                                     🌐 googled947dc864c270e07.html
+                                                                    🌐 index.html
                                                                     📁 issue-notes/
                                                                       📖 14.md
                                                                       📖 17.md
@@ -1118,7 +1349,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📖 40.md
                                                                       📖 42.md
                                                                       📖 44.md
+                                                                      📖 46.md
+                                                                      📖 48.md
+                                                                      📖 50.md
+                                                                      📖 52.md
+                                                                      📖 54.md
+                                                                      📖 55.md
+                                                                      📖 56.md
                                                                     📄 mmlabc-to-smf-rust.toml.example
+                                                                    📁 mmlabc-to-smf-wasm/
+                                                                      📄 Cargo.lock
+                                                                      📄 Cargo.toml
+                                                                      📁 src/
+                                                                        📄 lib.rs
+                                                                    📊 package.json
+                                                                    📁 scripts/
+                                                                      📖 README.md
+                                                                      📄 build-demo.sh
                                                                     📁 src/
                                                                       📄 config.rs
                                                                       📄 lib.rs
@@ -1159,10 +1406,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📄 alloc.h
                                                                           📄 array.h
                                                                           📄 parser.h
+                                                                      📄 tree-sitter-mml.wasm
                                                                   📄 _config.yml
                                                                   📄 build.rs
+                                                                  📁 demo/
+                                                                    📄 .gitignore
+                                                                    📖 README.md
+                                                                    🌐 index.html
+                                                                    📊 package.json
                                                                   📁 generated-docs/
                                                                   🌐 googled947dc864c270e07.html
+                                                                  🌐 index.html
                                                                   📁 issue-notes/
                                                                     📖 14.md
                                                                     📖 17.md
@@ -1180,7 +1434,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📖 40.md
                                                                     📖 42.md
                                                                     📖 44.md
+                                                                    📖 46.md
+                                                                    📖 48.md
+                                                                    📖 50.md
+                                                                    📖 52.md
+                                                                    📖 54.md
+                                                                    📖 55.md
+                                                                    📖 56.md
                                                                   📄 mmlabc-to-smf-rust.toml.example
+                                                                  📁 mmlabc-to-smf-wasm/
+                                                                    📄 Cargo.lock
+                                                                    📄 Cargo.toml
+                                                                    📁 src/
+                                                                      📄 lib.rs
+                                                                  📊 package.json
+                                                                  📁 scripts/
+                                                                    📖 README.md
+                                                                    📄 build-demo.sh
                                                                   📁 src/
                                                                     📄 config.rs
                                                                     📄 lib.rs
@@ -1221,10 +1491,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📄 alloc.h
                                                                         📄 array.h
                                                                         📄 parser.h
+                                                                    📄 tree-sitter-mml.wasm
                                                                 📄 _config.yml
                                                                 📄 build.rs
+                                                                📁 demo/
+                                                                  📄 .gitignore
+                                                                  📖 README.md
+                                                                  🌐 index.html
+                                                                  📊 package.json
                                                                 📁 generated-docs/
                                                                 🌐 googled947dc864c270e07.html
+                                                                🌐 index.html
                                                                 📁 issue-notes/
                                                                   📖 14.md
                                                                   📖 17.md
@@ -1242,7 +1519,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📖 40.md
                                                                   📖 42.md
                                                                   📖 44.md
+                                                                  📖 46.md
+                                                                  📖 48.md
+                                                                  📖 50.md
+                                                                  📖 52.md
+                                                                  📖 54.md
+                                                                  📖 55.md
+                                                                  📖 56.md
                                                                 📄 mmlabc-to-smf-rust.toml.example
+                                                                📁 mmlabc-to-smf-wasm/
+                                                                  📄 Cargo.lock
+                                                                  📄 Cargo.toml
+                                                                  📁 src/
+                                                                    📄 lib.rs
+                                                                📊 package.json
+                                                                📁 scripts/
+                                                                  📖 README.md
+                                                                  📄 build-demo.sh
                                                                 📁 src/
                                                                   📄 config.rs
                                                                   📄 lib.rs
@@ -1283,10 +1576,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📄 alloc.h
                                                                       📄 array.h
                                                                       📄 parser.h
+                                                                  📄 tree-sitter-mml.wasm
                                                               📄 _config.yml
                                                               📄 build.rs
+                                                              📁 demo/
+                                                                📄 .gitignore
+                                                                📖 README.md
+                                                                🌐 index.html
+                                                                📊 package.json
                                                               📁 generated-docs/
                                                               🌐 googled947dc864c270e07.html
+                                                              🌐 index.html
                                                               📁 issue-notes/
                                                                 📖 14.md
                                                                 📖 17.md
@@ -1304,7 +1604,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📖 40.md
                                                                 📖 42.md
                                                                 📖 44.md
+                                                                📖 46.md
+                                                                📖 48.md
+                                                                📖 50.md
+                                                                📖 52.md
+                                                                📖 54.md
+                                                                📖 55.md
+                                                                📖 56.md
                                                               📄 mmlabc-to-smf-rust.toml.example
+                                                              📁 mmlabc-to-smf-wasm/
+                                                                📄 Cargo.lock
+                                                                📄 Cargo.toml
+                                                                📁 src/
+                                                                  📄 lib.rs
+                                                              📊 package.json
+                                                              📁 scripts/
+                                                                📖 README.md
+                                                                📄 build-demo.sh
                                                               📁 src/
                                                                 📄 config.rs
                                                                 📄 lib.rs
@@ -1345,10 +1661,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📄 alloc.h
                                                                     📄 array.h
                                                                     📄 parser.h
+                                                                📄 tree-sitter-mml.wasm
                                                             📄 _config.yml
                                                             📄 build.rs
+                                                            📁 demo/
+                                                              📄 .gitignore
+                                                              📖 README.md
+                                                              🌐 index.html
+                                                              📊 package.json
                                                             📁 generated-docs/
                                                             🌐 googled947dc864c270e07.html
+                                                            🌐 index.html
                                                             📁 issue-notes/
                                                               📖 14.md
                                                               📖 17.md
@@ -1366,7 +1689,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📖 40.md
                                                               📖 42.md
                                                               📖 44.md
+                                                              📖 46.md
+                                                              📖 48.md
+                                                              📖 50.md
+                                                              📖 52.md
+                                                              📖 54.md
+                                                              📖 55.md
+                                                              📖 56.md
                                                             📄 mmlabc-to-smf-rust.toml.example
+                                                            📁 mmlabc-to-smf-wasm/
+                                                              📄 Cargo.lock
+                                                              📄 Cargo.toml
+                                                              📁 src/
+                                                                📄 lib.rs
+                                                            📊 package.json
+                                                            📁 scripts/
+                                                              📖 README.md
+                                                              📄 build-demo.sh
                                                             📁 src/
                                                               📄 config.rs
                                                               📄 lib.rs
@@ -1407,10 +1746,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📄 alloc.h
                                                                   📄 array.h
                                                                   📄 parser.h
+                                                              📄 tree-sitter-mml.wasm
                                                           📄 _config.yml
                                                           📄 build.rs
+                                                          📁 demo/
+                                                            📄 .gitignore
+                                                            📖 README.md
+                                                            🌐 index.html
+                                                            📊 package.json
                                                           📁 generated-docs/
                                                           🌐 googled947dc864c270e07.html
+                                                          🌐 index.html
                                                           📁 issue-notes/
                                                             📖 14.md
                                                             📖 17.md
@@ -1428,7 +1774,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📖 40.md
                                                             📖 42.md
                                                             📖 44.md
+                                                            📖 46.md
+                                                            📖 48.md
+                                                            📖 50.md
+                                                            📖 52.md
+                                                            📖 54.md
+                                                            📖 55.md
+                                                            📖 56.md
                                                           📄 mmlabc-to-smf-rust.toml.example
+                                                          📁 mmlabc-to-smf-wasm/
+                                                            📄 Cargo.lock
+                                                            📄 Cargo.toml
+                                                            📁 src/
+                                                              📄 lib.rs
+                                                          📊 package.json
+                                                          📁 scripts/
+                                                            📖 README.md
+                                                            📄 build-demo.sh
                                                           📁 src/
                                                             📄 config.rs
                                                             📄 lib.rs
@@ -1469,10 +1831,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📄 alloc.h
                                                                 📄 array.h
                                                                 📄 parser.h
+                                                            📄 tree-sitter-mml.wasm
                                                         📄 _config.yml
                                                         📄 build.rs
+                                                        📁 demo/
+                                                          📄 .gitignore
+                                                          📖 README.md
+                                                          🌐 index.html
+                                                          📊 package.json
                                                         📁 generated-docs/
                                                         🌐 googled947dc864c270e07.html
+                                                        🌐 index.html
                                                         📁 issue-notes/
                                                           📖 14.md
                                                           📖 17.md
@@ -1490,7 +1859,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📖 40.md
                                                           📖 42.md
                                                           📖 44.md
+                                                          📖 46.md
+                                                          📖 48.md
+                                                          📖 50.md
+                                                          📖 52.md
+                                                          📖 54.md
+                                                          📖 55.md
+                                                          📖 56.md
                                                         📄 mmlabc-to-smf-rust.toml.example
+                                                        📁 mmlabc-to-smf-wasm/
+                                                          📄 Cargo.lock
+                                                          📄 Cargo.toml
+                                                          📁 src/
+                                                            📄 lib.rs
+                                                        📊 package.json
+                                                        📁 scripts/
+                                                          📖 README.md
+                                                          📄 build-demo.sh
                                                         📁 src/
                                                           📄 config.rs
                                                           📄 lib.rs
@@ -1531,10 +1916,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📄 alloc.h
                                                               📄 array.h
                                                               📄 parser.h
+                                                          📄 tree-sitter-mml.wasm
                                                       📄 _config.yml
                                                       📄 build.rs
+                                                      📁 demo/
+                                                        📄 .gitignore
+                                                        📖 README.md
+                                                        🌐 index.html
+                                                        📊 package.json
                                                       📁 generated-docs/
                                                       🌐 googled947dc864c270e07.html
+                                                      🌐 index.html
                                                       📁 issue-notes/
                                                         📖 14.md
                                                         📖 17.md
@@ -1552,7 +1944,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📖 40.md
                                                         📖 42.md
                                                         📖 44.md
+                                                        📖 46.md
+                                                        📖 48.md
+                                                        📖 50.md
+                                                        📖 52.md
+                                                        📖 54.md
+                                                        📖 55.md
+                                                        📖 56.md
                                                       📄 mmlabc-to-smf-rust.toml.example
+                                                      📁 mmlabc-to-smf-wasm/
+                                                        📄 Cargo.lock
+                                                        📄 Cargo.toml
+                                                        📁 src/
+                                                          📄 lib.rs
+                                                      📊 package.json
+                                                      📁 scripts/
+                                                        📖 README.md
+                                                        📄 build-demo.sh
                                                       📁 src/
                                                         📄 config.rs
                                                         📄 lib.rs
@@ -1593,10 +2001,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📄 alloc.h
                                                             📄 array.h
                                                             📄 parser.h
+                                                        📄 tree-sitter-mml.wasm
                                                     📄 _config.yml
                                                     📄 build.rs
+                                                    📁 demo/
+                                                      📄 .gitignore
+                                                      📖 README.md
+                                                      🌐 index.html
+                                                      📊 package.json
                                                     📁 generated-docs/
                                                     🌐 googled947dc864c270e07.html
+                                                    🌐 index.html
                                                     📁 issue-notes/
                                                       📖 14.md
                                                       📖 17.md
@@ -1614,7 +2029,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📖 40.md
                                                       📖 42.md
                                                       📖 44.md
+                                                      📖 46.md
+                                                      📖 48.md
+                                                      📖 50.md
+                                                      📖 52.md
+                                                      📖 54.md
+                                                      📖 55.md
+                                                      📖 56.md
                                                     📄 mmlabc-to-smf-rust.toml.example
+                                                    📁 mmlabc-to-smf-wasm/
+                                                      📄 Cargo.lock
+                                                      📄 Cargo.toml
+                                                      📁 src/
+                                                        📄 lib.rs
+                                                    📊 package.json
+                                                    📁 scripts/
+                                                      📖 README.md
+                                                      📄 build-demo.sh
                                                     📁 src/
                                                       📄 config.rs
                                                       📄 lib.rs
@@ -1655,10 +2086,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📄 alloc.h
                                                           📄 array.h
                                                           📄 parser.h
+                                                      📄 tree-sitter-mml.wasm
                                                   📄 _config.yml
                                                   📄 build.rs
+                                                  📁 demo/
+                                                    📄 .gitignore
+                                                    📖 README.md
+                                                    🌐 index.html
+                                                    📊 package.json
                                                   📁 generated-docs/
                                                   🌐 googled947dc864c270e07.html
+                                                  🌐 index.html
                                                   📁 issue-notes/
                                                     📖 14.md
                                                     📖 17.md
@@ -1676,7 +2114,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📖 40.md
                                                     📖 42.md
                                                     📖 44.md
+                                                    📖 46.md
+                                                    📖 48.md
+                                                    📖 50.md
+                                                    📖 52.md
+                                                    📖 54.md
+                                                    📖 55.md
+                                                    📖 56.md
                                                   📄 mmlabc-to-smf-rust.toml.example
+                                                  📁 mmlabc-to-smf-wasm/
+                                                    📄 Cargo.lock
+                                                    📄 Cargo.toml
+                                                    📁 src/
+                                                      📄 lib.rs
+                                                  📊 package.json
+                                                  📁 scripts/
+                                                    📖 README.md
+                                                    📄 build-demo.sh
                                                   📁 src/
                                                     📄 config.rs
                                                     📄 lib.rs
@@ -1717,10 +2171,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📄 alloc.h
                                                         📄 array.h
                                                         📄 parser.h
+                                                    📄 tree-sitter-mml.wasm
                                                 📄 _config.yml
                                                 📄 build.rs
+                                                📁 demo/
+                                                  📄 .gitignore
+                                                  📖 README.md
+                                                  🌐 index.html
+                                                  📊 package.json
                                                 📁 generated-docs/
                                                 🌐 googled947dc864c270e07.html
+                                                🌐 index.html
                                                 📁 issue-notes/
                                                   📖 14.md
                                                   📖 17.md
@@ -1738,7 +2199,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📖 40.md
                                                   📖 42.md
                                                   📖 44.md
+                                                  📖 46.md
+                                                  📖 48.md
+                                                  📖 50.md
+                                                  📖 52.md
+                                                  📖 54.md
+                                                  📖 55.md
+                                                  📖 56.md
                                                 📄 mmlabc-to-smf-rust.toml.example
+                                                📁 mmlabc-to-smf-wasm/
+                                                  📄 Cargo.lock
+                                                  📄 Cargo.toml
+                                                  📁 src/
+                                                    📄 lib.rs
+                                                📊 package.json
+                                                📁 scripts/
+                                                  📖 README.md
+                                                  📄 build-demo.sh
                                                 📁 src/
                                                   📄 config.rs
                                                   📄 lib.rs
@@ -1779,10 +2256,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📄 alloc.h
                                                       📄 array.h
                                                       📄 parser.h
+                                                  📄 tree-sitter-mml.wasm
                                               📄 _config.yml
                                               📄 build.rs
+                                              📁 demo/
+                                                📄 .gitignore
+                                                📖 README.md
+                                                🌐 index.html
+                                                📊 package.json
                                               📁 generated-docs/
                                               🌐 googled947dc864c270e07.html
+                                              🌐 index.html
                                               📁 issue-notes/
                                                 📖 14.md
                                                 📖 17.md
@@ -1800,7 +2284,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📖 40.md
                                                 📖 42.md
                                                 📖 44.md
+                                                📖 46.md
+                                                📖 48.md
+                                                📖 50.md
+                                                📖 52.md
+                                                📖 54.md
+                                                📖 55.md
+                                                📖 56.md
                                               📄 mmlabc-to-smf-rust.toml.example
+                                              📁 mmlabc-to-smf-wasm/
+                                                📄 Cargo.lock
+                                                📄 Cargo.toml
+                                                📁 src/
+                                                  📄 lib.rs
+                                              📊 package.json
+                                              📁 scripts/
+                                                📖 README.md
+                                                📄 build-demo.sh
                                               📁 src/
                                                 📄 config.rs
                                                 📄 lib.rs
@@ -1841,10 +2341,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📄 alloc.h
                                                     📄 array.h
                                                     📄 parser.h
+                                                📄 tree-sitter-mml.wasm
                                             📄 _config.yml
                                             📄 build.rs
+                                            📁 demo/
+                                              📄 .gitignore
+                                              📖 README.md
+                                              🌐 index.html
+                                              📊 package.json
                                             📁 generated-docs/
                                             🌐 googled947dc864c270e07.html
+                                            🌐 index.html
                                             📁 issue-notes/
                                               📖 14.md
                                               📖 17.md
@@ -1862,7 +2369,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📖 40.md
                                               📖 42.md
                                               📖 44.md
+                                              📖 46.md
+                                              📖 48.md
+                                              📖 50.md
+                                              📖 52.md
+                                              📖 54.md
+                                              📖 55.md
+                                              📖 56.md
                                             📄 mmlabc-to-smf-rust.toml.example
+                                            📁 mmlabc-to-smf-wasm/
+                                              📄 Cargo.lock
+                                              📄 Cargo.toml
+                                              📁 src/
+                                                📄 lib.rs
+                                            📊 package.json
+                                            📁 scripts/
+                                              📖 README.md
+                                              📄 build-demo.sh
                                             📁 src/
                                               📄 config.rs
                                               📄 lib.rs
@@ -1903,10 +2426,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📄 alloc.h
                                                   📄 array.h
                                                   📄 parser.h
+                                              📄 tree-sitter-mml.wasm
                                           📄 _config.yml
                                           📄 build.rs
+                                          📁 demo/
+                                            📄 .gitignore
+                                            📖 README.md
+                                            🌐 index.html
+                                            📊 package.json
                                           📁 generated-docs/
                                           🌐 googled947dc864c270e07.html
+                                          🌐 index.html
                                           📁 issue-notes/
                                             📖 14.md
                                             📖 17.md
@@ -1924,7 +2454,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📖 40.md
                                             📖 42.md
                                             📖 44.md
+                                            📖 46.md
+                                            📖 48.md
+                                            📖 50.md
+                                            📖 52.md
+                                            📖 54.md
+                                            📖 55.md
+                                            📖 56.md
                                           📄 mmlabc-to-smf-rust.toml.example
+                                          📁 mmlabc-to-smf-wasm/
+                                            📄 Cargo.lock
+                                            📄 Cargo.toml
+                                            📁 src/
+                                              📄 lib.rs
+                                          📊 package.json
+                                          📁 scripts/
+                                            📖 README.md
+                                            📄 build-demo.sh
                                           📁 src/
                                             📄 config.rs
                                             📄 lib.rs
@@ -1965,10 +2511,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📄 alloc.h
                                                 📄 array.h
                                                 📄 parser.h
+                                            📄 tree-sitter-mml.wasm
                                         📄 _config.yml
                                         📄 build.rs
+                                        📁 demo/
+                                          📄 .gitignore
+                                          📖 README.md
+                                          🌐 index.html
+                                          📊 package.json
                                         📁 generated-docs/
                                         🌐 googled947dc864c270e07.html
+                                        🌐 index.html
                                         📁 issue-notes/
                                           📖 14.md
                                           📖 17.md
@@ -1986,7 +2539,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📖 40.md
                                           📖 42.md
                                           📖 44.md
+                                          📖 46.md
+                                          📖 48.md
+                                          📖 50.md
+                                          📖 52.md
+                                          📖 54.md
+                                          📖 55.md
+                                          📖 56.md
                                         📄 mmlabc-to-smf-rust.toml.example
+                                        📁 mmlabc-to-smf-wasm/
+                                          📄 Cargo.lock
+                                          📄 Cargo.toml
+                                          📁 src/
+                                            📄 lib.rs
+                                        📊 package.json
+                                        📁 scripts/
+                                          📖 README.md
+                                          📄 build-demo.sh
                                         📁 src/
                                           📄 config.rs
                                           📄 lib.rs
@@ -2027,10 +2596,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📄 alloc.h
                                               📄 array.h
                                               📄 parser.h
+                                          📄 tree-sitter-mml.wasm
                                       📄 _config.yml
                                       📄 build.rs
+                                      📁 demo/
+                                        📄 .gitignore
+                                        📖 README.md
+                                        🌐 index.html
+                                        📊 package.json
                                       📁 generated-docs/
                                       🌐 googled947dc864c270e07.html
+                                      🌐 index.html
                                       📁 issue-notes/
                                         📖 14.md
                                         📖 17.md
@@ -2048,7 +2624,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📖 40.md
                                         📖 42.md
                                         📖 44.md
+                                        📖 46.md
+                                        📖 48.md
+                                        📖 50.md
+                                        📖 52.md
+                                        📖 54.md
+                                        📖 55.md
+                                        📖 56.md
                                       📄 mmlabc-to-smf-rust.toml.example
+                                      📁 mmlabc-to-smf-wasm/
+                                        📄 Cargo.lock
+                                        📄 Cargo.toml
+                                        📁 src/
+                                          📄 lib.rs
+                                      📊 package.json
+                                      📁 scripts/
+                                        📖 README.md
+                                        📄 build-demo.sh
                                       📁 src/
                                         📄 config.rs
                                         📄 lib.rs
@@ -2089,10 +2681,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📄 alloc.h
                                             📄 array.h
                                             📄 parser.h
+                                        📄 tree-sitter-mml.wasm
                                     📄 _config.yml
                                     📄 build.rs
+                                    📁 demo/
+                                      📄 .gitignore
+                                      📖 README.md
+                                      🌐 index.html
+                                      📊 package.json
                                     📁 generated-docs/
                                     🌐 googled947dc864c270e07.html
+                                    🌐 index.html
                                     📁 issue-notes/
                                       📖 14.md
                                       📖 17.md
@@ -2110,7 +2709,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📖 40.md
                                       📖 42.md
                                       📖 44.md
+                                      📖 46.md
+                                      📖 48.md
+                                      📖 50.md
+                                      📖 52.md
+                                      📖 54.md
+                                      📖 55.md
+                                      📖 56.md
                                     📄 mmlabc-to-smf-rust.toml.example
+                                    📁 mmlabc-to-smf-wasm/
+                                      📄 Cargo.lock
+                                      📄 Cargo.toml
+                                      📁 src/
+                                        📄 lib.rs
+                                    📊 package.json
+                                    📁 scripts/
+                                      📖 README.md
+                                      📄 build-demo.sh
                                     📁 src/
                                       📄 config.rs
                                       📄 lib.rs
@@ -2151,10 +2766,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📄 alloc.h
                                           📄 array.h
                                           📄 parser.h
+                                      📄 tree-sitter-mml.wasm
                                   📄 _config.yml
                                   📄 build.rs
+                                  📁 demo/
+                                    📄 .gitignore
+                                    📖 README.md
+                                    🌐 index.html
+                                    📊 package.json
                                   📁 generated-docs/
                                   🌐 googled947dc864c270e07.html
+                                  🌐 index.html
                                   📁 issue-notes/
                                     📖 14.md
                                     📖 17.md
@@ -2172,7 +2794,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📖 40.md
                                     📖 42.md
                                     📖 44.md
+                                    📖 46.md
+                                    📖 48.md
+                                    📖 50.md
+                                    📖 52.md
+                                    📖 54.md
+                                    📖 55.md
+                                    📖 56.md
                                   📄 mmlabc-to-smf-rust.toml.example
+                                  📁 mmlabc-to-smf-wasm/
+                                    📄 Cargo.lock
+                                    📄 Cargo.toml
+                                    📁 src/
+                                      📄 lib.rs
+                                  📊 package.json
+                                  📁 scripts/
+                                    📖 README.md
+                                    📄 build-demo.sh
                                   📁 src/
                                     📄 config.rs
                                     📄 lib.rs
@@ -2213,10 +2851,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📄 alloc.h
                                         📄 array.h
                                         📄 parser.h
+                                    📄 tree-sitter-mml.wasm
                                 📄 _config.yml
                                 📄 build.rs
+                                📁 demo/
+                                  📄 .gitignore
+                                  📖 README.md
+                                  🌐 index.html
+                                  📊 package.json
                                 📁 generated-docs/
+                                  📖 development-status-generated-prompt.md
                                 🌐 googled947dc864c270e07.html
+                                🌐 index.html
                                 📁 issue-notes/
                                   📖 14.md
                                   📖 17.md
@@ -2234,7 +2880,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📖 40.md
                                   📖 42.md
                                   📖 44.md
+                                  📖 46.md
+                                  📖 48.md
+                                  📖 50.md
+                                  📖 52.md
+                                  📖 54.md
+                                  📖 55.md
+                                  📖 56.md
                                 📄 mmlabc-to-smf-rust.toml.example
+                                📁 mmlabc-to-smf-wasm/
+                                  📄 Cargo.lock
+                                  📄 Cargo.toml
+                                  📁 src/
+                                    📄 lib.rs
+                                📊 package.json
+                                📁 scripts/
+                                  📖 README.md
+                                  📄 build-demo.sh
                                 📁 src/
                                   📄 config.rs
                                   📄 lib.rs
@@ -2275,10 +2937,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📄 alloc.h
                                       📄 array.h
                                       📄 parser.h
+                                  📄 tree-sitter-mml.wasm
                               📄 _config.yml
                               📄 build.rs
+                              📁 demo/
+                                📄 .gitignore
+                                📖 README.md
+                                🌐 index.html
+                                📊 package.json
                               📁 generated-docs/
+                                📖 development-status-generated-prompt.md
                               🌐 googled947dc864c270e07.html
+                              🌐 index.html
                               📁 issue-notes/
                                 📖 14.md
                                 📖 17.md
@@ -2296,7 +2966,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📖 40.md
                                 📖 42.md
                                 📖 44.md
+                                📖 46.md
+                                📖 48.md
+                                📖 50.md
+                                📖 52.md
+                                📖 54.md
+                                📖 55.md
+                                📖 56.md
                               📄 mmlabc-to-smf-rust.toml.example
+                              📁 mmlabc-to-smf-wasm/
+                                📄 Cargo.lock
+                                📄 Cargo.toml
+                                📁 src/
+                                  📄 lib.rs
+                              📊 package.json
+                              📁 scripts/
+                                📖 README.md
+                                📄 build-demo.sh
                               📁 src/
                                 📄 config.rs
                                 📄 lib.rs
@@ -2337,10 +3023,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📄 alloc.h
                                     📄 array.h
                                     📄 parser.h
+                                📄 tree-sitter-mml.wasm
                             📄 _config.yml
                             📄 build.rs
+                            📁 demo/
+                              📄 .gitignore
+                              📖 README.md
+                              🌐 index.html
+                              📊 package.json
                             📁 generated-docs/
+                              📖 development-status-generated-prompt.md
                             🌐 googled947dc864c270e07.html
+                            🌐 index.html
                             📁 issue-notes/
                               📖 14.md
                               📖 17.md
@@ -2358,7 +3052,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📖 40.md
                               📖 42.md
                               📖 44.md
+                              📖 46.md
+                              📖 48.md
+                              📖 50.md
+                              📖 52.md
+                              📖 54.md
+                              📖 55.md
+                              📖 56.md
                             📄 mmlabc-to-smf-rust.toml.example
+                            📁 mmlabc-to-smf-wasm/
+                              📄 Cargo.lock
+                              📄 Cargo.toml
+                              📁 src/
+                                📄 lib.rs
+                            📊 package.json
+                            📁 scripts/
+                              📖 README.md
+                              📄 build-demo.sh
                             📁 src/
                               📄 config.rs
                               📄 lib.rs
@@ -2399,11 +3109,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📄 alloc.h
                                   📄 array.h
                                   📄 parser.h
+                              📄 tree-sitter-mml.wasm
                           📄 _config.yml
                           📄 build.rs
+                          📁 demo/
+                            📄 .gitignore
+                            📖 README.md
+                            🌐 index.html
+                            📊 package.json
                           📁 generated-docs/
                             📖 development-status-generated-prompt.md
                           🌐 googled947dc864c270e07.html
+                          🌐 index.html
                           📁 issue-notes/
                             📖 14.md
                             📖 17.md
@@ -2421,7 +3138,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📖 40.md
                             📖 42.md
                             📖 44.md
+                            📖 46.md
+                            📖 48.md
+                            📖 50.md
+                            📖 52.md
+                            📖 54.md
+                            📖 55.md
+                            📖 56.md
                           📄 mmlabc-to-smf-rust.toml.example
+                          📁 mmlabc-to-smf-wasm/
+                            📄 Cargo.lock
+                            📄 Cargo.toml
+                            📁 src/
+                              📄 lib.rs
+                          📊 package.json
+                          📁 scripts/
+                            📖 README.md
+                            📄 build-demo.sh
                           📁 src/
                             📄 config.rs
                             📄 lib.rs
@@ -2462,11 +3195,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📄 alloc.h
                                 📄 array.h
                                 📄 parser.h
+                            📄 tree-sitter-mml.wasm
                         📄 _config.yml
                         📄 build.rs
+                        📁 demo/
+                          📄 .gitignore
+                          📖 README.md
+                          🌐 index.html
+                          📊 package.json
                         📁 generated-docs/
                           📖 development-status-generated-prompt.md
                         🌐 googled947dc864c270e07.html
+                        🌐 index.html
                         📁 issue-notes/
                           📖 14.md
                           📖 17.md
@@ -2484,7 +3224,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📖 40.md
                           📖 42.md
                           📖 44.md
+                          📖 46.md
+                          📖 48.md
+                          📖 50.md
+                          📖 52.md
+                          📖 54.md
+                          📖 55.md
+                          📖 56.md
                         📄 mmlabc-to-smf-rust.toml.example
+                        📁 mmlabc-to-smf-wasm/
+                          📄 Cargo.lock
+                          📄 Cargo.toml
+                          📁 src/
+                            📄 lib.rs
+                        📊 package.json
+                        📁 scripts/
+                          📖 README.md
+                          📄 build-demo.sh
                         📁 src/
                           📄 config.rs
                           📄 lib.rs
@@ -2525,11 +3281,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📄 alloc.h
                               📄 array.h
                               📄 parser.h
+                          📄 tree-sitter-mml.wasm
                       📄 _config.yml
                       📄 build.rs
+                      📁 demo/
+                        📄 .gitignore
+                        📖 README.md
+                        🌐 index.html
+                        📊 package.json
                       📁 generated-docs/
                         📖 development-status-generated-prompt.md
                       🌐 googled947dc864c270e07.html
+                      🌐 index.html
                       📁 issue-notes/
                         📖 14.md
                         📖 17.md
@@ -2547,7 +3310,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📖 40.md
                         📖 42.md
                         📖 44.md
+                        📖 46.md
+                        📖 48.md
+                        📖 50.md
+                        📖 52.md
+                        📖 54.md
+                        📖 55.md
+                        📖 56.md
                       📄 mmlabc-to-smf-rust.toml.example
+                      📁 mmlabc-to-smf-wasm/
+                        📄 Cargo.lock
+                        📄 Cargo.toml
+                        📁 src/
+                          📄 lib.rs
+                      📊 package.json
+                      📁 scripts/
+                        📖 README.md
+                        📄 build-demo.sh
                       📁 src/
                         📄 config.rs
                         📄 lib.rs
@@ -2588,11 +3367,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📄 alloc.h
                             📄 array.h
                             📄 parser.h
+                        📄 tree-sitter-mml.wasm
                     📄 _config.yml
                     📄 build.rs
+                    📁 demo/
+                      📄 .gitignore
+                      📖 README.md
+                      🌐 index.html
+                      📊 package.json
                     📁 generated-docs/
                       📖 development-status-generated-prompt.md
                     🌐 googled947dc864c270e07.html
+                    🌐 index.html
                     📁 issue-notes/
                       📖 14.md
                       📖 17.md
@@ -2610,7 +3396,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📖 40.md
                       📖 42.md
                       📖 44.md
+                      📖 46.md
+                      📖 48.md
+                      📖 50.md
+                      📖 52.md
+                      📖 54.md
+                      📖 55.md
+                      📖 56.md
                     📄 mmlabc-to-smf-rust.toml.example
+                    📁 mmlabc-to-smf-wasm/
+                      📄 Cargo.lock
+                      📄 Cargo.toml
+                      📁 src/
+                        📄 lib.rs
+                    📊 package.json
+                    📁 scripts/
+                      📖 README.md
+                      📄 build-demo.sh
                     📁 src/
                       📄 config.rs
                       📄 lib.rs
@@ -2651,11 +3453,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📄 alloc.h
                           📄 array.h
                           📄 parser.h
+                      📄 tree-sitter-mml.wasm
                   📄 _config.yml
                   📄 build.rs
+                  📁 demo/
+                    📄 .gitignore
+                    📖 README.md
+                    🌐 index.html
+                    📊 package.json
                   📁 generated-docs/
                     📖 development-status-generated-prompt.md
                   🌐 googled947dc864c270e07.html
+                  🌐 index.html
                   📁 issue-notes/
                     📖 14.md
                     📖 17.md
@@ -2673,7 +3482,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📖 40.md
                     📖 42.md
                     📖 44.md
+                    📖 46.md
+                    📖 48.md
+                    📖 50.md
+                    📖 52.md
+                    📖 54.md
+                    📖 55.md
+                    📖 56.md
                   📄 mmlabc-to-smf-rust.toml.example
+                  📁 mmlabc-to-smf-wasm/
+                    📄 Cargo.lock
+                    📄 Cargo.toml
+                    📁 src/
+                      📄 lib.rs
+                  📊 package.json
+                  📁 scripts/
+                    📖 README.md
+                    📄 build-demo.sh
                   📁 src/
                     📄 config.rs
                     📄 lib.rs
@@ -2714,11 +3539,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📄 alloc.h
                         📄 array.h
                         📄 parser.h
+                    📄 tree-sitter-mml.wasm
                 📄 _config.yml
                 📄 build.rs
+                📁 demo/
+                  📄 .gitignore
+                  📖 README.md
+                  🌐 index.html
+                  📊 package.json
                 📁 generated-docs/
                   📖 development-status-generated-prompt.md
                 🌐 googled947dc864c270e07.html
+                🌐 index.html
                 📁 issue-notes/
                   📖 14.md
                   📖 17.md
@@ -2736,7 +3568,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📖 40.md
                   📖 42.md
                   📖 44.md
+                  📖 46.md
+                  📖 48.md
+                  📖 50.md
+                  📖 52.md
+                  📖 54.md
+                  📖 55.md
+                  📖 56.md
                 📄 mmlabc-to-smf-rust.toml.example
+                📁 mmlabc-to-smf-wasm/
+                  📄 Cargo.lock
+                  📄 Cargo.toml
+                  📁 src/
+                    📄 lib.rs
+                📊 package.json
+                📁 scripts/
+                  📖 README.md
+                  📄 build-demo.sh
                 📁 src/
                   📄 config.rs
                   📄 lib.rs
@@ -2777,11 +3625,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📄 alloc.h
                       📄 array.h
                       📄 parser.h
+                  📄 tree-sitter-mml.wasm
               📄 _config.yml
               📄 build.rs
+              📁 demo/
+                📄 .gitignore
+                📖 README.md
+                🌐 index.html
+                📊 package.json
               📁 generated-docs/
                 📖 development-status-generated-prompt.md
               🌐 googled947dc864c270e07.html
+              🌐 index.html
               📁 issue-notes/
                 📖 14.md
                 📖 17.md
@@ -2799,7 +3654,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📖 40.md
                 📖 42.md
                 📖 44.md
+                📖 46.md
+                📖 48.md
+                📖 50.md
+                📖 52.md
+                📖 54.md
+                📖 55.md
+                📖 56.md
               📄 mmlabc-to-smf-rust.toml.example
+              📁 mmlabc-to-smf-wasm/
+                📄 Cargo.lock
+                📄 Cargo.toml
+                📁 src/
+                  📄 lib.rs
+              📊 package.json
+              📁 scripts/
+                📖 README.md
+                📄 build-demo.sh
               📁 src/
                 📄 config.rs
                 📄 lib.rs
@@ -2840,11 +3711,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📄 alloc.h
                     📄 array.h
                     📄 parser.h
+                📄 tree-sitter-mml.wasm
             📄 _config.yml
             📄 build.rs
+            📁 demo/
+              📄 .gitignore
+              📖 README.md
+              🌐 index.html
+              📊 package.json
             📁 generated-docs/
               📖 development-status-generated-prompt.md
             🌐 googled947dc864c270e07.html
+            🌐 index.html
             📁 issue-notes/
               📖 14.md
               📖 17.md
@@ -2862,7 +3740,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📖 40.md
               📖 42.md
               📖 44.md
+              📖 46.md
+              📖 48.md
+              📖 50.md
+              📖 52.md
+              📖 54.md
+              📖 55.md
+              📖 56.md
             📄 mmlabc-to-smf-rust.toml.example
+            📁 mmlabc-to-smf-wasm/
+              📄 Cargo.lock
+              📄 Cargo.toml
+              📁 src/
+                📄 lib.rs
+            📊 package.json
+            📁 scripts/
+              📖 README.md
+              📄 build-demo.sh
             📁 src/
               📄 config.rs
               📄 lib.rs
@@ -2903,11 +3797,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📄 alloc.h
                   📄 array.h
                   📄 parser.h
+              📄 tree-sitter-mml.wasm
           📄 _config.yml
           📄 build.rs
+          📁 demo/
+            📄 .gitignore
+            📖 README.md
+            🌐 index.html
+            📊 package.json
           📁 generated-docs/
             📖 development-status-generated-prompt.md
           🌐 googled947dc864c270e07.html
+          🌐 index.html
           📁 issue-notes/
             📖 14.md
             📖 17.md
@@ -2925,7 +3826,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📖 40.md
             📖 42.md
             📖 44.md
+            📖 46.md
+            📖 48.md
+            📖 50.md
+            📖 52.md
+            📖 54.md
+            📖 55.md
+            📖 56.md
           📄 mmlabc-to-smf-rust.toml.example
+          📁 mmlabc-to-smf-wasm/
+            📄 Cargo.lock
+            📄 Cargo.toml
+            📁 src/
+              📄 lib.rs
+          📊 package.json
+          📁 scripts/
+            📖 README.md
+            📄 build-demo.sh
           📁 src/
             📄 config.rs
             📄 lib.rs
@@ -2966,11 +3883,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📄 alloc.h
                 📄 array.h
                 📄 parser.h
+            📄 tree-sitter-mml.wasm
         📄 _config.yml
         📄 build.rs
+        📁 demo/
+          📄 .gitignore
+          📖 README.md
+          🌐 index.html
+          📊 package.json
         📁 generated-docs/
           📖 development-status-generated-prompt.md
         🌐 googled947dc864c270e07.html
+        🌐 index.html
         📁 issue-notes/
           📖 14.md
           📖 17.md
@@ -2988,7 +3912,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📖 40.md
           📖 42.md
           📖 44.md
+          📖 46.md
+          📖 48.md
+          📖 50.md
+          📖 52.md
+          📖 54.md
+          📖 55.md
+          📖 56.md
         📄 mmlabc-to-smf-rust.toml.example
+        📁 mmlabc-to-smf-wasm/
+          📄 Cargo.lock
+          📄 Cargo.toml
+          📁 src/
+            📄 lib.rs
+        📊 package.json
+        📁 scripts/
+          📖 README.md
+          📄 build-demo.sh
         📁 src/
           📄 config.rs
           📄 lib.rs
@@ -3029,11 +3969,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📄 alloc.h
               📄 array.h
               📄 parser.h
+          📄 tree-sitter-mml.wasm
       📄 _config.yml
       📄 build.rs
+      📁 demo/
+        📄 .gitignore
+        📖 README.md
+        🌐 index.html
+        📊 package.json
       📁 generated-docs/
         📖 development-status-generated-prompt.md
       🌐 googled947dc864c270e07.html
+      🌐 index.html
       📁 issue-notes/
         📖 14.md
         📖 17.md
@@ -3051,7 +3998,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📖 40.md
         📖 42.md
         📖 44.md
+        📖 46.md
+        📖 48.md
+        📖 50.md
+        📖 52.md
+        📖 54.md
+        📖 55.md
+        📖 56.md
       📄 mmlabc-to-smf-rust.toml.example
+      📁 mmlabc-to-smf-wasm/
+        📄 Cargo.lock
+        📄 Cargo.toml
+        📁 src/
+          📄 lib.rs
+      📊 package.json
+      📁 scripts/
+        📖 README.md
+        📄 build-demo.sh
       📁 src/
         📄 config.rs
         📄 lib.rs
@@ -3092,11 +4055,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📄 alloc.h
             📄 array.h
             📄 parser.h
+        📄 tree-sitter-mml.wasm
     📄 _config.yml
     📄 build.rs
+    📁 demo/
+      📄 .gitignore
+      📖 README.md
+      🌐 index.html
+      📊 package.json
     📁 generated-docs/
       📖 development-status-generated-prompt.md
     🌐 googled947dc864c270e07.html
+    🌐 index.html
     📁 issue-notes/
       📖 14.md
       📖 17.md
@@ -3114,7 +4084,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📖 40.md
       📖 42.md
       📖 44.md
+      📖 46.md
+      📖 48.md
+      📖 50.md
+      📖 52.md
+      📖 54.md
+      📖 55.md
+      📖 56.md
     📄 mmlabc-to-smf-rust.toml.example
+    📁 mmlabc-to-smf-wasm/
+      📄 Cargo.lock
+      📄 Cargo.toml
+      📁 src/
+        📄 lib.rs
+    📊 package.json
+    📁 scripts/
+      📖 README.md
+      📄 build-demo.sh
     📁 src/
       📄 config.rs
       📄 lib.rs
@@ -3155,11 +4141,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📄 alloc.h
           📄 array.h
           📄 parser.h
+      📄 tree-sitter-mml.wasm
   📄 _config.yml
   📄 build.rs
+  📁 demo/
+    📄 .gitignore
+    📖 README.md
+    🌐 index.html
+    📊 package.json
   📁 generated-docs/
     📖 development-status-generated-prompt.md
   🌐 googled947dc864c270e07.html
+  🌐 index.html
   📁 issue-notes/
     📖 14.md
     📖 17.md
@@ -3177,7 +4170,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📖 40.md
     📖 42.md
     📖 44.md
+    📖 46.md
+    📖 48.md
+    📖 50.md
+    📖 52.md
+    📖 54.md
+    📖 55.md
+    📖 56.md
   📄 mmlabc-to-smf-rust.toml.example
+  📁 mmlabc-to-smf-wasm/
+    📄 Cargo.lock
+    📄 Cargo.toml
+    📁 src/
+      📄 lib.rs
+  📊 package.json
+  📁 scripts/
+    📖 README.md
+    📄 build-demo.sh
   📁 src/
     📄 config.rs
     📄 lib.rs
@@ -3218,11 +4227,18 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📄 alloc.h
         📄 array.h
         📄 parser.h
+    📄 tree-sitter-mml.wasm
 📄 _config.yml
 📄 build.rs
+📁 demo/
+  📄 .gitignore
+  📖 README.md
+  🌐 index.html
+  📊 package.json
 📁 generated-docs/
   📖 development-status-generated-prompt.md
 🌐 googled947dc864c270e07.html
+🌐 index.html
 📁 issue-notes/
   📖 14.md
   📖 17.md
@@ -3240,7 +4256,23 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📖 40.md
   📖 42.md
   📖 44.md
+  📖 46.md
+  📖 48.md
+  📖 50.md
+  📖 52.md
+  📖 54.md
+  📖 55.md
+  📖 56.md
 📄 mmlabc-to-smf-rust.toml.example
+📁 mmlabc-to-smf-wasm/
+  📄 Cargo.lock
+  📄 Cargo.toml
+  📁 src/
+    📄 lib.rs
+📊 package.json
+📁 scripts/
+  📖 README.md
+  📄 build-demo.sh
 📁 src/
   📄 config.rs
   📄 lib.rs
@@ -3281,13 +4313,26 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📄 alloc.h
       📄 array.h
       📄 parser.h
+  📄 tree-sitter-mml.wasm
 
 ## ファイル詳細分析
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
+  - 関数: なし
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/googled947dc864c270e07.html** (1行, 53バイト)
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3295,7 +4340,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3303,7 +4356,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3311,7 +4372,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3319,7 +4388,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3327,7 +4404,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3335,7 +4420,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3343,7 +4436,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3351,7 +4452,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3359,7 +4468,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3367,7 +4484,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3375,7 +4500,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3383,7 +4516,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3391,7 +4532,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3399,7 +4548,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3407,7 +4564,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3415,7 +4580,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3423,7 +4596,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3431,7 +4612,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3439,7 +4628,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3447,7 +4644,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3455,7 +4660,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3463,7 +4676,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3471,7 +4692,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3479,7 +4708,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3487,7 +4724,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3495,7 +4740,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3503,7 +4756,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3511,7 +4772,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3519,7 +4788,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3527,7 +4804,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3535,7 +4820,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3543,7 +4836,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3551,7 +4852,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3559,7 +4868,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3567,7 +4884,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3575,7 +4900,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3583,7 +4916,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3591,7 +4932,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3599,7 +4948,15 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**_codeql_detected_source_root/index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**_codeql_detected_source_root/tree-sitter-mml/grammar.js** (61行, 1251バイト)
+  - 関数: なし
+  - インポート: なし
+
+**demo/index.html** (296行, 9775バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3607,7 +4964,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**tree-sitter-mml/grammar.js** (51行, 1062バイト)
+**index.html** (329行, 11089バイト)
+  - 関数: なし
+  - インポート: なし
+
+**tree-sitter-mml/grammar.js** (61行, 1251バイト)
   - 関数: なし
   - インポート: なし
 
@@ -3616,43 +4977,44 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 
 ## プロジェクト構造（ファイル一覧）
 .vscode/settings.json
+IMPLEMENTATION_REPORT.md
+OPTION_A_IMPLEMENTATION.md
 README.ja.md
 README.md
 _codeql_detected_source_root/.vscode/settings.json
+_codeql_detected_source_root/IMPLEMENTATION_REPORT.md
+_codeql_detected_source_root/OPTION_A_IMPLEMENTATION.md
 _codeql_detected_source_root/README.ja.md
 _codeql_detected_source_root/README.md
 _codeql_detected_source_root/_codeql_detected_source_root/.vscode/settings.json
+_codeql_detected_source_root/_codeql_detected_source_root/IMPLEMENTATION_REPORT.md
+_codeql_detected_source_root/_codeql_detected_source_root/OPTION_A_IMPLEMENTATION.md
 _codeql_detected_source_root/_codeql_detected_source_root/README.ja.md
 _codeql_detected_source_root/_codeql_detected_source_root/README.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/.vscode/settings.json
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/IMPLEMENTATION_REPORT.md
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/OPTION_A_IMPLEMENTATION.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.ja.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/.vscode/settings.json
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/IMPLEMENTATION_REPORT.md
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/OPTION_A_IMPLEMENTATION.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.ja.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/.vscode/settings.json
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/IMPLEMENTATION_REPORT.md
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/OPTION_A_IMPLEMENTATION.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.ja.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.md
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/.vscode/settings.json
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.ja.md
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.md
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/.vscode/settings.json
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.ja.md
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.md
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/.vscode/settings.json
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.ja.md
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.md
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/.vscode/settings.json
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.ja.md
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/README.md
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/googled947dc864c270e07.html
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/googled947dc864c270e07.html
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/googled947dc864c270e07.html
-_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/googled947dc864c270e07.html
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/README.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/googled947dc864c270e07.html
+_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/README.md
 _codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/googled947dc864c270e07.html
+_codeql_detected_source_root/_codeql_detected_source_root/demo/README.md
 _codeql_detected_source_root/_codeql_detected_source_root/googled947dc864c270e07.html
+_codeql_detected_source_root/demo/README.md
 _codeql_detected_source_root/googled947dc864c270e07.html
+demo/README.md
 googled947dc864c270e07.html
 
 上記の情報を基に、プロンプトで指定された形式でプロジェクト概要を生成してください。
@@ -3665,4 +5027,4 @@ googled947dc864c270e07.html
 
 
 ---
-Generated at: 2026-01-21 07:05:55 JST
+Generated at: 2026-02-04 07:09:57 JST

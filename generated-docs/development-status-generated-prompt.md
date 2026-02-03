@@ -1,4 +1,4 @@
-Last updated: 2026-01-21
+Last updated: 2026-02-04
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -199,17 +199,25 @@ Last updated: 2026-01-21
 - .github/workflows/call-daily-project-summary.yml
 - .github/workflows/call-issue-note.yml
 - .github/workflows/call-translate-readme.yml
+- .github/workflows/deploy-github-pages.yml
 - .gitignore
 - .vscode/settings.json
 - Cargo.lock
 - Cargo.toml
+- IMPLEMENTATION_REPORT.md
 - LICENSE
+- OPTION_A_IMPLEMENTATION.md
 - README.ja.md
 - README.md
 - _codeql_detected_source_root
 - _config.yml
 - build.rs
+- demo/.gitignore
+- demo/README.md
+- demo/index.html
+- demo/package.json
 - googled947dc864c270e07.html
+- index.html
 - issue-notes/14.md
 - issue-notes/17.md
 - issue-notes/18.md
@@ -226,7 +234,20 @@ Last updated: 2026-01-21
 - issue-notes/40.md
 - issue-notes/42.md
 - issue-notes/44.md
+- issue-notes/46.md
+- issue-notes/48.md
+- issue-notes/50.md
+- issue-notes/52.md
+- issue-notes/54.md
+- issue-notes/55.md
+- issue-notes/56.md
 - mmlabc-to-smf-rust.toml.example
+- mmlabc-to-smf-wasm/Cargo.lock
+- mmlabc-to-smf-wasm/Cargo.toml
+- mmlabc-to-smf-wasm/src/lib.rs
+- package.json
+- scripts/README.md
+- scripts/build-demo.sh
 - src/config.rs
 - src/lib.rs
 - src/main.rs
@@ -262,36 +283,21 @@ Last updated: 2026-01-21
 - tree-sitter-mml/src/tree_sitter/alloc.h
 - tree-sitter-mml/src/tree_sitter/array.h
 - tree-sitter-mml/src/tree_sitter/parser.h
+- tree-sitter-mml/tree-sitter-mml.wasm
 
 ## 現在のオープンIssues
-## [Issue #44](../issue-notes/44.md): ブラウザで MML to SMF（バイナリバッファ） 変換を可能とするためのWASM版のクレート追加を、WASI Reactor (FFI export) の方法で実装を試す
-[issue-notes/44.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/44.md)
+## [Issue #55](../issue-notes/55.md): README.ja.mdを改善し、SSOTであるgrammer.jsはすべてURL linkとし、クリックでそれを読者がすぐ読めるようにする
+[issue-notes/55.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/55.md)
 
 ...
-ラベル: 
---- issue-notes/44.md の内容 ---
+ラベル: good first issue
+--- issue-notes/55.md の内容 ---
 
 ```markdown
-# issue ブラウザで MML to SMF（バイナリバッファ） 変換を可能とするためのWASM版のクレート追加を、WASI Reactor (FFI export) の方法で実装を試す #44
-[issues #44](https://github.com/cat2151/mmlabc-to-smf-rust/issues/44)
+# issue README.ja.mdを改善し、SSOTであるgrammer.jsはすべてURL linkとし、クリックでそれを読者がすぐ読めるようにする #55
+[issues #55](https://github.com/cat2151/mmlabc-to-smf-rust/issues/55)
 
-- これまでの課題
-    - WASM版を実現したい
-    - Tree-sitterのparser.cがあるため、直接WASMにできない
-    - そのため、WASI Reactor (FFI export) による方法を試す
-    - これならparser.cの問題（C言語依存なので、WASMにできない）を解決できる可能性がある
-- 用途
-    - ブラウザで、web-ym2151 において、MMLでブラウザでYM2151を鳴らすための技術スタックとして使う用
-- 入出力仕様
-    - input : text
-    - output : バイナリバッファ（内容はSMF）
-- 小さく始める
-    - 体験の検証：
-        - ブラウザで、MMLをtextareaに書いて、exportボタンを押したらSMFをダウンロード、
-        - という小さいindex htmlのdemoで検証する
-- 完了条件
-    - ブラウザJavaScriptから利用できるWASM版が実現すること
-    - 既存のCLI機能も維持されること
+
 
 ```
 
@@ -299,14 +305,15 @@ Last updated: 2026-01-21
 [issue-notes/39.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/39.md)
 
 ...
-ラベル: 
+ラベル: good first issue
 --- issue-notes/39.md の内容 ---
 
 ```markdown
 # issue ktコマンドを実装する。key transposeである。は、note number 61となる。 は、note number 59となる。これはmmlabcフォーマット準拠である #39
 [issues #39](https://github.com/cat2151/mmlabc-to-smf-rust/issues/39)
 
-
+# 補足
+- demoも追加実装すること
 
 ```
 
@@ -314,7 +321,7 @@ Last updated: 2026-01-21
 [issue-notes/37.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/37.md)
 
 ...
-ラベル: 
+ラベル: good first issue
 --- issue-notes/37.md の内容 ---
 
 ```markdown
@@ -326,148 +333,291 @@ Last updated: 2026-01-21
 ```
 
 ## ドキュメントで言及されているファイルの内容
-### .github/actions-tmp/issue-notes/4.md
+### .github/actions-tmp/README.ja.md
 ```md
 {% raw %}
-# issue GitHub Actions「project概要生成」を共通ワークフロー化する #4
-[issues #4](https://github.com/cat2151/github-actions/issues/4)
+# GitHub Actions 共通ワークフロー集
 
-# prompt
-```
-あなたはGitHub Actionsと共通ワークフローのスペシャリストです。
-このymlファイルを、以下の2つのファイルに分割してください。
-1. 共通ワークフロー       cat2151/github-actions/.github/workflows/daily-project-summary.yml
-2. 呼び出し元ワークフロー cat2151/github-actions/.github/workflows/call-daily-project-summary.yml
-まずplanしてください
-```
+このリポジトリは、**複数プロジェクトで使い回せるGitHub Actions共通ワークフロー集**です
 
-# 結果、あちこちハルシネーションのあるymlが生成された
-- agentの挙動があからさまにハルシネーション
-    - インデントが修正できない、「失敗した」という
-    - 構文誤りを認識できない
-- 人力で修正した
+<p align="left">
+  <a href="README.ja.md"><img src="https://img.shields.io/badge/🇯🇵-Japanese-red.svg" alt="Japanese"></a>
+  <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸-English-blue.svg" alt="English"></a>
+</p>
 
-# このagentによるセルフレビューが信頼できないため、別のLLMによるセカンドオピニオンを試す
-```
-あなたはGitHub Actionsと共通ワークフローのスペシャリストです。
-以下の2つのファイルをレビューしてください。最優先で、エラーが発生するかどうかだけレビューてください。エラー以外の改善事項のチェックをするかわりに、エラー発生有無チェックに最大限注力してください。
+# 3行で説明
+- 🚀 プロジェクトごとのGitHub Actions管理をもっと楽に
+- 🔗 共通化されたワークフローで、どのプロジェクトからも呼ぶだけでOK
+- ✅ メンテは一括、プロジェクト開発に集中できます
 
---- 呼び出し元
+## Quick Links
+| 項目 | リンク |
+|------|--------|
+| 📖 プロジェクト概要 | [generated-docs/project-overview.md](generated-docs/project-overview.md) |
+| 📖 コールグラフ | [generated-docs/callgraph.html](https://cat2151.github.io/github-actions/generated-docs/callgraph.html) |
+| 📊 開発状況 | [generated-docs/development-status.md](generated-docs/development-status.md) |
 
-name: Call Daily Project Summary
+# notes
+- まだ共通化の作業中です
+- まだワークフロー内容を改善中です
 
-on:
-  schedule:
-    # 日本時間 07:00 (UTC 22:00 前日)
-    - cron: '0 22 * * *'
-  workflow_dispatch:
+※README.md は README.ja.md を元にGeminiの翻訳でGitHub Actionsで自動生成しています
 
-jobs:
-  call-daily-project-summary:
-    uses: cat2151/github-actions/.github/workflows/daily-project-summary.yml
-    secrets:
-      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-
---- 共通ワークフロー
-name: Daily Project Summary
-on:
-  workflow_call:
-
-jobs:
-  generate-summary:
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-      issues: read
-      pull-requests: read
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0  # 履歴を取得するため
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: |
-          # 一時的なディレクトリで依存関係をインストール
-          mkdir -p /tmp/summary-deps
-          cd /tmp/summary-deps
-          npm init -y
-          npm install @google/generative-ai @octokit/rest
-          # generated-docsディレクトリを作成
-          mkdir -p $GITHUB_WORKSPACE/generated-docs
-
-      - name: Generate project summary
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          NODE_PATH: /tmp/summary-deps/node_modules
-        run: |
-          node .github/scripts/generate-project-summary.cjs
-
-      - name: Check for generated summaries
-        id: check_summaries
-        run: |
-          if [ -f "generated-docs/project-overview.md" ] && [ -f "generated-docs/development-status.md" ]; then
-            echo "summaries_generated=true" >> $GITHUB_OUTPUT
-          else
-            echo "summaries_generated=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Commit and push summaries
-        if: steps.check_summaries.outputs.summaries_generated == 'true'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          # package.jsonの変更のみリセット（generated-docsは保持）
-          git restore package.json 2>/dev/null || true
-          # サマリーファイルのみを追加
-          git add generated-docs/project-overview.md
-          git add generated-docs/development-status.md
-          git commit -m "Update project summaries (overview & development status)"
-          git push
-
-      - name: Summary generation result
-        run: |
-          if [ "${{ steps.check_summaries.outputs.summaries_generated }}" == "true" ]; then
-            echo "✅ Project summaries updated successfully"
-            echo "📊 Generated: project-overview.md & development-status.md"
-          else
-            echo "ℹ️ No summaries generated (likely no user commits in the last 24 hours)"
-          fi
+{% endraw %}
 ```
 
-# 上記promptで、2つのLLMにレビューさせ、合格した
+### README.ja.md
+```md
+{% raw %}
+# mmlabc-to-smf-rust
 
-# 細部を、先行する2つのymlを参照に手直しした
+<p align="left">
+  <a href="README.ja.md"><img src="https://img.shields.io/badge/🇯🇵-Japanese-red.svg" alt="Japanese"></a>
+  <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸-English-blue.svg" alt="English"></a>
+  <a href="https://deepwiki.com/cat2151/mmlabc-to-smf-rust"><img src="https://img.shields.io/badge/📖-DeepWiki-blue.svg" alt="DeepWiki"></a>
+</p>
 
-# ローカルtestをしてからcommitできるとよい。方法を検討する
-- ローカルtestのメリット
-    - 素早く修正のサイクルをまわせる
-    - ムダにgit historyを汚さない
-        - これまでの事例：「実装したつもり」「エラー。修正したつもり」「エラー。修正したつもり」...（以降エラー多数）
-- 方法
-    - ※検討、WSL + act を環境構築済みである。test可能であると判断する
-    - 呼び出し元のURLをコメントアウトし、相対パス記述にする
-    - ※備考、テスト成功すると結果がcommit pushされる。それでよしとする
-- 結果
-    - OK
-    - secretsを簡略化できるか試した、できなかった、現状のsecrets記述が今わかっている範囲でベストと判断する
-    - OK
+Music Macro Language (MML) から Standard MIDI File (SMF) への変換ライブラリ
 
-# test green
+## 概要
 
-# commit用に、yml 呼び出し元 uses をlocal用から本番用に書き換える
+このライブラリは、Music Macro Language（MML）形式の文字列を、Standard MIDI Fileに変換します。Rustで書かれています。
 
-# closeとする
+## 用途
+
+ライブラリとして `cat-play-mml` から利用しています
+
+## 状況
+
+頻繁に破壊的変更をしています
+
+READMEがメンテ不足です。実際はもっと多数のMMLコマンドが実装済みです。あとでREADMEをメンテ予定です
+
+実装されたMMLを知りたい場合、まず `tree-sitter-mml/grammar.js` をお読みください（ただし今後、破壊的変更されます）
+
+### 実装済み機能 ✅
+- **基本音符変換**: `cdefgab` → MIDI音符への変換
+- **4パスアーキテクチャ**: 完全実装済み
+  - パス1: MML文字列のトークン化（tree-sitterパーサー使用）
+  - パス2: トークンからAST（抽象構文木）への変換
+  - パス3: ASTからMIDIイベントの生成
+  - パス4: MIDIイベントからStandard MIDI File作成
+- **tree-sitter統合**: MML構文解析のための完全なtree-sitterパーサー統合
+- **チャンネル機能**: セミコロン（`;`）による多チャンネル対応
+- **JSON デバッグ出力**: 各パスの中間結果をJSONで出力
+- **CLI**: コマンドライン引数による基本操作
+- **包括的テスト**: 35個のテストケースがすべて通過
+
+### 動作確認
+```bash
+# 基本音階変換
+cargo run -- "cdefgab"
+
+# 多チャンネル
+cargo run -- "c;e;g"
+
+# カスタム出力ファイル
+cargo run -- "cde" -o my_song.mid
+```
+
+## 今後の見通し
+
+### 短期目標 🚧
+- **リポジトリ設定**: フォーマッター、リンター等の設定整備
+- **エラーハンドリング**: より詳細なエラーメッセージ
+
+### 長期目標 🎯
+- **mmlabcコマンド実装**: 完全なmmlabcフォーマット対応
+  - 音長指定（4分音符、8分音符等）
+  - オクターブ指定（`>`, `<`）
+  - テンポ、音量等の制御コマンド
+  - 和音機能の拡張
+- **パフォーマンス最適化**: 大規模MMLファイルの高速処理
+
+### 参考資料
+- mmlabcについては、[mml2abc](https://github.com/cat2151/mml2abc)リポジトリを参照
+
+## 特徴
+
+- **4パスアーキテクチャ**:
+  - **パス1**: MML文字列をトークンに解析（tree-sitterパーサー使用）
+  - **パス2**: トークンを抽象構文木（AST）に変換
+  - **パス3**: ASTからMIDIイベントを生成
+  - **パス4**: Standard MIDI Fileを作成
+- **多チャンネル対応**: セミコロン（`;`）による同時発音チャンネル分離
+- **JSON デバッグ出力**: 各パスの中間結果をJSON形式で保存・確認可能
+- **包括的テスト**: ユニットテスト・統合テスト合計35個のテストケース
+- **安全な設計**: Rustの型システムと所有権モデルによるメモリ安全性
+
+## 必要要件
+
+- Rust 1.70.0以上
+- Cargo
+
+## インストール
+
+### 開発版（現在の状態）
+
+```bash
+git clone https://github.com/cat2151/mmlabc-to-smf-rust
+cd mmlabc-to-smf-rust
+cargo build --release
+```
+
+### 直接実行（Cargo経由）
+
+```bash
+cargo run -- "cdefgab"
+```
+
+## 使い方
+
+### 基本的な使い方
+
+```bash
+# 基本音階の変換（デフォルトでcat-play-mmlで自動再生されます）
+cargo run -- "cdefgab"
+
+# 多チャンネル（同時発音）
+cargo run -- "c;e;g"  # Cメジャーコード
+
+# カスタム出力ファイル
+cargo run -- "cde" -o my_song.mid
+
+# 自動再生を無効化
+cargo run -- "cde" --no-play
+```
+
+### 自動再生機能
+
+デフォルトでは、MIDIファイル生成後に自動的に `cat-play-mml` コマンドで再生されます。
+これによりMML開発時に即座に音を確認できます。
+
+- 自動再生を無効化するには `--no-play` オプションを使用してください
+- `cat-play-mml` がインストールされていない場合、警告メッセージが表示されますがMIDIファイルは正常に生成されます
+
+#### カスタムプレイヤーの設定
+
+ツールを実行するディレクトリに `mmlabc-to-smf-rust.toml` ファイルを作成することで、カスタムMIDIプレイヤーを設定できます。
+
+設定ファイルの例：
+```toml
+# mmlabc-to-smf-rust.toml
+external_smf_player = "timidity"
+```
+
+設定可能な一般的なMIDIプレイヤー：
+- `timidity` - TiMidity++ MIDIプレイヤー
+- `fluidsynth` - FluidSynthソフトウェアシンセサイザー
+- `vlc` - VLCメディアプレイヤー
+- `cat-play-mml` (デフォルト)
+
+設定ファイルが存在しない場合、デフォルトで `cat-play-mml` が使用されます。
+
+サンプル設定ファイルは `mmlabc-to-smf-rust.toml.example` を参照してください。
+
+### 出力ファイル
+
+実行すると以下のファイルが生成されます：
+- `pass1_tokens.json` - パス1のトークン情報（デバッグ用）
+- `pass2_ast.json` - パス2のAST情報（デバッグ用）
+- `pass3_events.json` - パス3のMIDIイベント情報（デバッグ用）
+- `output.mid` - 最終的なMIDIファイル
+
+### 対応MML記法
+
+現在対応している記法：
+- **基本音符**: `c`, `d`, `e`, `f`, `g`, `a`, `b` (大文字・小文字対応)
+- **多チャンネル**: `;` でチャンネル分離（同時発音）
+
+例：
+```
+cdefgab     → ドレミファソラシの連続再生
+c;e;g       → C・E・G音の同時再生（Cメジャーコード）
+```
+
+## 開発
+
+### ビルド
+
+```bash
+cargo build        # デバッグビルド
+cargo build --release  # リリースビルド
+```
+
+### テスト
+
+```bash
+cargo test         # 全テスト実行（35個のテストケース）
+```
+
+### フォーマット・Lint
+
+```bash
+cargo clippy       # コード品質チェック
+cargo fmt --check  # フォーマットチェック
+cargo fmt          # フォーマット適用
+```
+
+### tree-sitter パーサーファイル
+
+tree-sitter パーサーファイル（`tree-sitter-mml/src/` 配下）は、crates.io での信頼性のある配布のため、tree-sitter のベストプラクティスに従い **git で追跡されています**。
+
+**開発ワークフロー：**
+- C言語ソースファイル（`parser.c`、`grammar.json`、`node-types.json`、および `tree_sitter/` ディレクトリ）は、`grammar.js` が変更されたときに自動的に再生成されます
+- ビルドスクリプトがファイルの更新時刻をチェックし、必要な場合にのみ再生成します
+- **必要条件**：文法を更新する場合は、システムに Node.js と npx がインストールされている必要があります
+- 通常のビルド（文法変更なし）は、コミット済みのC言語ファイルを使用するため、Node.js なしで動作します
+
+**生成ファイルをコミットする理由**
+これは tree-sitter エコシステムのベストプラクティスに従っています：
+- crates.io からインストールするユーザーは Node.js や tree-sitter-cli を必要としません
+- 文法とパーサーのバージョンが正確に一致することを保証します
+- CI/CD とクロスプラットフォームビルドを簡素化します
+- すべての tree-sitter 言語クレートの標準的な慣行です
+
+**文法の更新：**
+`tree-sitter-mml/grammar.js` を変更する場合：
+1. `cargo build` を実行 - ビルドスクリプトが変更を検出し、パーサーファイルを再生成します
+2. grammar.js と再生成されたC言語ファイルの両方を一緒にコミットします
+3. これにより、文法とパーサーが同期した状態を保ちます
+
+パーサーファイルを手動で再生成する場合：
+```bash
+cd tree-sitter-mml
+npm install  # tree-sitter-cli がまだインストールされていない場合
+npx tree-sitter generate
+```
+
+### プロジェクト構造
+
+```
+src/
+├── main.rs              # CLI エントリーポイント
+├── lib.rs               # ライブラリルート
+├── pass1_parser.rs      # パス1: トークン解析
+├── pass2_ast.rs         # パス2: AST変換
+├── pass3_events.rs      # パス3: MIDIイベント生成
+├── pass4_midi.rs        # パス4: MIDI ファイル作成
+├── tree_sitter_mml.rs   # tree-sitter MML統合
+└── types.rs             # 共通型定義
+
+tests/
+├── integration_test.rs  # 統合テスト
+├── test_channel.rs      # チャンネル機能テスト
+├── test_pass1.rs        # パス1テスト
+├── test_pass2.rs        # パス2テスト
+├── test_pass3.rs        # パス3テスト
+└── test_pass4.rs        # パス4テスト
+```
+
+## ライセンス
+
+MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してください。
+
+## 参考
+
+- オリジナルのPython実装: [cat2151/mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf)
 
 {% endraw %}
 ```
@@ -519,1005 +669,56 @@ jobs:
 # issue ktコマンドを実装する。key transposeである。は、note number 61となる。 は、note number 59となる。これはmmlabcフォーマット準拠である #39
 [issues #39](https://github.com/cat2151/mmlabc-to-smf-rust/issues/39)
 
-
+# 補足
+- demoも追加実装すること
 
 {% endraw %}
 ```
 
-### issue-notes/44.md
+### issue-notes/55.md
 ```md
 {% raw %}
-# issue ブラウザで MML to SMF（バイナリバッファ） 変換を可能とするためのWASM版のクレート追加を、WASI Reactor (FFI export) の方法で実装を試す #44
-[issues #44](https://github.com/cat2151/mmlabc-to-smf-rust/issues/44)
+# issue README.ja.mdを改善し、SSOTであるgrammer.jsはすべてURL linkとし、クリックでそれを読者がすぐ読めるようにする #55
+[issues #55](https://github.com/cat2151/mmlabc-to-smf-rust/issues/55)
 
-- これまでの課題
-    - WASM版を実現したい
-    - Tree-sitterのparser.cがあるため、直接WASMにできない
-    - そのため、WASI Reactor (FFI export) による方法を試す
-    - これならparser.cの問題（C言語依存なので、WASMにできない）を解決できる可能性がある
-- 用途
-    - ブラウザで、web-ym2151 において、MMLでブラウザでYM2151を鳴らすための技術スタックとして使う用
-- 入出力仕様
-    - input : text
-    - output : バイナリバッファ（内容はSMF）
-- 小さく始める
-    - 体験の検証：
-        - ブラウザで、MMLをtextareaに書いて、exportボタンを押したらSMFをダウンロード、
-        - という小さいindex htmlのdemoで検証する
-- 完了条件
-    - ブラウザJavaScriptから利用できるWASM版が実現すること
-    - 既存のCLI機能も維持されること
 
-{% endraw %}
-```
-
-### tree-sitter-mml/src/parser.c
-```c
-{% raw %}
-/* Automatically @generated by tree-sitter v0.25.10 */
-
-#include "tree_sitter/parser.h"
-
-#if defined(__GNUC__) || defined(__clang__)
-#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
-#endif
-
-#define LANGUAGE_VERSION 14
-#define STATE_COUNT 33
-#define LARGE_STATE_COUNT 5
-#define SYMBOL_COUNT 29
-#define ALIAS_COUNT 0
-#define TOKEN_COUNT 15
-#define EXTERNAL_TOKEN_COUNT 0
-#define FIELD_COUNT 0
-#define MAX_ALIAS_SEQUENCE_LENGTH 4
-#define MAX_RESERVED_WORD_SET_SIZE 0
-#define PRODUCTION_ID_COUNT 1
-#define SUPERTYPE_COUNT 0
-
-enum ts_symbol_identifiers {
-  anon_sym_SQUOTE = 1,
-  sym_note = 2,
-  anon_sym_PLUS = 3,
-  anon_sym_DASH = 4,
-  aux_sym_note_length_token1 = 5,
-  sym_dots = 6,
-  aux_sym_rest_token1 = 7,
-  sym_octave_up = 8,
-  sym_octave_down = 9,
-  anon_sym_o = 10,
-  anon_sym_l = 11,
-  anon_sym_AT = 12,
-  anon_sym_t = 13,
-  anon_sym_v = 14,
-  sym_source_file = 15,
-  sym__item = 16,
-  sym_chord = 17,
-  sym_note_with_modifier = 18,
-  sym_modifier = 19,
-  sym_note_length = 20,
-  sym_rest = 21,
-  sym_octave_set = 22,
-  sym_length_set = 23,
-  sym_program_change = 24,
-  sym_tempo_set = 25,
-  sym_velocity_set = 26,
-  aux_sym_source_file_repeat1 = 27,
-  aux_sym_chord_repeat1 = 28,
-};
-
-static const char * const ts_symbol_names[] = {
-  [ts_builtin_sym_end] = "end",
-  [anon_sym_SQUOTE] = "'",
-  [sym_note] = "note",
-  [anon_sym_PLUS] = "+",
-  [anon_sym_DASH] = "-",
-  [aux_sym_note_length_token1] = "note_length_token1",
-  [sym_dots] = "dots",
-  [aux_sym_rest_token1] = "rest_token1",
-  [sym_octave_up] = "octave_up",
-  [sym_octave_down] = "octave_down",
-  [anon_sym_o] = "o",
-  [anon_sym_l] = "l",
-  [anon_sym_AT] = "@",
-  [anon_sym_t] = "t",
-  [anon_sym_v] = "v",
-  [sym_source_file] = "source_file",
-  [sym__item] = "_item",
-  [sym_chord] = "chord",
-  [sym_note_with_modifier] = "note_with_modifier",
-  [sym_modifier] = "modifier",
-  [sym_note_length] = "note_length",
-  [sym_rest] = "rest",
-  [sym_octave_set] = "octave_set",
-  [sym_length_set] = "length_set",
-  [sym_program_change] = "program_change",
-  [sym_tempo_set] = "tempo_set",
-  [sym_velocity_set] = "velocity_set",
-  [aux_sym_source_file_repeat1] = "source_file_repeat1",
-  [aux_sym_chord_repeat1] = "chord_repeat1",
-};
-
-static const TSSymbol ts_symbol_map[] = {
-  [ts_builtin_sym_end] = ts_builtin_sym_end,
-  [anon_sym_SQUOTE] = anon_sym_SQUOTE,
-  [sym_note] = sym_note,
-  [anon_sym_PLUS] = anon_sym_PLUS,
-  [anon_sym_DASH] = anon_sym_DASH,
-  [aux_sym_note_length_token1] = aux_sym_note_length_token1,
-  [sym_dots] = sym_dots,
-  [aux_sym_rest_token1] = aux_sym_rest_token1,
-  [sym_octave_up] = sym_octave_up,
-  [sym_octave_down] = sym_octave_down,
-  [anon_sym_o] = anon_sym_o,
-  [anon_sym_l] = anon_sym_l,
-  [anon_sym_AT] = anon_sym_AT,
-  [anon_sym_t] = anon_sym_t,
-  [anon_sym_v] = anon_sym_v,
-  [sym_source_file] = sym_source_file,
-  [sym__item] = sym__item,
-  [sym_chord] = sym_chord,
-  [sym_note_with_modifier] = sym_note_with_modifier,
-  [sym_modifier] = sym_modifier,
-  [sym_note_length] = sym_note_length,
-  [sym_rest] = sym_rest,
-  [sym_octave_set] = sym_octave_set,
-  [sym_length_set] = sym_length_set,
-  [sym_program_change] = sym_program_change,
-  [sym_tempo_set] = sym_tempo_set,
-  [sym_velocity_set] = sym_velocity_set,
-  [aux_sym_source_file_repeat1] = aux_sym_source_file_repeat1,
-  [aux_sym_chord_repeat1] = aux_sym_chord_repeat1,
-};
-
-static const TSSymbolMetadata ts_symbol_metadata[] = {
-  [ts_builtin_sym_end] = {
-    .visible = false,
-    .named = true,
-  },
-  [anon_sym_SQUOTE] = {
-    .visible = true,
-    .named = false,
-  },
-  [sym_note] = {
-    .visible = true,
-    .named = true,
-  },
-  [anon_sym_PLUS] = {
-    .visible = true,
-    .named = false,
-  },
-  [anon_sym_DASH] = {
-    .visible = true,
-    .named = false,
-  },
-  [aux_sym_note_length_token1] = {
-    .visible = false,
-    .named = false,
-  },
-  [sym_dots] = {
-    .visible = true,
-    .named = true,
-  },
-  [aux_sym_rest_token1] = {
-    .visible = false,
-    .named = false,
-  },
-  [sym_octave_up] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym_octave_down] = {
-    .visible = true,
-    .named = true,
-  },
-  [anon_sym_o] = {
-    .visible = true,
-    .named = false,
-  },
-  [anon_sym_l] = {
-    .visible = true,
-    .named = false,
-  },
-  [anon_sym_AT] = {
-    .visible = true,
-    .named = false,
-  },
-  [anon_sym_t] = {
-    .visible = true,
-    .named = false,
-  },
-  [anon_sym_v] = {
-    .visible = true,
-    .named = false,
-  },
-  [sym_source_file] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym__item] = {
-    .visible = false,
-    .named = true,
-  },
-  [sym_chord] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym_note_with_modifier] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym_modifier] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym_note_length] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym_rest] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym_octave_set] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym_length_set] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym_program_change] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym_tempo_set] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym_velocity_set] = {
-    .visible = true,
-    .named = true,
-  },
-  [aux_sym_source_file_repeat1] = {
-    .visible = false,
-    .named = false,
-  },
-  [aux_sym_chord_repeat1] = {
-    .visible = false,
-    .named = false,
-  },
-};
-
-static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE_LENGTH] = {
-  [0] = {0},
-};
-
-static const uint16_t ts_non_terminal_alias_map[] = {
-  0,
-};
-
-static const TSStateId ts_primary_state_ids[STATE_COUNT] = {
-  [0] = 0,
-  [1] = 1,
-  [2] = 2,
-  [3] = 3,
-  [4] = 4,
-  [5] = 5,
-  [6] = 6,
-  [7] = 7,
-  [8] = 8,
-  [9] = 9,
-  [10] = 10,
-  [11] = 11,
-  [12] = 12,
-  [13] = 13,
-  [14] = 14,
-  [15] = 15,
-  [16] = 16,
-  [17] = 17,
-  [18] = 18,
-  [19] = 19,
-  [20] = 20,
-  [21] = 21,
-  [22] = 22,
-  [23] = 23,
-  [24] = 24,
-  [25] = 25,
-  [26] = 26,
-  [27] = 27,
-  [28] = 28,
-  [29] = 29,
-  [30] = 30,
-  [31] = 31,
-  [32] = 32,
-};
-
-static bool ts_lex(TSLexer *lexer, TSStateId state) {
-  START_LEXER();
-  eof = lexer->eof(lexer);
-  switch (state) {
-    case 0:
-      if (eof) ADVANCE(1);
-      ADVANCE_MAP(
-        '\'', 2,
-        '+', 4,
-        '-', 5,
-        '.', 7,
-        '<', 9,
-        '>', 10,
-        '@', 13,
-        'l', 12,
-        'o', 11,
-        't', 14,
-        'v', 15,
-        'R', 8,
-        'r', 8,
-      );
-      if (('\t' <= lookahead && lookahead <= '\r') ||
-          lookahead == ' ') SKIP(0);
-      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(6);
-      if (('A' <= lookahead && lookahead <= 'G') ||
-          ('a' <= lookahead && lookahead <= 'g')) ADVANCE(3);
-      END_STATE();
-    case 1:
-      ACCEPT_TOKEN(ts_builtin_sym_end);
-      END_STATE();
-    case 2:
-      ACCEPT_TOKEN(anon_sym_SQUOTE);
-      END_STATE();
-    case 3:
-      ACCEPT_TOKEN(sym_note);
-      END_STATE();
-    case 4:
-      ACCEPT_TOKEN(anon_sym_PLUS);
-      END_STATE();
-    case 5:
-      ACCEPT_TOKEN(anon_sym_DASH);
-      END_STATE();
-    case 6:
-      ACCEPT_TOKEN(aux_sym_note_length_token1);
-      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(6);
-      END_STATE();
-    case 7:
-      ACCEPT_TOKEN(sym_dots);
-      if (lookahead == '.') ADVANCE(7);
-      END_STATE();
-    case 8:
-      ACCEPT_TOKEN(aux_sym_rest_token1);
-      END_STATE();
-    case 9:
-      ACCEPT_TOKEN(sym_octave_up);
-      END_STATE();
-    case 10:
-      ACCEPT_TOKEN(sym_octave_down);
-      END_STATE();
-    case 11:
-      ACCEPT_TOKEN(anon_sym_o);
-      END_STATE();
-    case 12:
-      ACCEPT_TOKEN(anon_sym_l);
-      END_STATE();
-    case 13:
-      ACCEPT_TOKEN(anon_sym_AT);
-      END_STATE();
-    case 14:
-      ACCEPT_TOKEN(anon_sym_t);
-      END_STATE();
-    case 15:
-      ACCEPT_TOKEN(anon_sym_v);
-      END_STATE();
-    default:
-      return false;
-  }
-}
-
-static const TSLexMode ts_lex_modes[STATE_COUNT] = {
-  [0] = {.lex_state = 0},
-  [1] = {.lex_state = 0},
-  [2] = {.lex_state = 0},
-  [3] = {.lex_state = 0},
-  [4] = {.lex_state = 0},
-  [5] = {.lex_state = 0},
-  [6] = {.lex_state = 0},
-  [7] = {.lex_state = 0},
-  [8] = {.lex_state = 0},
-  [9] = {.lex_state = 0},
-  [10] = {.lex_state = 0},
-  [11] = {.lex_state = 0},
-  [12] = {.lex_state = 0},
-  [13] = {.lex_state = 0},
-  [14] = {.lex_state = 0},
-  [15] = {.lex_state = 0},
-  [16] = {.lex_state = 0},
-  [17] = {.lex_state = 0},
-  [18] = {.lex_state = 0},
-  [19] = {.lex_state = 0},
-  [20] = {.lex_state = 0},
-  [21] = {.lex_state = 0},
-  [22] = {.lex_state = 0},
-  [23] = {.lex_state = 0},
-  [24] = {.lex_state = 0},
-  [25] = {.lex_state = 0},
-  [26] = {.lex_state = 0},
-  [27] = {.lex_state = 0},
-  [28] = {.lex_state = 0},
-  [29] = {.lex_state = 0},
-  [30] = {.lex_state = 0},
-  [31] = {.lex_state = 0},
-  [32] = {.lex_state = 0},
-};
-
-static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
-  [STATE(0)] = {
-    [ts_builtin_sym_end] = ACTIONS(1),
-    [anon_sym_SQUOTE] = ACTIONS(1),
-    [sym_note] = ACTIONS(1),
-    [anon_sym_PLUS] = ACTIONS(1),
-    [anon_sym_DASH] = ACTIONS(1),
-    [aux_sym_note_length_token1] = ACTIONS(1),
-    [sym_dots] = ACTIONS(1),
-    [aux_sym_rest_token1] = ACTIONS(1),
-    [sym_octave_up] = ACTIONS(1),
-    [sym_octave_down] = ACTIONS(1),
-    [anon_sym_o] = ACTIONS(1),
-    [anon_sym_l] = ACTIONS(1),
-    [anon_sym_AT] = ACTIONS(1),
-    [anon_sym_t] = ACTIONS(1),
-    [anon_sym_v] = ACTIONS(1),
-  },
-  [STATE(1)] = {
-    [sym_source_file] = STATE(30),
-    [sym__item] = STATE(2),
-    [sym_chord] = STATE(2),
-    [sym_note_with_modifier] = STATE(2),
-    [sym_rest] = STATE(2),
-    [sym_octave_set] = STATE(2),
-    [sym_length_set] = STATE(2),
-    [sym_program_change] = STATE(2),
-    [sym_tempo_set] = STATE(2),
-    [sym_velocity_set] = STATE(2),
-    [aux_sym_source_file_repeat1] = STATE(2),
-    [ts_builtin_sym_end] = ACTIONS(3),
-    [anon_sym_SQUOTE] = ACTIONS(5),
-    [sym_note] = ACTIONS(7),
-    [aux_sym_rest_token1] = ACTIONS(9),
-    [sym_octave_up] = ACTIONS(11),
-    [sym_octave_down] = ACTIONS(11),
-    [anon_sym_o] = ACTIONS(13),
-    [anon_sym_l] = ACTIONS(15),
-    [anon_sym_AT] = ACTIONS(17),
-    [anon_sym_t] = ACTIONS(19),
-    [anon_sym_v] = ACTIONS(21),
-  },
-  [STATE(2)] = {
-    [sym__item] = STATE(3),
-    [sym_chord] = STATE(3),
-    [sym_note_with_modifier] = STATE(3),
-    [sym_rest] = STATE(3),
-    [sym_octave_set] = STATE(3),
-    [sym_length_set] = STATE(3),
-    [sym_program_change] = STATE(3),
-    [sym_tempo_set] = STATE(3),
-    [sym_velocity_set] = STATE(3),
-    [aux_sym_source_file_repeat1] = STATE(3),
-    [ts_builtin_sym_end] = ACTIONS(23),
-    [anon_sym_SQUOTE] = ACTIONS(5),
-    [sym_note] = ACTIONS(7),
-    [aux_sym_rest_token1] = ACTIONS(9),
-    [sym_octave_up] = ACTIONS(25),
-    [sym_octave_down] = ACTIONS(25),
-    [anon_sym_o] = ACTIONS(13),
-    [anon_sym_l] = ACTIONS(15),
-    [anon_sym_AT] = ACTIONS(17),
-    [anon_sym_t] = ACTIONS(19),
-    [anon_sym_v] = ACTIONS(21),
-  },
-  [STATE(3)] = {
-    [sym__item] = STATE(3),
-    [sym_chord] = STATE(3),
-    [sym_note_with_modifier] = STATE(3),
-    [sym_rest] = STATE(3),
-    [sym_octave_set] = STATE(3),
-    [sym_length_set] = STATE(3),
-    [sym_program_change] = STATE(3),
-    [sym_tempo_set] = STATE(3),
-    [sym_velocity_set] = STATE(3),
-    [aux_sym_source_file_repeat1] = STATE(3),
-    [ts_builtin_sym_end] = ACTIONS(27),
-    [anon_sym_SQUOTE] = ACTIONS(29),
-    [sym_note] = ACTIONS(32),
-    [aux_sym_rest_token1] = ACTIONS(35),
-    [sym_octave_up] = ACTIONS(38),
-    [sym_octave_down] = ACTIONS(38),
-    [anon_sym_o] = ACTIONS(41),
-    [anon_sym_l] = ACTIONS(44),
-    [anon_sym_AT] = ACTIONS(47),
-    [anon_sym_t] = ACTIONS(50),
-    [anon_sym_v] = ACTIONS(53),
-  },
-  [STATE(4)] = {
-    [sym_modifier] = STATE(5),
-    [sym_note_length] = STATE(8),
-    [ts_builtin_sym_end] = ACTIONS(56),
-    [anon_sym_SQUOTE] = ACTIONS(56),
-    [sym_note] = ACTIONS(56),
-    [anon_sym_PLUS] = ACTIONS(58),
-    [anon_sym_DASH] = ACTIONS(58),
-    [aux_sym_note_length_token1] = ACTIONS(60),
-    [sym_dots] = ACTIONS(62),
-    [aux_sym_rest_token1] = ACTIONS(56),
-    [sym_octave_up] = ACTIONS(56),
-    [sym_octave_down] = ACTIONS(56),
-    [anon_sym_o] = ACTIONS(56),
-    [anon_sym_l] = ACTIONS(56),
-    [anon_sym_AT] = ACTIONS(56),
-    [anon_sym_t] = ACTIONS(56),
-    [anon_sym_v] = ACTIONS(56),
-  },
-};
-
-static const uint16_t ts_small_parse_table[] = {
-  [0] = 4,
-    ACTIONS(60), 1,
-      aux_sym_note_length_token1,
-    ACTIONS(66), 1,
-      sym_dots,
-    STATE(11), 1,
-      sym_note_length,
-    ACTIONS(64), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [23] = 4,
-    ACTIONS(60), 1,
-      aux_sym_note_length_token1,
-    ACTIONS(70), 1,
-      sym_dots,
-    STATE(10), 1,
-      sym_note_length,
-    ACTIONS(68), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [46] = 1,
-    ACTIONS(72), 13,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_note_length_token1,
-      sym_dots,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [62] = 2,
-    ACTIONS(66), 1,
-      sym_dots,
-    ACTIONS(64), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [79] = 1,
-    ACTIONS(74), 12,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      sym_dots,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [94] = 2,
-    ACTIONS(78), 1,
-      sym_dots,
-    ACTIONS(76), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [111] = 2,
-    ACTIONS(82), 1,
-      sym_dots,
-    ACTIONS(80), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [128] = 2,
-    ACTIONS(86), 1,
-      sym_dots,
-    ACTIONS(84), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [145] = 1,
-    ACTIONS(64), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [159] = 1,
-    ACTIONS(76), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [173] = 1,
-    ACTIONS(88), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [187] = 1,
-    ACTIONS(90), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [201] = 1,
-    ACTIONS(92), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [215] = 1,
-    ACTIONS(94), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [229] = 1,
-    ACTIONS(96), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [243] = 1,
-    ACTIONS(98), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [257] = 1,
-    ACTIONS(80), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [271] = 1,
-    ACTIONS(100), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [285] = 1,
-    ACTIONS(102), 11,
-      ts_builtin_sym_end,
-      anon_sym_SQUOTE,
-      sym_note,
-      aux_sym_rest_token1,
-      sym_octave_up,
-      sym_octave_down,
-      anon_sym_o,
-      anon_sym_l,
-      anon_sym_AT,
-      anon_sym_t,
-      anon_sym_v,
-  [299] = 3,
-    ACTIONS(7), 1,
-      sym_note,
-    ACTIONS(104), 1,
-      anon_sym_SQUOTE,
-    STATE(25), 2,
-      sym_note_with_modifier,
-      aux_sym_chord_repeat1,
-  [310] = 3,
-    ACTIONS(106), 1,
-      anon_sym_SQUOTE,
-    ACTIONS(108), 1,
-      sym_note,
-    STATE(25), 2,
-      sym_note_with_modifier,
-      aux_sym_chord_repeat1,
-  [321] = 2,
-    ACTIONS(7), 1,
-      sym_note,
-    STATE(24), 2,
-      sym_note_with_modifier,
-      aux_sym_chord_repeat1,
-  [329] = 1,
-    ACTIONS(111), 1,
-      aux_sym_note_length_token1,
-  [333] = 1,
-    ACTIONS(113), 1,
-      aux_sym_note_length_token1,
-  [337] = 1,
-    ACTIONS(115), 1,
-      aux_sym_note_length_token1,
-  [341] = 1,
-    ACTIONS(117), 1,
-      ts_builtin_sym_end,
-  [345] = 1,
-    ACTIONS(119), 1,
-      aux_sym_note_length_token1,
-  [349] = 1,
-    ACTIONS(121), 1,
-      aux_sym_note_length_token1,
-};
-
-static const uint32_t ts_small_parse_table_map[] = {
-  [SMALL_STATE(5)] = 0,
-  [SMALL_STATE(6)] = 23,
-  [SMALL_STATE(7)] = 46,
-  [SMALL_STATE(8)] = 62,
-  [SMALL_STATE(9)] = 79,
-  [SMALL_STATE(10)] = 94,
-  [SMALL_STATE(11)] = 111,
-  [SMALL_STATE(12)] = 128,
-  [SMALL_STATE(13)] = 145,
-  [SMALL_STATE(14)] = 159,
-  [SMALL_STATE(15)] = 173,
-  [SMALL_STATE(16)] = 187,
-  [SMALL_STATE(17)] = 201,
-  [SMALL_STATE(18)] = 215,
-  [SMALL_STATE(19)] = 229,
-  [SMALL_STATE(20)] = 243,
-  [SMALL_STATE(21)] = 257,
-  [SMALL_STATE(22)] = 271,
-  [SMALL_STATE(23)] = 285,
-  [SMALL_STATE(24)] = 299,
-  [SMALL_STATE(25)] = 310,
-  [SMALL_STATE(26)] = 321,
-  [SMALL_STATE(27)] = 329,
-  [SMALL_STATE(28)] = 333,
-  [SMALL_STATE(29)] = 337,
-  [SMALL_STATE(30)] = 341,
-  [SMALL_STATE(31)] = 345,
-  [SMALL_STATE(32)] = 349,
-};
-
-static const TSParseActionEntry ts_parse_actions[] = {
-  [0] = {.entry = {.count = 0, .reusable = false}},
-  [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
-  [3] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 0, 0, 0),
-  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(26),
-  [7] = {.entry = {.count = 1, .reusable = true}}, SHIFT(4),
-  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(6),
-  [11] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2),
-  [13] = {.entry = {.count = 1, .reusable = true}}, SHIFT(32),
-  [15] = {.entry = {.count = 1, .reusable = true}}, SHIFT(31),
-  [17] = {.entry = {.count = 1, .reusable = true}}, SHIFT(29),
-  [19] = {.entry = {.count = 1, .reusable = true}}, SHIFT(28),
-  [21] = {.entry = {.count = 1, .reusable = true}}, SHIFT(27),
-  [23] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 1, 0, 0),
-  [25] = {.entry = {.count = 1, .reusable = true}}, SHIFT(3),
-  [27] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0),
-  [29] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(26),
-  [32] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(4),
-  [35] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(6),
-  [38] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(3),
-  [41] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(32),
-  [44] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(31),
-  [47] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(29),
-  [50] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(28),
-  [53] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2, 0, 0), SHIFT_REPEAT(27),
-  [56] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_note_with_modifier, 1, 0, 0),
-  [58] = {.entry = {.count = 1, .reusable = true}}, SHIFT(7),
-  [60] = {.entry = {.count = 1, .reusable = true}}, SHIFT(9),
-  [62] = {.entry = {.count = 1, .reusable = true}}, SHIFT(13),
-  [64] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_note_with_modifier, 2, 0, 0),
-  [66] = {.entry = {.count = 1, .reusable = true}}, SHIFT(21),
-  [68] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_rest, 1, 0, 0),
-  [70] = {.entry = {.count = 1, .reusable = true}}, SHIFT(14),
-  [72] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_modifier, 1, 0, 0),
-  [74] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_note_length, 1, 0, 0),
-  [76] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_rest, 2, 0, 0),
-  [78] = {.entry = {.count = 1, .reusable = true}}, SHIFT(18),
-  [80] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_note_with_modifier, 3, 0, 0),
-  [82] = {.entry = {.count = 1, .reusable = true}}, SHIFT(23),
-  [84] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_length_set, 2, 0, 0),
-  [86] = {.entry = {.count = 1, .reusable = true}}, SHIFT(22),
-  [88] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_program_change, 2, 0, 0),
-  [90] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_tempo_set, 2, 0, 0),
-  [92] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_velocity_set, 2, 0, 0),
-  [94] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_rest, 3, 0, 0),
-  [96] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_chord, 3, 0, 0),
-  [98] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_octave_set, 2, 0, 0),
-  [100] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_length_set, 3, 0, 0),
-  [102] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_note_with_modifier, 4, 0, 0),
-  [104] = {.entry = {.count = 1, .reusable = true}}, SHIFT(19),
-  [106] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_chord_repeat1, 2, 0, 0),
-  [108] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_chord_repeat1, 2, 0, 0), SHIFT_REPEAT(4),
-  [111] = {.entry = {.count = 1, .reusable = true}}, SHIFT(17),
-  [113] = {.entry = {.count = 1, .reusable = true}}, SHIFT(16),
-  [115] = {.entry = {.count = 1, .reusable = true}}, SHIFT(15),
-  [117] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
-  [119] = {.entry = {.count = 1, .reusable = true}}, SHIFT(12),
-  [121] = {.entry = {.count = 1, .reusable = true}}, SHIFT(20),
-};
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-#ifdef TREE_SITTER_HIDE_SYMBOLS
-#define TS_PUBLIC
-#elif defined(_WIN32)
-#define TS_PUBLIC __declspec(dllexport)
-#else
-#define TS_PUBLIC __attribute__((visibility("default")))
-#endif
-
-TS_PUBLIC const TSLanguage *tree_sitter_mml(void) {
-  static const TSLanguage language = {
-    .abi_version = LANGUAGE_VERSION,
-    .symbol_count = SYMBOL_COUNT,
-    .alias_count = ALIAS_COUNT,
-    .token_count = TOKEN_COUNT,
-    .external_token_count = EXTERNAL_TOKEN_COUNT,
-    .state_count = STATE_COUNT,
-    .large_state_count = LARGE_STATE_COUNT,
-    .production_id_count = PRODUCTION_ID_COUNT,
-    .field_count = FIELD_COUNT,
-    .max_alias_sequence_length = MAX_ALIAS_SEQUENCE_LENGTH,
-    .parse_table = &ts_parse_table[0][0],
-    .small_parse_table = ts_small_parse_table,
-    .small_parse_table_map = ts_small_parse_table_map,
-    .parse_actions = ts_parse_actions,
-    .symbol_names = ts_symbol_names,
-    .symbol_metadata = ts_symbol_metadata,
-    .public_symbol_map = ts_symbol_map,
-    .alias_map = ts_non_terminal_alias_map,
-    .alias_sequences = &ts_alias_sequences[0][0],
-    .lex_modes = (const void*)ts_lex_modes,
-    .lex_fn = ts_lex,
-    .primary_state_ids = ts_primary_state_ids,
-  };
-  return &language;
-}
-#ifdef __cplusplus
-}
-#endif
 
 {% endraw %}
 ```
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-d8ca0d4 Expand issue notes for WASM crate implementation #44
-6379f66 Add issue note for #44 [auto]
+a2156f7 Merge pull request #58 from cat2151/copilot/fix-semicolon-parsing-issue
+959c596 Fix indentation with cargo fmt
+788766d Add documentation for extract_tokens and extract_note_and_modifier functions
+5f66adf Add test for channel_groups in WASM module
+8b5c3b0 Update WASM lib to support channel_groups and add demo example
+6306ae1 Add semicolon support to grammar.js and update CLI parser
+0410eb0 Initial plan
+7655c0e Merge pull request #57 from cat2151/copilot/add-dark-mode-support
+34b31f3 Add OS dark mode support to demo HTML files
+f7d5852 Initial plan
 
 ### 変更されたファイル:
-.github/copilot-instructions.md
-README.ja.md
-README.md
-issue-notes/42.md
-issue-notes/44.md
+.gitignore
+demo/README.md
+demo/index.html
+index.html
+issue-notes/52.md
+issue-notes/54.md
+issue-notes/55.md
+issue-notes/56.md
+mmlabc-to-smf-wasm/src/lib.rs
+package.json
+scripts/build-demo.sh
+src/pass1_parser.rs
+tests/test_pass1.rs
+tree-sitter-mml/grammar.js
+tree-sitter-mml/src/grammar.json
+tree-sitter-mml/src/node-types.json
+tree-sitter-mml/src/parser.c
+tree-sitter-mml/src/tree_sitter/array.h
 
 
 ---
-Generated at: 2026-01-21 07:05:55 JST
+Generated at: 2026-02-04 07:09:57 JST

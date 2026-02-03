@@ -1,51 +1,51 @@
-Last updated: 2026-01-21
+Last updated: 2026-02-04
 
 # Development Status
 
 ## 現在のIssues
-- [Issue #44](../issue-notes/44.md) は、ブラウザでMMLからSMFへのバイナリ変換をWASM (WASI Reactor FFI export) で実現し、Tree-sitterのC言語依存を解決することを目指しています。
-- [Issue #39](../issue-notes/39.md) は、MMLabcフォーマット準拠の`kt`（key transpose）コマンドを実装し、音符番号の移調を可能にする機能追加を求めています。
-- [Issue #37](../issue-notes/37.md) は、mmlabcフォーマットに従い、`@128`が指定されたトラックをMIDIチャンネル9（ドラムチャンネル）として扱う機能を実装する予定です。
+- [Issue #55](../issue-notes/55.md): `README.ja.md`内の`grammar.js`への参照をGitHubリポジトリのURLリンクに改善し、読者が直接アクセスできるようにする。
+- [Issue #39](../issue-notes/39.md): `mmlabc`フォーマット準拠の`kt`（key transpose）コマンドを実装し、その機能のデモを追加する。
+- [Issue #37](../issue-notes/37.md): `@128`コマンドを含むMMLトラックを、MIDIチャンネル9（ドラムチャンネル）として扱う`mmlabc`準拠の機能を実装する。
 
 ## 次の一手候補
-1. [Issue #44](../issue-notes/44.md): ブラウザで MML to SMF 変換を可能とするWASM版クレートをWASI Reactorで実装する
-   - 最初の小さな一歩: Rustプロジェクトに`wasm32-wasi`ターゲットを追加し、`src/lib.rs`に`#[no_mangle]`と`pub extern "C"`を用いた最小限のFFI関数をエクスポートする。
+1. [Issue #55](../issue-notes/55.md): `README.ja.md`の`grammar.js`への参照をURLリンクに改善する
+   - 最初の小さな一歩: `README.ja.md`内の「`tree-sitter-mml/grammar.js` をお読みください」という記述のファイルパス部分を、GitHubリポジトリ上の`grammar.js`ファイルへの直接URLリンクに置き換える。
    - Agent実行プロンプ:
      ```
-     対象ファイル: `Cargo.toml`, `src/lib.rs`, `src/main.rs`
+     対象ファイル: `README.ja.md`
 
-     実行内容: Rustプロジェクトに`wasm32-wasi`ターゲットを追加し、`mmlabc_to_smf_rust`クレートがWASI Reactorとしてコンパイル可能になるように設定してください。具体的には、`src/lib.rs`に`#[no_mangle]`と`pub extern "C"`を用いた最小限のFFI関数（例: `fn greet_wasm() -> i32`）を追加し、`Cargo.toml`に`crate-type = ["cdylib"]`を設定してください。
+     実行内容: `README.ja.md`ファイルを開き、「実装されたMMLを知りたい場合、まず `tree-sitter-mml/grammar.js` をお読みください」という記述を見つけてください。この文中の`tree-sitter-mml/grammar.js`を、GitHubリポジトリの該当ファイル（`https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/tree-sitter-mml/grammar.js`）へのMarkdownリンクに修正してください。
 
-     確認事項: 既存のCLI機能がwasmターゲット追加後も正常にビルド・動作することを確認してください。また、`tree-sitter-mml/src/parser.c`のようなC言語依存のファイルがWASI Reactorの文脈でどのように扱われるか、その可能性を簡単に調査してください。
+     確認事項: 変更後、生成されたリンクが正しく機能すること、および`README.ja.md`の全体的な日本語表現が自然であることを確認してください。また、`README.md`（英語バージョン）には影響を与えないことを確認してください。
 
-     期待する出力: WASI Reactorとしてビルド可能な`Cargo.toml`と`src/lib.rs`の変更内容。また、`wasm32-wasi`ターゲットの追加手順と、最小限のFFI関数の実装例およびそのコンパイル方法をmarkdown形式で出力してください。
+     期待する出力: 変更が適用された`README.ja.md`の更新内容。
      ```
 
-2. [Issue #39](../issue-notes/39.md): ktコマンドを実装する。key transposeである。
-   - 最初の小さな一歩: `tree-sitter-mml/grammar.js`に`kt`トークンと関連するルールを追加し、`src/tree_sitter_mml.rs`を更新して、Rust側で`kt`コマンドがパースツリーとして認識されるようにする。
+2. [Issue #39](../issue-notes/39.md): `kt`コマンド（key transpose）を実装する
+   - 最初の小さな一歩: `tree-sitter-mml/grammar.js` に`kt`コマンドの構文（`kt`、それに続く符号付き整数、そして音符）を定義するルールを追加する。
    - Agent実行プロンプ:
      ```
-     対象ファイル: `tree-sitter-mml/grammar.js`, `src/tree_sitter_mml.rs`
+     対象ファイル: `tree-sitter-mml/grammar.js`
 
-     実行内容: MMLの文法に`kt`コマンドを組み込むため、`tree-sitter-mml/grammar.js`に`kt`トークン（例: `anon_sym_kt`）と、それに続く数値引数（例: 符号付き整数）を認識するルールを追加してください。その後、`tree-sitter generate`を実行し、生成された`src/parser.c`に基づいて`src/tree_sitter_mml.rs`のバインディングを更新してください。最初の実装として、`kt`コマンドとその引数がAST（抽象構文木）に適切に表現されるまでを目標とします。
+     実行内容: `tree-sitter-mml/grammar.js`ファイルに、`kt`コマンドをパースするための新しいルールを追加してください。このルールは、`"kt"`というキーワードの後に符号付きの整数（例: `+1`, `-2`, `3`）、そしてMMLの音符（`c`, `d`, `e`, `f`, `g`, `a`, `b`とその修飾子）が続く形式を認識するようにしてください。既存の音符やコマンドのルールと整合性が取れるように定義してください。
 
-     確認事項: 既存のMML文法（ノート、オクターブ変更など）に影響を与えないことを確認してください。`tree-sitter-mml`のビルドプロセス（`tree-sitter generate`など）とRust側のバインディング更新手順を理解していることを前提とします。
+     確認事項: 新しい`kt`コマンドのルールが既存のMML文法と競合しないかを確認してください。また、変更後に`npx tree-sitter generate`コマンドを実行し、パーサーファイルがエラーなく再生成されることを確認してください。
 
-     期待する出力: `tree-sitter-mml/grammar.js`と`src/tree_sitter_mml.rs`の変更内容。および、`kt`コマンドを認識する新しいAST構造の簡単な説明をmarkdown形式で出力してください。
+     期待する出力: `kt`コマンドの文法ルールが追加された`tree-sitter-mml/grammar.js`の更新された内容。
      ```
 
-3. [Issue #37](../issue-notes/37.md): `@128`のあるtrackはMIDI channel 9として扱う。
-   - 最初の小さな一歩: `src/pass1_parser.rs`または`src/pass2_ast.rs`において、各MMLトラック（`;`で区切られる文字列グループ）内に`@128`コマンドが存在するかどうかを検出するロジックを実装し、検出結果をログ出力する。
+3. [Issue #37](../issue-notes/37.md): `@128`のあるトラックをMIDIチャンネル9（ドラム）として扱う機能を実装する
+   - 最初の小さな一歩: `tree-sitter-mml/grammar.js`で`@`コマンドがどのようにパースされているか確認し、`pass1_parser.rs`および`pass2_ast.rs`で`@128`情報がASTに適切に伝達されるよう、既存のAST構造体の確認と必要に応じた変更案を検討する。
    - Agent実行プロンプ:
      ```
-     対象ファイル: `src/pass1_parser.rs`, `src/pass2_ast.rs`, `src/pass3_events.rs`
+     対象ファイル: `tree-sitter-mml/grammar.js`, `src/pass1_parser.rs`, `src/pass2_ast.rs`, `src/types.rs`
 
-     実行内容: MMLパース処理の初期段階（`src/pass1_parser.rs`または`src/pass2_ast.rs`）で、各MMLトラック（MML文字列が`;`で区切られたもの）のASTノードを走査し、そのトラック内に`@128`コマンドが存在するかどうかを検出する機能を実装してください。検出された場合、そのトラックはドラムトラックとみなされるため、最初のステップとして検出ロジックと結果をコンソールにログ出力するようにしてください。
+     実行内容: まず`tree-sitter-mml/grammar.js`を分析し、`@`コマンドがどのようにトークン化されるかを確認してください。次に、`src/pass1_parser.rs`でそれがどのように処理され、`src/pass2_ast.rs`で抽象構文木（AST）に変換されるか、特に`@128`のような特定の数値が伴う場合にその情報がASTに保持されるかを調査してください。その結果に基づき、トラックごとに`@128`コマンドの存在を識別できるようにするために、`src/types.rs`内の既存のAST構造体（例: `AstNode`や関連する構造体）にどのような変更が必要か、または既存の構造で対応可能かを分析し、変更の必要性とその具体的な提案をmarkdown形式で記述してください。
 
-     確認事項: `track`の定義が「;」で区切られるMML文字列のグループであることを考慮に入れてください。既存のパース・AST構築ロジックに大きな変更を加えないよう、既存のデータ構造を拡張するか、適切な場所で検出処理を行うように配慮してください。
+     確認事項: `@`コマンド全般の既存のパースロジックに影響を与えないこと。提案される変更が、MMLの他の要素（音符、長さ、テンポなど）のパースやAST表現に予期せぬ副作用をもたらさないことを確認してください。
 
-     期待する出力: `@128`の検出ロジックが追加された`src/pass1_parser.rs`または`src/pass2_ast.rs`の具体的な変更内容。および、検出ロジックの実装方針と、簡単なテストケースで検出が機能することを示す説明をmarkdown形式で出力してください。
+     期待する出力: `@128`コマンドの検出と、それがトラックのMIDIチャンネル割り当てに影響を与えるための、`grammar.js`、`pass1_parser.rs`、`pass2_ast.rs`における必要な変更点および`src/types.rs`のAST構造体への提案される変更を詳細に説明したmarkdown形式の分析レポート。
      ```
 
 ---
-Generated at: 2026-01-21 07:06:13 JST
+Generated at: 2026-02-04 07:10:13 JST
