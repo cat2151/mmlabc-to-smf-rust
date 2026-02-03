@@ -54,7 +54,7 @@ cd ..
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000/demo/ in your browser.
+Then open http://localhost:8000/ (or http://localhost:8000/index.html) in your browser.
 
 ## Architecture
 
