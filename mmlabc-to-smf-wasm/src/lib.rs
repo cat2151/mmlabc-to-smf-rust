@@ -456,4 +456,72 @@ mod tests {
         // Should fail to parse
         assert!(result.is_err());
     }
+
+    #[test]
+    fn test_parse_tree_with_channel_groups() {
+        // Test parsing JSON with channel_groups (semicolons in MML)
+        let parse_tree_json = r#"{
+            "type": "source_file",
+            "children": [
+                {
+                    "type": "channel_groups",
+                    "children": [
+                        {
+                            "type": "channel_group",
+                            "children": [
+                                {
+                                    "type": "note_with_modifier",
+                                    "children": [
+                                        {"type": "note", "text": "c"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "channel_group",
+                            "children": [
+                                {
+                                    "type": "note_with_modifier",
+                                    "children": [
+                                        {"type": "note", "text": "e"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "channel_group",
+                            "children": [
+                                {
+                                    "type": "note_with_modifier",
+                                    "children": [
+                                        {"type": "note", "text": "g"}
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }"#;
+
+        let parse_tree: ParseTreeNode = serde_json::from_str(parse_tree_json).unwrap();
+        let mut chord_id = 0;
+        let tokens = parse_tree_to_tokens(&parse_tree, None, &mut chord_id);
+        
+        // Verify we got 3 tokens, one for each channel
+        assert_eq!(tokens.len(), 3);
+        
+        // Verify they have the correct channel_group assignments
+        assert_eq!(tokens[0].token_type, "note");
+        assert_eq!(tokens[0].value, "c");
+        assert_eq!(tokens[0].channel_group, Some(0));
+        
+        assert_eq!(tokens[1].token_type, "note");
+        assert_eq!(tokens[1].value, "e");
+        assert_eq!(tokens[1].channel_group, Some(1));
+        
+        assert_eq!(tokens[2].token_type, "note");
+        assert_eq!(tokens[2].value, "g");
+        assert_eq!(tokens[2].channel_group, Some(2));
+    }
 }
