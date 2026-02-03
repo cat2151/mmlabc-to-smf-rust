@@ -1,5 +1,4 @@
 {
-  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "mml",
   "rules": {
     "source_file": {
@@ -92,6 +91,10 @@
         {
           "type": "SYMBOL",
           "name": "velocity_set"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "key_transpose"
         }
       ]
     },
@@ -302,6 +305,31 @@
           "value": "[0-9]+"
         }
       ]
+    },
+    "key_transpose": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "kt|KT"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "-"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        }
+      ]
     }
   },
   "extras": [
@@ -314,6 +342,6 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": [],
-  "reserved": {}
+  "supertypes": []
 }
+

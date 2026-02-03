@@ -48,6 +48,10 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     // Default velocity is v15 which maps to MIDI velocity 127
     let mut current_velocities: HashMap<Option<usize>, u8> = HashMap::new();
 
+    // Track key transpose per channel
+    // Default transpose is 0 (no transposition)
+    let mut current_transposes: HashMap<Option<usize>, i8> = HashMap::new();
+
     for token in tokens {
         if token.token_type == "note" {
             let note_offset = note_to_offset
@@ -75,6 +79,9 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
             // Get current velocity for this channel (default to 127 = v15)
             let velocity = *current_velocities.get(&token.channel_group).unwrap_or(&127);
 
+            // Get current transpose for this channel (default to 0)
+            let transpose = *current_transposes.get(&token.channel_group).unwrap_or(&0);
+
             // Calculate MIDI note: octave * 12 + note_offset
             let mut midi_note = octave * 12 + note_offset;
 
@@ -85,6 +92,13 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                     "-" => midi_note = midi_note.saturating_sub(1),
                     _ => {}
                 }
+            }
+
+            // Apply key transpose
+            if transpose >= 0 {
+                midi_note = midi_note.saturating_add(transpose as u8);
+            } else {
+                midi_note = midi_note.saturating_sub((-transpose) as u8);
             }
 
             // Assign channel based on channel_group
@@ -212,6 +226,19 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                         dots: None,
                         velocity: None, // Velocity is not used for tempo changes
                     });
+                }
+            }
+        } else if token.token_type == "key_transpose" {
+            // kt command sets key transpose (e.g., "kt1" transposes up 1 semitone, "kt-1" transposes down 1)
+            // Format: kt[+/-]number where + is optional
+            if let Some(kt_str) = token
+                .value
+                .strip_prefix("kt")
+                .or_else(|| token.value.strip_prefix("KT"))
+            {
+                // Parse the transpose value (can be negative)
+                if let Ok(transpose_value) = kt_str.parse::<i8>() {
+                    current_transposes.insert(token.channel_group, transpose_value);
                 }
             }
         }

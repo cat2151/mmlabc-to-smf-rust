@@ -288,6 +288,18 @@ fn extract_tokens(
                 dots: None,
             });
         }
+    } else if kind == "key_transpose" {
+        if let Ok(text) = node.utf8_text(source.as_bytes()) {
+            tokens.push(Token {
+                token_type: "key_transpose".to_string(),
+                value: text.to_string(),
+                channel_group,
+                chord_id: None,
+                modifier: None,
+                note_length: None,
+                dots: None,
+            });
+        }
     } else {
         // For other node types, recurse into children
         if cursor.goto_first_child() {

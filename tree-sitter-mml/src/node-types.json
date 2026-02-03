@@ -12,6 +12,10 @@
           "named": true
         },
         {
+          "type": "key_transpose",
+          "named": true
+        },
+        {
           "type": "length_set",
           "named": true
         },
@@ -79,6 +83,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "key_transpose",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "length_set",
@@ -164,7 +173,6 @@
   {
     "type": "source_file",
     "named": true,
-    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -176,6 +184,10 @@
         },
         {
           "type": "chord",
+          "named": true
+        },
+        {
+          "type": "key_transpose",
           "named": true
         },
         {
