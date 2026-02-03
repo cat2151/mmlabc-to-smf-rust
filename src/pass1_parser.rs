@@ -17,43 +17,67 @@ use tree_sitter::{Parser, TreeCursor};
 /// # Returns
 /// List of token structures with type, value, and channel_group
 pub fn parse_mml(mml_string: &str) -> Vec<Token> {
-    // Split by semicolons to identify channel groups
-    let channel_groups: Vec<&str> = mml_string.split(';').collect();
+    let mut parser = Parser::new();
+    let language = tree_sitter_mml::language();
+    parser
+        .set_language(&language)
+        .expect("Failed to set tree-sitter language");
+
+    let tree = parser
+        .parse(mml_string, None)
+        .expect("Failed to parse MML string");
+    let root_node = tree.root_node();
+
+    let mut cursor = root_node.walk();
     let mut tokens = Vec::new();
-
-    // Only assign channel_group if there are multiple groups (i.e., semicolons present)
-    let has_multiple_channels = channel_groups.len() > 1;
-
-    // Track chord ID across all channel groups
     let mut global_chord_id = 0;
 
-    for (group_idx, group) in channel_groups.iter().enumerate() {
-        let channel_group = if has_multiple_channels {
-            Some(group_idx)
+    // Check if the root has channel_groups
+    if cursor.goto_first_child() {
+        let first_child_kind = cursor.node().kind();
+        
+        if first_child_kind == "channel_groups" {
+            // Process channel groups
+            if cursor.goto_first_child() {
+                let mut channel_idx = 0;
+                loop {
+                    let child_node = cursor.node();
+                    if child_node.kind() == "channel_group" {
+                        // Process this channel group
+                        let mut child_cursor = child_node.walk();
+                        extract_tokens(
+                            &mut child_cursor,
+                            mml_string,
+                            &mut tokens,
+                            Some(channel_idx),
+                            &mut global_chord_id,
+                        );
+                        channel_idx += 1;
+                    }
+                    if !cursor.goto_next_sibling() {
+                        break;
+                    }
+                }
+                cursor.goto_parent();
+            }
         } else {
-            None
-        };
-        let mut parser = Parser::new();
-        let language = tree_sitter_mml::language();
-        parser
-            .set_language(&language)
-            .expect("Failed to set tree-sitter language");
+            // No channel groups, process items directly with no channel_group
+            cursor.goto_parent();
+            extract_tokens(&mut cursor, mml_string, &mut tokens, None, &mut global_chord_id);
+        }
+    }
 
-        let tree = parser
-            .parse(group, None)
-            .expect("Failed to parse MML string");
-        let root_node = tree.root_node();
+    tokens
+}
 
-        let mut cursor = root_node.walk();
-
-        fn extract_tokens(
-            cursor: &mut TreeCursor,
-            source: &str,
-            tokens: &mut Vec<Token>,
-            channel_group: Option<usize>,
-            chord_id: &mut usize,
-        ) {
-            let node = cursor.node();
+fn extract_tokens(
+    cursor: &mut TreeCursor,
+    source: &str,
+    tokens: &mut Vec<Token>,
+    channel_group: Option<usize>,
+    chord_id: &mut usize,
+) {
+    let node = cursor.node();
             let kind = node.kind();
 
             if kind == "chord" {
@@ -261,60 +285,48 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
             }
         }
 
-        fn extract_note_and_modifier(
-            cursor: &mut TreeCursor,
-            source: &str,
-        ) -> (String, Option<String>, Option<u32>, Option<u32>) {
-            let mut note_value = String::new();
-            let mut modifier = None;
-            let mut note_length = None;
-            let mut dots = None;
+fn extract_note_and_modifier(
+    cursor: &mut TreeCursor,
+    source: &str,
+) -> (String, Option<String>, Option<u32>, Option<u32>) {
+    let mut note_value = String::new();
+    let mut modifier = None;
+    let mut note_length = None;
+    let mut dots = None;
 
-            if cursor.goto_first_child() {
-                loop {
-                    let child_node = cursor.node();
-                    let child_kind = child_node.kind();
+    if cursor.goto_first_child() {
+        loop {
+            let child_node = cursor.node();
+            let child_kind = child_node.kind();
 
-                    if child_kind == "note" {
-                        if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
-                            note_value = text.to_ascii_lowercase();
-                        }
-                    } else if child_kind == "modifier" {
-                        if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
-                            modifier = Some(text.to_string());
-                        }
-                    } else if child_kind == "note_length" {
-                        if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
-                            if let Ok(length) = text.parse::<u32>() {
-                                note_length = Some(length);
-                            }
-                        }
-                    } else if child_kind == "dots" {
-                        if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
-                            dots = Some(text.len() as u32);
-                        }
-                    }
-
-                    if !cursor.goto_next_sibling() {
-                        break;
+            if child_kind == "note" {
+                if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                    note_value = text.to_ascii_lowercase();
+                }
+            } else if child_kind == "modifier" {
+                if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                    modifier = Some(text.to_string());
+                }
+            } else if child_kind == "note_length" {
+                if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                    if let Ok(length) = text.parse::<u32>() {
+                        note_length = Some(length);
                     }
                 }
-                cursor.goto_parent();
+            } else if child_kind == "dots" {
+                if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                    dots = Some(text.len() as u32);
+                }
             }
 
-            (note_value, modifier, note_length, dots)
+            if !cursor.goto_next_sibling() {
+                break;
+            }
         }
-
-        extract_tokens(
-            &mut cursor,
-            group,
-            &mut tokens,
-            channel_group,
-            &mut global_chord_id,
-        );
+        cursor.goto_parent();
     }
 
-    tokens
+    (note_value, modifier, note_length, dots)
 }
 
 #[derive(Serialize)]
