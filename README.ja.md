@@ -22,7 +22,7 @@ Music Macro Language (MML) から Standard MIDI File (SMF) への変換ライブ
 
 READMEがメンテ不足です。実際はもっと多数のMMLコマンドが実装済みです。あとでREADMEをメンテ予定です
 
-実装されたMMLを知りたい場合、まず `tree-sitter-mml/grammar.js` をお読みください（ただし今後、破壊的変更されます）
+実装されたMMLを知りたい場合、まず [tree-sitter-mml/grammar.js](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/tree-sitter-mml/grammar.js) をお読みください（ただし今後、破壊的変更されます）
 
 ### 実装済み機能 ✅
 - **基本音符変換**: `cdefgab` → MIDI音符への変換
@@ -193,7 +193,7 @@ cargo fmt          # フォーマット適用
 tree-sitter パーサーファイル（`tree-sitter-mml/src/` 配下）は、crates.io での信頼性のある配布のため、tree-sitter のベストプラクティスに従い **git で追跡されています**。
 
 **開発ワークフロー：**
-- C言語ソースファイル（`parser.c`、`grammar.json`、`node-types.json`、および `tree_sitter/` ディレクトリ）は、`grammar.js` が変更されたときに自動的に再生成されます
+- C言語ソースファイル（`parser.c`、`grammar.json`、`node-types.json`、および `tree_sitter/` ディレクトリ）は、[grammar.js](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/tree-sitter-mml/grammar.js) が変更されたときに自動的に再生成されます
 - ビルドスクリプトがファイルの更新時刻をチェックし、必要な場合にのみ再生成します
 - **必要条件**：文法を更新する場合は、システムに Node.js と npx がインストールされている必要があります
 - 通常のビルド（文法変更なし）は、コミット済みのC言語ファイルを使用するため、Node.js なしで動作します
@@ -206,9 +206,9 @@ tree-sitter パーサーファイル（`tree-sitter-mml/src/` 配下）は、cra
 - すべての tree-sitter 言語クレートの標準的な慣行です
 
 **文法の更新：**
-`tree-sitter-mml/grammar.js` を変更する場合：
+[tree-sitter-mml/grammar.js](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/tree-sitter-mml/grammar.js) を変更する場合：
 1. `cargo build` を実行 - ビルドスクリプトが変更を検出し、パーサーファイルを再生成します
-2. grammar.js と再生成されたC言語ファイルの両方を一緒にコミットします
+2. [grammar.js](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/tree-sitter-mml/grammar.js) と再生成されたC言語ファイルの両方を一緒にコミットします
 3. これにより、文法とパーサーが同期した状態を保ちます
 
 パーサーファイルを手動で再生成する場合：
