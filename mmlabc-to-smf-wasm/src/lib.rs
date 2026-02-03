@@ -54,7 +54,25 @@ fn extract_tokens_from_node(
 ) {
     let kind = &node.node_type;
 
-    if kind == "chord" {
+    if kind == "channel_groups" {
+        // Process channel groups - extract tokens from each channel_group
+        if let Some(children) = &node.children {
+            let mut channel_idx = 0;
+            for child in children {
+                if child.node_type == "channel_group" {
+                    extract_tokens_from_node(child, tokens, Some(channel_idx), chord_id);
+                    channel_idx += 1;
+                }
+            }
+        }
+    } else if kind == "channel_group" {
+        // Process items within a channel group
+        if let Some(children) = &node.children {
+            for child in children {
+                extract_tokens_from_node(child, tokens, channel_group, chord_id);
+            }
+        }
+    } else if kind == "chord" {
         // Found a chord - increment chord_id for this chord group
         let current_chord_id = *chord_id;
         *chord_id += 1;
@@ -264,14 +282,13 @@ fn extract_note_and_modifier(
 
 /// Convert MML parse tree JSON to SMF binary (WASM entry point)
 ///
-/// This is the main WASM function that takes a single parse tree JSON from
+/// This is the main WASM function that takes a parse tree JSON from
 /// web-tree-sitter and returns Standard MIDI File binary data.
 ///
-/// Note: This function operates on a *single* MML channel (one parse tree) at a time.
-/// For multi-channel MML (with semicolons), callers must currently split the MML
-/// source themselves and call this function separately for each channel, or implement
-/// their own wrapper that handles multiple parse trees. The provided browser demo
-/// only supports single-channel MML and does not perform this splitting automatically.
+/// The function now supports multi-channel MML with semicolons through the
+/// tree-sitter grammar. The parse tree can contain either:
+/// - Direct items (for single-channel MML like "cde")
+/// - A channel_groups node (for multi-channel MML like "c;e;g")
 ///
 /// # Arguments
 /// * `parse_tree_json` - JSON string representing the parse tree from web-tree-sitter
