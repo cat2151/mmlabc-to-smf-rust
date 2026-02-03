@@ -52,6 +52,9 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     // Default transpose is 0 (no transposition)
     let mut current_transposes: HashMap<Option<usize>, i8> = HashMap::new();
 
+    // Track which channel groups have @128 (for drum channel mapping)
+    let mut channel_groups_with_128: std::collections::HashSet<usize> = std::collections::HashSet::new();
+
     for token in tokens {
         if token.token_type == "note" {
             let note_offset = note_to_offset
@@ -190,6 +193,13 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
             // @ command sets MIDI program (instrument)
             if let Some(program_str) = token.value.strip_prefix('@') {
                 if let Ok(program_value) = program_str.parse::<u8>() {
+                    // Track if this is @128 for drum channel mapping
+                    if program_value == 128 {
+                        if let Some(channel_group) = token.channel_group {
+                            channel_groups_with_128.insert(channel_group);
+                        }
+                    }
+
                     // Assign channel based on channel_group
                     let channel = token.channel_group.map(|g| g as u8);
 
@@ -244,9 +254,19 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
         }
     }
 
+    // Convert HashSet to Vec and sort for deterministic output
+    let drum_channel_groups = if !channel_groups_with_128.is_empty() {
+        let mut groups: Vec<usize> = channel_groups_with_128.into_iter().collect();
+        groups.sort_unstable();
+        Some(groups)
+    } else {
+        None
+    };
+
     Ast {
         ast_type: "sequence".to_string(),
         notes,
+        drum_channel_groups,
     }
 }
 

@@ -72,7 +72,7 @@ fn test_tempo_150_to_ast() {
 fn test_tempo_to_events() {
     let tokens = parse_mml("t120c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Should have: tempo_set, note_on, note_off
     assert_eq!(events.len(), 3);
@@ -99,7 +99,7 @@ fn test_tempo_60_conversion() {
     // t60 should convert to 1000000 usec per beat (60,000,000 / 60)
     let tokens = parse_mml("t60c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let tempo_events: Vec<_> = events
         .iter()
@@ -115,7 +115,7 @@ fn test_tempo_150_conversion() {
     // t150 should convert to 400000 usec per beat (60,000,000 / 150)
     let tokens = parse_mml("t150c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let tempo_events: Vec<_> = events
         .iter()
@@ -131,7 +131,7 @@ fn test_tempo_doesnt_advance_time() {
     // t120 should not affect timing of notes
     let tokens = parse_mml("ct120d");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Find the tempo change event
     let tempo_events: Vec<_> = events
@@ -156,7 +156,7 @@ fn test_tempo_doesnt_advance_time() {
 fn test_multiple_tempo_changes() {
     let tokens = parse_mml("t60ct120dt150e");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let tempo_events: Vec<_> = events
         .iter()
@@ -184,7 +184,7 @@ fn test_tempo_with_octave() {
 fn test_tempo_with_length() {
     let tokens = parse_mml("t120l8c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Note should have eighth note length (240 ticks)
     let note_off_events: Vec<_> = events
@@ -199,7 +199,7 @@ fn test_tempo_with_length() {
 fn test_tempo_to_midi() {
     let tokens = parse_mml("t120c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let result = events_to_midi(&events);
     assert!(result.is_ok());
@@ -233,7 +233,7 @@ fn test_full_pipeline_with_tempo() {
     save_ast_to_json(&ast, pass2_json.to_str().unwrap()).unwrap();
 
     // Pass 3: Generate MIDI events
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     let pass3_json = test_dir.join("pass3_tempo.json");
     save_events_to_json(&events, pass3_json.to_str().unwrap()).unwrap();
 
@@ -259,7 +259,7 @@ fn test_full_pipeline_with_tempo() {
 fn test_tempo_between_notes() {
     let tokens = parse_mml("ct60d");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Find events
     let note_on_events: Vec<_> = events
@@ -316,7 +316,7 @@ fn test_tempo_in_multi_channel() {
     // Channel 1: t120e
     let tokens = parse_mml("t60c;t120e");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let tempo_events: Vec<_> = events
         .iter()

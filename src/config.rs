@@ -12,6 +12,14 @@ use std::path::Path;
 pub struct Config {
     /// External SMF player command (e.g., "timidity", "fluidsynth output.mid")
     pub external_smf_player: Option<String>,
+    /// Use MIDI channel 9 (0-based) for tracks containing @128 (drum channel)
+    /// Default: true (enabled)
+    #[serde(default = "default_use_drum_channel_for_128")]
+    pub use_drum_channel_for_128: bool,
+}
+
+fn default_use_drum_channel_for_128() -> bool {
+    true
 }
 
 impl Config {

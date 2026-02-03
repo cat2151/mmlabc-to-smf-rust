@@ -56,7 +56,7 @@ fn test_program_change_at_127() {
 fn test_program_change_to_events() {
     let tokens = parse_mml("@0c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Should have: program_change, note_on, note_off
     assert_eq!(events.len(), 3);
@@ -82,7 +82,7 @@ fn test_program_change_doesnt_advance_time() {
     // @1 should not affect timing of notes
     let tokens = parse_mml("c@1d");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Find the program change event
     let program_change_events: Vec<_> = events
@@ -107,7 +107,7 @@ fn test_program_change_doesnt_advance_time() {
 fn test_multiple_program_changes() {
     let tokens = parse_mml("@0c@1d@127e");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let program_change_events: Vec<_> = events
         .iter()
@@ -135,7 +135,7 @@ fn test_program_change_with_octave() {
 fn test_program_change_with_length() {
     let tokens = parse_mml("@0l8c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Note should have eighth note length (240 ticks)
     let note_off_events: Vec<_> = events
@@ -152,7 +152,7 @@ fn test_program_change_in_multi_channel() {
     // Channel 1: @1e (program 1, note E)
     let tokens = parse_mml("@0c;@1e");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let program_change_events: Vec<_> = events
         .iter()
@@ -174,7 +174,7 @@ fn test_program_change_in_multi_channel() {
 fn test_program_change_to_midi() {
     let tokens = parse_mml("@0c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let result = events_to_midi(&events);
     assert!(result.is_ok());
@@ -208,7 +208,7 @@ fn test_full_pipeline_with_program_change() {
     save_ast_to_json(&ast, pass2_json.to_str().unwrap()).unwrap();
 
     // Pass 3: Generate MIDI events
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     let pass3_json = test_dir.join("pass3_program_change.json");
     save_events_to_json(&events, pass3_json.to_str().unwrap()).unwrap();
 
@@ -234,7 +234,7 @@ fn test_full_pipeline_with_program_change() {
 fn test_program_change_between_notes() {
     let tokens = parse_mml("c@5d");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Find events
     let note_on_events: Vec<_> = events
@@ -290,7 +290,7 @@ fn test_program_change_zero() {
     // @0 should set program to 0 (often Acoustic Grand Piano)
     let tokens = parse_mml("@0c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let program_change_events: Vec<_> = events
         .iter()

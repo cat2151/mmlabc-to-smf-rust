@@ -56,7 +56,7 @@ fn test_rest_to_ast() {
 fn test_rest_events_timing() {
     let tokens = pass1_parser::parse_mml("crc");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     // Should have 4 events: 2 notes * 2 events each (note_on + note_off)
     // No events for the rest
@@ -82,7 +82,7 @@ fn test_rest_events_timing() {
 fn test_multiple_rests() {
     let tokens = pass1_parser::parse_mml("crrrc");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     // Should have 4 events: 2 notes * 2 events each
     assert_eq!(events.len(), 4);
@@ -102,7 +102,7 @@ fn test_multiple_rests() {
 fn test_rest_between_different_notes() {
     let tokens = pass1_parser::parse_mml("crdre");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     // Should have 6 events: 3 notes * 2 events each
     assert_eq!(events.len(), 6);
@@ -147,7 +147,7 @@ fn test_rest_with_octave_change() {
 fn test_rest_in_multi_channel() {
     let tokens = pass1_parser::parse_mml("crc;ere");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     // Should have 8 events: 4 notes * 2 events each
     assert_eq!(events.len(), 8);
@@ -199,7 +199,7 @@ fn test_full_pipeline_with_rest() {
 
     // Pass 3
     let pass3_file = test_dir.join("pass3.json");
-    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap()).unwrap();
+    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap(), true).unwrap();
     assert_eq!(events.len(), 4); // 2 notes * 2 events each
 
     // Verify all debug JSONs exist

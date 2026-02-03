@@ -35,7 +35,7 @@ fn test_channel_to_ast() {
 fn test_channel_events_simultaneous() {
     let tokens = pass1_parser::parse_mml("c;e;g");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     // Should have 6 events (3 note_on + 3 note_off)
     assert_eq!(events.len(), 6);
@@ -61,7 +61,7 @@ fn test_channel_events_simultaneous() {
 fn test_channel_events_channels() {
     let tokens = pass1_parser::parse_mml("c;e;g");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     // Verify note pitches and channels
     let note_on_events: Vec<_> = events
@@ -86,7 +86,7 @@ fn test_channel_events_channels() {
 fn test_channel_midi_format() {
     let tokens = pass1_parser::parse_mml("c;e;g");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
     let midi_data = pass4_midi::events_to_midi(&events).unwrap();
 
     // MIDI file should be created successfully
@@ -115,7 +115,7 @@ fn test_full_pipeline_channel() {
 
     // Pass 3
     let pass3_file = test_dir.join("pass3.json");
-    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap()).unwrap();
+    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap(), true).unwrap();
     assert_eq!(events.len(), 6);
 
     // Pass 4
@@ -137,7 +137,7 @@ fn test_full_pipeline_channel() {
 fn test_two_note_channel() {
     let tokens = pass1_parser::parse_mml("c;e");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     assert_eq!(tokens.len(), 2);
     assert_eq!(ast.notes.len(), 2);
@@ -160,7 +160,7 @@ fn test_sequential_notes_unchanged() {
     // Verify that sequential notes (without semicolons) still work as before
     let tokens = pass1_parser::parse_mml("cde");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     // All tokens should have channel_group None
     assert_eq!(tokens[0].channel_group, None);
@@ -188,7 +188,7 @@ fn test_multi_note_per_channel() {
     // Test cd;ef;ga where ch0=cd, ch1=ef, ch2=ga
     let tokens = pass1_parser::parse_mml("cd;ef;ga");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     assert_eq!(tokens.len(), 6);
     assert_eq!(ast.notes.len(), 6);

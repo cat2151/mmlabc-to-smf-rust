@@ -248,7 +248,7 @@ fn test_key_transpose_with_velocity() {
 fn test_key_transpose_to_events() {
     let tokens = parse_mml("kt1c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Should have: note_on, note_off
     assert_eq!(events.len(), 2);
@@ -268,7 +268,7 @@ fn test_key_transpose_to_events() {
 fn test_key_transpose_with_length() {
     let tokens = parse_mml("kt1l8c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Note off should be at 240 ticks (eighth note)
     let note_off_events: Vec<_> = events

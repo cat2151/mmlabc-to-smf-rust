@@ -26,7 +26,7 @@ fn test_full_pipeline_cde() {
 
     // Pass 3
     let pass3_file = test_dir.join("pass3.json");
-    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap()).unwrap();
+    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap(), true).unwrap();
     assert_eq!(events.len(), 6); // 3 notes * 2 events each
 
     // Pass 4
@@ -60,7 +60,7 @@ fn test_notes_60_62_64() {
 
     let tokens = pass1_parser::process_pass1("cde", pass1_file.to_str().unwrap()).unwrap();
     let ast = pass2_ast::process_pass2(&tokens, pass2_file.to_str().unwrap()).unwrap();
-    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap()).unwrap();
+    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap(), true).unwrap();
 
     // Check that we have the right notes
     let note_on_events: Vec<_> = events
@@ -90,7 +90,7 @@ fn test_output_file_option() {
 
     let tokens = pass1_parser::process_pass1("c", pass1_file.to_str().unwrap()).unwrap();
     let ast = pass2_ast::process_pass2(&tokens, pass2_file.to_str().unwrap()).unwrap();
-    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap()).unwrap();
+    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap(), true).unwrap();
 
     let custom_output = test_dir.join("custom_song.mid");
     pass4_midi::process_pass4(&events, custom_output.to_str().unwrap()).unwrap();

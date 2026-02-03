@@ -42,10 +42,11 @@ fn calculate_duration(length: u32, dots: u32) -> u32 {
 ///
 /// # Arguments
 /// * `ast` - AST structure from Pass 2
+/// * `use_drum_channel_for_128` - Whether to map @128 tracks to MIDI channel 9
 ///
 /// # Returns
 /// List of MIDI event structures with channel assignments
-pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
+pub fn ast_to_events(ast: &Ast, use_drum_channel_for_128: bool) -> Vec<MidiEvent> {
     let mut events = Vec::new();
     let mut time = 0;
     let default_duration = 480; // Default duration in ticks (quarter note at 480 ticks per beat)
@@ -57,6 +58,18 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
     // Check if we have any chords
     let has_chords = ast.notes.iter().any(|n| n.chord_id.is_some());
 
+    // Helper function to map channel to drum channel if needed
+    let map_channel = |channel: u8| -> u8 {
+        if use_drum_channel_for_128 {
+            if let Some(ref drum_groups) = ast.drum_channel_groups {
+                if drum_groups.contains(&(channel as usize)) {
+                    return 9; // Map to MIDI channel 9 (0-based) for drums
+                }
+            }
+        }
+        channel
+    };
+
     if has_multiple_channels {
         // Multi-channel mode: notes within each channel are sequential
         // Track time separately for each channel
@@ -65,6 +78,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
 
         for note in &ast.notes {
             let channel = note.channel.unwrap_or(0);
+            let mapped_channel = map_channel(channel);
             let current_time = channel_times.get(&channel).copied().unwrap_or(0);
             let duration = if let Some(length) = note.length {
                 calculate_duration(length, note.dots.unwrap_or(0))
@@ -82,7 +96,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     time: current_time,
                     note: None,
                     velocity: None,
-                    channel,
+                    channel: mapped_channel,
                     program: Some(note.pitch),
                     tempo: None,
                 });
@@ -96,7 +110,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     time: current_time,
                     note: None,
                     velocity: None,
-                    channel,
+                    channel: mapped_channel,
                     program: None,
                     tempo: Some(usec_per_beat),
                 });
@@ -107,7 +121,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     time: current_time,
                     note: Some(note.pitch),
                     velocity: Some(note.velocity.unwrap_or(127)), // Use note's velocity or default to 127
-                    channel,
+                    channel: mapped_channel,
                     program: None,
                     tempo: None,
                 });
@@ -118,7 +132,7 @@ pub fn ast_to_events(ast: &Ast) -> Vec<MidiEvent> {
                     time: current_time + duration,
                     note: Some(note.pitch),
                     velocity: Some(0),
-                    channel,
+                    channel: mapped_channel,
                     program: None,
                     tempo: None,
                 });
@@ -308,11 +322,16 @@ pub fn save_events_to_json(events: &[MidiEvent], filepath: &str) -> Result<()> {
 /// # Arguments
 /// * `ast` - AST structure from Pass 2
 /// * `output_json` - Output JSON file path
+/// * `use_drum_channel_for_128` - Whether to map @128 tracks to MIDI channel 9
 ///
 /// # Returns
 /// List of MIDI events
-pub fn process_pass3(ast: &Ast, output_json: &str) -> Result<Vec<MidiEvent>> {
-    let events = ast_to_events(ast);
+pub fn process_pass3(
+    ast: &Ast,
+    output_json: &str,
+    use_drum_channel_for_128: bool,
+) -> Result<Vec<MidiEvent>> {
+    let events = ast_to_events(ast, use_drum_channel_for_128);
     save_events_to_json(&events, output_json)?;
     Ok(events)
 }
