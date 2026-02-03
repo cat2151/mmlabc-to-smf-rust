@@ -15,3 +15,18 @@
 # If not specified, the tool will use "cat-play-mml" as the default player.
 
 external_smf_player = "cat-play-mml"
+
+# use_drum_channel_for_128: Map tracks containing @128 to MIDI channel 9 (drum channel)
+# Default: true
+#
+# When enabled, any track (delimited by ';') that contains a @128 program change
+# will be assigned to MIDI channel 9 (0-based), which is the standard General MIDI
+# drum channel. This conforms to the mmlabc format specification.
+#
+# Examples:
+#   "@0c;@128d;@1e" -> Channel 0: normal, Channel 1: maps to 9 (drums), Channel 2: normal
+#   "@128cde;@1cde" -> Channel 0: maps to 9 (drums), Channel 1: normal
+#
+# Set to false to disable this behavior and keep channels as assigned sequentially.
+
+use_drum_channel_for_128 = true
