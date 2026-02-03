@@ -47,11 +47,8 @@ fn main() -> Result<()> {
 
     // Pass 3: Convert AST to MIDI events
     println!("Pass 3: Creating MIDI events...");
-    let events = pass3_events::process_pass3(
-        &ast,
-        "pass3_events.json",
-        config.use_drum_channel_for_128,
-    )?;
+    let events =
+        pass3_events::process_pass3(&ast, "pass3_events.json", config.use_drum_channel_for_128)?;
     println!("  Generated {} events → pass3_events.json", events.len());
 
     // Pass 4: Convert events to SMF

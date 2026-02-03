@@ -53,7 +53,8 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     let mut current_transposes: HashMap<Option<usize>, i8> = HashMap::new();
 
     // Track which channel groups have @128 (for drum channel mapping)
-    let mut channel_groups_with_128: std::collections::HashSet<usize> = std::collections::HashSet::new();
+    let mut channel_groups_with_128: std::collections::HashSet<usize> =
+        std::collections::HashSet::new();
 
     for token in tokens {
         if token.token_type == "note" {

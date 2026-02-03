@@ -8,7 +8,7 @@ use std::fs;
 use std::path::Path;
 
 /// Configuration structure for mmlabc-to-smf
-#[derive(Debug, Deserialize, Default)]
+#[derive(Debug, Deserialize)]
 pub struct Config {
     /// External SMF player command (e.g., "timidity", "fluidsynth output.mid")
     pub external_smf_player: Option<String>,
@@ -20,6 +20,15 @@ pub struct Config {
 
 fn default_use_drum_channel_for_128() -> bool {
     true
+}
+
+impl Default for Config {
+    fn default() -> Self {
+        Self {
+            external_smf_player: None,
+            use_drum_channel_for_128: true,
+        }
+    }
 }
 
 impl Config {
