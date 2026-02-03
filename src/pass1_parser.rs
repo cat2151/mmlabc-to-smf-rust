@@ -35,7 +35,7 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
     // Check if the root has channel_groups
     if cursor.goto_first_child() {
         let first_child_kind = cursor.node().kind();
-        
+
         if first_child_kind == "channel_groups" {
             // Process channel groups
             if cursor.goto_first_child() {
@@ -63,7 +63,13 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
         } else {
             // No channel groups, process items directly with no channel_group
             cursor.goto_parent();
-            extract_tokens(&mut cursor, mml_string, &mut tokens, None, &mut global_chord_id);
+            extract_tokens(
+                &mut cursor,
+                mml_string,
+                &mut tokens,
+                None,
+                &mut global_chord_id,
+            );
         }
     }
 
@@ -90,212 +96,211 @@ fn extract_tokens(
     chord_id: &mut usize,
 ) {
     let node = cursor.node();
-            let kind = node.kind();
+    let kind = node.kind();
 
-            if kind == "chord" {
-                // Found a chord - increment chord_id for this chord group
-                let current_chord_id = *chord_id;
-                *chord_id += 1;
+    if kind == "chord" {
+        // Found a chord - increment chord_id for this chord group
+        let current_chord_id = *chord_id;
+        *chord_id += 1;
 
-                // Extract all notes within the chord
-                if cursor.goto_first_child() {
-                    loop {
-                        let child_node = cursor.node();
-                        if child_node.kind() == "note_with_modifier" {
-                            // Extract note, modifier, length, and dots from note_with_modifier
-                            let (note_value, modifier, note_length, dots) =
-                                extract_note_and_modifier(cursor, source);
-                            tokens.push(Token {
-                                token_type: "note".to_string(),
-                                value: note_value,
-                                channel_group,
-                                chord_id: Some(current_chord_id),
-                                modifier,
-                                note_length,
-                                dots,
-                            });
-                        }
-                        if !cursor.goto_next_sibling() {
-                            break;
-                        }
-                    }
-                    cursor.goto_parent();
-                }
-            } else if kind == "note_with_modifier" {
-                // Extract note, modifier, length, and dots from note_with_modifier
-                let (note_value, modifier, note_length, dots) =
-                    extract_note_and_modifier(cursor, source);
-                tokens.push(Token {
-                    token_type: "note".to_string(),
-                    value: note_value,
-                    channel_group,
-                    chord_id: None,
-                    modifier,
-                    note_length,
-                    dots,
-                });
-            } else if kind == "octave_up" {
-                tokens.push(Token {
-                    token_type: "octave_up".to_string(),
-                    value: "<".to_string(),
-                    channel_group,
-                    chord_id: None,
-                    modifier: None,
-                    note_length: None,
-                    dots: None,
-                });
-            } else if kind == "octave_down" {
-                tokens.push(Token {
-                    token_type: "octave_down".to_string(),
-                    value: ">".to_string(),
-                    channel_group,
-                    chord_id: None,
-                    modifier: None,
-                    note_length: None,
-                    dots: None,
-                });
-            } else if kind == "octave_set" {
-                if let Ok(text) = node.utf8_text(source.as_bytes()) {
+        // Extract all notes within the chord
+        if cursor.goto_first_child() {
+            loop {
+                let child_node = cursor.node();
+                if child_node.kind() == "note_with_modifier" {
+                    // Extract note, modifier, length, and dots from note_with_modifier
+                    let (note_value, modifier, note_length, dots) =
+                        extract_note_and_modifier(cursor, source);
                     tokens.push(Token {
-                        token_type: "octave_set".to_string(),
-                        value: text.to_string(),
+                        token_type: "note".to_string(),
+                        value: note_value,
                         channel_group,
-                        chord_id: None,
-                        modifier: None,
-                        note_length: None,
-                        dots: None,
+                        chord_id: Some(current_chord_id),
+                        modifier,
+                        note_length,
+                        dots,
                     });
                 }
-            } else if kind == "rest" {
-                // Extract rest length and dots
-                let mut rest_length = None;
-                let mut rest_dots = None;
-
-                if cursor.goto_first_child() {
-                    loop {
-                        let child_node = cursor.node();
-                        let child_kind = child_node.kind();
-
-                        if child_kind == "note_length" {
-                            if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
-                                if let Ok(length) = text.parse::<u32>() {
-                                    rest_length = Some(length);
-                                }
-                            }
-                        } else if child_kind == "dots" {
-                            if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
-                                rest_dots = Some(text.len() as u32);
-                            }
-                        }
-
-                        if !cursor.goto_next_sibling() {
-                            break;
-                        }
-                    }
-                    cursor.goto_parent();
-                }
-
-                tokens.push(Token {
-                    token_type: "rest".to_string(),
-                    value: "r".to_string(),
-                    channel_group,
-                    chord_id: None,
-                    modifier: None,
-                    note_length: rest_length,
-                    dots: rest_dots,
-                });
-            } else if kind == "length_set" {
-                // Extract length_set length and dots
-                let mut length_value = None;
-                let mut length_dots = None;
-
-                if cursor.goto_first_child() {
-                    loop {
-                        let child_node = cursor.node();
-                        let child_kind = child_node.kind();
-
-                        if child_kind == "dots" {
-                            if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
-                                length_dots = Some(text.len() as u32);
-                            }
-                        }
-
-                        if !cursor.goto_next_sibling() {
-                            break;
-                        }
-                    }
-                    cursor.goto_parent();
-                }
-
-                // Parse the entire text to get the l value
-                if let Ok(text) = node.utf8_text(source.as_bytes()) {
-                    if let Some(length_str) = text.strip_prefix('l') {
-                        // Strip dots if present to get the numeric part
-                        let numeric_part = length_str.trim_end_matches('.');
-                        if let Ok(length) = numeric_part.parse::<u32>() {
-                            length_value = Some(length);
-                        }
-                    }
-
-                    tokens.push(Token {
-                        token_type: "length_set".to_string(),
-                        value: text.to_string(),
-                        channel_group,
-                        chord_id: None,
-                        modifier: None,
-                        note_length: length_value,
-                        dots: length_dots,
-                    });
-                }
-            } else if kind == "program_change" {
-                if let Ok(text) = node.utf8_text(source.as_bytes()) {
-                    tokens.push(Token {
-                        token_type: "program_change".to_string(),
-                        value: text.to_string(),
-                        channel_group,
-                        chord_id: None,
-                        modifier: None,
-                        note_length: None,
-                        dots: None,
-                    });
-                }
-            } else if kind == "tempo_set" {
-                if let Ok(text) = node.utf8_text(source.as_bytes()) {
-                    tokens.push(Token {
-                        token_type: "tempo_set".to_string(),
-                        value: text.to_string(),
-                        channel_group,
-                        chord_id: None,
-                        modifier: None,
-                        note_length: None,
-                        dots: None,
-                    });
-                }
-            } else if kind == "velocity_set" {
-                if let Ok(text) = node.utf8_text(source.as_bytes()) {
-                    tokens.push(Token {
-                        token_type: "velocity_set".to_string(),
-                        value: text.to_string(),
-                        channel_group,
-                        chord_id: None,
-                        modifier: None,
-                        note_length: None,
-                        dots: None,
-                    });
-                }
-            } else {
-                // For other node types, recurse into children
-                if cursor.goto_first_child() {
-                    loop {
-                        extract_tokens(cursor, source, tokens, channel_group, chord_id);
-                        if !cursor.goto_next_sibling() {
-                            break;
-                        }
-                    }
-                    cursor.goto_parent();
+                if !cursor.goto_next_sibling() {
+                    break;
                 }
             }
+            cursor.goto_parent();
         }
+    } else if kind == "note_with_modifier" {
+        // Extract note, modifier, length, and dots from note_with_modifier
+        let (note_value, modifier, note_length, dots) = extract_note_and_modifier(cursor, source);
+        tokens.push(Token {
+            token_type: "note".to_string(),
+            value: note_value,
+            channel_group,
+            chord_id: None,
+            modifier,
+            note_length,
+            dots,
+        });
+    } else if kind == "octave_up" {
+        tokens.push(Token {
+            token_type: "octave_up".to_string(),
+            value: "<".to_string(),
+            channel_group,
+            chord_id: None,
+            modifier: None,
+            note_length: None,
+            dots: None,
+        });
+    } else if kind == "octave_down" {
+        tokens.push(Token {
+            token_type: "octave_down".to_string(),
+            value: ">".to_string(),
+            channel_group,
+            chord_id: None,
+            modifier: None,
+            note_length: None,
+            dots: None,
+        });
+    } else if kind == "octave_set" {
+        if let Ok(text) = node.utf8_text(source.as_bytes()) {
+            tokens.push(Token {
+                token_type: "octave_set".to_string(),
+                value: text.to_string(),
+                channel_group,
+                chord_id: None,
+                modifier: None,
+                note_length: None,
+                dots: None,
+            });
+        }
+    } else if kind == "rest" {
+        // Extract rest length and dots
+        let mut rest_length = None;
+        let mut rest_dots = None;
+
+        if cursor.goto_first_child() {
+            loop {
+                let child_node = cursor.node();
+                let child_kind = child_node.kind();
+
+                if child_kind == "note_length" {
+                    if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                        if let Ok(length) = text.parse::<u32>() {
+                            rest_length = Some(length);
+                        }
+                    }
+                } else if child_kind == "dots" {
+                    if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                        rest_dots = Some(text.len() as u32);
+                    }
+                }
+
+                if !cursor.goto_next_sibling() {
+                    break;
+                }
+            }
+            cursor.goto_parent();
+        }
+
+        tokens.push(Token {
+            token_type: "rest".to_string(),
+            value: "r".to_string(),
+            channel_group,
+            chord_id: None,
+            modifier: None,
+            note_length: rest_length,
+            dots: rest_dots,
+        });
+    } else if kind == "length_set" {
+        // Extract length_set length and dots
+        let mut length_value = None;
+        let mut length_dots = None;
+
+        if cursor.goto_first_child() {
+            loop {
+                let child_node = cursor.node();
+                let child_kind = child_node.kind();
+
+                if child_kind == "dots" {
+                    if let Ok(text) = child_node.utf8_text(source.as_bytes()) {
+                        length_dots = Some(text.len() as u32);
+                    }
+                }
+
+                if !cursor.goto_next_sibling() {
+                    break;
+                }
+            }
+            cursor.goto_parent();
+        }
+
+        // Parse the entire text to get the l value
+        if let Ok(text) = node.utf8_text(source.as_bytes()) {
+            if let Some(length_str) = text.strip_prefix('l') {
+                // Strip dots if present to get the numeric part
+                let numeric_part = length_str.trim_end_matches('.');
+                if let Ok(length) = numeric_part.parse::<u32>() {
+                    length_value = Some(length);
+                }
+            }
+
+            tokens.push(Token {
+                token_type: "length_set".to_string(),
+                value: text.to_string(),
+                channel_group,
+                chord_id: None,
+                modifier: None,
+                note_length: length_value,
+                dots: length_dots,
+            });
+        }
+    } else if kind == "program_change" {
+        if let Ok(text) = node.utf8_text(source.as_bytes()) {
+            tokens.push(Token {
+                token_type: "program_change".to_string(),
+                value: text.to_string(),
+                channel_group,
+                chord_id: None,
+                modifier: None,
+                note_length: None,
+                dots: None,
+            });
+        }
+    } else if kind == "tempo_set" {
+        if let Ok(text) = node.utf8_text(source.as_bytes()) {
+            tokens.push(Token {
+                token_type: "tempo_set".to_string(),
+                value: text.to_string(),
+                channel_group,
+                chord_id: None,
+                modifier: None,
+                note_length: None,
+                dots: None,
+            });
+        }
+    } else if kind == "velocity_set" {
+        if let Ok(text) = node.utf8_text(source.as_bytes()) {
+            tokens.push(Token {
+                token_type: "velocity_set".to_string(),
+                value: text.to_string(),
+                channel_group,
+                chord_id: None,
+                modifier: None,
+                note_length: None,
+                dots: None,
+            });
+        }
+    } else {
+        // For other node types, recurse into children
+        if cursor.goto_first_child() {
+            loop {
+                extract_tokens(cursor, source, tokens, channel_group, chord_id);
+                if !cursor.goto_next_sibling() {
+                    break;
+                }
+            }
+            cursor.goto_parent();
+        }
+    }
+}
 
 /// Extract note and its modifiers from a note_with_modifier node
 ///

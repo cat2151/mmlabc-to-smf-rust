@@ -76,26 +76,28 @@ fn test_save_tokens_to_json() {
 fn test_grammar_tree_structure() {
     use mmlabc_to_smf::tree_sitter_mml;
     use tree_sitter::Parser;
-    
+
     let mut parser = Parser::new();
     let language = tree_sitter_mml::language();
-    parser.set_language(&language).expect("Failed to set language");
-    
+    parser
+        .set_language(&language)
+        .expect("Failed to set language");
+
     // Test with semicolons
     let tree = parser.parse("c;e;g", None).expect("Failed to parse");
     let root = tree.root_node();
     println!("Tree for 'c;e;g':");
     println!("{}", root.to_sexp());
-    
+
     // The grammar should have a channel_groups node
     assert!(root.to_sexp().contains("channel_groups"));
-    
+
     // Test without semicolons
     let tree2 = parser.parse("cde", None).expect("Failed to parse");
     let root2 = tree2.root_node();
     println!("\nTree for 'cde':");
     println!("{}", root2.to_sexp());
-    
+
     // Without semicolons, should not have channel_groups
     assert!(!root2.to_sexp().contains("channel_groups"));
 }
