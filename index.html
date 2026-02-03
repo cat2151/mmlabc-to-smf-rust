@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MML to SMF Converter - WASM Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-family: monospace;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .hidden {
+            display: none;
+        }
+        .examples {
+            margin: 20px 0;
+        }
+        .example-button {
+            background-color: #17a2b8;
+            margin: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        .example-button:hover {
+            background-color: #138496;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>MML to SMF Converter (WASM)</h1>
+    <p>
+        This demo converts Music Macro Language (MML) to Standard MIDI File (SMF) format 
+        using Rust WASM. Web-tree-sitter parses MML and sends 
+        the parse tree JSON to Rust WASM for token extraction and SMF generation.
+    </p>
+
+    <div class="examples">
+        <strong>Quick Examples:</strong><br>
+        <button class="example-button" onclick="loadExample('cde')">Simple Notes</button>
+        <button class="example-button" onclick="loadExample('c+d-e')">With Modifiers</button>
+        <button class="example-button" onclick="loadExample('c4d8e16')">With Lengths</button>
+        <button class="example-button" onclick="loadExample('o5cde')">Octave Set</button>
+        <button class="example-button" onclick="loadExample('t120@1v100cde')">Full Featured</button>
+        <button class="example-button" onclick="loadExample('\'ceg\'')">Chord</button>
+    </div>
+
+    <label for="mmlInput"><strong>Enter MML:</strong></label>
+    <textarea id="mmlInput" placeholder="Enter MML code here, e.g., cde">cde</textarea>
+
+    <div id="status" class="hidden"></div>
+
+    <div id="debug" class="hidden">
+        <h3>Debug Info:</h3>
+        <pre id="debugInfo"></pre>
+    </div>
+
+    <script type="module">
+        // Import web-tree-sitter (local copy)
+        import { Parser, Language } from './demo/web-tree-sitter.js';
+        
+        // Import WASM module
+        import init, { parse_tree_json_to_smf } from './mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js';
+
+        let parser = null;
+        let wasmInitialized = false;
+        let debounceTimer = null;
+
+        // Initialize everything
+        async function initialize() {
+            try {
+                // Initialize web-tree-sitter
+                await Parser.init();
+                parser = new Parser();
+                
+                // Load MML grammar
+                const lang = await Language.load('./tree-sitter-mml/tree-sitter-mml.wasm');
+                parser.setLanguage(lang);
+                
+                // Initialize Rust WASM
+                await init();
+                wasmInitialized = true;
+                
+                showStatus('Ready! Parser and WASM initialized.', 'success');
+                
+                // Set up automatic conversion on input
+                const mmlInput = document.getElementById('mmlInput');
+                mmlInput.addEventListener('input', () => {
+                    // Clear existing timer
+                    if (debounceTimer) {
+                        clearTimeout(debounceTimer);
+                    }
+                    // Set new timer for 500ms after user stops typing
+                    debounceTimer = setTimeout(() => {
+                        convertMML();
+                    }, 500);
+                });
+                
+                // Convert initial content
+                convertMML();
+            } catch (error) {
+                showStatus('Error initializing: ' + error.message, 'error');
+                console.error('Initialization error:', error);
+            }
+        }
+
+        // Convert parse tree to JSON
+        function treeToJSON(node, source) {
+            const result = {
+                type: node.type,
+            };
+            
+            // Add text for leaf nodes
+            if (node.childCount === 0) {
+                result.text = source.substring(node.startIndex, node.endIndex);
+            }
+            
+            // Add children for non-leaf nodes
+            if (node.childCount > 0) {
+                result.children = [];
+                for (let i = 0; i < node.childCount; i++) {
+                    result.children.push(treeToJSON(node.child(i), source));
+                }
+            }
+            
+            return result;
+        }
+
+        // Convert MML to SMF
+        window.convertMML = async function() {
+            if (!wasmInitialized || !parser) {
+                showStatus('Not initialized yet. Please wait...', 'error');
+                return;
+            }
+
+            const mml = document.getElementById('mmlInput').value.trim();
+            
+            if (!mml) {
+                // For empty input during automatic conversion, clear status/debug instead of showing an error
+                const statusDiv = document.getElementById('status');
+                statusDiv.textContent = '';
+                statusDiv.className = 'hidden';
+
+                const debugSection = document.getElementById('debug');
+                if (debugSection) {
+                    debugSection.classList.add('hidden');
+                }
+                const debugInfo = document.getElementById('debugInfo');
+                if (debugInfo) {
+                    debugInfo.textContent = '';
+                }
+                return;
+            }
+
+            try {
+                showStatus('Parsing MML...', 'info');
+                
+                // Parse MML using web-tree-sitter
+                const tree = parser.parse(mml);
+                
+                // Convert parse tree to JSON
+                const parseTreeJSON = treeToJSON(tree.rootNode, mml);
+                const parseTreeStr = JSON.stringify(parseTreeJSON);
+                
+                // Show debug info
+                document.getElementById('debugInfo').textContent = 
+                    'Parse Tree JSON:\n' + JSON.stringify(parseTreeJSON, null, 2);
+                document.getElementById('debug').classList.remove('hidden');
+                
+                showStatus('Converting to SMF via Rust WASM...', 'info');
+                
+                // Call Rust WASM to convert parse tree to SMF
+                const smfData = parse_tree_json_to_smf(parseTreeStr, mml);
+                
+                // Create download link
+                const blob = new Blob([smfData], { type: 'audio/midi' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'output.mid';
+                a.textContent = 'Download MIDI File';
+                
+                showStatus('✅ Conversion successful! SMF size: ' + smfData.length + ' bytes', 'success');
+                const statusDiv = document.getElementById('status');
+                statusDiv.appendChild(document.createElement('br'));
+                statusDiv.appendChild(a);
+                
+            } catch (error) {
+                showStatus('Error: ' + error.message, 'error');
+                console.error('Conversion error:', error);
+            }
+        };
+
+        // Load example MML
+        window.loadExample = function(example) {
+            const input = document.getElementById('mmlInput');
+            input.value = example;
+            // Trigger input event to start automatic conversion
+            input.dispatchEvent(new Event('input'));
+        };
+
+        // Cleanup debounce timer when page is unloaded
+        window.addEventListener('beforeunload', () => {
+            if (debounceTimer) {
+                clearTimeout(debounceTimer);
+                debounceTimer = null;
+            }
+        });
+
+        // Show status message
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = type;
+            statusDiv.classList.remove('hidden');
+        }
+
+        // Initialize on page load
+        initialize();
+    </script>
+</body>
+</html>
