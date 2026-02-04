@@ -47,7 +47,8 @@ if ! grep -q "load('./tree-sitter-mml/" "$OUTPUT_FILE"; then
 fi
 
 if [ "$VALIDATION_FAILED" -eq 1 ]; then
-    echo "Warning: Some path transformations may not have been applied correctly"
+    echo "Error: Some path transformations may not have been applied correctly"
+    exit 1
 fi
 
 echo "✓ Transformed $INPUT_FILE -> $OUTPUT_FILE"
