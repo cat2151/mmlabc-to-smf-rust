@@ -12,11 +12,11 @@ fi
 INPUT_FILE="$1"
 OUTPUT_FILE="$2"
 
-# Transform paths using sed
+# Transform paths using sed with double quotes for clarity
 sed \
-  -e 's|from '"'"'./web-tree-sitter.js'"'"'|from '"'"'./demo/web-tree-sitter.js'"'"'|g' \
-  -e 's|from '"'"'../mmlabc-to-smf-wasm/|from '"'"'./mmlabc-to-smf-wasm/|g' \
-  -e 's|load('"'"'../tree-sitter-mml/|load('"'"'./tree-sitter-mml/|g' \
+  -e "s|from './web-tree-sitter.js'|from './demo/web-tree-sitter.js'|g" \
+  -e "s|from '../mmlabc-to-smf-wasm/|from './mmlabc-to-smf-wasm/|g" \
+  -e "s|load('../tree-sitter-mml/|load('./tree-sitter-mml/|g" \
   "$INPUT_FILE" > "$OUTPUT_FILE"
 
 echo "✓ Transformed $INPUT_FILE -> $OUTPUT_FILE"
