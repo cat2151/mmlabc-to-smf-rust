@@ -156,10 +156,6 @@
     <label for="mmlInput"><strong>Enter MML:</strong></label>
     <textarea id="mmlInput" placeholder="Enter MML code here, e.g., cde">cde</textarea>
 
-    <div>
-        <button id="convertBtn" onclick="convertMML()">Convert to SMF</button>
-    </div>
-
     <div id="status" class="hidden"></div>
 
     <div id="debug" class="hidden">
@@ -176,6 +172,7 @@
 
         let parser = null;
         let wasmInitialized = false;
+        let debounceTimer = null;
 
         // Initialize everything
         async function initialize() {
@@ -193,7 +190,22 @@
                 wasmInitialized = true;
                 
                 showStatus('Ready! Parser and WASM initialized.', 'success');
-                document.getElementById('convertBtn').disabled = false;
+                
+                // Set up automatic conversion on input
+                const mmlInput = document.getElementById('mmlInput');
+                mmlInput.addEventListener('input', () => {
+                    // Clear existing timer
+                    if (debounceTimer) {
+                        clearTimeout(debounceTimer);
+                    }
+                    // Set new timer for 500ms after user stops typing
+                    debounceTimer = setTimeout(() => {
+                        convertMML();
+                    }, 500);
+                });
+                
+                // Convert initial content
+                convertMML();
             } catch (error) {
                 showStatus('Error initializing: ' + error.message, 'error');
                 console.error('Initialization error:', error);
@@ -232,7 +244,19 @@
             const mml = document.getElementById('mmlInput').value.trim();
             
             if (!mml) {
-                showStatus('Please enter some MML code.', 'error');
+                // For empty input during automatic conversion, clear status/debug instead of showing an error
+                const statusDiv = document.getElementById('status');
+                statusDiv.textContent = '';
+                statusDiv.className = 'hidden';
+
+                const debugSection = document.getElementById('debug');
+                if (debugSection) {
+                    debugSection.classList.add('hidden');
+                }
+                const debugInfo = document.getElementById('debugInfo');
+                if (debugInfo) {
+                    debugInfo.textContent = '';
+                }
                 return;
             }
 
@@ -277,8 +301,19 @@
 
         // Load example MML
         window.loadExample = function(example) {
-            document.getElementById('mmlInput').value = example;
+            const input = document.getElementById('mmlInput');
+            input.value = example;
+            // Trigger input event to start automatic conversion
+            input.dispatchEvent(new Event('input'));
         };
+
+        // Cleanup debounce timer when page is unloaded
+        window.addEventListener('beforeunload', () => {
+            if (debounceTimer) {
+                clearTimeout(debounceTimer);
+                debounceTimer = null;
+            }
+        });
 
         // Show status message
         function showStatus(message, type) {
@@ -289,7 +324,6 @@
         }
 
         // Initialize on page load
-        document.getElementById('convertBtn').disabled = true;
         initialize();
     </script>
 </body>
