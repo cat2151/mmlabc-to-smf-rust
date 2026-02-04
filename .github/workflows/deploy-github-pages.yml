@@ -1,7 +1,7 @@
 name: Deploy GitHub Pages
 
 on:
-  push:
+  pull_request:
     branches:
       - main
   workflow_dispatch:
@@ -50,6 +50,8 @@ jobs:
         run: |
           mkdir -p _site/demo
           cp -r demo/* _site/demo/
+          # Copy demo/index.html to root for project root URL
+          cp demo/index.html _site/index.html
           mkdir -p _site/mmlabc-to-smf-wasm
           cp -r mmlabc-to-smf-wasm/pkg _site/mmlabc-to-smf-wasm/
           mkdir -p _site/tree-sitter-mml
