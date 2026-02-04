@@ -21,6 +21,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -54,6 +57,49 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+
+      - name: Create issue if build fails
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const sha = '${{ github.sha }}';
+            const shortSha = sha.substring(0, 7);
+            const title = `Build failed (${shortSha})`;
+            const runUrl = `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`;
+            const ref = '${{ github.ref }}';
+            const body = [
+              'Build failed in GitHub Actions.',
+              '',
+              `Branch/Ref: ${ref}`,
+              `Commit: ${sha}`,
+              '',
+              'Please investigate the build errors and fix them.',
+              '',
+              `Workflow run: ${runUrl}`
+            ].join('\n');
+
+            // Check if issue already exists for this commit
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['build-failure']
+            });
+
+            const existingIssue = issues.data.find(issue => 
+              issue.title.includes(shortSha)
+            );
+
+            if (!existingIssue) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['build-failure', 'bug']
+              });
+            }
 
   deploy:
     environment:
