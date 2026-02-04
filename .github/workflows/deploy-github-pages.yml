@@ -99,7 +99,7 @@ jobs:
                       owner,
                       repo,
                       name: labelName,
-                      color: labelName === 'bug' ? 'd73a4a' : 'ffffff',
+                      color: labelName === 'bug' ? 'd73a4a' : 'ffa500',
                       description:
                         labelName === 'bug'
                           ? 'Something is not working'
@@ -133,7 +133,7 @@ jobs:
                 });
               }
             } catch (error) {
-              core.error(`Failed to list or create build failure issue: ${error.message ?? error}`);
+              core.error(`Failed to manage build failure issue: ${error.message ?? error}`);
               core.setFailed(error.message ?? String(error));
             }
 
