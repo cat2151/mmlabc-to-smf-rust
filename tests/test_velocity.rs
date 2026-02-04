@@ -68,7 +68,7 @@ fn test_velocity_8_to_ast() {
 fn test_velocity_to_events() {
     let tokens = parse_mml("v15c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Should have: note_on, note_off
     assert_eq!(events.len(), 2);
@@ -88,7 +88,7 @@ fn test_velocity_to_events() {
 fn test_velocity_1_conversion() {
     let tokens = parse_mml("v1c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let note_on_events: Vec<_> = events
         .iter()
@@ -103,7 +103,7 @@ fn test_velocity_1_conversion() {
 fn test_velocity_affects_subsequent_notes() {
     let tokens = parse_mml("v8cde");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let note_on_events: Vec<_> = events
         .iter()
@@ -121,7 +121,7 @@ fn test_velocity_affects_subsequent_notes() {
 fn test_multiple_velocity_changes() {
     let tokens = parse_mml("v1cv8dv15e");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let note_on_events: Vec<_> = events
         .iter()
@@ -148,7 +148,7 @@ fn test_velocity_with_octave() {
 fn test_velocity_with_length() {
     let tokens = parse_mml("v15l8c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Note should have eighth note length (240 ticks)
     let note_off_events: Vec<_> = events
@@ -170,7 +170,7 @@ fn test_velocity_with_length() {
 fn test_velocity_to_midi() {
     let tokens = parse_mml("v15c");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let result = events_to_midi(&events);
     assert!(result.is_ok());
@@ -204,7 +204,7 @@ fn test_full_pipeline_with_velocity() {
     save_ast_to_json(&ast, pass2_json.to_str().unwrap()).unwrap();
 
     // Pass 3: Generate MIDI events
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     let pass3_json = test_dir.join("pass3_velocity.json");
     save_events_to_json(&events, pass3_json.to_str().unwrap()).unwrap();
 
@@ -230,7 +230,7 @@ fn test_full_pipeline_with_velocity() {
 fn test_velocity_between_notes() {
     let tokens = parse_mml("cv8d");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     // Find events
     let note_on_events: Vec<_> = events
@@ -279,7 +279,7 @@ fn test_velocity_in_multi_channel() {
     // Channel 1: v15e
     let tokens = parse_mml("v8c;v15e");
     let ast = tokens_to_ast(&tokens);
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
 
     let note_on_events: Vec<_> = events
         .iter()

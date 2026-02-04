@@ -39,9 +39,10 @@ fn test_ast_to_events() {
                 velocity: Some(127),
             },
         ],
+        drum_channel_groups: None,
     };
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     assert_eq!(events.len(), 6); // 3 notes * 2 events each
 }
 
@@ -59,9 +60,10 @@ fn test_event_types() {
             dots: None,
             velocity: Some(127),
         }],
+        drum_channel_groups: None,
     };
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     assert_eq!(events[0].event_type, "note_on");
     assert_eq!(events[1].event_type, "note_off");
 }
@@ -92,9 +94,10 @@ fn test_event_timing() {
                 velocity: Some(127),
             },
         ],
+        drum_channel_groups: None,
     };
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     // First note on at time 0
     assert_eq!(events[0].time, 0);
     // First note off at time 480
@@ -119,9 +122,10 @@ fn test_note_properties() {
             dots: None,
             velocity: Some(127),
         }],
+        drum_channel_groups: None,
     };
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     assert_eq!(events[0].note, Some(60));
     assert_eq!(events[0].velocity, Some(127)); // Changed from 64 to 127 (default)
     assert_eq!(events[1].note, Some(60));
@@ -133,9 +137,10 @@ fn test_empty_ast() {
     let ast = Ast {
         ast_type: "sequence".to_string(),
         notes: vec![],
+        drum_channel_groups: None,
     };
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     assert_eq!(events.len(), 0);
 }
 
@@ -157,8 +162,9 @@ fn test_save_events_to_json() {
             dots: None,
             velocity: Some(127),
         }],
+        drum_channel_groups: None,
     };
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     let filepath = env::temp_dir().join("test_pass3_events.json");
 
     let result = save_events_to_json(&events, filepath.to_str().unwrap());

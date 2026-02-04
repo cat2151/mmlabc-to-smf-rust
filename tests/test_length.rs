@@ -22,7 +22,7 @@ fn test_length_set_l1() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(1));
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 1920); // Whole note duration
 }
@@ -35,7 +35,7 @@ fn test_length_set_l4() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(4));
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 480); // Quarter note duration
 }
@@ -48,7 +48,7 @@ fn test_length_set_l8() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(8));
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 240); // Eighth note duration
 }
@@ -61,7 +61,7 @@ fn test_length_set_l16() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(16));
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 120); // Sixteenth note duration
 }
@@ -75,7 +75,7 @@ fn test_length_affects_all_following_notes() {
     assert_eq!(ast.notes[1].length, Some(8));
     assert_eq!(ast.notes[2].length, Some(8));
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 240);
     assert_eq!(events[2].time, 240);
@@ -93,7 +93,7 @@ fn test_multiple_length_sets() {
     assert_eq!(ast.notes[1].length, Some(4)); // Quarter note
     assert_eq!(ast.notes[2].length, Some(1)); // Whole note
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     // First note (l8): 0-240
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 240);
@@ -148,7 +148,7 @@ fn test_default_length_is_quarter_note() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(4)); // Default quarter note
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 480); // Quarter note duration
 }
@@ -164,7 +164,7 @@ fn test_length_with_rest() {
     assert_eq!(ast.notes[1].length, Some(8)); // Note
     assert_eq!(ast.notes[2].length, Some(8)); // Rest
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     // First rest: 0-240 (no events)
     // Note: 240-480
     assert_eq!(events[0].time, 240);
@@ -183,7 +183,7 @@ fn test_length_with_chord() {
     assert_eq!(ast.notes[1].length, Some(8));
     assert_eq!(ast.notes[2].length, Some(8));
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     // All notes start at 0 and end at 240
     assert_eq!(events[0].time, 0); // C on
     assert_eq!(events[1].time, 240); // C off
@@ -201,7 +201,7 @@ fn test_length_l2() {
     assert_eq!(ast.notes.len(), 1);
     assert_eq!(ast.notes[0].length, Some(2));
 
-    let events = ast_to_events(&ast);
+    let events = ast_to_events(&ast, true);
     assert_eq!(events[0].time, 0);
     assert_eq!(events[1].time, 960); // Half note duration
 }

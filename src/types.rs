@@ -45,6 +45,9 @@ pub struct Ast {
     #[serde(rename = "type")]
     pub ast_type: String,
     pub notes: Vec<AstNote>,
+    /// Channel groups that contain @128 (should be mapped to drum channel)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub drum_channel_groups: Option<Vec<usize>>,
 }
 
 /// A MIDI event

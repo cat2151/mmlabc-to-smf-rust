@@ -50,7 +50,7 @@ fn test_chord_to_ast() {
 fn test_chord_events_simultaneous() {
     let tokens = pass1_parser::parse_mml("'ceg'");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     // Should have 6 events (3 note_on + 3 note_off)
     assert_eq!(events.len(), 6);
@@ -76,7 +76,7 @@ fn test_chord_events_simultaneous() {
 fn test_chord_midi_format() {
     let tokens = pass1_parser::parse_mml("'ceg'");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
     let midi_data = pass4_midi::events_to_midi(&events).unwrap();
 
     // MIDI file should be created successfully
@@ -88,7 +88,7 @@ fn test_chord_midi_format() {
 fn test_sequential_notes_then_chord() {
     let tokens = pass1_parser::parse_mml("cd'eg'");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     assert_eq!(tokens.len(), 4);
     assert_eq!(ast.notes.len(), 4);
@@ -118,7 +118,7 @@ fn test_sequential_notes_then_chord() {
 fn test_chord_then_sequential_notes() {
     let tokens = pass1_parser::parse_mml("'ceg'de");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     assert_eq!(tokens.len(), 5);
     assert_eq!(ast.notes.len(), 5);
@@ -150,7 +150,7 @@ fn test_chord_then_sequential_notes() {
 fn test_multiple_chords() {
     let tokens = pass1_parser::parse_mml("'ce''df'");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     assert_eq!(tokens.len(), 4);
     assert_eq!(ast.notes.len(), 4);
@@ -182,7 +182,7 @@ fn test_multiple_chords() {
 fn test_two_note_chord() {
     let tokens = pass1_parser::parse_mml("'ce'");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     assert_eq!(tokens.len(), 2);
     assert_eq!(ast.notes.len(), 2);
@@ -205,7 +205,7 @@ fn test_sequential_notes_without_chords_unchanged() {
     // Verify that sequential notes (without chords) still work as before
     let tokens = pass1_parser::parse_mml("cde");
     let ast = pass2_ast::tokens_to_ast(&tokens);
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     // All tokens should have chord_id None
     assert_eq!(tokens[0].chord_id, None);
@@ -249,7 +249,7 @@ fn test_full_pipeline_chord() {
 
     // Pass 3
     let pass3_file = test_dir.join("pass3.json");
-    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap()).unwrap();
+    let events = pass3_events::process_pass3(&ast, pass3_file.to_str().unwrap(), true).unwrap();
     assert_eq!(events.len(), 6);
 
     // Pass 4
