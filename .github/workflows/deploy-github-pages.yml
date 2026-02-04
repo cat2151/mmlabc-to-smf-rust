@@ -50,6 +50,9 @@ jobs:
         run: |
           mkdir -p _site/demo
           cp -r demo/* _site/demo/
+          # Copy demo/index.html to root for project root URL and adjust paths
+          chmod +x scripts/transform-demo-paths.sh
+          scripts/transform-demo-paths.sh demo/index.html _site/index.html
           mkdir -p _site/mmlabc-to-smf-wasm
           cp -r mmlabc-to-smf-wasm/pkg _site/mmlabc-to-smf-wasm/
           mkdir -p _site/tree-sitter-mml
