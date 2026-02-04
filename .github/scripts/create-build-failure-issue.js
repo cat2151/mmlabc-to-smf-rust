@@ -17,6 +17,13 @@
 
 module.exports = async ({github, context, core}) => {
   try {
+    // Validate required environment variables
+    const requiredEnvVars = ['GITHUB_SHA', 'GITHUB_SERVER_URL', 'GITHUB_REPOSITORY', 'GITHUB_RUN_ID', 'GITHUB_REF'];
+    const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
+    if (missingVars.length > 0) {
+      throw new Error(`Missing required environment variables: ${missingVars.join(', ')}`);
+    }
+
     const sha = process.env.GITHUB_SHA;
     const shortSha = sha.substring(0, 7);
     const title = `Build failed (${shortSha})`;
@@ -65,11 +72,13 @@ module.exports = async ({github, context, core}) => {
     }
 
     // Check if issue already exists for this commit
+    // Use per_page to check more issues at once to handle repositories with many open issues
     const issues = await github.rest.issues.listForRepo({
       owner,
       repo,
       state: 'open',
-      labels: ['build-failure']
+      labels: ['build-failure'],
+      per_page: 100
     });
 
     const existingIssue = issues.data.find(issue =>
