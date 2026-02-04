@@ -14,7 +14,8 @@ Music Macro Language (MML) から Standard MIDI File (SMF) への変換ライブ
 
 ## 用途
 
-ライブラリとして `cat-play-mml` から利用しています
+- ライブラリとして `cat-play-mml` から利用しています。ネイティブアプリ用のRustライブラリクレート。利用方式その1。
+- ライブラリとして `smf-to-ym2151log-rust` の ブラウザdemo から利用する予定です。ブラウザアプリ用のWASMライブラリ。利用方式その2。
 
 ## 状況
 
