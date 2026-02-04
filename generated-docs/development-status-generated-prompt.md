@@ -1,4 +1,4 @@
-Last updated: 2026-02-04
+Last updated: 2026-02-05
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -196,6 +196,8 @@ Last updated: 2026-02-04
 - .github/actions-tmp/package.json
 - .github/actions-tmp/src/main.js
 - .github/copilot-instructions.md
+- .github/scripts/README.md
+- .github/scripts/create-build-failure-issue.js
 - .github/workflows/call-daily-project-summary.yml
 - .github/workflows/call-issue-note.yml
 - .github/workflows/call-translate-readme.yml
@@ -217,7 +219,6 @@ Last updated: 2026-02-04
 - demo/index.html
 - demo/package.json
 - googled947dc864c270e07.html
-- index.html
 - issue-notes/14.md
 - issue-notes/17.md
 - issue-notes/18.md
@@ -241,6 +242,11 @@ Last updated: 2026-02-04
 - issue-notes/54.md
 - issue-notes/55.md
 - issue-notes/56.md
+- issue-notes/62.md
+- issue-notes/64.md
+- issue-notes/66.md
+- issue-notes/68.md
+- issue-notes/69.md
 - mmlabc-to-smf-rust.toml.example
 - mmlabc-to-smf-wasm/Cargo.lock
 - mmlabc-to-smf-wasm/Cargo.toml
@@ -248,6 +254,7 @@ Last updated: 2026-02-04
 - package.json
 - scripts/README.md
 - scripts/build-demo.sh
+- scripts/transform-demo-paths.sh
 - src/config.rs
 - src/lib.rs
 - src/main.rs
@@ -263,6 +270,8 @@ Last updated: 2026-02-04
 - tests/test_cli.rs
 - tests/test_config.rs
 - tests/test_dotted_notes.rs
+- tests/test_drum_channel.rs
+- tests/test_key_transpose.rs
 - tests/test_length.rs
 - tests/test_modifier.rs
 - tests/test_note_length.rs
@@ -286,350 +295,112 @@ Last updated: 2026-02-04
 - tree-sitter-mml/tree-sitter-mml.wasm
 
 ## 現在のオープンIssues
-## [Issue #55](../issue-notes/55.md): README.ja.mdを改善し、SSOTであるgrammer.jsはすべてURL linkとし、クリックでそれを読者がすぐ読めるようにする
-[issue-notes/55.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/55.md)
+## [Issue #69](../issue-notes/69.md): （待ち）「ライブラリとして web-ym2151リポジトリにて利用できる」ところまで持っていくため、ライブラリとして利用した場合の最低限の demo-library/ を追加で用意し、それもdeploy対象にする
+[issue-notes/69.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/69.md)
 
 ...
-ラベル: good first issue
---- issue-notes/55.md の内容 ---
+ラベル: 
+--- issue-notes/69.md の内容 ---
 
 ```markdown
-# issue README.ja.mdを改善し、SSOTであるgrammer.jsはすべてURL linkとし、クリックでそれを読者がすぐ読めるようにする #55
-[issues #55](https://github.com/cat2151/mmlabc-to-smf-rust/issues/55)
+# issue （待ち）「ライブラリとして web-ym2151リポジトリにて利用できる」ところまで持っていくため、ライブラリとして利用した場合の最低限の demo-library/ を追加で用意し、それもdeploy対象にする #69
+[issues #69](https://github.com/cat2151/mmlabc-to-smf-rust/issues/69)
 
 
 
 ```
 
-## [Issue #39](../issue-notes/39.md): ktコマンドを実装する。key transposeである。`kt1 c`は、note number 61となる。`kt-1 c` は、note number 59となる。これはmmlabcフォーマット準拠である
-[issue-notes/39.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/39.md)
+## [Issue #68](../issue-notes/68.md): （待ち）（人力）demoでセミコロンがまだエラーになっている。ひとまずdeploy修正してから動作確認する
+[issue-notes/68.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/68.md)
 
 ...
-ラベル: good first issue
---- issue-notes/39.md の内容 ---
+ラベル: 
+--- issue-notes/68.md の内容 ---
 
 ```markdown
-# issue ktコマンドを実装する。key transposeである。は、note number 61となる。 は、note number 59となる。これはmmlabcフォーマット準拠である #39
-[issues #39](https://github.com/cat2151/mmlabc-to-smf-rust/issues/39)
-
-# 補足
-- demoも追加実装すること
-
-```
-
-## [Issue #37](../issue-notes/37.md): `@128`のあるtrack（trackとは「;」で区切られる文字列グループそれぞれを意味する）は、MIDI channel 9（0base）として扱う、つまりGeneral MIDIの慣習に準拠したdrum channelとして扱う。これはmmlabcフォーマットに準拠している
-[issue-notes/37.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/37.md)
-
-...
-ラベル: good first issue
---- issue-notes/37.md の内容 ---
-
-```markdown
-# issue のあるtrack（trackとは「;」で区切られる文字列グループそれぞれを意味する）は、MIDI channel 9（0base）として扱う、つまりGeneral MIDIの慣習に準拠したdrum channelとして扱う。これはmmlabcフォーマットに準拠している #37
-[issues #37](https://github.com/cat2151/mmlabc-to-smf-rust/issues/37)
+# issue （待ち）（人力）demoでセミコロンがまだエラーになっている。ひとまずdeploy修正してから動作確認する #68
+[issues #68](https://github.com/cat2151/mmlabc-to-smf-rust/issues/68)
 
 
 
 ```
 
 ## ドキュメントで言及されているファイルの内容
-### .github/actions-tmp/README.ja.md
+### .github/actions-tmp/issue-notes/8.md
 ```md
 {% raw %}
-# GitHub Actions 共通ワークフロー集
+# issue 関数コールグラフhtmlビジュアライズ生成の対象ソースファイルを、呼び出し元ymlで指定できるようにする #8
+[issues #8](https://github.com/cat2151/github-actions/issues/8)
 
-このリポジトリは、**複数プロジェクトで使い回せるGitHub Actions共通ワークフロー集**です
-
-<p align="left">
-  <a href="README.ja.md"><img src="https://img.shields.io/badge/🇯🇵-Japanese-red.svg" alt="Japanese"></a>
-  <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸-English-blue.svg" alt="English"></a>
-</p>
-
-# 3行で説明
-- 🚀 プロジェクトごとのGitHub Actions管理をもっと楽に
-- 🔗 共通化されたワークフローで、どのプロジェクトからも呼ぶだけでOK
-- ✅ メンテは一括、プロジェクト開発に集中できます
-
-## Quick Links
-| 項目 | リンク |
-|------|--------|
-| 📖 プロジェクト概要 | [generated-docs/project-overview.md](generated-docs/project-overview.md) |
-| 📖 コールグラフ | [generated-docs/callgraph.html](https://cat2151.github.io/github-actions/generated-docs/callgraph.html) |
-| 📊 開発状況 | [generated-docs/development-status.md](generated-docs/development-status.md) |
-
-# notes
-- まだ共通化の作業中です
-- まだワークフロー内容を改善中です
-
-※README.md は README.ja.md を元にGeminiの翻訳でGitHub Actionsで自動生成しています
-
-{% endraw %}
+# これまでの課題
+- 以下が決め打ちになっていた
+```
+  const allowedFiles = [
+    'src/main.js',
+    'src/mml2json.js',
+    'src/play.js'
+  ];
 ```
 
-### README.ja.md
-```md
-{% raw %}
-# mmlabc-to-smf-rust
+# 対策
+- 呼び出し元ymlで指定できるようにする
 
-<p align="left">
-  <a href="README.ja.md"><img src="https://img.shields.io/badge/🇯🇵-Japanese-red.svg" alt="Japanese"></a>
-  <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸-English-blue.svg" alt="English"></a>
-  <a href="https://deepwiki.com/cat2151/mmlabc-to-smf-rust"><img src="https://img.shields.io/badge/📖-DeepWiki-blue.svg" alt="DeepWiki"></a>
-</p>
+# agent
+- agentにやらせることができれば楽なので、初手agentを試した
+- 失敗
+    - ハルシネーションしてscriptを大量破壊した
+- 分析
+    - 修正対象scriptはagentが生成したもの
+    - 低品質な生成結果でありソースが巨大
+    - ハルシネーションで破壊されやすいソース
+    - AIの生成したソースは、必ずしもAIフレンドリーではない
 
-Music Macro Language (MML) から Standard MIDI File (SMF) への変換ライブラリ
+# 人力リファクタリング
+- 低品質コードを、最低限agentが扱えて、ハルシネーションによる大量破壊を防止できる内容、にする
+- 手短にやる
+    - そもそもビジュアライズは、agentに雑に指示してやらせたもので、
+    - 今後別のビジュアライザを選ぶ可能性も高い
+    - 今ここで手間をかけすぎてコンコルド効果（サンクコストバイアス）を増やすのは、project群をトータルで俯瞰して見たとき、損
+- 対象
+    - allowedFiles のあるソース
+        - callgraph-utils.cjs
+            - たかだか300行未満のソースである
+            - この程度でハルシネーションされるのは予想外
+            - やむなし、リファクタリングでソース分割を進める
 
-## 概要
+# agentに修正させる
+## prompt
+```
+allowedFilesを引数で受け取るようにしたいです。
+ないならエラー。
+最終的に呼び出し元すべてに波及して修正したいです。
 
-このライブラリは、Music Macro Language（MML）形式の文字列を、Standard MIDI Fileに変換します。Rustで書かれています。
+呼び出し元をたどってエントリポイントも見つけて、
+エントリポイントにおいては、
+引数で受け取ったjsonファイル名 allowedFiles.js から
+jsonファイル allowedFiles.jsonの内容をreadして
+変数 allowedFilesに格納、
+後続処理に引き渡す、としたいです。
 
-## 用途
-
-ライブラリとして `cat-play-mml` から利用しています
-
-## 状況
-
-頻繁に破壊的変更をしています
-
-READMEがメンテ不足です。実際はもっと多数のMMLコマンドが実装済みです。あとでREADMEをメンテ予定です
-
-実装されたMMLを知りたい場合、まず `tree-sitter-mml/grammar.js` をお読みください（ただし今後、破壊的変更されます）
-
-### 実装済み機能 ✅
-- **基本音符変換**: `cdefgab` → MIDI音符への変換
-- **4パスアーキテクチャ**: 完全実装済み
-  - パス1: MML文字列のトークン化（tree-sitterパーサー使用）
-  - パス2: トークンからAST（抽象構文木）への変換
-  - パス3: ASTからMIDIイベントの生成
-  - パス4: MIDIイベントからStandard MIDI File作成
-- **tree-sitter統合**: MML構文解析のための完全なtree-sitterパーサー統合
-- **チャンネル機能**: セミコロン（`;`）による多チャンネル対応
-- **JSON デバッグ出力**: 各パスの中間結果をJSONで出力
-- **CLI**: コマンドライン引数による基本操作
-- **包括的テスト**: 35個のテストケースがすべて通過
-
-### 動作確認
-```bash
-# 基本音階変換
-cargo run -- "cdefgab"
-
-# 多チャンネル
-cargo run -- "c;e;g"
-
-# カスタム出力ファイル
-cargo run -- "cde" -o my_song.mid
+まずplanしてください。
+planにおいては、修正対象のソースファイル名と関数名を、呼び出し元を遡ってすべて特定し、listしてください。
 ```
 
-## 今後の見通し
+# 修正が順調にできた
+- コマンドライン引数から受け取る作りになっていなかったので、そこだけ指示して修正させた
+- yml側は人力で修正した
 
-### 短期目標 🚧
-- **リポジトリ設定**: フォーマッター、リンター等の設定整備
-- **エラーハンドリング**: より詳細なエラーメッセージ
+# 他のリポジトリから呼び出した場合にバグらないよう修正する
+- 気付いた
+    - 共通ワークフローとして他のリポジトリから使った場合はバグるはず。
+        - ymlから、共通ワークフロー側リポジトリのcheckoutが漏れているので。
+- 他のyml同様に修正する
+- あわせて全体にymlをリファクタリングし、修正しやすくし、今後のyml読み書きの学びにしやすくする
 
-### 長期目標 🎯
-- **mmlabcコマンド実装**: 完全なmmlabcフォーマット対応
-  - 音長指定（4分音符、8分音符等）
-  - オクターブ指定（`>`, `<`）
-  - テンポ、音量等の制御コマンド
-  - 和音機能の拡張
-- **パフォーマンス最適化**: 大規模MMLファイルの高速処理
+# local WSL + act : test green
 
-### 参考資料
-- mmlabcについては、[mml2abc](https://github.com/cat2151/mml2abc)リポジトリを参照
-
-## 特徴
-
-- **4パスアーキテクチャ**:
-  - **パス1**: MML文字列をトークンに解析（tree-sitterパーサー使用）
-  - **パス2**: トークンを抽象構文木（AST）に変換
-  - **パス3**: ASTからMIDIイベントを生成
-  - **パス4**: Standard MIDI Fileを作成
-- **多チャンネル対応**: セミコロン（`;`）による同時発音チャンネル分離
-- **JSON デバッグ出力**: 各パスの中間結果をJSON形式で保存・確認可能
-- **包括的テスト**: ユニットテスト・統合テスト合計35個のテストケース
-- **安全な設計**: Rustの型システムと所有権モデルによるメモリ安全性
-
-## 必要要件
-
-- Rust 1.70.0以上
-- Cargo
-
-## インストール
-
-### 開発版（現在の状態）
-
-```bash
-git clone https://github.com/cat2151/mmlabc-to-smf-rust
-cd mmlabc-to-smf-rust
-cargo build --release
-```
-
-### 直接実行（Cargo経由）
-
-```bash
-cargo run -- "cdefgab"
-```
-
-## 使い方
-
-### 基本的な使い方
-
-```bash
-# 基本音階の変換（デフォルトでcat-play-mmlで自動再生されます）
-cargo run -- "cdefgab"
-
-# 多チャンネル（同時発音）
-cargo run -- "c;e;g"  # Cメジャーコード
-
-# カスタム出力ファイル
-cargo run -- "cde" -o my_song.mid
-
-# 自動再生を無効化
-cargo run -- "cde" --no-play
-```
-
-### 自動再生機能
-
-デフォルトでは、MIDIファイル生成後に自動的に `cat-play-mml` コマンドで再生されます。
-これによりMML開発時に即座に音を確認できます。
-
-- 自動再生を無効化するには `--no-play` オプションを使用してください
-- `cat-play-mml` がインストールされていない場合、警告メッセージが表示されますがMIDIファイルは正常に生成されます
-
-#### カスタムプレイヤーの設定
-
-ツールを実行するディレクトリに `mmlabc-to-smf-rust.toml` ファイルを作成することで、カスタムMIDIプレイヤーを設定できます。
-
-設定ファイルの例：
-```toml
-# mmlabc-to-smf-rust.toml
-external_smf_player = "timidity"
-```
-
-設定可能な一般的なMIDIプレイヤー：
-- `timidity` - TiMidity++ MIDIプレイヤー
-- `fluidsynth` - FluidSynthソフトウェアシンセサイザー
-- `vlc` - VLCメディアプレイヤー
-- `cat-play-mml` (デフォルト)
-
-設定ファイルが存在しない場合、デフォルトで `cat-play-mml` が使用されます。
-
-サンプル設定ファイルは `mmlabc-to-smf-rust.toml.example` を参照してください。
-
-### 出力ファイル
-
-実行すると以下のファイルが生成されます：
-- `pass1_tokens.json` - パス1のトークン情報（デバッグ用）
-- `pass2_ast.json` - パス2のAST情報（デバッグ用）
-- `pass3_events.json` - パス3のMIDIイベント情報（デバッグ用）
-- `output.mid` - 最終的なMIDIファイル
-
-### 対応MML記法
-
-現在対応している記法：
-- **基本音符**: `c`, `d`, `e`, `f`, `g`, `a`, `b` (大文字・小文字対応)
-- **多チャンネル**: `;` でチャンネル分離（同時発音）
-
-例：
-```
-cdefgab     → ドレミファソラシの連続再生
-c;e;g       → C・E・G音の同時再生（Cメジャーコード）
-```
-
-## 開発
-
-### ビルド
-
-```bash
-cargo build        # デバッグビルド
-cargo build --release  # リリースビルド
-```
-
-### テスト
-
-```bash
-cargo test         # 全テスト実行（35個のテストケース）
-```
-
-### フォーマット・Lint
-
-```bash
-cargo clippy       # コード品質チェック
-cargo fmt --check  # フォーマットチェック
-cargo fmt          # フォーマット適用
-```
-
-### tree-sitter パーサーファイル
-
-tree-sitter パーサーファイル（`tree-sitter-mml/src/` 配下）は、crates.io での信頼性のある配布のため、tree-sitter のベストプラクティスに従い **git で追跡されています**。
-
-**開発ワークフロー：**
-- C言語ソースファイル（`parser.c`、`grammar.json`、`node-types.json`、および `tree_sitter/` ディレクトリ）は、`grammar.js` が変更されたときに自動的に再生成されます
-- ビルドスクリプトがファイルの更新時刻をチェックし、必要な場合にのみ再生成します
-- **必要条件**：文法を更新する場合は、システムに Node.js と npx がインストールされている必要があります
-- 通常のビルド（文法変更なし）は、コミット済みのC言語ファイルを使用するため、Node.js なしで動作します
-
-**生成ファイルをコミットする理由**
-これは tree-sitter エコシステムのベストプラクティスに従っています：
-- crates.io からインストールするユーザーは Node.js や tree-sitter-cli を必要としません
-- 文法とパーサーのバージョンが正確に一致することを保証します
-- CI/CD とクロスプラットフォームビルドを簡素化します
-- すべての tree-sitter 言語クレートの標準的な慣行です
-
-**文法の更新：**
-`tree-sitter-mml/grammar.js` を変更する場合：
-1. `cargo build` を実行 - ビルドスクリプトが変更を検出し、パーサーファイルを再生成します
-2. grammar.js と再生成されたC言語ファイルの両方を一緒にコミットします
-3. これにより、文法とパーサーが同期した状態を保ちます
-
-パーサーファイルを手動で再生成する場合：
-```bash
-cd tree-sitter-mml
-npm install  # tree-sitter-cli がまだインストールされていない場合
-npx tree-sitter generate
-```
-
-### プロジェクト構造
-
-```
-src/
-├── main.rs              # CLI エントリーポイント
-├── lib.rs               # ライブラリルート
-├── pass1_parser.rs      # パス1: トークン解析
-├── pass2_ast.rs         # パス2: AST変換
-├── pass3_events.rs      # パス3: MIDIイベント生成
-├── pass4_midi.rs        # パス4: MIDI ファイル作成
-├── tree_sitter_mml.rs   # tree-sitter MML統合
-└── types.rs             # 共通型定義
-
-tests/
-├── integration_test.rs  # 統合テスト
-├── test_channel.rs      # チャンネル機能テスト
-├── test_pass1.rs        # パス1テスト
-├── test_pass2.rs        # パス2テスト
-├── test_pass3.rs        # パス3テスト
-└── test_pass4.rs        # パス4テスト
-```
-
-## ライセンス
-
-MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してください。
-
-## 参考
-
-- オリジナルのPython実装: [cat2151/mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf)
-
-{% endraw %}
-```
-
-### .github/actions-tmp/issue-notes/7.md
-```md
-{% raw %}
-# issue issue note生成できるかのtest用 #7
-[issues #7](https://github.com/cat2151/github-actions/issues/7)
-
-- 生成できた
-- closeとする
+# closeとする
+- もし生成されたhtmlがNGの場合は、別issueとするつもり
 
 {% endraw %}
 ```
@@ -652,34 +423,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 {% endraw %}
 ```
 
-### issue-notes/37.md
+### issue-notes/68.md
 ```md
 {% raw %}
-# issue のあるtrack（trackとは「;」で区切られる文字列グループそれぞれを意味する）は、MIDI channel 9（0base）として扱う、つまりGeneral MIDIの慣習に準拠したdrum channelとして扱う。これはmmlabcフォーマットに準拠している #37
-[issues #37](https://github.com/cat2151/mmlabc-to-smf-rust/issues/37)
+# issue （待ち）（人力）demoでセミコロンがまだエラーになっている。ひとまずdeploy修正してから動作確認する #68
+[issues #68](https://github.com/cat2151/mmlabc-to-smf-rust/issues/68)
 
 
 
 {% endraw %}
 ```
 
-### issue-notes/39.md
+### issue-notes/69.md
 ```md
 {% raw %}
-# issue ktコマンドを実装する。key transposeである。は、note number 61となる。 は、note number 59となる。これはmmlabcフォーマット準拠である #39
-[issues #39](https://github.com/cat2151/mmlabc-to-smf-rust/issues/39)
-
-# 補足
-- demoも追加実装すること
-
-{% endraw %}
-```
-
-### issue-notes/55.md
-```md
-{% raw %}
-# issue README.ja.mdを改善し、SSOTであるgrammer.jsはすべてURL linkとし、クリックでそれを読者がすぐ読めるようにする #55
-[issues #55](https://github.com/cat2151/mmlabc-to-smf-rust/issues/55)
+# issue （待ち）「ライブラリとして web-ym2151リポジトリにて利用できる」ところまで持っていくため、ライブラリとして利用した場合の最低限の demo-library/ を追加で用意し、それもdeploy対象にする #69
+[issues #69](https://github.com/cat2151/mmlabc-to-smf-rust/issues/69)
 
 
 
@@ -688,37 +447,30 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-a2156f7 Merge pull request #58 from cat2151/copilot/fix-semicolon-parsing-issue
-959c596 Fix indentation with cargo fmt
-788766d Add documentation for extract_tokens and extract_note_and_modifier functions
-5f66adf Add test for channel_groups in WASM module
-8b5c3b0 Update WASM lib to support channel_groups and add demo example
-6306ae1 Add semicolon support to grammar.js and update CLI parser
-0410eb0 Initial plan
-7655c0e Merge pull request #57 from cat2151/copilot/add-dark-mode-support
-34b31f3 Add OS dark mode support to demo HTML files
-f7d5852 Initial plan
+bfabc67 Merge pull request #67 from cat2151/copilot/fix-deploy-to-project-root
+eab3791 Add automatic conversion with debouncing to demo/index.html
+b8d02ec Fix validation to exit with error on transformation failure
+63c5e61 Improve script portability and validation
+38834f8 Add validation to path transformation script
+0bbd052 Auto-translate README.ja.md to README.md [auto]
+9224cce Improve script readability with double quotes
+e990374 Update usage section in README.ja.md
+bf155d9 Extract path transformation to dedicated script
+8d1a5f5 Revert to push trigger and improve sed readability
 
 ### 変更されたファイル:
-.gitignore
-demo/README.md
+.github/scripts/README.md
+.github/scripts/create-build-failure-issue.js
+.github/workflows/deploy-github-pages.yml
+README.ja.md
+README.md
 demo/index.html
 index.html
-issue-notes/52.md
-issue-notes/54.md
-issue-notes/55.md
-issue-notes/56.md
-mmlabc-to-smf-wasm/src/lib.rs
-package.json
-scripts/build-demo.sh
-src/pass1_parser.rs
-tests/test_pass1.rs
-tree-sitter-mml/grammar.js
-tree-sitter-mml/src/grammar.json
-tree-sitter-mml/src/node-types.json
-tree-sitter-mml/src/parser.c
-tree-sitter-mml/src/tree_sitter/array.h
+issue-notes/66.md
+issue-notes/68.md
+issue-notes/69.md
+scripts/transform-demo-paths.sh
 
 
 ---
-Generated at: 2026-02-04 07:09:57 JST
+Generated at: 2026-02-05 07:06:10 JST
