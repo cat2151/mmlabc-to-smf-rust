@@ -310,7 +310,7 @@ pub fn parse_tree_json_to_smf(parse_tree_json: &str, _mml_source: &str) -> Resul
     let ast = pass2_ast::tokens_to_ast(&tokens);
 
     // Pass 3: Generate MIDI events
-    let events = pass3_events::ast_to_events(&ast);
+    let events = pass3_events::ast_to_events(&ast, true);
 
     // Pass 4: Create MIDI file
     let smf_data = pass4_midi::events_to_midi(&events)
