@@ -100,7 +100,9 @@ Try these in the demo:
 
 ## Multi-Channel Support
 
-✅ **Multi-channel MML is supported!** The demo supports multi-channel MML using semicolons (e.g., `c;e;g` for a C major chord across three channels). The tree-sitter grammar parses multi-channel MML into `channel_groups`, and the WASM module correctly extracts tokens with channel assignments for each group.
+✅ **Multi-channel MML is now supported!** The tree-sitter WASM grammar has been rebuilt to include multi-channel support. The demo can now parse MML with semicolons (e.g., `c;e;g`) correctly, assigning each channel group to a separate MIDI channel.
+
+**Note**: The `tree-sitter-mml.wasm` file has been regenerated from the grammar to fix parsing errors. If you built the demo before this change, please rebuild with `scripts/build-demo.sh` or manually run `npx tree-sitter build-wasm` in the `tree-sitter-mml/` directory.
 
 ## Implementation Notes
 
