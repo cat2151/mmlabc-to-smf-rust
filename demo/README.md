@@ -96,10 +96,7 @@ Try these in the demo:
 - `o5cde` - Octave set command
 - `t120@1v100cde` - Tempo, program, and velocity settings
 - `'ceg'` - Chord (notes played simultaneously)
-
-## Current Limitations
-
-- **Single-channel MML only**: The current demo does not support multi-channel MML (MML with semicolons like `cde;fga`). Multi-channel support would require splitting the MML by semicolons in JavaScript and calling the WASM function separately for each channel. This is a known limitation and may be addressed in future updates.
+- `c;e;g` - Multi-channel (notes on separate MIDI channels)
 
 ## Implementation Notes
 

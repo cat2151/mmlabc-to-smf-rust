@@ -38,14 +38,24 @@ fi
 
 wasm-pack build --target web --release
 
-# Step 4: Verify tree-sitter-mml.wasm exists
+# Step 4: Build tree-sitter-mml.wasm
 echo ""
-echo "Step 4/4: Verifying tree-sitter-mml.wasm..."
-if [ ! -f "${ROOT_DIR}/tree-sitter-mml/tree-sitter-mml.wasm" ]; then
-    echo "Warning: tree-sitter-mml.wasm not found"
-    echo "If needed, build it with: cd tree-sitter-mml && npx tree-sitter build-wasm"
+echo "Step 4/4: Building tree-sitter-mml.wasm..."
+cd "${ROOT_DIR}/tree-sitter-mml"
+
+# Ensure tree-sitter-cli is installed
+echo "Installing/updating tree-sitter-cli..."
+npm install
+
+# Build the WASM grammar
+echo "Running tree-sitter build-wasm..."
+npx tree-sitter build-wasm
+
+if [ -f "${ROOT_DIR}/tree-sitter-mml/tree-sitter-mml.wasm" ]; then
+    echo "✓ tree-sitter-mml.wasm built successfully"
 else
-    echo "✓ tree-sitter-mml.wasm exists"
+    echo "Error: Failed to build tree-sitter-mml.wasm"
+    exit 1
 fi
 
 echo ""
