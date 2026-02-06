@@ -43,11 +43,9 @@ echo ""
 echo "Step 4/4: Building tree-sitter-mml.wasm..."
 cd "${ROOT_DIR}/tree-sitter-mml"
 
-# Install tree-sitter-cli if not already installed
-if [ ! -d "node_modules" ]; then
-    echo "Installing tree-sitter-cli..."
-    npm install
-fi
+# Ensure tree-sitter-cli is installed
+echo "Installing/updating tree-sitter-cli..."
+npm install
 
 # Build the WASM grammar
 echo "Running tree-sitter build-wasm..."
