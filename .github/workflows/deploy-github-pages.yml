@@ -53,6 +53,9 @@ jobs:
           # Copy demo/index.html to root for project root URL and adjust paths
           chmod +x scripts/transform-demo-paths.sh
           scripts/transform-demo-paths.sh demo/index.html _site/index.html
+          # Copy demo-library
+          mkdir -p _site/demo-library
+          cp -r demo-library/* _site/demo-library/
           mkdir -p _site/mmlabc-to-smf-wasm
           cp -r mmlabc-to-smf-wasm/pkg _site/mmlabc-to-smf-wasm/
           mkdir -p _site/tree-sitter-mml
