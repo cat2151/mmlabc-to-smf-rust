@@ -1,4 +1,4 @@
-Last updated: 2026-02-05
+Last updated: 2026-02-07
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -218,6 +218,8 @@ Last updated: 2026-02-05
 - demo/README.md
 - demo/index.html
 - demo/package.json
+- demo-library/README.md
+- demo-library/index.html
 - googled947dc864c270e07.html
 - issue-notes/14.md
 - issue-notes/17.md
@@ -247,6 +249,7 @@ Last updated: 2026-02-05
 - issue-notes/66.md
 - issue-notes/68.md
 - issue-notes/69.md
+- issue-notes/70.md
 - mmlabc-to-smf-rust.toml.example
 - mmlabc-to-smf-wasm/Cargo.lock
 - mmlabc-to-smf-wasm/Cargo.toml
@@ -295,182 +298,42 @@ Last updated: 2026-02-05
 - tree-sitter-mml/tree-sitter-mml.wasm
 
 ## 現在のオープンIssues
-## [Issue #69](../issue-notes/69.md): （待ち）「ライブラリとして web-ym2151リポジトリにて利用できる」ところまで持っていくため、ライブラリとして利用した場合の最低限の demo-library/ を追加で用意し、それもdeploy対象にする
-[issue-notes/69.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/69.md)
-
-...
-ラベル: 
---- issue-notes/69.md の内容 ---
-
-```markdown
-# issue （待ち）「ライブラリとして web-ym2151リポジトリにて利用できる」ところまで持っていくため、ライブラリとして利用した場合の最低限の demo-library/ を追加で用意し、それもdeploy対象にする #69
-[issues #69](https://github.com/cat2151/mmlabc-to-smf-rust/issues/69)
-
-
-
-```
-
-## [Issue #68](../issue-notes/68.md): （待ち）（人力）demoでセミコロンがまだエラーになっている。ひとまずdeploy修正してから動作確認する
-[issue-notes/68.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/68.md)
-
-...
-ラベル: 
---- issue-notes/68.md の内容 ---
-
-```markdown
-# issue （待ち）（人力）demoでセミコロンがまだエラーになっている。ひとまずdeploy修正してから動作確認する #68
-[issues #68](https://github.com/cat2151/mmlabc-to-smf-rust/issues/68)
-
-
-
-```
+オープン中のIssueはありません
 
 ## ドキュメントで言及されているファイルの内容
-### .github/actions-tmp/issue-notes/8.md
-```md
-{% raw %}
-# issue 関数コールグラフhtmlビジュアライズ生成の対象ソースファイルを、呼び出し元ymlで指定できるようにする #8
-[issues #8](https://github.com/cat2151/github-actions/issues/8)
 
-# これまでの課題
-- 以下が決め打ちになっていた
-```
-  const allowedFiles = [
-    'src/main.js',
-    'src/mml2json.js',
-    'src/play.js'
-  ];
-```
-
-# 対策
-- 呼び出し元ymlで指定できるようにする
-
-# agent
-- agentにやらせることができれば楽なので、初手agentを試した
-- 失敗
-    - ハルシネーションしてscriptを大量破壊した
-- 分析
-    - 修正対象scriptはagentが生成したもの
-    - 低品質な生成結果でありソースが巨大
-    - ハルシネーションで破壊されやすいソース
-    - AIの生成したソースは、必ずしもAIフレンドリーではない
-
-# 人力リファクタリング
-- 低品質コードを、最低限agentが扱えて、ハルシネーションによる大量破壊を防止できる内容、にする
-- 手短にやる
-    - そもそもビジュアライズは、agentに雑に指示してやらせたもので、
-    - 今後別のビジュアライザを選ぶ可能性も高い
-    - 今ここで手間をかけすぎてコンコルド効果（サンクコストバイアス）を増やすのは、project群をトータルで俯瞰して見たとき、損
-- 対象
-    - allowedFiles のあるソース
-        - callgraph-utils.cjs
-            - たかだか300行未満のソースである
-            - この程度でハルシネーションされるのは予想外
-            - やむなし、リファクタリングでソース分割を進める
-
-# agentに修正させる
-## prompt
-```
-allowedFilesを引数で受け取るようにしたいです。
-ないならエラー。
-最終的に呼び出し元すべてに波及して修正したいです。
-
-呼び出し元をたどってエントリポイントも見つけて、
-エントリポイントにおいては、
-引数で受け取ったjsonファイル名 allowedFiles.js から
-jsonファイル allowedFiles.jsonの内容をreadして
-変数 allowedFilesに格納、
-後続処理に引き渡す、としたいです。
-
-まずplanしてください。
-planにおいては、修正対象のソースファイル名と関数名を、呼び出し元を遡ってすべて特定し、listしてください。
-```
-
-# 修正が順調にできた
-- コマンドライン引数から受け取る作りになっていなかったので、そこだけ指示して修正させた
-- yml側は人力で修正した
-
-# 他のリポジトリから呼び出した場合にバグらないよう修正する
-- 気付いた
-    - 共通ワークフローとして他のリポジトリから使った場合はバグるはず。
-        - ymlから、共通ワークフロー側リポジトリのcheckoutが漏れているので。
-- 他のyml同様に修正する
-- あわせて全体にymlをリファクタリングし、修正しやすくし、今後のyml読み書きの学びにしやすくする
-
-# local WSL + act : test green
-
-# closeとする
-- もし生成されたhtmlがNGの場合は、別issueとするつもり
-
-{% endraw %}
-```
-
-### .github/actions-tmp/issue-notes/9.md
-```md
-{% raw %}
-# issue 関数コールグラフhtmlビジュアライズが0件なので、原因を可視化する #9
-[issues #9](https://github.com/cat2151/github-actions/issues/9)
-
-# agentに修正させたり、人力で修正したりした
-- agentがハルシネーションし、いろいろ根の深いバグにつながる、エラー隠蔽などを仕込んでいたため、検知が遅れた
-- 詳しくはcommit logを参照のこと
-- WSL + actの環境を少し変更、act起動時のコマンドライン引数を変更し、generated-docsをmountする（ほかはデフォルト挙動であるcpだけにする）ことで、デバッグ情報をコンテナ外に出力できるようにし、デバッグを効率化した
-
-# test green
-
-# closeとする
-
-{% endraw %}
-```
-
-### issue-notes/68.md
-```md
-{% raw %}
-# issue （待ち）（人力）demoでセミコロンがまだエラーになっている。ひとまずdeploy修正してから動作確認する #68
-[issues #68](https://github.com/cat2151/mmlabc-to-smf-rust/issues/68)
-
-
-
-{% endraw %}
-```
-
-### issue-notes/69.md
-```md
-{% raw %}
-# issue （待ち）「ライブラリとして web-ym2151リポジトリにて利用できる」ところまで持っていくため、ライブラリとして利用した場合の最低限の demo-library/ を追加で用意し、それもdeploy対象にする #69
-[issues #69](https://github.com/cat2151/mmlabc-to-smf-rust/issues/69)
-
-
-
-{% endraw %}
-```
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-bfabc67 Merge pull request #67 from cat2151/copilot/fix-deploy-to-project-root
-eab3791 Add automatic conversion with debouncing to demo/index.html
-b8d02ec Fix validation to exit with error on transformation failure
-63c5e61 Improve script portability and validation
-38834f8 Add validation to path transformation script
-0bbd052 Auto-translate README.ja.md to README.md [auto]
-9224cce Improve script readability with double quotes
-e990374 Update usage section in README.ja.md
-bf155d9 Extract path transformation to dedicated script
-8d1a5f5 Revert to push trigger and improve sed readability
+d47d695 Merge pull request #72 from cat2151/copilot/add-demo-library-to-repo
+50960c7 Fix demo-library link path transformation for root deployment
+edd0c71 Add demo-library and update main demo with links
+c7f1663 Initial plan
+042da35 Merge pull request #71 from cat2151/copilot/fix-demo-multi-channel-error
+d0118ab Simplify fix: focus on build process, minimal documentation
+e4df3b3 Fix build script to always ensure tree-sitter-cli is installed
+4a428f3 Add root cause analysis and prevention measures for WASM sync issue
+18e7e3d Fix demo multi-channel: rebuild tree-sitter WASM grammar
+cc8012e Fix demo README: multi-channel is supported
 
 ### 変更されたファイル:
-.github/scripts/README.md
-.github/scripts/create-build-failure-issue.js
 .github/workflows/deploy-github-pages.yml
 README.ja.md
 README.md
+demo-library/README.md
+demo-library/index.html
+demo/README.md
 demo/index.html
+generated-docs/development-status-generated-prompt.md
+generated-docs/development-status.md
+generated-docs/project-overview-generated-prompt.md
+generated-docs/project-overview.md
 index.html
-issue-notes/66.md
-issue-notes/68.md
-issue-notes/69.md
+issue-notes/70.md
+scripts/build-demo.sh
 scripts/transform-demo-paths.sh
+tree-sitter-mml/tree-sitter-mml.wasm
 
 
 ---
-Generated at: 2026-02-05 07:06:10 JST
+Generated at: 2026-02-07 07:06:00 JST
