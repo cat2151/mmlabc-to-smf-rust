@@ -23,6 +23,7 @@ sed \
   -e "s|from './web-tree-sitter.js'|from './demo/web-tree-sitter.js'|g" \
   -e "s|from '../mmlabc-to-smf-wasm/|from './mmlabc-to-smf-wasm/|g" \
   -e "s|load('../tree-sitter-mml/|load('./tree-sitter-mml/|g" \
+  -e "s|href=\"../demo-library/\"|href=\"./demo-library/\"|g" \
   "$INPUT_FILE" > "$OUTPUT_FILE"
 
 # Validate output file was created and is non-empty
@@ -31,7 +32,7 @@ if [ ! -s "$OUTPUT_FILE" ]; then
     exit 1
 fi
 
-# Verify all three transformations were applied
+# Verify all transformations were applied
 VALIDATION_FAILED=0
 if ! grep -q "from './demo/web-tree-sitter.js'" "$OUTPUT_FILE"; then
     echo "Warning: Expected transformation 'from ./demo/web-tree-sitter.js' not found in output"
@@ -43,6 +44,10 @@ if ! grep -q "from './mmlabc-to-smf-wasm/" "$OUTPUT_FILE"; then
 fi
 if ! grep -q "load('./tree-sitter-mml/" "$OUTPUT_FILE"; then
     echo "Warning: Expected transformation 'load(./tree-sitter-mml/' not found in output"
+    VALIDATION_FAILED=1
+fi
+if ! grep -q "href=\"./demo-library/\"" "$OUTPUT_FILE"; then
+    echo "Warning: Expected transformation 'href=\"./demo-library/\"' not found in output"
     VALIDATION_FAILED=1
 fi
 

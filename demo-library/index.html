@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MML to SMF Library Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            border-left: 4px solid #4CAF50;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fafafa;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            font-family: monospace;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #output {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 50px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+            }
+            h1, h2 {
+                color: #e0e0e0;
+            }
+            code {
+                background-color: #2d2d2d;
+            }
+            pre {
+                background-color: #2d2d2d;
+                border-left-color: #3d8b40;
+            }
+            .demo-section {
+                background-color: #2d2d2d;
+                border-color: #555;
+            }
+            textarea {
+                background-color: #2d2d2d;
+                color: #e0e0e0;
+                border-color: #555;
+            }
+            .success {
+                background-color: #1a3a1a;
+                color: #a8d5a8;
+                border-color: #2d5a2d;
+            }
+            .error {
+                background-color: #3a1a1a;
+                color: #d5a8a8;
+                border-color: #5a2d2d;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>MML to SMF Library Demo</h1>
+    <p>
+        This page demonstrates how to use <strong>mmlabc-to-smf-wasm</strong> as a library in your web applications.
+        The library provides a simple API to convert Music Macro Language (MML) to Standard MIDI Files (SMF).
+    </p>
+
+    <h2>Installation</h2>
+    <p>Include the WASM module in your project:</p>
+    <pre><code>&lt;script type="module"&gt;
+    import init, { parse_tree_json_to_smf } from './mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js';
+    
+    // Initialize the WASM module
+    await init();
+    
+    // Now you can use the library functions
+&lt;/script&gt;</code></pre>
+
+    <h2>Basic Usage</h2>
+    <p>The library requires two steps:</p>
+    <ol>
+        <li>Parse MML with <code>web-tree-sitter</code> to get a parse tree</li>
+        <li>Convert the parse tree to MIDI with <code>parse_tree_json_to_smf()</code></li>
+    </ol>
+
+    <pre><code>import { Parser, Language } from './web-tree-sitter.js';
+
+// Initialize parser
+await Parser.init();
+const parser = new Parser();
+const lang = await Language.load('./tree-sitter-mml/tree-sitter-mml.wasm');
+parser.setLanguage(lang);
+
+// Parse MML
+const mml = "cde";
+const tree = parser.parse(mml);
+
+// Convert tree to JSON
+function treeToJSON(node, source) {
+    const result = { type: node.type };
+    if (node.childCount === 0) {
+        result.text = source.substring(node.startIndex, node.endIndex);
+    }
+    if (node.childCount > 0) {
+        result.children = [];
+        for (let i = 0; i &lt; node.childCount; i++) {
+            result.children.push(treeToJSON(node.child(i), source));
+        }
+    }
+    return result;
+}
+
+const parseTreeJSON = JSON.stringify(treeToJSON(tree.rootNode, mml));
+
+// Convert to MIDI
+const smfData = parse_tree_json_to_smf(parseTreeJSON, mml);
+
+// Download or use the MIDI data
+const blob = new Blob([smfData], { type: 'audio/midi' });
+const url = URL.createObjectURL(blob);
+// ... create download link or play the MIDI</code></pre>
+
+    <h2>Interactive Example</h2>
+    <div class="demo-section">
+        <p>Try it yourself! Enter MML code and convert it to MIDI:</p>
+        <textarea id="mmlInput" placeholder="Enter MML code, e.g., cde">cde</textarea>
+        <button onclick="convertMML()">Convert to MIDI</button>
+        <div id="output"></div>
+    </div>
+
+    <h2>API Reference</h2>
+    <h3><code>parse_tree_json_to_smf(parse_tree_json, mml_source)</code></h3>
+    <p><strong>Parameters:</strong></p>
+    <ul>
+        <li><code>parse_tree_json</code> (string): JSON representation of the parse tree from web-tree-sitter</li>
+        <li><code>mml_source</code> (string): Original MML source text (for diagnostics)</li>
+    </ul>
+    <p><strong>Returns:</strong> <code>Uint8Array</code> containing SMF binary data</p>
+
+    <h2>Supported MML Features</h2>
+    <ul>
+        <li>Notes: <code>c d e f g a b</code></li>
+        <li>Modifiers: <code>+ -</code> (sharp/flat)</li>
+        <li>Note lengths: <code>c4 d8 e16</code></li>
+        <li>Dots: <code>c4. d8..</code></li>
+        <li>Octave: <code>o5 &lt; &gt;</code></li>
+        <li>Tempo: <code>t120</code></li>
+        <li>Velocity: <code>v100</code></li>
+        <li>Program: <code>@1</code></li>
+        <li>Key transpose: <code>kt1</code></li>
+        <li>Chords: <code>'ceg'</code></li>
+        <li>Multi-channel: <code>c;e;g</code></li>
+    </ul>
+
+    <h2>Resources</h2>
+    <ul>
+        <li><a href="../demo/">Full-featured demo</a></li>
+        <li><a href="https://github.com/cat2151/mmlabc-to-smf-rust">GitHub Repository</a></li>
+        <li><a href="https://github.com/cat2151/mmlabc-to-smf-rust#readme">Documentation</a></li>
+    </ul>
+
+    <script type="module">
+        import { Parser, Language } from '../demo/web-tree-sitter.js';
+        import init, { parse_tree_json_to_smf } from '../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js';
+
+        let parser = null;
+        let wasmInitialized = false;
+
+        async function initialize() {
+            try {
+                await Parser.init();
+                parser = new Parser();
+                const lang = await Language.load('../tree-sitter-mml/tree-sitter-mml.wasm');
+                parser.setLanguage(lang);
+                await init();
+                wasmInitialized = true;
+                console.log('Library demo initialized');
+            } catch (error) {
+                console.error('Initialization error:', error);
+                const output = document.getElementById('output');
+                output.className = 'error';
+                output.textContent = 'Error initializing: ' + error.message;
+            }
+        }
+
+        function treeToJSON(node, source) {
+            const result = { type: node.type };
+            if (node.childCount === 0) {
+                result.text = source.substring(node.startIndex, node.endIndex);
+            }
+            if (node.childCount > 0) {
+                result.children = [];
+                for (let i = 0; i < node.childCount; i++) {
+                    result.children.push(treeToJSON(node.child(i), source));
+                }
+            }
+            return result;
+        }
+
+        window.convertMML = function() {
+            if (!wasmInitialized || !parser) {
+                const output = document.getElementById('output');
+                output.className = 'error';
+                output.textContent = 'Not initialized yet. Please refresh the page.';
+                return;
+            }
+
+            const mml = document.getElementById('mmlInput').value.trim();
+            const output = document.getElementById('output');
+
+            if (!mml) {
+                output.className = 'error';
+                output.textContent = 'Please enter MML code.';
+                return;
+            }
+
+            try {
+                const tree = parser.parse(mml);
+                const parseTreeJSON = JSON.stringify(treeToJSON(tree.rootNode, mml));
+                const smfData = parse_tree_json_to_smf(parseTreeJSON, mml);
+                
+                const blob = new Blob([smfData], { type: 'audio/midi' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'output.mid';
+                a.textContent = 'Download MIDI File';
+                
+                output.className = 'success';
+                output.innerHTML = '✅ Conversion successful! SMF size: ' + smfData.length + ' bytes<br>';
+                output.appendChild(a);
+            } catch (error) {
+                output.className = 'error';
+                output.textContent = 'Error: ' + error.message;
+            }
+        };
+
+        initialize();
+    </script>
+</body>
+</html>
