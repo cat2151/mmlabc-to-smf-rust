@@ -15,7 +15,9 @@ cd demo
 npm install
 ```
 
-This installs `web-tree-sitter` which is needed for parsing.
+This installs:
+- `web-tree-sitter` for MML parsing
+- `tone` for audio playback and visualization
 
 ### 2. Copy web-tree-sitter Files
 
@@ -85,6 +87,12 @@ SMF Binary (downloadable .mid file)
 - **No C stdlib Issues**: Uses web-tree-sitter (already compiled to WASM) for parsing
 - **Clean Architecture**: JavaScript only handles UI and parse tree serialization
 - **Full MML Support**: Uses the same grammar and conversion logic as the CLI
+- **Audio Playback**: Play converted MIDI with Tone.js
+- **Waveform Visualization**: Real-time waveform and FFT spectrum display at 60fps
+- **YM2151 JSON Output**: Simplified MIDI to YM2151 register format conversion
+- **WAV Export**: Download audio as WAV file
+
+See [FEATURES.md](./FEATURES.md) for detailed documentation of audio and visualization features.
 
 ## Examples
 
