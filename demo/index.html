@@ -262,8 +262,8 @@
         // Import WASM module
         import init, { parse_tree_json_to_smf } from '../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js';
 
-        // Import Tone.js from node_modules
-        import * as Tone from './node_modules/tone/build/esm/index.js';
+        // Import Tone.js (vendored from node_modules during build)
+        import * as Tone from './tone.js';
 
         let parser = null;
         let wasmInitialized = false;
@@ -272,7 +272,6 @@
         let currentAudioBuffer = null;
         let audioContext = null;
         let audioSource = null;
-        let analyser = null;
         let animationId = null;
 
         // Initialize everything
@@ -753,7 +752,10 @@
                 a.download = 'output.wav';
                 a.click();
 
-                URL.revokeObjectURL(url);
+                // Revoke URL after a short delay to ensure download has started
+                setTimeout(() => {
+                    URL.revokeObjectURL(url);
+                }, 100);
                 showStatus('WAV file exported successfully!', 'success');
             } catch (error) {
                 console.error('Error exporting WAV:', error);
@@ -770,17 +772,8 @@
 
             const bytesPerSample = bitDepth / 8;
             const blockAlign = numChannels * bytesPerSample;
+            const dataLength = buffer.length * numChannels * bytesPerSample;
 
-            const data = [];
-            for (let i = 0; i < buffer.length; i++) {
-                for (let channel = 0; channel < numChannels; channel++) {
-                    const sample = buffer.getChannelData(channel)[i];
-                    const intSample = Math.max(-1, Math.min(1, sample));
-                    data.push(intSample < 0 ? intSample * 0x8000 : intSample * 0x7FFF);
-                }
-            }
-
-            const dataLength = data.length * bytesPerSample;
             const buffer_out = new ArrayBuffer(44 + dataLength);
             const view = new DataView(buffer_out);
 
@@ -803,11 +796,16 @@
             writeString(view, 36, 'data');
             view.setUint32(40, dataLength, true);
 
-            // Write PCM data
+            // Write PCM data directly to output buffer
             let offset = 44;
-            for (let i = 0; i < data.length; i++) {
-                view.setInt16(offset, data[i], true);
-                offset += 2;
+            for (let i = 0; i < buffer.length; i++) {
+                for (let channel = 0; channel < numChannels; channel++) {
+                    const sample = buffer.getChannelData(channel)[i];
+                    const intSample = Math.max(-1, Math.min(1, sample));
+                    const pcmValue = Math.floor(intSample < 0 ? intSample * 0x8000 : intSample * 0x7FFF);
+                    view.setInt16(offset, pcmValue, true);
+                    offset += 2;
+                }
             }
 
             return buffer_out;

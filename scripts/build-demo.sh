@@ -18,11 +18,13 @@ echo "Step 1/4: Installing demo npm dependencies..."
 cd "${ROOT_DIR}/demo"
 npm install
 
-# Step 2: Copy web-tree-sitter files to demo
+# Step 2: Copy web-tree-sitter and Tone.js files to demo
 echo ""
-echo "Step 2/4: Copying web-tree-sitter files..."
+echo "Step 2/4: Copying web-tree-sitter and Tone.js files..."
 cp node_modules/web-tree-sitter/web-tree-sitter.js web-tree-sitter.js
 cp node_modules/web-tree-sitter/web-tree-sitter.wasm web-tree-sitter.wasm
+cp node_modules/tone/build/esm/index.js tone.js
+echo "✓ Copied web-tree-sitter and Tone.js files"
 
 # Step 3: Build the WASM module
 echo ""
@@ -62,7 +64,7 @@ echo ""
 echo "=== Build completed successfully! ==="
 echo ""
 echo "Demo files are ready in:"
-echo "  - demo/ (HTML, JS, copied web-tree-sitter files)"
+echo "  - demo/ (HTML, JS, copied web-tree-sitter and Tone.js files)"
 echo "  - mmlabc-to-smf-wasm/pkg/ (Rust WASM module)"
 echo "  - tree-sitter-mml/ (tree-sitter-mml.wasm)"
 echo ""
