@@ -81,7 +81,29 @@
             border-radius: 4px;
             overflow-x: auto;
         }
-        
+        canvas {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px 0;
+            background-color: #000;
+        }
+        .visualizer-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fafafa;
+        }
+        .visualizer-section h3 {
+            margin-top: 0;
+        }
+        .playback-controls {
+            margin: 20px 0;
+        }
+        .playback-controls button {
+            margin-right: 10px;
+        }
+
         /* Bottom left links */
         .bottom-links {
             position: fixed;
@@ -156,6 +178,13 @@
             .bottom-links a {
                 color: #3d8b40;
             }
+            .visualizer-section {
+                background-color: #2d2d2d;
+                border-color: #555;
+            }
+            .visualizer-section h3 {
+                color: #e0e0e0;
+            }
         }
     </style>
 </head>
@@ -189,6 +218,37 @@
         <pre id="debugInfo"></pre>
     </div>
 
+    <!-- Playback Controls -->
+    <div class="playback-controls" id="playbackControls" style="display: none;">
+        <button id="playButton" onclick="playAudio()">▶ Play</button>
+        <button id="stopButton" onclick="stopAudio()" disabled>⏹ Stop</button>
+        <button id="exportWavButton" onclick="exportWav()">💾 Export WAV</button>
+    </div>
+
+    <!-- Visualizations -->
+    <div class="visualizer-section" id="visualizerSection" style="display: none;">
+        <h3>Waveform Preview (Full)</h3>
+        <canvas id="waveformCanvas" width="760" height="120"></canvas>
+
+        <h3>Real-time Visualization (During Playback)</h3>
+        <div style="display: flex; gap: 10px;">
+            <div>
+                <strong>Waveform:</strong>
+                <canvas id="realtimeWaveform" width="370" height="100"></canvas>
+            </div>
+            <div>
+                <strong>FFT Spectrum:</strong>
+                <canvas id="realtimeFFT" width="370" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- JSON Output -->
+    <div id="jsonSection" class="hidden">
+        <h3>YM2151 Log Format JSON:</h3>
+        <pre id="jsonOutput"></pre>
+    </div>
+
     <!-- Bottom left links -->
     <div class="bottom-links">
         <a href="../demo-library/">Library Demo</a>
@@ -198,13 +258,22 @@
     <script type="module">
         // Import web-tree-sitter (local copy)
         import { Parser, Language } from './web-tree-sitter.js';
-        
+
         // Import WASM module
         import init, { parse_tree_json_to_smf } from '../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js';
+
+        // Import Tone.js from node_modules
+        import * as Tone from './node_modules/tone/build/esm/index.js';
 
         let parser = null;
         let wasmInitialized = false;
         let debounceTimer = null;
+        let currentSmfData = null;
+        let currentAudioBuffer = null;
+        let audioContext = null;
+        let audioSource = null;
+        let analyser = null;
+        let animationId = null;
 
         // Initialize everything
         async function initialize() {
@@ -311,7 +380,16 @@
                 
                 // Call Rust WASM to convert parse tree to SMF
                 const smfData = parse_tree_json_to_smf(parseTreeStr, mml);
-                
+                currentSmfData = smfData;
+
+                // Convert SMF to YM2151 JSON format (simplified)
+                const ym2151Json = smfToYM2151Json(smfData);
+                document.getElementById('jsonOutput').textContent = JSON.stringify(ym2151Json, null, 2);
+                document.getElementById('jsonSection').classList.remove('hidden');
+
+                // Render waveform and prepare audio
+                await renderWaveformAndAudio(smfData);
+
                 // Create download link
                 const blob = new Blob([smfData], { type: 'audio/midi' });
                 const url = URL.createObjectURL(blob);
@@ -319,12 +397,16 @@
                 a.href = url;
                 a.download = 'output.mid';
                 a.textContent = 'Download MIDI File';
-                
+
                 showStatus('✅ Conversion successful! SMF size: ' + smfData.length + ' bytes', 'success');
                 const statusDiv = document.getElementById('status');
                 statusDiv.appendChild(document.createElement('br'));
                 statusDiv.appendChild(a);
-                
+
+                // Show playback controls
+                document.getElementById('playbackControls').style.display = 'block';
+                document.getElementById('visualizerSection').style.display = 'block';
+
             } catch (error) {
                 showStatus('Error: ' + error.message, 'error');
                 console.error('Conversion error:', error);
@@ -353,6 +435,388 @@
             statusDiv.textContent = message;
             statusDiv.className = type;
             statusDiv.classList.remove('hidden');
+        }
+
+        // Convert SMF to YM2151 JSON format (simplified)
+        function smfToYM2151Json(smfData) {
+            // Parse basic MIDI information and convert to YM2151 event format
+            // This is a simplified version - real YM2151 would need more complex mapping
+            const events = [];
+
+            try {
+                // Simple parsing of MIDI note events
+                // Look for note on/off events (0x90, 0x80)
+                let time = 0.0;
+
+                for (let i = 0; i < smfData.length - 2; i++) {
+                    const status = smfData[i];
+
+                    // Note On (0x90-0x9F)
+                    if ((status & 0xF0) === 0x90) {
+                        const note = smfData[i + 1];
+                        const velocity = smfData[i + 2];
+
+                        if (velocity > 0) {
+                            // Simplified YM2151 register writes for note on
+                            events.push({
+                                time: time,
+                                address: 0x08,  // Key control
+                                data: 0x78      // Key on
+                            });
+                            events.push({
+                                time: time + 0.001,
+                                address: 0x28,  // Key fraction
+                                data: 0x00
+                            });
+                            events.push({
+                                time: time + 0.002,
+                                address: 0x30,  // Key code
+                                data: Math.floor(note / 12) << 4 | (note % 12)
+                            });
+                        }
+                        time += 0.1; // Simplified timing
+                    }
+                    // Note Off (0x80-0x8F)
+                    else if ((status & 0xF0) === 0x80) {
+                        events.push({
+                            time: time,
+                            address: 0x08,
+                            data: 0x00  // Key off
+                        });
+                        time += 0.1;
+                    }
+                }
+            } catch (e) {
+                console.warn('Error parsing MIDI:', e);
+            }
+
+            return { events: events };
+        }
+
+        // Render waveform and prepare audio
+        async function renderWaveformAndAudio(smfData) {
+            try {
+                // Initialize audio context
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+
+                // Parse MIDI and generate audio
+                const audioData = await midiToAudio(smfData);
+
+                // Create audio buffer
+                currentAudioBuffer = audioContext.createBuffer(
+                    2,  // stereo
+                    audioData.left.length,
+                    44100  // sample rate
+                );
+
+                currentAudioBuffer.getChannelData(0).set(audioData.left);
+                currentAudioBuffer.getChannelData(1).set(audioData.right);
+
+                // Draw waveform
+                drawWaveform(audioData.left);
+
+            } catch (error) {
+                console.error('Error rendering waveform:', error);
+            }
+        }
+
+        // Simple MIDI to audio conversion using sine waves
+        async function midiToAudio(smfData) {
+            const sampleRate = 44100;
+            const duration = 3.0; // seconds
+            const numSamples = Math.floor(sampleRate * duration);
+
+            const left = new Float32Array(numSamples);
+            const right = new Float32Array(numSamples);
+
+            // Parse MIDI and generate tones
+            const notes = [];
+            for (let i = 0; i < smfData.length - 2; i++) {
+                const status = smfData[i];
+
+                if ((status & 0xF0) === 0x90) {  // Note on
+                    const note = smfData[i + 1];
+                    const velocity = smfData[i + 2];
+
+                    if (velocity > 0) {
+                        notes.push({
+                            note: note,
+                            velocity: velocity / 127.0,
+                            start: notes.length * 0.3,
+                            duration: 0.25
+                        });
+                    }
+                }
+            }
+
+            // Generate sine waves for each note
+            for (const noteInfo of notes) {
+                const freq = 440 * Math.pow(2, (noteInfo.note - 69) / 12);
+                const startSample = Math.floor(noteInfo.start * sampleRate);
+                const durationSamples = Math.floor(noteInfo.duration * sampleRate);
+
+                for (let i = 0; i < durationSamples; i++) {
+                    const sampleIndex = startSample + i;
+                    if (sampleIndex < numSamples) {
+                        const t = i / sampleRate;
+                        const envelope = Math.exp(-3 * t);  // Simple exponential decay
+                        const value = Math.sin(2 * Math.PI * freq * t) * envelope * noteInfo.velocity * 0.3;
+
+                        left[sampleIndex] += value;
+                        right[sampleIndex] += value;
+                    }
+                }
+            }
+
+            return { left, right };
+        }
+
+        // Draw waveform on canvas
+        function drawWaveform(audioData) {
+            const canvas = document.getElementById('waveformCanvas');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.strokeStyle = '#0f0';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+
+            const step = Math.floor(audioData.length / width);
+
+            for (let i = 0; i < width; i++) {
+                const index = i * step;
+                const value = audioData[index] || 0;
+                const y = (value * 0.5 + 0.5) * height;
+
+                if (i === 0) {
+                    ctx.moveTo(i, y);
+                } else {
+                    ctx.lineTo(i, y);
+                }
+            }
+
+            ctx.stroke();
+        }
+
+        // Play audio with visualization
+        window.playAudio = async function() {
+            if (!currentAudioBuffer) {
+                showStatus('No audio to play. Please convert MML first.', 'error');
+                return;
+            }
+
+            try {
+                // Stop any existing playback
+                stopAudio();
+
+                // Start Tone.js context
+                await Tone.start();
+
+                // Create player
+                const player = new Tone.Player({
+                    buffer: currentAudioBuffer,
+                    loop: false
+                }).toDestination();
+
+                // Create analyzers for visualization
+                const waveform = new Tone.Waveform(1024);
+                const fft = new Tone.FFT(512);
+
+                player.connect(waveform);
+                player.connect(fft);
+
+                // Start playback
+                player.start();
+
+                // Update UI
+                document.getElementById('playButton').disabled = true;
+                document.getElementById('stopButton').disabled = false;
+
+                // Start visualization
+                visualizeRealtime(waveform, fft);
+
+                // Re-enable play button when done
+                player.onstop = () => {
+                    document.getElementById('playButton').disabled = false;
+                    document.getElementById('stopButton').disabled = true;
+                    if (animationId) {
+                        cancelAnimationFrame(animationId);
+                        animationId = null;
+                    }
+                };
+
+                audioSource = player;
+
+            } catch (error) {
+                console.error('Error playing audio:', error);
+                showStatus('Error playing audio: ' + error.message, 'error');
+            }
+        };
+
+        // Stop audio playback
+        window.stopAudio = function() {
+            if (audioSource) {
+                try {
+                    audioSource.stop();
+                } catch (e) {
+                    // Ignore errors
+                }
+                audioSource = null;
+            }
+
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+
+            document.getElementById('playButton').disabled = false;
+            document.getElementById('stopButton').disabled = true;
+        };
+
+        // Real-time visualization at 60fps
+        function visualizeRealtime(waveform, fft) {
+            const waveCanvas = document.getElementById('realtimeWaveform');
+            const fftCanvas = document.getElementById('realtimeFFT');
+            const waveCtx = waveCanvas.getContext('2d');
+            const fftCtx = fftCanvas.getContext('2d');
+
+            function draw() {
+                // Draw waveform
+                const waveformValues = waveform.getValue();
+                waveCtx.fillStyle = '#000';
+                waveCtx.fillRect(0, 0, waveCanvas.width, waveCanvas.height);
+
+                waveCtx.strokeStyle = '#0f0';
+                waveCtx.lineWidth = 2;
+                waveCtx.beginPath();
+
+                for (let i = 0; i < waveformValues.length; i++) {
+                    const x = i * (waveCanvas.width / waveformValues.length);
+                    const y = (1 - (waveformValues[i] + 1) / 2) * waveCanvas.height;
+
+                    if (i === 0) {
+                        waveCtx.moveTo(x, y);
+                    } else {
+                        waveCtx.lineTo(x, y);
+                    }
+                }
+                waveCtx.stroke();
+
+                // Draw FFT
+                const fftValues = fft.getValue();
+                fftCtx.fillStyle = '#000';
+                fftCtx.fillRect(0, 0, fftCanvas.width, fftCanvas.height);
+
+                const barWidth = fftCanvas.width / fftValues.length;
+
+                for (let i = 0; i < fftValues.length; i++) {
+                    const value = fftValues[i];
+                    const percent = (value + 140) / 140;  // Normalize dB value
+                    const barHeight = percent * fftCanvas.height;
+                    const hue = (i / fftValues.length) * 360;
+
+                    fftCtx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+                    fftCtx.fillRect(
+                        i * barWidth,
+                        fftCanvas.height - barHeight,
+                        barWidth - 1,
+                        barHeight
+                    );
+                }
+
+                animationId = requestAnimationFrame(draw);
+            }
+
+            draw();
+        }
+
+        // Export WAV file
+        window.exportWav = function() {
+            if (!currentAudioBuffer) {
+                showStatus('No audio to export. Please convert MML first.', 'error');
+                return;
+            }
+
+            try {
+                const wavData = audioBufferToWav(currentAudioBuffer);
+                const blob = new Blob([wavData], { type: 'audio/wav' });
+                const url = URL.createObjectURL(blob);
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'output.wav';
+                a.click();
+
+                URL.revokeObjectURL(url);
+                showStatus('WAV file exported successfully!', 'success');
+            } catch (error) {
+                console.error('Error exporting WAV:', error);
+                showStatus('Error exporting WAV: ' + error.message, 'error');
+            }
+        };
+
+        // Convert AudioBuffer to WAV format
+        function audioBufferToWav(buffer) {
+            const numChannels = buffer.numberOfChannels;
+            const sampleRate = buffer.sampleRate;
+            const format = 1; // PCM
+            const bitDepth = 16;
+
+            const bytesPerSample = bitDepth / 8;
+            const blockAlign = numChannels * bytesPerSample;
+
+            const data = [];
+            for (let i = 0; i < buffer.length; i++) {
+                for (let channel = 0; channel < numChannels; channel++) {
+                    const sample = buffer.getChannelData(channel)[i];
+                    const intSample = Math.max(-1, Math.min(1, sample));
+                    data.push(intSample < 0 ? intSample * 0x8000 : intSample * 0x7FFF);
+                }
+            }
+
+            const dataLength = data.length * bytesPerSample;
+            const buffer_out = new ArrayBuffer(44 + dataLength);
+            const view = new DataView(buffer_out);
+
+            // RIFF header
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + dataLength, true);
+            writeString(view, 8, 'WAVE');
+
+            // fmt chunk
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);  // chunk size
+            view.setUint16(20, format, true);
+            view.setUint16(22, numChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * blockAlign, true);  // byte rate
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitDepth, true);
+
+            // data chunk
+            writeString(view, 36, 'data');
+            view.setUint32(40, dataLength, true);
+
+            // Write PCM data
+            let offset = 44;
+            for (let i = 0; i < data.length; i++) {
+                view.setInt16(offset, data[i], true);
+                offset += 2;
+            }
+
+            return buffer_out;
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
         }
 
         // Initialize on page load
