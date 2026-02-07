@@ -8,7 +8,7 @@ Successfully implemented comprehensive audio playback, waveform visualization, a
 ### 1. SMF to YM2151 JSON Conversion ✅
 - Simplified MIDI parser that extracts note events
 - Converts to YM2151 register format (address/data pairs)
-- JSON output displayed in collapsible section
+- JSON output displayed in a dedicated formatted section
 
 ### 2. Waveform Rendering ✅
 - Full waveform preview canvas showing complete audio
@@ -142,10 +142,25 @@ Selected Tone.js for:
 
 ## Build Process
 
-No changes to existing build process:
-- `npm install` in demo/ now installs Tone.js
-- Existing build-demo.sh script works unchanged
-- GitHub Actions deployment unchanged
+### Dependencies
+- **Tone.js** (npm package): Audio playback and analysis, vendored during build like web-tree-sitter
+
+### Build Steps
+The `build-demo.sh` script handles all dependencies:
+1. `npm install` in `demo/` installs both web-tree-sitter and Tone.js
+2. Vendors Tone.js ESM bundle from `node_modules/tone/build/esm/index.js` to `demo/tone.js`
+3. Vendors web-tree-sitter files to `demo/`
+4. Builds Rust WASM module
+5. Builds tree-sitter-mml.wasm
+
+### Path Transformation
+The `transform-demo-paths.sh` script adjusts imports for root deployment:
+- `./tone.js` → `./demo/tone.js`
+- `./web-tree-sitter.js` → `./demo/web-tree-sitter.js`
+- Other relative paths adjusted for root context
+
+### GitHub Actions
+The deployment workflow uses the updated `build-demo.sh`, ensuring Tone.js is properly vendored and deployed alongside other assets.
 
 ## Performance
 

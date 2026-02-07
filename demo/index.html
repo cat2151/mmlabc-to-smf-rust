@@ -436,54 +436,205 @@
             statusDiv.classList.remove('hidden');
         }
 
-        // Convert SMF to YM2151 JSON format (simplified)
+        // Convert SMF to YM2151 JSON format with proper MIDI parsing
         function smfToYM2151Json(smfData) {
-            // Parse basic MIDI information and convert to YM2151 event format
-            // This is a simplified version - real YM2151 would need more complex mapping
             const events = [];
 
             try {
-                // Simple parsing of MIDI note events
-                // Look for note on/off events (0x90, 0x80)
-                let time = 0.0;
+                if (!smfData || smfData.length < 14) {
+                    return { events };
+                }
 
-                for (let i = 0; i < smfData.length - 2; i++) {
-                    const status = smfData[i];
+                let offset = 0;
 
-                    // Note On (0x90-0x9F)
-                    if ((status & 0xF0) === 0x90) {
-                        const note = smfData[i + 1];
-                        const velocity = smfData[i + 2];
+                function readUint32() {
+                    if (offset + 4 > smfData.length) {
+                        throw new Error('Unexpected EOF while reading uint32');
+                    }
+                    const value = (smfData[offset] << 24) |
+                        (smfData[offset + 1] << 16) |
+                        (smfData[offset + 2] << 8) |
+                        smfData[offset + 3];
+                    offset += 4;
+                    return value >>> 0;
+                }
 
-                        if (velocity > 0) {
-                            // Simplified YM2151 register writes for note on
-                            events.push({
-                                time: time,
-                                address: 0x08,  // Key control
-                                data: 0x78      // Key on
-                            });
-                            events.push({
-                                time: time + 0.001,
-                                address: 0x28,  // Key fraction
-                                data: 0x00
-                            });
-                            events.push({
-                                time: time + 0.002,
-                                address: 0x30,  // Key code
-                                data: Math.floor(note / 12) << 4 | (note % 12)
-                            });
+                function readUint16() {
+                    if (offset + 2 > smfData.length) {
+                        throw new Error('Unexpected EOF while reading uint16');
+                    }
+                    const value = (smfData[offset] << 8) | smfData[offset + 1];
+                    offset += 2;
+                    return value & 0xffff;
+                }
+
+                function readVlq() {
+                    let value = 0;
+                    let bytesRead = 0;
+                    while (true) {
+                        if (offset >= smfData.length) {
+                            throw new Error('Unexpected EOF while reading VLQ');
                         }
-                        time += 0.1; // Simplified timing
+                        const b = smfData[offset++];
+                        value = (value << 7) | (b & 0x7f);
+                        bytesRead++;
+                        if (!(b & 0x80) || bytesRead > 4) {
+                            break;
+                        }
                     }
-                    // Note Off (0x80-0x8F)
-                    else if ((status & 0xF0) === 0x80) {
-                        events.push({
-                            time: time,
-                            address: 0x08,
-                            data: 0x00  // Key off
-                        });
-                        time += 0.1;
+                    return value >>> 0;
+                }
+
+                // Parse header chunk (MThd)
+                if (String.fromCharCode(
+                    smfData[0],
+                    smfData[1],
+                    smfData[2],
+                    smfData[3]
+                ) !== 'MThd') {
+                    throw new Error('Not an SMF file (missing MThd)');
+                }
+
+                offset = 4;
+                const headerLength = readUint32();
+                const formatType = readUint16();
+                const numTracks = readUint16();
+                const division = readUint16();
+
+                // Skip any remaining header bytes
+                if (headerLength > 6) {
+                    offset += (headerLength - 6);
+                }
+
+                // Default tempo: 500000 microseconds per quarter note (120 BPM)
+                let tempoMicrosPerQuarter = 500000;
+
+                function deltaTicksToSeconds(deltaTicks) {
+                    if (division === 0) return 0;
+                    return (deltaTicks * tempoMicrosPerQuarter) / (division * 1e6);
+                }
+
+                // Parse each track chunk (MTrk)
+                for (let trackIndex = 0; trackIndex < numTracks; trackIndex++) {
+                    if (offset + 8 > smfData.length) break;
+
+                    const id = String.fromCharCode(
+                        smfData[offset],
+                        smfData[offset + 1],
+                        smfData[offset + 2],
+                        smfData[offset + 3]
+                    );
+                    offset += 4;
+
+                    const trackLength = readUint32();
+                    const trackEnd = offset + trackLength;
+
+                    if (id !== 'MTrk') {
+                        offset = trackEnd;
+                        continue;
                     }
+
+                    let currentTimeSeconds = 0.0;
+                    let runningStatus = null;
+
+                    while (offset < trackEnd) {
+                        const deltaTicks = readVlq();
+                        const deltaSeconds = deltaTicksToSeconds(deltaTicks);
+                        currentTimeSeconds += deltaSeconds;
+
+                        if (offset >= trackEnd) break;
+
+                        let statusByte = smfData[offset++];
+
+                        if (statusByte < 0x80) {
+                            if (runningStatus === null) {
+                                throw new Error('Running status without previous status');
+                            }
+                            offset--;
+                            statusByte = runningStatus;
+                        } else {
+                            runningStatus = statusByte;
+                        }
+
+                        // Meta event
+                        if (statusByte === 0xff) {
+                            if (offset >= trackEnd) break;
+                            const metaType = smfData[offset++];
+                            const length = readVlq();
+                            if (offset + length > trackEnd) {
+                                offset = trackEnd;
+                                break;
+                            }
+
+                            if (metaType === 0x51 && length === 3) {
+                                tempoMicrosPerQuarter =
+                                    (smfData[offset] << 16) |
+                                    (smfData[offset + 1] << 8) |
+                                    smfData[offset + 2];
+                            }
+                            offset += length;
+                            continue;
+                        }
+
+                        // SysEx events
+                        if (statusByte === 0xf0 || statusByte === 0xf7) {
+                            const length = readVlq();
+                            offset += length;
+                            continue;
+                        }
+
+                        const statusHighNibble = statusByte & 0xf0;
+
+                        // Determine data length
+                        let dataBytesNeeded = 0;
+                        if (statusHighNibble === 0xc0 || statusHighNibble === 0xd0) {
+                            dataBytesNeeded = 1;
+                        } else if (statusHighNibble >= 0x80 && statusHighNibble <= 0xe0) {
+                            dataBytesNeeded = 2;
+                        } else {
+                            break;
+                        }
+
+                        if (offset + dataBytesNeeded > trackEnd) break;
+
+                        const data1 = smfData[offset++];
+                        const data2 = dataBytesNeeded === 2 ? smfData[offset++] : 0;
+
+                        // Handle Note On/Off
+                        if (statusHighNibble === 0x90 || statusHighNibble === 0x80) {
+                            const note = data1;
+                            let velocity = data2;
+
+                            const isNoteOn = (statusHighNibble === 0x90) && velocity > 0;
+                            const isNoteOff = (statusHighNibble === 0x80) || !isNoteOn;
+
+                            if (isNoteOn) {
+                                events.push({
+                                    time: currentTimeSeconds,
+                                    address: 0x08,
+                                    data: 0x78
+                                });
+                                events.push({
+                                    time: currentTimeSeconds + 0.001,
+                                    address: 0x28,
+                                    data: 0x00
+                                });
+                                events.push({
+                                    time: currentTimeSeconds + 0.002,
+                                    address: 0x30,
+                                    data: (Math.floor(note / 12) << 4) | (note % 12)
+                                });
+                            } else if (isNoteOff) {
+                                events.push({
+                                    time: currentTimeSeconds,
+                                    address: 0x08,
+                                    data: 0x00
+                                });
+                            }
+                        }
+                    }
+
+                    offset = trackEnd;
                 }
             } catch (e) {
                 console.warn('Error parsing MIDI:', e);
@@ -521,55 +672,248 @@
             }
         }
 
-        // Simple MIDI to audio conversion using sine waves
+        // Parse MIDI to audio with proper timing
         async function midiToAudio(smfData) {
             const sampleRate = 44100;
-            const duration = 3.0; // seconds
-            const numSamples = Math.floor(sampleRate * duration);
 
-            const left = new Float32Array(numSamples);
-            const right = new Float32Array(numSamples);
+            try {
+                // Parse MIDI to extract notes with proper timing
+                const notes = parseMidiNotes(smfData);
 
-            // Parse MIDI and generate tones
+                if (notes.length === 0) {
+                    // Return empty audio if no notes
+                    const numSamples = Math.floor(sampleRate * 1.0);
+                    return {
+                        left: new Float32Array(numSamples),
+                        right: new Float32Array(numSamples)
+                    };
+                }
+
+                // Calculate total duration from last note off time, plus buffer
+                const maxEndTime = Math.max(...notes.map(n => n.start + n.duration));
+                const duration = maxEndTime + 0.5; // Add 0.5s buffer
+                const numSamples = Math.floor(sampleRate * duration);
+
+                const left = new Float32Array(numSamples);
+                const right = new Float32Array(numSamples);
+
+                // Generate sine waves for each note
+                for (const noteInfo of notes) {
+                    const freq = 440 * Math.pow(2, (noteInfo.note - 69) / 12);
+                    const startSample = Math.floor(noteInfo.start * sampleRate);
+                    const durationSamples = Math.floor(noteInfo.duration * sampleRate);
+
+                    for (let i = 0; i < durationSamples; i++) {
+                        const sampleIndex = startSample + i;
+                        if (sampleIndex < numSamples) {
+                            const t = i / sampleRate;
+                            const envelope = Math.exp(-3 * t);
+                            const value = Math.sin(2 * Math.PI * freq * t) * envelope * noteInfo.velocity * 0.3;
+
+                            left[sampleIndex] += value;
+                            right[sampleIndex] += value;
+                        }
+                    }
+                }
+
+                return { left, right };
+            } catch (error) {
+                console.error('Error in midiToAudio:', error);
+                // Return empty audio on error
+                const numSamples = Math.floor(sampleRate * 1.0);
+                return {
+                    left: new Float32Array(numSamples),
+                    right: new Float32Array(numSamples)
+                };
+            }
+        }
+
+        // Parse MIDI file to extract note events with proper timing
+        function parseMidiNotes(smfData) {
             const notes = [];
-            for (let i = 0; i < smfData.length - 2; i++) {
-                const status = smfData[i];
 
-                if ((status & 0xF0) === 0x90) {  // Note on
-                    const note = smfData[i + 1];
-                    const velocity = smfData[i + 2];
-
-                    if (velocity > 0) {
-                        notes.push({
-                            note: note,
-                            velocity: velocity / 127.0,
-                            start: notes.length * 0.3,
-                            duration: 0.25
-                        });
-                    }
+            try {
+                if (!smfData || smfData.length < 14) {
+                    return notes;
                 }
+
+                let offset = 0;
+
+                function readUint32() {
+                    const value = (smfData[offset] << 24) |
+                        (smfData[offset + 1] << 16) |
+                        (smfData[offset + 2] << 8) |
+                        smfData[offset + 3];
+                    offset += 4;
+                    return value >>> 0;
+                }
+
+                function readUint16() {
+                    const value = (smfData[offset] << 8) | smfData[offset + 1];
+                    offset += 2;
+                    return value & 0xffff;
+                }
+
+                function readVlq() {
+                    let value = 0;
+                    let bytesRead = 0;
+                    while (true) {
+                        if (offset >= smfData.length) break;
+                        const b = smfData[offset++];
+                        value = (value << 7) | (b & 0x7f);
+                        bytesRead++;
+                        if (!(b & 0x80) || bytesRead > 4) break;
+                    }
+                    return value >>> 0;
+                }
+
+                // Parse header
+                if (String.fromCharCode(smfData[0], smfData[1], smfData[2], smfData[3]) !== 'MThd') {
+                    return notes;
+                }
+
+                offset = 4;
+                const headerLength = readUint32();
+                const formatType = readUint16();
+                const numTracks = readUint16();
+                const division = readUint16();
+
+                if (headerLength > 6) {
+                    offset += (headerLength - 6);
+                }
+
+                let tempoMicrosPerQuarter = 500000;
+
+                function deltaTicksToSeconds(deltaTicks) {
+                    if (division === 0) return 0;
+                    return (deltaTicks * tempoMicrosPerQuarter) / (division * 1e6);
+                }
+
+                // Track active notes (note on without note off yet)
+                const activeNotes = new Map(); // key: note number, value: {start, velocity}
+
+                for (let trackIndex = 0; trackIndex < numTracks; trackIndex++) {
+                    if (offset + 8 > smfData.length) break;
+
+                    const id = String.fromCharCode(smfData[offset], smfData[offset + 1], smfData[offset + 2], smfData[offset + 3]);
+                    offset += 4;
+
+                    const trackLength = readUint32();
+                    const trackEnd = offset + trackLength;
+
+                    if (id !== 'MTrk') {
+                        offset = trackEnd;
+                        continue;
+                    }
+
+                    let currentTimeSeconds = 0.0;
+                    let runningStatus = null;
+
+                    while (offset < trackEnd) {
+                        const deltaTicks = readVlq();
+                        currentTimeSeconds += deltaTicksToSeconds(deltaTicks);
+
+                        if (offset >= trackEnd) break;
+
+                        let statusByte = smfData[offset++];
+
+                        if (statusByte < 0x80) {
+                            if (runningStatus === null) break;
+                            offset--;
+                            statusByte = runningStatus;
+                        } else {
+                            runningStatus = statusByte;
+                        }
+
+                        // Meta event
+                        if (statusByte === 0xff) {
+                            if (offset >= trackEnd) break;
+                            const metaType = smfData[offset++];
+                            const length = readVlq();
+                            if (offset + length > trackEnd) {
+                                offset = trackEnd;
+                                break;
+                            }
+
+                            if (metaType === 0x51 && length === 3) {
+                                tempoMicrosPerQuarter =
+                                    (smfData[offset] << 16) |
+                                    (smfData[offset + 1] << 8) |
+                                    smfData[offset + 2];
+                            }
+                            offset += length;
+                            continue;
+                        }
+
+                        // SysEx
+                        if (statusByte === 0xf0 || statusByte === 0xf7) {
+                            const length = readVlq();
+                            offset += length;
+                            continue;
+                        }
+
+                        const statusHighNibble = statusByte & 0xf0;
+
+                        let dataBytesNeeded = 0;
+                        if (statusHighNibble === 0xc0 || statusHighNibble === 0xd0) {
+                            dataBytesNeeded = 1;
+                        } else if (statusHighNibble >= 0x80 && statusHighNibble <= 0xe0) {
+                            dataBytesNeeded = 2;
+                        } else {
+                            break;
+                        }
+
+                        if (offset + dataBytesNeeded > trackEnd) break;
+
+                        const data1 = smfData[offset++];
+                        const data2 = dataBytesNeeded === 2 ? smfData[offset++] : 0;
+
+                        // Handle Note On/Off
+                        if (statusHighNibble === 0x90 || statusHighNibble === 0x80) {
+                            const note = data1;
+                            const velocity = data2;
+
+                            const isNoteOn = (statusHighNibble === 0x90) && velocity > 0;
+
+                            if (isNoteOn) {
+                                // Store note start
+                                activeNotes.set(note, {
+                                    start: currentTimeSeconds,
+                                    velocity: velocity / 127.0
+                                });
+                            } else {
+                                // Note off - complete the note
+                                if (activeNotes.has(note)) {
+                                    const noteStart = activeNotes.get(note);
+                                    notes.push({
+                                        note: note,
+                                        start: noteStart.start,
+                                        duration: currentTimeSeconds - noteStart.start,
+                                        velocity: noteStart.velocity
+                                    });
+                                    activeNotes.delete(note);
+                                }
+                            }
+                        }
+                    }
+
+                    offset = trackEnd;
+                }
+
+                // Handle any notes that didn't get a note-off (give them default duration)
+                for (const [note, noteStart] of activeNotes.entries()) {
+                    notes.push({
+                        note: note,
+                        start: noteStart.start,
+                        duration: 0.25, // default duration
+                        velocity: noteStart.velocity
+                    });
+                }
+            } catch (e) {
+                console.warn('Error parsing MIDI notes:', e);
             }
 
-            // Generate sine waves for each note
-            for (const noteInfo of notes) {
-                const freq = 440 * Math.pow(2, (noteInfo.note - 69) / 12);
-                const startSample = Math.floor(noteInfo.start * sampleRate);
-                const durationSamples = Math.floor(noteInfo.duration * sampleRate);
-
-                for (let i = 0; i < durationSamples; i++) {
-                    const sampleIndex = startSample + i;
-                    if (sampleIndex < numSamples) {
-                        const t = i / sampleRate;
-                        const envelope = Math.exp(-3 * t);  // Simple exponential decay
-                        const value = Math.sin(2 * Math.PI * freq * t) * envelope * noteInfo.velocity * 0.3;
-
-                        left[sampleIndex] += value;
-                        right[sampleIndex] += value;
-                    }
-                }
-            }
-
-            return { left, right };
+            return notes;
         }
 
         // Draw waveform on canvas
