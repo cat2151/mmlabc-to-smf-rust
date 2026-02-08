@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "Minimal demo for using mmlabc-to-smf (WASM) from a GitHub npm install.",
   "scripts": {
-    "build": "cd .. && ./scripts/build-demo.sh",
-    "serve": "cd .. && npx http-server . -p 8080 -o /demo-library/"
+    "build": "cd .. && bash ./scripts/build-demo.sh",
+    "serve": "npm exec -- http-server .. -p 8080 -o /demo-library/"
   },
   "author": "cat2151",
   "license": "MIT",
