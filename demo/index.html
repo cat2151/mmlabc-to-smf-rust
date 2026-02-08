@@ -262,8 +262,8 @@
         // Import WASM module
         import init, { parse_tree_json_to_smf } from '../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js';
 
-        // Import Tone.js (vendored from node_modules during build)
-        import * as Tone from './tone.js';
+        // Import Tone.js (vendored ESM directory from node_modules during build)
+        import * as Tone from './tone/index.js';
 
         let parser = null;
         let wasmInitialized = false;
