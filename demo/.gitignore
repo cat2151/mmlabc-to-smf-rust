@@ -8,5 +8,5 @@ pkg/
 web-tree-sitter.js
 web-tree-sitter.wasm
 
-# Tone.js file (copied from node_modules)
-tone.js
+# Tone.js directory (copied from node_modules)
+tone/

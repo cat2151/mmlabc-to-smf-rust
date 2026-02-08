@@ -23,7 +23,8 @@ echo ""
 echo "Step 2/4: Copying web-tree-sitter and Tone.js files..."
 cp node_modules/web-tree-sitter/web-tree-sitter.js web-tree-sitter.js
 cp node_modules/web-tree-sitter/web-tree-sitter.wasm web-tree-sitter.wasm
-cp node_modules/tone/build/esm/index.js tone.js
+# Copy entire Tone.js ESM directory to preserve module structure
+cp -r node_modules/tone/build/esm tone
 echo "✓ Copied web-tree-sitter and Tone.js files"
 
 # Step 3: Build the WASM module
