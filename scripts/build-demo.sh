@@ -18,14 +18,16 @@ echo "Step 1/4: Installing demo npm dependencies..."
 cd "${ROOT_DIR}/demo"
 npm install
 
-# Step 2: Copy web-tree-sitter and Tone.js files to demo
+# Step 2: Copy web-tree-sitter and bundle Tone.js for browser ESM
 echo ""
-echo "Step 2/4: Copying web-tree-sitter and Tone.js files..."
+echo "Step 2/4: Copying web-tree-sitter and bundling Tone.js..."
 cp node_modules/web-tree-sitter/web-tree-sitter.js web-tree-sitter.js
 cp node_modules/web-tree-sitter/web-tree-sitter.wasm web-tree-sitter.wasm
-# Copy entire Tone.js ESM directory to preserve module structure
-cp -r node_modules/tone/build/esm tone
-echo "✓ Copied web-tree-sitter and Tone.js files"
+# Bundle Tone.js and its dependencies into a single ESM file for browsers
+rm -rf tone
+mkdir -p tone
+npx esbuild node_modules/tone/build/esm/index.js --bundle --format=esm --platform=browser --outfile=tone/index.js
+echo "✓ Copied web-tree-sitter files and bundled Tone.js"
 
 # Step 3: Build the WASM module
 echo ""
