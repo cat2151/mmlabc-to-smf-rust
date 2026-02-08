@@ -19,13 +19,26 @@ The library provides a simple API:
 
 See `index.html` for detailed examples and API documentation.
 
+## Install via npm (GitHub)
+
+You can try this demo without cloning the repository by installing it from GitHub:
+
+```bash
+npm install github:cat2151/mmlabc-to-smf-rust
+cd node_modules/mmlabc-to-smf-rust/demo-library
+npm install
+npm run build   # builds WASM and supporting assets (Rust + wasm-pack required)
+npm run serve   # opens /demo-library/ via http-server
+```
+
 ## Testing Locally
 
 From the repository root:
 
 ```bash
-# Build the WASM modules
-./scripts/build-demo.sh
+# Build the WASM modules (same as npm run build inside demo-library)
+npm --prefix demo-library install
+npm --prefix demo-library run build
 
 # Start a local server
 python3 -m http.server 8000
