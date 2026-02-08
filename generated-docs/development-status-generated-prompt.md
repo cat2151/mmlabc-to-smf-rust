@@ -1,4 +1,4 @@
-Last updated: 2026-02-07
+Last updated: 2026-02-09
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -104,12 +104,14 @@ Last updated: 2026-02-07
 
 ## プロジェクトのファイル一覧
 - .editorconfig
+- .github/IMPLEMENTATION_SUMMARY.md
 - .github/actions-tmp/.github/workflows/call-callgraph.yml
 - .github/actions-tmp/.github/workflows/call-daily-project-summary.yml
 - .github/actions-tmp/.github/workflows/call-issue-note.yml
 - .github/actions-tmp/.github/workflows/call-rust-windows-check.yml
 - .github/actions-tmp/.github/workflows/call-translate-readme.yml
 - .github/actions-tmp/.github/workflows/callgraph.yml
+- .github/actions-tmp/.github/workflows/check-large-files.yml
 - .github/actions-tmp/.github/workflows/check-recent-human-commit.yml
 - .github/actions-tmp/.github/workflows/daily-project-summary.yml
 - .github/actions-tmp/.github/workflows/issue-note.yml
@@ -132,6 +134,9 @@ Last updated: 2026-02-07
 - .github/actions-tmp/.github_automation/callgraph/scripts/find-process-results.cjs
 - .github/actions-tmp/.github_automation/callgraph/scripts/generate-html-graph.cjs
 - .github/actions-tmp/.github_automation/callgraph/scripts/generateHTML.cjs
+- .github/actions-tmp/.github_automation/check-large-files/README.md
+- .github/actions-tmp/.github_automation/check-large-files/check-large-files.toml.example
+- .github/actions-tmp/.github_automation/check-large-files/scripts/check_large_files.py
 - .github/actions-tmp/.github_automation/check_recent_human_commit/scripts/check-recent-human-commit.cjs
 - .github/actions-tmp/.github_automation/project_summary/docs/daily-summary-setup.md
 - .github/actions-tmp/.github_automation/project_summary/prompts/development-status-prompt.md
@@ -188,6 +193,7 @@ Last updated: 2026-02-07
 - .github/actions-tmp/issue-notes/29.md
 - .github/actions-tmp/issue-notes/3.md
 - .github/actions-tmp/issue-notes/30.md
+- .github/actions-tmp/issue-notes/31.md
 - .github/actions-tmp/issue-notes/4.md
 - .github/actions-tmp/issue-notes/7.md
 - .github/actions-tmp/issue-notes/8.md
@@ -215,11 +221,12 @@ Last updated: 2026-02-07
 - _config.yml
 - build.rs
 - demo/.gitignore
+- demo/FEATURES.md
 - demo/README.md
 - demo/index.html
 - demo/package.json
-- demo-library/README.md
 - demo-library/index.html
+- demo-library/package.json
 - googled947dc864c270e07.html
 - issue-notes/14.md
 - issue-notes/17.md
@@ -250,6 +257,10 @@ Last updated: 2026-02-07
 - issue-notes/68.md
 - issue-notes/69.md
 - issue-notes/70.md
+- issue-notes/73.md
+- issue-notes/79.md
+- issue-notes/81.md
+- issue-notes/83.md
 - mmlabc-to-smf-rust.toml.example
 - mmlabc-to-smf-wasm/Cargo.lock
 - mmlabc-to-smf-wasm/Cargo.toml
@@ -305,35 +316,32 @@ Last updated: 2026-02-07
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-d47d695 Merge pull request #72 from cat2151/copilot/add-demo-library-to-repo
-50960c7 Fix demo-library link path transformation for root deployment
-edd0c71 Add demo-library and update main demo with links
-c7f1663 Initial plan
-042da35 Merge pull request #71 from cat2151/copilot/fix-demo-multi-channel-error
-d0118ab Simplify fix: focus on build process, minimal documentation
-e4df3b3 Fix build script to always ensure tree-sitter-cli is installed
-4a428f3 Add root cause analysis and prevention measures for WASM sync issue
-18e7e3d Fix demo multi-channel: rebuild tree-sitter WASM grammar
-cc8012e Fix demo README: multi-channel is supported
+21b03b4 Merge pull request #84 from cat2151/codex/fix-demo-error-issue
+6b602ab fix: bundle tone dependency for demo
+a410ece Initial plan
+caea474 Add issue note for #83 [auto]
+90d1275 Merge pull request #82 from cat2151/codex/fix-demo-library-install-build
+0225b72 Move demo-library docs into index and remove README
+c8b10cc Add CDN fetch path for demo-library assets
+16e5dc8 Make demo-library npm scripts more portable
+f64382c Add npm install flow for demo-library
+dd60f76 Initial plan
 
 ### 変更されたファイル:
-.github/workflows/deploy-github-pages.yml
-README.ja.md
-README.md
+.github/copilot-instructions.md
 demo-library/README.md
 demo-library/index.html
-demo/README.md
+demo-library/package.json
+demo/.gitignore
 demo/index.html
-generated-docs/development-status-generated-prompt.md
-generated-docs/development-status.md
-generated-docs/project-overview-generated-prompt.md
-generated-docs/project-overview.md
-index.html
-issue-notes/70.md
+demo/package.json
+issue-notes/75.md
+issue-notes/79.md
+issue-notes/81.md
+issue-notes/83.md
 scripts/build-demo.sh
 scripts/transform-demo-paths.sh
-tree-sitter-mml/tree-sitter-mml.wasm
 
 
 ---
-Generated at: 2026-02-07 07:06:00 JST
+Generated at: 2026-02-09 07:07:36 JST

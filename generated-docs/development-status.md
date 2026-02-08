@@ -1,50 +1,50 @@
-Last updated: 2026-02-07
+Last updated: 2026-02-09
 
 # Development Status
 
 ## 現在のIssues
-- 現在オープン中のIssueはありません。
-- プロジェクトは安定した状態にあり、直接的な緊急のタスクは見受けられません。
-- 最新のコミット履歴は主にデモ機能の改善とビルドプロセスの安定化に集中しています。
+- 現在、プロジェクトにはオープンなIssueが存在しません。
+- これは、最近のデモ関連の修正が順調に進み、主要な問題が解決されたことを示しています。
+- 今後は、機能の安定性向上や品質改善に焦点を当てることが推奨されます。
 
 ## 次の一手候補
-1.  `demo-library`の機能を拡張し、より多様なMMLサンプルを提供する
-    - 最初の小さな一歩: `demo-library/index.html` に、異なる楽器やテンポ、コードを含むシンプルなMMLサンプルを一つ追加する。
-    - Agent実行プロンプト:
-        ```
-        対象ファイル: `demo-library/index.html`, `demo-library/README.md`
+1. デモプロジェクトのセットアップと利用ガイドの整備 [新規Issue]
+   - 最初の小さな一歩: `demo`および`demo-library`ディレクトリ内のファイルを参照し、ユーザーがローカルでデモをセットアップして実行するための手順のドラフトを作成する。
+   - Agent実行プロンプト:
+     ```
+     対象ファイル: demo/package.json, demo/index.html, demo/.gitignore, demo-library/package.json, demo-library/index.html, scripts/build-demo.sh, scripts/transform-demo-paths.sh
 
-        実行内容: `demo-library/index.html` に新しいMMLサンプル（異なる楽器、テンポ、コードを含む）を追加し、そのサンプルを `demo-library/README.md` で簡単に説明を追加してください。
+     実行内容: `demo`および`demo-library`のセットアップ、ビルド、実行方法に関する既存の情報を収集し、ユーザーがデモをローカルで動かすための具体的な手順をmarkdown形式で整理してください。特に、`npm install`やビルドスクリプトの実行、ブラウザでの表示手順に焦点を当ててください。
 
-        確認事項: 追加するMMLサンプルが既存のmmlabc-to-smfパーサーで正しく処理され、デモページ上で期待通りに動作することを確認してください。また、既存のデモ構造やレイアウトを損なわないように注意してください。
+     確認事項: 最近のコミット（特にデモ関連の修正）で導入された新しい手順や依存関係が反映されていることを確認してください。また、`demo-library`が`demo`にどのように統合されているかを明確にしてください。
 
-        期待する出力: 新しいMMLサンプルが追加された `demo-library/index.html` の変更内容と、その説明が追記された `demo-library/README.md` の変更内容をmarkdown形式で出力してください。
-        ```
+     期待する出力: `docs/demo-setup-guide.md`として保存できるような、Markdown形式のセットアップガイド。
+     ```
 
-2.  デモページのパス変換スクリプト `transform-demo-paths.sh` の堅牢性を向上させる
-    - 最初の小さな一歩: `scripts/transform-demo-paths.sh` の既存の処理が、GitHub Pagesのルートデプロイとサブディレクトリデプロイの両方で正しく動作することを検証するためのコメント付きテストケース（例: コメントアウトされたテストパス変数とその期待値）をスクリプト内に追加する。
-    - Agent実行プロンプト:
-        ```
-        対象ファイル: `scripts/transform-demo-paths.sh`
+2. CI/CDワークフローにおけるデモの自動テスト導入の検討 [新規Issue]
+   - 最初の小さな一歩: 現在のCI/CDワークフローファイルを確認し、デモのビルドが成功していることを確認する既存の仕組みがあるか調査する。また、デモが正しく動作するかを検証するための簡単なエンドツーエンドテスト（例: 生成されたHTMLファイルの存在チェックやJavaScriptバンドルの検証など）を導入する可能性について検討する。
+   - Agent実行プロンプト:
+     ```
+     対象ファイル: .github/workflows/call-daily-project-summary.yml, scripts/build-demo.sh, demo/package.json, demo-library/package.json
 
-        実行内容: `scripts/transform-demo-paths.sh` のロジックを分析し、特にGitHub Pagesのサブディレクトリデプロイとルートデプロイの両方でパスが正しく変換されることを確認するためのコメント付きテストケースをスクリプト内に追加してください。スクリプトが多様なデプロイ環境で堅牢に機能するためのエッジケースを特定し、将来的な改善の足がかりとします。
+     実行内容: デモプロジェクト（`demo`および`demo-library`）のビルドと、その後の簡単な動作確認をCI/CDワークフローに組み込むための実現可能性を分析してください。どのようなツールやアクションが利用可能か、どのようなテストステップが適切かを検討し、提案してください。
 
-        確認事項: スクリプトの既存の機能が損なわれないこと。また、GitHub Pagesのデプロイ環境におけるパス解決の要件と、`baseurl` の設定がどのように影響するかを理解してください。
+     確認事項: 既存のワークフローに不必要な変更を加えないよう、依存関係と実行順序を慎重に確認してください。また、テスト実行時に必要な環境（Node.jsなど）がCI環境で利用可能か考慮してください。
 
-        期待する出力: `scripts/transform-demo-paths.sh` にテストケースが追加された変更内容をmarkdown形式で出力してください。
-        ```
+     期待する出力: `README.md`または`docs/ci-demo-testing-proposal.md`に追加できるような、Markdown形式の提案書。提案書には、導入するテストの種類、想定されるステップ、および関連するワークフローファイルへの変更案を含めてください。
+     ```
 
-3.  CI/CDワークフロー `deploy-github-pages.yml` のログ出力を改善し、デプロイプロセスの可視性を高める
-    - 最初の小さな一歩: `deploy-github-pages.yml` 内の `build-demo` ステップにおいて、ビルドスクリプト `scripts/build-demo.sh` の実行前後に簡単な `echo` コマンドを追加し、ビルドの開始と終了をログに出力する。
-    - Agent実行プロンプト:
-        ```
-        対象ファイル: `.github/workflows/deploy-github-pages.yml`, `scripts/build-demo.sh`
+3. プロジェクト全体の依存関係の棚卸しと最適化の検討 [新規Issue]
+   - 最初の小さな一歩: `Cargo.toml`, `package.json` (ルート、demo、demo-library, tree-sitter-mml) および `package-lock.json` ファイルから、現在使用されている全ての直接的・間接的な依存関係をリストアップする。
+   - Agent実行プロンプト:
+     ```
+     対象ファイル: Cargo.toml, Cargo.lock, package.json (ルート, demo/, demo-library/, tree-sitter-mml/), package-lock.json
 
-        実行内容: `deploy-github-pages.yml` 内の `build-demo` ステップと、それが呼び出す `scripts/build-demo.sh` のログ出力を改善してください。具体的には、主要な処理ステップ（例: `tree-sitter-cli` のインストール、WASMのビルド、デモファイルの変換など）の開始と終了、および可能性のあるエラー診断に役立つ情報を、GitHub Actionsのログに分かりやすく出力するように修正を加えてください。
+     実行内容: プロジェクト全体で使用されている依存関係（Rustクレート、Node.jsパッケージ）を洗い出し、それぞれの依存関係が本当に必要か、またはより軽量な代替品がないかを分析してください。特に、最近のデモ関連の変更で追加されたJavaScriptの依存関係に注目し、不要なものがないか、バージョンは最適かを確認してください。
 
-        確認事項: ログ出力の追加がワークフローの実行時間やリソース消費に大きな悪影響を与えないこと。また、ログに機密情報や個人情報が含まれないことを確認してください。既存のデプロイフローが意図せず変更されないように注意してください。
+     確認事項: 依存関係を削除または変更する前に、それがプロジェクトのビルド、テスト、実行に与える影響を十分に評価してください。特に、`mmlabc-to-smf-wasm`などのWebAssembly関連の依存関係は注意深く扱う必要があります。
 
-        期待する出力: ログ出力が改善された `.github/workflows/deploy-github-pages.yml` および `scripts/build-demo.sh` の変更内容をmarkdown形式で出力してください。
+     期待する出力: Markdown形式で、現在の依存関係のリスト、各依存関係の評価（必要性、代替案の可能性）、および最適化の提案をまとめたレポート。
 
 ---
-Generated at: 2026-02-07 07:06:14 JST
+Generated at: 2026-02-09 07:08:00 JST
