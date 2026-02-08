@@ -189,6 +189,15 @@ const blob = new Blob([smfData], { type: 'audio/midi' });
 const url = URL.createObjectURL(blob);
 // ... create download link or play the MIDI</code></pre>
 
+    <h2>セットアップ（日本語）</h2>
+    <p>GitHub から npm インストールし、Rust なしで動かす手順です。</p>
+    <pre><code>npm install github:cat2151/mmlabc-to-smf-rust
+cd node_modules/mmlabc-to-smf-rust/demo-library
+npm install
+npm run fetch:cdn   # GitHub Pages からビルド済み WASM / web-tree-sitter を取得（Rust不要）
+npm run serve       # http://localhost:8080/demo-library/ を自動で開く</code></pre>
+    <p>Rust / wasm-pack を使って自前でビルドしたい場合は <code>npm run build</code> を実行してください。</p>
+
     <h2>Interactive Example</h2>
     <div class="demo-section">
         <p>Try it yourself! Enter MML code and convert it to MIDI:</p>
