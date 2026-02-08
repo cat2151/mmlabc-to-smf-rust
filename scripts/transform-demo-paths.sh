@@ -21,7 +21,7 @@ fi
 # Transform paths using sed with double quotes for clarity
 sed \
   -e "s|from './web-tree-sitter.js'|from './demo/web-tree-sitter.js'|g" \
-  -e "s|from './tone.js'|from './demo/tone.js'|g" \
+  -e "s|from './tone/index.js'|from './demo/tone/index.js'|g" \
   -e "s|from '../mmlabc-to-smf-wasm/|from './mmlabc-to-smf-wasm/|g" \
   -e "s|load('../tree-sitter-mml/|load('./tree-sitter-mml/|g" \
   -e "s|href=\"../demo-library/\"|href=\"./demo-library/\"|g" \
@@ -39,8 +39,8 @@ if ! grep -q "from './demo/web-tree-sitter.js'" "$OUTPUT_FILE"; then
     echo "Warning: Expected transformation 'from ./demo/web-tree-sitter.js' not found in output"
     VALIDATION_FAILED=1
 fi
-if ! grep -q "from './demo/tone.js'" "$OUTPUT_FILE"; then
-    echo "Warning: Expected transformation 'from ./demo/tone.js' not found in output"
+if ! grep -q "from './demo/tone/index.js'" "$OUTPUT_FILE"; then
+    echo "Warning: Expected transformation 'from ./demo/tone/index.js' not found in output"
     VALIDATION_FAILED=1
 fi
 if ! grep -q "from './mmlabc-to-smf-wasm/" "$OUTPUT_FILE"; then
