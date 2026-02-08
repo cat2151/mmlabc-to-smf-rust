@@ -176,3 +176,4 @@ When adding new MML commands:
 - The project is Japanese-originated; both English and Japanese documentation exist
 - Debug output files help understand processing at each stage
 - When unsure about MML commands, refer to the original Python implementation or mml2abc repository
+- Before committing, open the browser demo headlessly and confirm the console is error-free; if you cannot run this check, report that fact.
