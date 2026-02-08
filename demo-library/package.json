@@ -1,0 +1,16 @@
+{
+  "name": "mmlabc-to-smf-demo-library",
+  "version": "0.1.0",
+  "description": "Minimal demo for using mmlabc-to-smf (WASM) from a GitHub npm install.",
+  "scripts": {
+    "fetch:cdn": "bash -lc 'set -euo pipefail; BASE=https://cat2151.github.io/mmlabc-to-smf-rust; mkdir -p ../mmlabc-to-smf-wasm/pkg ../tree-sitter-mml ../demo; curl -L \"$BASE/mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js\" -o ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js; curl -L \"$BASE/mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm_bg.wasm\" -o ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm_bg.wasm; curl -L \"$BASE/tree-sitter-mml/tree-sitter-mml.wasm\" -o ../tree-sitter-mml/tree-sitter-mml.wasm; curl -L \"$BASE/demo/web-tree-sitter.js\" -o ../demo/web-tree-sitter.js; curl -L \"$BASE/demo/web-tree-sitter.wasm\" -o ../demo/web-tree-sitter.wasm'",
+    "build": "cd .. && bash ./scripts/build-demo.sh",
+    "serve": "npm exec -- http-server .. -p 8080 -o /demo-library/"
+  },
+  "author": "cat2151",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
