@@ -27,6 +27,7 @@ You can try this demo without cloning the repository by installing it from GitHu
 npm install github:cat2151/mmlabc-to-smf-rust
 cd node_modules/mmlabc-to-smf-rust/demo-library
 npm install
+npm run fetch:cdn   # downloads prebuilt WASM artifacts from GitHub Pages (no Rust toolchain required)
 npm run build   # builds WASM and supporting assets (Rust + wasm-pack required)
 npm run serve   # opens /demo-library/ via http-server
 ```
