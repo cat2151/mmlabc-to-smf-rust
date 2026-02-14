@@ -961,11 +961,9 @@
                 // Start Tone.js context
                 await Tone.start();
 
-                // Create player
-                const player = new Tone.Player({
-                    buffer: currentAudioBuffer,
-                    loop: false
-                }).toDestination();
+                // Create player with the prepared AudioBuffer
+                const player = new Tone.Player(currentAudioBuffer).toDestination();
+                player.loop = false;
 
                 // Create analyzers for visualization
                 const waveform = new Tone.Waveform(1024);
