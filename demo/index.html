@@ -23,6 +23,11 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        #jsonOutput {
+            height: auto;
+            background-color: #f5f5f5;
+            overflow: auto;
+        }
         button {
             background-color: #4CAF50;
             color: white;
@@ -62,6 +67,17 @@
         }
         .hidden {
             display: none;
+        }
+        details {
+            margin: 10px 0;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            user-select: none;
+        }
+        .collapsible-content {
+            margin-top: 10px;
         }
         .examples {
             margin: 20px 0;
@@ -175,6 +191,10 @@
                 background-color: #2d2d2d;
                 color: #e0e0e0;
             }
+            #jsonOutput {
+                background-color: #2d2d2d;
+                color: #e0e0e0;
+            }
             .bottom-links a {
                 color: #3d8b40;
             }
@@ -214,8 +234,12 @@
     <div id="status" class="hidden"></div>
 
     <div id="debug" class="hidden">
-        <h3>Debug Info:</h3>
-        <pre id="debugInfo"></pre>
+        <details id="debugDetails">
+            <summary>Debug Info</summary>
+            <div class="collapsible-content">
+                <pre id="debugInfo"></pre>
+            </div>
+        </details>
     </div>
 
     <!-- Playback Controls -->
@@ -227,26 +251,35 @@
 
     <!-- Visualizations -->
     <div class="visualizer-section" id="visualizerSection" style="display: none;">
-        <h3>Waveform Preview (Full)</h3>
-        <canvas id="waveformCanvas" width="760" height="120"></canvas>
+        <details id="visualizerDetails">
+            <summary>Visualizations</summary>
+            <div class="collapsible-content">
+                <h3>Waveform Preview (Full)</h3>
+                <canvas id="waveformCanvas" width="760" height="120"></canvas>
 
-        <h3>Real-time Visualization (During Playback)</h3>
-        <div style="display: flex; gap: 10px;">
-            <div>
-                <strong>Waveform:</strong>
-                <canvas id="realtimeWaveform" width="370" height="100"></canvas>
+                <h3>Real-time Visualization (During Playback)</h3>
+                <div style="display: flex; gap: 10px;">
+                    <div>
+                        <strong>Waveform:</strong>
+                        <canvas id="realtimeWaveform" width="370" height="100"></canvas>
+                    </div>
+                    <div>
+                        <strong>FFT Spectrum:</strong>
+                        <canvas id="realtimeFFT" width="370" height="100"></canvas>
+                    </div>
+                </div>
             </div>
-            <div>
-                <strong>FFT Spectrum:</strong>
-                <canvas id="realtimeFFT" width="370" height="100"></canvas>
-            </div>
-        </div>
+        </details>
     </div>
 
     <!-- JSON Output -->
     <div id="jsonSection" class="hidden">
-        <h3>YM2151 Log Format JSON:</h3>
-        <pre id="jsonOutput"></pre>
+        <details id="jsonDetails">
+            <summary>YM2151 Log Format JSON</summary>
+            <div class="collapsible-content">
+                <textarea id="jsonOutput" rows="12" spellcheck="false" wrap="off"></textarea>
+            </div>
+        </details>
     </div>
 
     <!-- Bottom left links -->
@@ -383,7 +416,7 @@
 
                 // Convert SMF to YM2151 JSON format (simplified)
                 const ym2151Json = smfToYM2151Json(smfData);
-                document.getElementById('jsonOutput').textContent = JSON.stringify(ym2151Json, null, 2);
+                document.getElementById('jsonOutput').value = JSON.stringify(ym2151Json, null, 2);
                 document.getElementById('jsonSection').classList.remove('hidden');
 
                 // Render waveform and prepare audio
