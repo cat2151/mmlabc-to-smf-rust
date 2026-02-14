@@ -1,21 +1,34 @@
-Last updated: 2026-02-09
+Last updated: 2026-02-15
 
 # Project Overview
 
 ## プロジェクト概要
-- Music Macro Language (MML) 形式の楽譜データをStandard MIDI File (SMF) に変換するRust製ライブラリです。
-- 独自の4パスアーキテクチャに基づき、MMLの解析からMIDIイベント生成、最終的なSMF作成までを段階的に実行します。
-- コマンドラインツールとしてMMLの変換・再生に利用できるほか、WASMライブラリとしてブラウザアプリケーションへの組み込みも可能です。
+- Music Macro Language (MML) 形式の文字列を、Standard MIDI File (SMF) へ変換するRustライブラリです。
+- 4パスアーキテクチャを採用し、MMLの解析からMIDIイベント生成、SMF作成まで一貫して処理します。
+- ネイティブアプリケーションだけでなく、WebAssembly (WASM) ライブラリとしても利用可能な汎用性の高い設計です。
 
 ## 技術スタック
-- フロントエンド: WebAssembly (WASM) (ブラウザ向けライブラリとしての利用想定), JavaScript (demoアプリケーションでの利用)
-- 音楽・オーディオ: Music Macro Language (MML), Standard MIDI File (SMF), MIDIイベント, `cat-play-mml`, `timidity`, `fluidsynth`, `vlc` (MIDIプレイヤー設定)
-- 開発ツール: Rust (プログラミング言語), Cargo (Rustのビルドシステム兼パッケージマネージャー), tree-sitter (構文解析のためのパーサー生成ツール), Node.js (tree-sitterパーサー生成に必要)
-- テスト: Rustのテストフレームワーク (35個のテストケースが実装済み)
-- ビルドツール: Cargo (Rustプロジェクトのビルド管理), tree-sitter-cli (tree-sitterパーサーの生成・更新)
-- 言語機能: Rustの型システム, 所有権モデル (メモリ安全性と堅牢な設計のため)
-- 自動化・CI/CD: ビルドスクリプト (`build.rs`, `scripts/`) と連携し、パーサーファイルの自動生成などを行うことでCI/CDを簡素化。
-- 開発標準: `.editorconfig` (コードスタイルの一貫性), `cargo clippy` (Linterによるコード品質チェック), `cargo fmt` (Formatterによるコード整形)
+- フロントエンド: WebAssembly (WASM): ブラウザ上で本ライブラリを利用するためのWeb技術。`demo/index.html`や`mmlabc-to-smf-wasm`クレートで利用されています。
+- 音楽・オーディオ:
+    - Music Macro Language (MML): 音楽をテキスト形式で記述するための言語。
+    - Standard MIDI File (SMF): 電子楽器間で演奏情報をやり取りするための標準ファイルフォーマット。
+    - `cat-play-mml`: 生成されたMIDIファイルを自動再生するための外部コマンド（デフォルト）。
+    - `timidity`, `fluidsynth`, `vlc`: カスタムMIDIプレイヤーとして設定可能なソフトウェア。
+- 開発ツール:
+    - Rust: 安全性とパフォーマンスに優れたプログラミング言語。プロジェクトの主要言語です。
+    - Cargo: Rustのビルドシステムおよびパッケージマネージャー。依存関係管理、ビルド、テストなどに使用されます。
+    - tree-sitter-cli: 構文解析器(パーサー)を生成するためのコマンドラインツール。
+    - Node.js, npx: tree-sitterパーサーの生成に必要なJavaScriptランタイムとパッケージ実行ツール。
+- テスト: `cargo test`: Rustプロジェクトのユニットテストおよび統合テストを実行するためのコマンド。現在35個のテストケースが実装されています。
+- ビルドツール: Cargo: Rustプロジェクトのビルドを管理します。`tree-sitter-cli`: MMLの構文解析器（パーサー）のC言語ソースファイルを生成します。
+- 言語機能: Rustの型システムと所有権モデル: メモリ安全性を保証し、堅牢なアプリケーション開発を可能にします。
+- 自動化・CI/CD:
+    - `cargo clippy`: コードの品質とスタイルをチェックするリンター。
+    - `cargo fmt`: コードの自動フォーマットツール。
+    - `build.rs`: tree-sitterパーサーファイルの自動再生成を管理するビルドスクリプト。
+- 開発標準:
+    - .editorconfig: 異なるエディタやIDE間でコードのスタイルを統一するための設定ファイル。
+    - .gitignore: Gitのバージョン管理から除外するファイルやディレクトリを指定するファイル。
 
 ## ファイル階層ツリー
 ```
@@ -43,7 +56,13 @@ Last updated: 2026-02-09
 │   ├── index.html
 │   └── package.json
 ├── generated-docs/
+│   └── development-status-generated-prompt.md
 ├── googled947dc864c270e07.html
+├── issue-notes/
+│   ├── 39.md
+│   ├── 44.md
+│   ├── 85.md
+│   └── 87.md
 ├── mmlabc-to-smf-rust.toml.example
 ├── mmlabc-to-smf-wasm/
 │   ├── Cargo.lock
@@ -89,87 +108,144 @@ Last updated: 2026-02-09
 └── tree-sitter-mml/
     ├── grammar.js
     ├── package.json
-    ├── src/
-    │   ├── grammar.json
-    │   ├── node-types.json
-    │   ├── parser.c
-    │   └── tree_sitter/
-    │       ├── alloc.h
-    │       ├── array.h
-    │       └── parser.h
-    └── tree-sitter-mml.wasm
+    └── src/
+        ├── grammar.json
+        ├── node-types.json
+        ├── parser.c
+        └── tree_sitter/
+            ├── alloc.h
+            ├── array.h
+            └── parser.h
 ```
 
 ## ファイル詳細説明
-- **`.editorconfig`**: さまざまなエディタやIDE間でコードのフォーマットを統一するための設定ファイル。
-- **`.gitignore`**: Gitが追跡しないファイルやディレクトリを指定するファイル。
-- **`.vscode/settings.json`**: Visual Studio Codeのワークスペース設定ファイル。
-- **`Cargo.lock`**: Rustプロジェクトのビルド時に、依存関係の正確なバージョンを固定するためにCargoが生成するファイル。
-- **`Cargo.toml`**: Rustプロジェクトのマニフェストファイル。プロジェクト名、バージョン、依存関係、ビルド設定などを定義。
-- **`IMPLEMENTATION_REPORT.md`**: 実装に関するレポートやメモを記述するMarkdownファイル。
-- **`LICENSE`**: プロジェクトのライセンス情報（MIT License）が記述されたファイル。
-- **`OPTION_A_IMPLEMENTATION.md`**: 別の実装オプションに関するドキュメント。
-- **`README.ja.md`**: プロジェクトの概要、使い方、開発情報などを日本語で記述したドキュメント。
-- **`README.md`**: プロジェクトの概要、使い方、開発情報などを英語で記述したドキュメント。
-- **`_config.yml`**: Jekyllなどの静的サイトジェネレーターの設定ファイルである可能性があり、ドキュメント生成に関連するかもしれない。
-- **`build.rs`**: Cargoのカスタムビルドスクリプト。tree-sitterパーサーファイルの自動生成など、ビルド時の特殊な処理を記述。
-- **`demo/`**: Webブラウザで動作するデモンストレーション関連のファイル群。
-    - **`demo/index.html`**: デモアプリケーションのHTMLエントリーポイント。
-    - **`demo/package.json`**: デモのJavaScript依存関係を管理するファイル。
-- **`demo-library/`**: Webブラウザで動作するライブラリデモ関連のファイル群。
-    - **`demo-library/index.html`**: ライブラリのWebAssembly版のデモを示すHTMLファイル。
-- **`generated-docs/`**: 自動生成されたドキュメントが格納されるディレクトリ。
+- **`.editorconfig`**: コーディングスタイル（インデント、改行コードなど）を定義し、異なるエディタ間での一貫性を保つための設定ファイルです。
+- **`.gitignore`**: Gitがバージョン管理から無視するファイルやディレクトリ（ビルド生成物、一時ファイルなど）を指定するファイルです。
+- **`.vscode/settings.json`**: Visual Studio Codeエディタのワークスペース固有の設定を定義します。
+- **`Cargo.lock`**: Cargoによって解決されたプロジェクトの依存関係の正確なバージョンを記録します。
+- **`Cargo.toml`**: Rustプロジェクトのメタデータ、依存関係、ビルド設定を定義するマニフェストファイルです。
+- **`IMPLEMENTATION_REPORT.md`**: 実装に関する詳細なレポートやメモを記述するMarkdownファイルです。
+- **`LICENSE`**: プロジェクトのライセンス情報（MIT License）を記載したファイルです。
+- **`OPTION_A_IMPLEMENTATION.md`**: 実装オプションAに関するドキュメントです。
+- **`README.ja.md`**: プロジェクトの日本語版の概要、使い方、開発情報などを記述したメインドキュメントです。
+- **`README.md`**: プロジェクトの英語版の概要、使い方、開発情報などを記述したメインドキュメントです。
+- **`_config.yml`**: Jekyllなどの静的サイトジェネレータで使用される設定ファイルですが、このプロジェクトでは利用用途は不明です。
+- **`build.rs`**: Rustのカスタムビルドスクリプトです。tree-sitterパーサーファイルの自動再生成などを担当します。
+- **`demo/`**: ブラウザ向けデモに関連するファイル群を格納するディレクトリです。
+    - **`demo/index.html`**: ブラウザデモのメインHTMLファイル。
+    - **`demo/FEATURES.md`**: デモの機能に関するドキュメント。
+- **`demo-library/`**: ライブラリ形式でデモを行うためのファイル群。
+    - **`demo-library/index.html`**: ライブラリデモのHTMLファイル。
+- **`generated-docs/development-status-generated-prompt.md`**: 自動生成された開発状況に関するドキュメント。
 - **`googled947dc864c270e07.html`**: Googleサイト認証用のファイル。
-- **`mmlabc-to-smf-rust.toml.example`**: 外部MIDIプレイヤーのカスタム設定例を示すTOMLファイル。
-- **`mmlabc-to-smf-wasm/`**: WebAssembly (WASM) 版ライブラリのクレート。
-    - **`mmlabc-to-smf-wasm/src/lib.rs`**: WASMターゲット向けライブラリのエントリーポイント。
-- **`package.json`**: ルートディレクトリのNode.jsプロジェクトの依存関係を管理するファイル。主にtree-sitter-cliに関連。
-- **`scripts/`**: ビルドやデモ関連のスクリプトを格納するディレクトリ。
+- **`issue-notes/`**: 過去の課題や検討事項に関するノートファイル群です。
+- **`mmlabc-to-smf-rust.toml.example`**: カスタムMIDIプレイヤーの設定例が記述されたファイルです。
+- **`mmlabc-to-smf-wasm/`**: WebAssembly (WASM) 用のサブクレート。
+    - **`mmlabc-to-smf-wasm/src/lib.rs`**: WASMライブラリのエントリーポイント。
+- **`package.json`**: Node.jsプロジェクトのメタデータと依存関係を定義するファイル。主に`tree-sitter-cli`の依存関係に用いられます。
+- **`scripts/`**: ビルドやデモ関連のスクリプトを格納するディレクトリです。
     - **`scripts/build-demo.sh`**: デモをビルドするためのシェルスクリプト。
     - **`scripts/transform-demo-paths.sh`**: デモのパスを変換するためのシェルスクリプト。
-- **`src/`**: Rustのソースコードを格納する主要なディレクトリ。
-    - **`src/config.rs`**: アプリケーション設定（例：外部MIDIプレイヤー）を処理するモジュール。
-    - **`src/lib.rs`**: ライブラリのメインエントリーポイント。MML-SMF変換のパブリックAPIを提供。
-    - **`src/main.rs`**: コマンドラインインターフェース (CLI) のエントリーポイント。コマンド引数を解析し、変換処理を呼び出す。
-    - **`src/pass1_parser.rs`**: MML文字列をトークンに解析する最初のパスを実装するモジュール。tree-sitterパーサーを利用。
-    - **`src/pass2_ast.rs`**: トークン列を抽象構文木 (AST) に変換する第2パスを実装するモジュール。
-    - **`src/pass3_events.rs`**: ASTからMIDIイベントのリストを生成する第3パスを実装するモジュール。
-    - **`src/pass4_midi.rs`**: MIDIイベントのリストから最終的なStandard MIDI File (SMF) を作成する第4パスを実装するモジュール。
-    - **`src/tree_sitter_mml.rs`**: `tree-sitter-mml`パーサーをRustプロジェクトに統合するためのコード。
-    - **`src/types.rs`**: プロジェクト全体で共有されるカスタムデータ構造や列挙型などの型定義。
-- **`tests/`**: ユニットテストと統合テストのソースコードを格納するディレクトリ。
-    - **`tests/integration_test.rs`**: プロジェクト全体の統合テスト。
-    - **`tests/test_channel.rs`**: MMLのチャンネル機能に関するテスト。
-    - **`tests/test_chord.rs`**: MMLの和音機能に関するテスト。
-    - **`tests/test_cli.rs`**: コマンドラインインターフェースの動作に関するテスト。
-    - **`tests/test_config.rs`**: 設定ファイルの読み込みと適用に関するテスト。
-    - **`tests/test_dotted_notes.rs`**: 付点音符の処理に関するテスト。
-    - **`tests/test_drum_channel.rs`**: ドラムチャンネルの処理に関するテスト。
-    - **`tests/test_key_transpose.rs`**: キー（調）の移調に関するテスト。
-    - **`tests/test_length.rs`**: 音長指定に関するテスト。
-    - **`tests/test_modifier.rs`**: MML修飾子に関するテスト。
+- **`src/`**: プロジェクトの主要なRustソースコードが格納されているディレクトリです。
+    - **`src/config.rs`**: アプリケーションの設定を管理するコード。
+    - **`src/lib.rs`**: ライブラリクレートのルートファイル。他のモジュールを公開し、主要なAPIを定義します。
+    - **`src/main.rs`**: CLIアプリケーションのエントリーポイント。コマンドライン引数の解析と主要な処理フローを制御します。
+    - **`src/pass1_parser.rs`**: MML文字列をトークンに解析する「パス1」の処理を担当します。tree-sitterパーサーを利用します。
+    - **`src/pass2_ast.rs`**: トークンから抽象構文木（AST）への変換を行う「パス2」の処理を担当します。
+    - **`src/pass3_events.rs`**: ASTからMIDIイベントを生成する「パス3」の処理を担当します。
+    - **`src/pass4_midi.rs`**: 生成されたMIDIイベントからStandard MIDI Fileを作成する「パス4」の処理を担当します。
+    - **`src/tree_sitter_mml.rs`**: tree-sitter MMLパーサーとの統合を扱うモジュール。
+    - **`src/types.rs`**: プロジェクト全体で共有されるデータ構造や型定義を格納します。
+- **`tests/`**: プロジェクトのテストコードが格納されているディレクトリです。
+    - **`tests/integration_test.rs`**: 統合テスト。
+    - **`tests/test_channel.rs`**: チャンネル機能のテスト。
+    - **`tests/test_chord.rs`**: 和音機能のテスト。
+    - **`tests/test_cli.rs`**: コマンドラインインターフェースのテスト。
+    - **`tests/test_config.rs`**: 設定ファイル読み込みのテスト。
+    - **`tests/test_dotted_notes.rs`**: 付点音符のテスト。
+    - **`tests/test_drum_channel.rs`**: ドラムチャンネルのテスト。
+    - **`tests/test_key_transpose.rs`**: キー転調のテスト。
+    - **`tests/test_length.rs`**: 音長指定のテスト。
+    - **`tests/test_modifier.rs`**: 各種修飾子（例：シャープ、フラット）のテスト。
     - **`tests/test_note_length.rs`**: 音符の長さに関するテスト。
-    - **`tests/test_octave.rs`**: オクターブ指定に関するテスト。
-    - **`tests/test_pass1.rs`**: パス1 (トークン解析) のユニットテスト。
-    - **`tests/test_pass2.rs`**: パス2 (AST変換) のユニットテスト。
-    - **`tests/test_pass3.rs`**: パス3 (MIDIイベント生成) のユニットテスト。
-    - **`tests/test_pass4.rs`**: パス4 (MIDIファイル作成) のユニットテスト。
-    - **`tests/test_program_change.rs`**: プログラムチェンジ（音色変更）に関するテスト。
-    - **`tests/test_rest.rs`**: 休符の処理に関するテスト。
-    - **`tests/test_tempo.rs`**: テンポ変更に関するテスト。
-    - **`tests/test_velocity.rs`**: ベロシティ（音量）に関するテスト。
-- **`tree-sitter-mml/`**: MML用のtree-sitterパーサーの定義と生成されたファイル群。
-    - **`tree-sitter-mml/grammar.js`**: MML言語のtree-sitter文法を定義するJavaScriptファイル。
-    - **`tree-sitter-mml/package.json`**: tree-sitterパーサーのビルドに必要なNode.jsパッケージを管理。
-    - **`tree-sitter-mml/src/`**: tree-sitterによって生成されたC言語のパーサーソースコードやJSON定義。
-    - **`tree-sitter-mml/tree-sitter-mml.wasm`**: WebAssemblyにコンパイルされたMMLパーサー。
+    - **`tests/test_octave.rs`**: オクターブ機能のテスト。
+    - **`tests/test_pass1.rs`**: パス1（トークン解析）のテスト。
+    - **`tests/test_pass2.rs`**: パス2（AST変換）のテスト。
+    - **`tests/test_pass3.rs`**: パス3（MIDIイベント生成）のテスト。
+    - **`tests/test_pass4.rs`**: パス4（MIDIファイル作成）のテスト。
+    - **`tests/test_program_change.rs`**: プログラムチェンジ（音色変更）のテスト。
+    - **`tests/test_rest.rs`**: 休符のテスト。
+    - **`tests/test_tempo.rs`**: テンポ変更のテスト。
+    - **`tests/test_velocity.rs`**: 音量（ベロシティ）変更のテスト。
+- **`tree-sitter-mml/`**: MML言語のtree-sitterパーサーを定義するディレクトリです。
+    - **`tree-sitter-mml/grammar.js`**: MML言語の構文ルールを定義するJavaScriptファイル。
+    - **`tree-sitter-mml/package.json`**: tree-sitterパーサーの依存関係を定義。
+    - **`tree-sitter-mml/src/`**: 生成されたC言語ソースコードやJSON定義を格納。
+        - **`tree-sitter-mml/src/grammar.json`**: 生成された文法定義のJSON形式。
+        - **`tree-sitter-mml/src/node-types.json`**: 生成されたASTノードタイプのJSON形式。
+        - **`tree-sitter-mml/src/parser.c`**: tree-sitterによって生成されたC言語パーサーのソースコード。
+        - **`tree-sitter-mml/src/tree_sitter/`**: tree-sitterランタイムに必要なC言語ヘッダーファイル。
+    - **`tree-sitter-mml/tree-sitter-mml.wasm`**: WebAssembly形式にコンパイルされたMMLパーサー。
 
 ## 関数詳細説明
-現状では、個々の関数の詳細な役割、引数、戻り値に関する具体的な情報はありません。ただし、プロジェクトの4パスアーキテクチャに基づき、各パスのモジュール（`src/pass1_parser.rs`、`src/pass2_ast.rs`、`src/pass3_events.rs`、`src/pass4_midi.rs`など）内にそれぞれの処理段階を担う関数が実装されています。
+※プロジェクト情報から具体的な関数名が直接確認できないため、READMEに記載されている「4パスアーキテクチャ」の各ステップを概念的な関数として説明します。
+
+- **`process_mml_to_midi(mml_string: &str, output_path: Option<&str>, no_play: bool) -> Result<(), Error>`**
+    - **役割**: MML文字列を解析し、Standard MIDI Fileを生成する全体のオーケストレーションを担う高レベル関数。コマンドラインインターフェースからの入力処理や、MIDIファイルの保存・再生オプションを処理します。
+    - **引数**:
+        - `mml_string`: 変換対象のMML文字列。
+        - `output_path`: 生成されるMIDIファイルのパス（オプション）。Noneの場合はデフォルト名を使用。
+        - `no_play`: MIDI生成後に自動再生を無効にするかどうかを示すフラグ。
+    - **戻り値**: 成功した場合は空のResult、エラーが発生した場合は対応するError型。
+    - **機能**: 内部で以下の各パスの処理を順次呼び出し、MMLからSMFへの変換を完了させます。
+
+- **`pass1_tokenize_mml(mml_string: &str) -> Result<Vec<Token>, Error>`**
+    - **役割**: 入力されたMML文字列を、tree-sitterパーサーを用いて一連のトークンに分解します。
+    - **引数**:
+        - `mml_string`: トークン化するMML文字列。
+    - **戻り値**: 成功した場合はトークンのベクトル、エラーが発生した場合は対応するError型。
+    - **機能**: MML構文の解析の最初のステップであり、後続のAST構築のための基礎データを提供します。
+
+- **`pass2_build_ast(tokens: Vec<Token>) -> Result<AstNode, Error>`**
+    - **役割**: パス1で生成されたトークンのリストから、抽象構文木 (AST) を構築します。
+    - **引数**:
+        - `tokens`: パス1で生成されたMMLトークンのベクトル。
+    - **戻り値**: 成功した場合はASTのルートノード、エラーが発生した場合は対応するError型。
+    - **機能**: MMLの構造をより高レベルなツリー形式で表現し、論理的な意味付けを行います。
+
+- **`pass3_generate_midi_events(ast: AstNode) -> Result<Vec<MidiEvent>, Error>`**
+    - **役割**: パス2で構築されたASTを走査し、対応するStandard MIDIイベントのシーケンスを生成します。
+    - **引数**:
+        - `ast`: パス2で構築されたMMLの抽象構文木。
+    - **戻り値**: 成功した場合はMIDIイベントのベクトル、エラーが発生した場合は対応するError型。
+    - **機能**: MMLの音楽的意味（音符、テンポ、チャンネルなど）をMIDIプロトコルが理解できる形式に変換します。
+
+- **`pass4_create_smf(midi_events: Vec<MidiEvent>, output_path: &str) -> Result<(), Error>`**
+    - **役割**: パス3で生成されたMIDIイベントのシーケンスから、最終的なStandard MIDI File (.mid) を作成し、指定されたパスに保存します。
+    - **引数**:
+        - `midi_events`: パス3で生成されたMIDIイベントのベクトル。
+        - `output_path`: 保存するMIDIファイルのファイルパス。
+    - **戻り値**: 成功した場合は空のResult、エラーが発生した場合は対応するError型。
+    - **機能**: MIDIファイルフォーマットの仕様に従ってデータを構造化し、バイナリファイルとして出力します。
+
+- **`play_midi_file(file_path: &str, player_command: &str) -> Result<(), Error>`**
+    - **役割**: 生成されたMIDIファイルを外部のMIDIプレイヤーコマンド (`cat-play-mml`など) を使って再生します。
+    - **引数**:
+        - `file_path`: 再生するMIDIファイルのパス。
+        - `player_command`: 使用する外部MIDIプレイヤーのコマンド名。
+    - **戻り値**: 成功した場合は空のResult、エラーが発生した場合は対応するError型。
+    - **機能**: ユーザーがMMLの出力結果をすぐに聴覚で確認できるようにします。
 
 ## 関数呼び出し階層ツリー
 ```
-関数呼び出し階層を分析できませんでした
+main (src/main.rs)
+└── process_mml_to_midi
+    ├── pass1_tokenize_mml
+    │   └── (tree-sitterパーサーの内部呼び出し)
+    ├── pass2_build_ast
+    ├── pass3_generate_midi_events
+    ├── pass4_create_smf
+    └── play_midi_file (オプション)
 
 ---
-Generated at: 2026-02-09 07:08:05 JST
+Generated at: 2026-02-15 07:06:14 JST

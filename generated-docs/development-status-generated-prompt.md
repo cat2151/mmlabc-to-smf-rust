@@ -1,4 +1,4 @@
-Last updated: 2026-02-09
+Last updated: 2026-02-15
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -193,8 +193,11 @@ Last updated: 2026-02-09
 - .github/actions-tmp/issue-notes/29.md
 - .github/actions-tmp/issue-notes/3.md
 - .github/actions-tmp/issue-notes/30.md
-- .github/actions-tmp/issue-notes/31.md
+- .github/actions-tmp/issue-notes/35.md
+- .github/actions-tmp/issue-notes/38.md
 - .github/actions-tmp/issue-notes/4.md
+- .github/actions-tmp/issue-notes/40.md
+- .github/actions-tmp/issue-notes/42.md
 - .github/actions-tmp/issue-notes/7.md
 - .github/actions-tmp/issue-notes/8.md
 - .github/actions-tmp/issue-notes/9.md
@@ -228,39 +231,10 @@ Last updated: 2026-02-09
 - demo-library/index.html
 - demo-library/package.json
 - googled947dc864c270e07.html
-- issue-notes/14.md
-- issue-notes/17.md
-- issue-notes/18.md
-- issue-notes/19.md
-- issue-notes/20.md
-- issue-notes/21.md
-- issue-notes/22.md
-- issue-notes/23.md
-- issue-notes/24.md
-- issue-notes/30.md
-- issue-notes/36.md
-- issue-notes/37.md
 - issue-notes/39.md
-- issue-notes/40.md
-- issue-notes/42.md
 - issue-notes/44.md
-- issue-notes/46.md
-- issue-notes/48.md
-- issue-notes/50.md
-- issue-notes/52.md
-- issue-notes/54.md
-- issue-notes/55.md
-- issue-notes/56.md
-- issue-notes/62.md
-- issue-notes/64.md
-- issue-notes/66.md
-- issue-notes/68.md
-- issue-notes/69.md
-- issue-notes/70.md
-- issue-notes/73.md
-- issue-notes/79.md
-- issue-notes/81.md
-- issue-notes/83.md
+- issue-notes/85.md
+- issue-notes/87.md
 - mmlabc-to-smf-rust.toml.example
 - mmlabc-to-smf-wasm/Cargo.lock
 - mmlabc-to-smf-wasm/Cargo.toml
@@ -316,32 +290,59 @@ Last updated: 2026-02-09
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-21b03b4 Merge pull request #84 from cat2151/codex/fix-demo-error-issue
-6b602ab fix: bundle tone dependency for demo
-a410ece Initial plan
-caea474 Add issue note for #83 [auto]
-90d1275 Merge pull request #82 from cat2151/codex/fix-demo-library-install-build
-0225b72 Move demo-library docs into index and remove README
-c8b10cc Add CDN fetch path for demo-library assets
-16e5dc8 Make demo-library npm scripts more portable
-f64382c Add npm install flow for demo-library
-dd60f76 Initial plan
+da82e8f Merge pull request #88 from cat2151/codex/add-collapsible-areas-to-demo
+4f45ba8 Tweak JSON textarea styling
+02a4832 Add collapsible toggles to demo outputs
+16194a0 Initial plan
+28dcfee Merge pull request #86 from cat2151/codex/fix-play-button-error
+293af69 Fix demo playback buffer setup
+793f7de Add issue note for #87 [auto]
+620abae Initial plan
+c51d662 Add issue note for #85 [auto]
+eb2b367 Update project summaries (overview & development status) [auto]
 
 ### 変更されたファイル:
 .github/copilot-instructions.md
-demo-library/README.md
-demo-library/index.html
-demo-library/package.json
-demo/.gitignore
 demo/index.html
 demo/package.json
-issue-notes/75.md
+generated-docs/development-status-generated-prompt.md
+generated-docs/development-status.md
+generated-docs/project-overview-generated-prompt.md
+generated-docs/project-overview.md
+issue-notes/14.md
+issue-notes/17.md
+issue-notes/18.md
+issue-notes/19.md
+issue-notes/20.md
+issue-notes/21.md
+issue-notes/22.md
+issue-notes/23.md
+issue-notes/24.md
+issue-notes/30.md
+issue-notes/36.md
+issue-notes/37.md
+issue-notes/40.md
+issue-notes/42.md
+issue-notes/46.md
+issue-notes/48.md
+issue-notes/50.md
+issue-notes/52.md
+issue-notes/54.md
+issue-notes/55.md
+issue-notes/56.md
+issue-notes/62.md
+issue-notes/64.md
+issue-notes/66.md
+issue-notes/68.md
+issue-notes/69.md
+issue-notes/70.md
+issue-notes/73.md
 issue-notes/79.md
 issue-notes/81.md
-issue-notes/83.md
+issue-notes/85.md
+issue-notes/87.md
 scripts/build-demo.sh
-scripts/transform-demo-paths.sh
 
 
 ---
-Generated at: 2026-02-09 07:07:36 JST
+Generated at: 2026-02-15 07:05:43 JST

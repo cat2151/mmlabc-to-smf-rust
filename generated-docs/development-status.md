@@ -1,50 +1,51 @@
-Last updated: 2026-02-09
+Last updated: 2026-02-15
 
 # Development Status
 
 ## 現在のIssues
-- 現在、プロジェクトにはオープンなIssueが存在しません。
-- これは、最近のデモ関連の修正が順調に進み、主要な問題が解決されたことを示しています。
-- 今後は、機能の安定性向上や品質改善に焦点を当てることが推奨されます。
+オープン中のIssueはありません。
+直近の作業はデモページの改善や内部の自動化スクリプトの調整に集中しています。
+具体的な次のステップとして、デモの使いやすさ向上、自動生成プロンプトの精度検証、そしてコアライブラリのテスト強化が考えられます。
 
 ## 次の一手候補
-1. デモプロジェクトのセットアップと利用ガイドの整備 [新規Issue]
-   - 最初の小さな一歩: `demo`および`demo-library`ディレクトリ内のファイルを参照し、ユーザーがローカルでデモをセットアップして実行するための手順のドラフトを作成する。
+1. デモページのユーザーエクスペリエンス向上とMML記法説明の追加 [関連Issue #88](../issue-notes/88.md)
+   - 最初の小さな一歩: `demo/index.html` にMML記法の簡単な説明セクションを追加することを検討する。
    - Agent実行プロンプト:
      ```
-     対象ファイル: demo/package.json, demo/index.html, demo/.gitignore, demo-library/package.json, demo-library/index.html, scripts/build-demo.sh, scripts/transform-demo-paths.sh
+     対象ファイル: `demo/index.html`, `demo/FEATURES.md`
 
-     実行内容: `demo`および`demo-library`のセットアップ、ビルド、実行方法に関する既存の情報を収集し、ユーザーがデモをローカルで動かすための具体的な手順をmarkdown形式で整理してください。特に、`npm install`やビルドスクリプトの実行、ブラウザでの表示手順に焦点を当ててください。
+     実行内容: `demo/index.html` の現在のコンテンツと `demo/FEATURES.md` を分析し、MML記法の入門者向け説明や主要機能のハイライトを追加する最適な場所と形式を提案してください。特に、ユーザーがMMLを初めて使う際に役立つような説明を考慮してください。
 
-     確認事項: 最近のコミット（特にデモ関連の修正）で導入された新しい手順や依存関係が反映されていることを確認してください。また、`demo-library`が`demo`にどのように統合されているかを明確にしてください。
+     確認事項: 既存のレイアウトを大きく崩さないこと。追加する情報が冗長にならないように `demo/FEATURES.md` の内容と適切に連携させること。
 
-     期待する出力: `docs/demo-setup-guide.md`として保存できるような、Markdown形式のセットアップガイド。
+     期待する出力: `demo/index.html` に追加すべきMML記法の説明コンテンツのmarkdown形式の提案と、その配置場所。
      ```
 
-2. CI/CDワークフローにおけるデモの自動テスト導入の検討 [新規Issue]
-   - 最初の小さな一歩: 現在のCI/CDワークフローファイルを確認し、デモのビルドが成功していることを確認する既存の仕組みがあるか調査する。また、デモが正しく動作するかを検証するための簡単なエンドツーエンドテスト（例: 生成されたHTMLファイルの存在チェックやJavaScriptバンドルの検証など）を導入する可能性について検討する。
+2. 開発状況レポート生成プロンプトの精度向上 [関連Issue #30](../issue-notes/30.md)
+   - 最初の小さな一歩: `generated-docs/development-status.md` の最近の出力と、このプロンプト（`development-status-prompt.md`）の要件を比較し、改善点を特定する。
    - Agent実行プロンプト:
      ```
-     対象ファイル: .github/workflows/call-daily-project-summary.yml, scripts/build-demo.sh, demo/package.json, demo-library/package.json
+     対象ファイル: `generated-docs/development-status.md`, `development-status-prompt.md`, `.github/actions-tmp/.github_automation/project_summary/prompts/development-status-prompt.md`
 
-     実行内容: デモプロジェクト（`demo`および`demo-library`）のビルドと、その後の簡単な動作確認をCI/CDワークフローに組み込むための実現可能性を分析してください。どのようなツールやアクションが利用可能か、どのようなテストステップが適切かを検討し、提案してください。
+     実行内容: `generated-docs/development-status.md` の最近の出力内容が、本プロンプト `development-status-prompt.md` （及び `.github/actions-tmp/.github_automation/project_summary/prompts/development-status-prompt.md`）で定義されている要件（特に「生成しないもの」）をどの程度満たしているかを評価してください。特に、ハルシネーションや不適切な提案がないかを確認し、プロンプトの改善案を提案してください。
 
-     確認事項: 既存のワークフローに不必要な変更を加えないよう、依存関係と実行順序を慎重に確認してください。また、テスト実行時に必要な環境（Node.jsなど）がCI環境で利用可能か考慮してください。
+     確認事項: 生成されたレポートがユーザーにとって価値のある情報を提供しているか、また、不要な情報を排除できているか。
 
-     期待する出力: `README.md`または`docs/ci-demo-testing-proposal.md`に追加できるような、Markdown形式の提案書。提案書には、導入するテストの種類、想定されるステップ、および関連するワークフローファイルへの変更案を含めてください。
+     期待する出力: 現在のプロンプトの課題点（もしあれば）と、それを解決するための `development-status-prompt.md` の具体的な修正案をmarkdown形式で出力してください。
      ```
 
-3. プロジェクト全体の依存関係の棚卸しと最適化の検討 [新規Issue]
-   - 最初の小さな一歩: `Cargo.toml`, `package.json` (ルート、demo、demo-library, tree-sitter-mml) および `package-lock.json` ファイルから、現在使用されている全ての直接的・間接的な依存関係をリストアップする。
+3. MMLパーサーのテストカバレッジレビューと拡張 [関連Issue #85](../issue-notes/85.md)
+   - 最初の小さな一歩: `src/pass1_parser.rs` の主要なパースロジックに対応する `tests/test_pass1.rs` のテストケースをレビューし、不足しているテストシナリオがないか確認する。
    - Agent実行プロンプト:
      ```
-     対象ファイル: Cargo.toml, Cargo.lock, package.json (ルート, demo/, demo-library/, tree-sitter-mml/), package-lock.json
+     対象ファイル: `src/pass1_parser.rs`, `tests/test_pass1.rs`, `tests/integration_test.rs`
 
-     実行内容: プロジェクト全体で使用されている依存関係（Rustクレート、Node.jsパッケージ）を洗い出し、それぞれの依存関係が本当に必要か、またはより軽量な代替品がないかを分析してください。特に、最近のデモ関連の変更で追加されたJavaScriptの依存関係に注目し、不要なものがないか、バージョンは最適かを確認してください。
+     実行内容: `src/pass1_parser.rs` で実装されているMMLのパース機能について、`tests/test_pass1.rs` および `tests/integration_test.rs` の既存のテストケースを分析し、特に複雑なMML記法（例: 同時発音、マクロ、変調など）やエッジケースに対するテストカバレッジのギャップを特定してください。
 
-     確認事項: 依存関係を削除または変更する前に、それがプロジェクトのビルド、テスト、実行に与える影響を十分に評価してください。特に、`mmlabc-to-smf-wasm`などのWebAssembly関連の依存関係は注意深く扱う必要があります。
+     確認事項: パースエラーを引き起こす可能性のある入力や、予期せぬ挙動につながるような記法の組み合わせがテストされているか。
 
-     期待する出力: Markdown形式で、現在の依存関係のリスト、各依存関係の評価（必要性、代替案の可能性）、および最適化の提案をまとめたレポート。
+     期待する出力: 特定されたテストカバレッジのギャップをリストアップし、それぞれについて新規追加すべきテストケースの概要（入力MMLと期待されるパース結果の概念）をmarkdown形式で提案してください。
+     ```
 
 ---
-Generated at: 2026-02-09 07:08:00 JST
+Generated at: 2026-02-15 07:06:12 JST
