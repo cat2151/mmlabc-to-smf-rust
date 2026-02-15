@@ -23,6 +23,8 @@ Music Macro Language (MML) から Standard MIDI File (SMF) への変換ライブ
 
 READMEがメンテ不足です。実際はもっと多数のMMLコマンドが実装済みです。あとでREADMEをメンテ予定です
 
+webのdemoがバグっており、おそらくcoding agentがこのライブラリもweb-ym2151も使わず、自前のMMLパースと自前のSMF化と自前のTone.js演奏をしています。修正予定です
+
 実装されたMMLを知りたい場合、まず [tree-sitter-mml/grammar.js](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/tree-sitter-mml/grammar.js) をお読みください（ただし今後、破壊的変更されます）
 
 ### 実装済み機能 ✅
