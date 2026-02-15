@@ -1,51 +1,65 @@
-Last updated: 2026-02-15
+Last updated: 2026-02-16
 
 # Development Status
 
 ## 現在のIssues
-オープン中のIssueはありません。
-直近の作業はデモページの改善や内部の自動化スクリプトの調整に集中しています。
-具体的な次のステップとして、デモの使いやすさ向上、自動生成プロンプトの精度検証、そしてコアライブラリのテスト強化が考えられます。
+- [Issue #93](../issue-notes/93.md) は、500行超のソースコードに対する単一責任原則の適用とCIチェックの導入を求めています。
+- [Issue #92](../issue-notes/92.md) と [Issue #91](../issue-notes/91.md) は、demoコードの肥大化とライブラリ利用の不徹底による問題点を示唆しています。
+- [Issue #89](../issue-notes/89.md) と [Issue #90](../issue-notes/90.md) は、demoでの和音パースの不具合やweb-ym2151ライブラリの不適切な利用を指摘しています。
 
 ## 次の一手候補
-1. デモページのユーザーエクスペリエンス向上とMML記法説明の追加 [関連Issue #88](../issue-notes/88.md)
-   - 最初の小さな一歩: `demo/index.html` にMML記法の簡単な説明セクションを追加することを検討する。
+1. demoの和音パース不具合とweb-ym2151ライブラリ利用の修正 [Issue #89](../issue-notes/89.md), [Issue #90](../issue-notes/90.md)
+   - 最初の小さな一歩: `demo/index.html` 内のMMLパースおよびMIDI変換ロジックがweb-ym2151ライブラリを利用しているか確認し、和音パースの動作をデバッグする。
    - Agent実行プロンプト:
      ```
-     対象ファイル: `demo/index.html`, `demo/FEATURES.md`
+     対象ファイル: `demo/index.html` および関連する可能性のある `demo/main.js` (または同様のスクリプトファイル)
 
-     実行内容: `demo/index.html` の現在のコンテンツと `demo/FEATURES.md` を分析し、MML記法の入門者向け説明や主要機能のハイライトを追加する最適な場所と形式を提案してください。特に、ユーザーがMMLを初めて使う際に役立つような説明を考慮してください。
+     実行内容:
+     1. `demo/index.html` 内のJavaScriptコードを分析し、MMLからSMFへの変換、およびSMFからTone.jsでの演奏に至るまでのロジックを特定してください。
+     2. 特に、web-ym2151ライブラリが適切に利用されているか、または自前実装されている部分があるかを調査してください。
+     3. 和音のパースにおいて、先頭の音符長が2つ目以降に適用されない事象が発生している箇所を特定し、その原因を究明してください。
 
-     確認事項: 既存のレイアウトを大きく崩さないこと。追加する情報が冗長にならないように `demo/FEATURES.md` の内容と適切に連携させること。
+     確認事項: web-ym2151ライブラリの導入状況と、既存のMMLパースロジックの依存関係を確認してください。
 
-     期待する出力: `demo/index.html` に追加すべきMML記法の説明コンテンツのmarkdown形式の提案と、その配置場所。
+     期待する出力:
+     1. web-ym2151ライブラリの利用状況（利用されているか、自前実装か、不完全な利用か）についての詳細な分析結果。
+     2. 和音パースの不具合の原因と、その修正に必要な具体的なコード変更案をmarkdown形式で出力してください。
      ```
 
-2. 開発状況レポート生成プロンプトの精度向上 [関連Issue #30](../issue-notes/30.md)
-   - 最初の小さな一歩: `generated-docs/development-status.md` の最近の出力と、このプロンプト（`development-status-prompt.md`）の要件を比較し、改善点を特定する。
+2. demoにおけるライブラリ利用の徹底とAGENTS.md系への明記 [Issue #91](../issue-notes/91.md)
+   - 最初の小さな一歩: `demo` ディレクトリ内のコードをレビューし、ライブラリで代替可能な自前実装を見つける。
    - Agent実行プロンプト:
      ```
-     対象ファイル: `generated-docs/development-status.md`, `development-status-prompt.md`, `.github/actions-tmp/.github_automation/project_summary/prompts/development-status-prompt.md`
+     対象ファイル: `demo/index.html`, `demo/package.json` および `demo` ディレクトリ以下のJavaScript/TypeScriptファイル
 
-     実行内容: `generated-docs/development-status.md` の最近の出力内容が、本プロンプト `development-status-prompt.md` （及び `.github/actions-tmp/.github_automation/project_summary/prompts/development-status-prompt.md`）で定義されている要件（特に「生成しないもの」）をどの程度満たしているかを評価してください。特に、ハルシネーションや不適切な提案がないかを確認し、プロンプトの改善案を提案してください。
+     実行内容:
+     1. `demo` ディレクトリ内のソースコードを詳細にレビューし、外部ライブラリとして利用すべき機能が自前実装されている箇所を特定してください。
+     2. 特定された自前実装について、代替となる既存のライブラリ（またはプロジェクト内で推奨されるライブラリ）の候補を挙げてください。
+     3. AGENTS.md系ドキュメント（例: `.github/copilot-instructions.md` など）に、ライブラリの積極的な利用を明記するための追記内容を検討してください。
 
-     確認事項: 生成されたレポートがユーザーにとって価値のある情報を提供しているか、また、不要な情報を排除できているか。
+     確認事項: 既存のライブラリ依存関係、およびプロジェクトの全体的な技術スタックとの整合性を確認してください。
 
-     期待する出力: 現在のプロンプトの課題点（もしあれば）と、それを解決するための `development-status-prompt.md` の具体的な修正案をmarkdown形式で出力してください。
+     期待する出力:
+     1. 自前実装されている機能とその代替ライブラリ候補のリスト。
+     2. AGENTS.md系ドキュメントに追記すべきライブラリ利用ポリシーに関する提案をmarkdown形式で出力してください。
      ```
 
-3. MMLパーサーのテストカバレッジレビューと拡張 [関連Issue #85](../issue-notes/85.md)
-   - 最初の小さな一歩: `src/pass1_parser.rs` の主要なパースロジックに対応する `tests/test_pass1.rs` のテストケースをレビューし、不足しているテストシナリオがないか確認する。
+3. 肥大化したコードベースの分割とCIでのチェック導入 [Issue #92](../issue-notes/92.md), [Issue #93](../issue-notes/93.md)
+   - 最初の小さな一歩: `demo` ディレクトリ内のJavaScript/TypeScriptファイルで、1000行を超えているファイルを特定する。
    - Agent実行プロンプト:
      ```
-     対象ファイル: `src/pass1_parser.rs`, `tests/test_pass1.rs`, `tests/integration_test.rs`
+     対象ファイル: `demo/index.html` (`<script>`タグ内のインラインスクリプトも含む), `demo`ディレクトリ以下の`.js`, `.ts`ファイル、および`src`ディレクトリ以下の`.rs`ファイル
 
-     実行内容: `src/pass1_parser.rs` で実装されているMMLのパース機能について、`tests/test_pass1.rs` および `tests/integration_test.rs` の既存のテストケースを分析し、特に複雑なMML記法（例: 同時発音、マクロ、変調など）やエッジケースに対するテストカバレッジのギャップを特定してください。
+     実行内容:
+     1. `demo`ディレクトリ内のJavaScript/TypeScriptファイル、および`src`ディレクトリ内のRustファイルについて、各ファイルの行数を計測し、500行または1000行を超えているファイルを特定してください。
+     2. 特定された肥大化ファイルの中から、単一責任の原則に反している可能性のあるコードブロックや機能のまとまりを洗い出し、分割の候補を検討してください。
+     3. CIに、ファイルの行数や責任範囲のチェックを導入するための具体的なアプローチ（例: シェルスクリプト、GitHub Actionのステップ追加など）を検討してください。
 
-     確認事項: パースエラーを引き起こす可能性のある入力や、予期せぬ挙動につながるような記法の組み合わせがテストされているか。
+     確認事項: 現在のCIワークフロー (`.github/workflows/` 以下) の構成、およびファイル間の既存の依存関係を確認してください。
 
-     期待する出力: 特定されたテストカバレッジのギャップをリストアップし、それぞれについて新規追加すべきテストケースの概要（入力MMLと期待されるパース結果の概念）をmarkdown形式で提案してください。
-     ```
+     期待する出力:
+     1. 肥大化しているファイルとその行数、および分割候補となる機能のリスト。
+     2. CIにコード分割ルールをチェックするステップを追加するための、GitHub ActionsのYAMLスニペットと、具体的なチェック内容をmarkdown形式で出力してください。
 
 ---
-Generated at: 2026-02-15 07:06:12 JST
+Generated at: 2026-02-16 07:06:21 JST

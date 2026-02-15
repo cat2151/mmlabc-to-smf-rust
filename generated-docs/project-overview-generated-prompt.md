@@ -1,4 +1,4 @@
-Last updated: 2026-02-15
+Last updated: 2026-02-16
 
 
 # プロジェクト概要生成プロンプト（来訪者向け）
@@ -85,6 +85,8 @@ Music Macro Language (MML) から Standard MIDI File (SMF) への変換ライブ
 頻繁に破壊的変更をしています
 
 READMEがメンテ不足です。実際はもっと多数のMMLコマンドが実装済みです。あとでREADMEをメンテ予定です
+
+webのdemoがバグっており、おそらくcoding agentがこのライブラリもweb-ym2151も使わず、自前のMMLパースと自前のSMF化と自前のTone.js演奏をしています。修正予定です
 
 実装されたMMLを知りたい場合、まず [tree-sitter-mml/grammar.js](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/tree-sitter-mml/grammar.js) をお読みください（ただし今後、破壊的変更されます）
 
@@ -829,8 +831,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📁 issue-notes/
                                                                                   📖 39.md
                                                                                   📖 44.md
-                                                                                  📖 85.md
-                                                                                  📖 87.md
+                                                                                  📖 89.md
+                                                                                  📖 91.md
+                                                                                  📖 92.md
+                                                                                  📖 93.md
                                                                                 📄 mmlabc-to-smf-rust.toml.example
                                                                                 📁 mmlabc-to-smf-wasm/
                                                                                   📄 Cargo.lock
@@ -901,8 +905,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📁 issue-notes/
                                                                                 📖 39.md
                                                                                 📖 44.md
-                                                                                📖 85.md
-                                                                                📖 87.md
+                                                                                📖 89.md
+                                                                                📖 91.md
+                                                                                📖 92.md
+                                                                                📖 93.md
                                                                               📄 mmlabc-to-smf-rust.toml.example
                                                                               📁 mmlabc-to-smf-wasm/
                                                                                 📄 Cargo.lock
@@ -973,8 +979,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📁 issue-notes/
                                                                               📖 39.md
                                                                               📖 44.md
-                                                                              📖 85.md
-                                                                              📖 87.md
+                                                                              📖 89.md
+                                                                              📖 91.md
+                                                                              📖 92.md
+                                                                              📖 93.md
                                                                             📄 mmlabc-to-smf-rust.toml.example
                                                                             📁 mmlabc-to-smf-wasm/
                                                                               📄 Cargo.lock
@@ -1045,8 +1053,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📁 issue-notes/
                                                                             📖 39.md
                                                                             📖 44.md
-                                                                            📖 85.md
-                                                                            📖 87.md
+                                                                            📖 89.md
+                                                                            📖 91.md
+                                                                            📖 92.md
+                                                                            📖 93.md
                                                                           📄 mmlabc-to-smf-rust.toml.example
                                                                           📁 mmlabc-to-smf-wasm/
                                                                             📄 Cargo.lock
@@ -1117,8 +1127,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📁 issue-notes/
                                                                           📖 39.md
                                                                           📖 44.md
-                                                                          📖 85.md
-                                                                          📖 87.md
+                                                                          📖 89.md
+                                                                          📖 91.md
+                                                                          📖 92.md
+                                                                          📖 93.md
                                                                         📄 mmlabc-to-smf-rust.toml.example
                                                                         📁 mmlabc-to-smf-wasm/
                                                                           📄 Cargo.lock
@@ -1189,8 +1201,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📁 issue-notes/
                                                                         📖 39.md
                                                                         📖 44.md
-                                                                        📖 85.md
-                                                                        📖 87.md
+                                                                        📖 89.md
+                                                                        📖 91.md
+                                                                        📖 92.md
+                                                                        📖 93.md
                                                                       📄 mmlabc-to-smf-rust.toml.example
                                                                       📁 mmlabc-to-smf-wasm/
                                                                         📄 Cargo.lock
@@ -1261,8 +1275,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📁 issue-notes/
                                                                       📖 39.md
                                                                       📖 44.md
-                                                                      📖 85.md
-                                                                      📖 87.md
+                                                                      📖 89.md
+                                                                      📖 91.md
+                                                                      📖 92.md
+                                                                      📖 93.md
                                                                     📄 mmlabc-to-smf-rust.toml.example
                                                                     📁 mmlabc-to-smf-wasm/
                                                                       📄 Cargo.lock
@@ -1333,8 +1349,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📁 issue-notes/
                                                                     📖 39.md
                                                                     📖 44.md
-                                                                    📖 85.md
-                                                                    📖 87.md
+                                                                    📖 89.md
+                                                                    📖 91.md
+                                                                    📖 92.md
+                                                                    📖 93.md
                                                                   📄 mmlabc-to-smf-rust.toml.example
                                                                   📁 mmlabc-to-smf-wasm/
                                                                     📄 Cargo.lock
@@ -1405,8 +1423,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📁 issue-notes/
                                                                   📖 39.md
                                                                   📖 44.md
-                                                                  📖 85.md
-                                                                  📖 87.md
+                                                                  📖 89.md
+                                                                  📖 91.md
+                                                                  📖 92.md
+                                                                  📖 93.md
                                                                 📄 mmlabc-to-smf-rust.toml.example
                                                                 📁 mmlabc-to-smf-wasm/
                                                                   📄 Cargo.lock
@@ -1477,8 +1497,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📁 issue-notes/
                                                                 📖 39.md
                                                                 📖 44.md
-                                                                📖 85.md
-                                                                📖 87.md
+                                                                📖 89.md
+                                                                📖 91.md
+                                                                📖 92.md
+                                                                📖 93.md
                                                               📄 mmlabc-to-smf-rust.toml.example
                                                               📁 mmlabc-to-smf-wasm/
                                                                 📄 Cargo.lock
@@ -1545,13 +1567,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               🌐 index.html
                                                               📊 package.json
                                                             📁 generated-docs/
-                                                              📖 development-status-generated-prompt.md
                                                             🌐 googled947dc864c270e07.html
                                                             📁 issue-notes/
                                                               📖 39.md
                                                               📖 44.md
-                                                              📖 85.md
-                                                              📖 87.md
+                                                              📖 89.md
+                                                              📖 91.md
+                                                              📖 92.md
+                                                              📖 93.md
                                                             📄 mmlabc-to-smf-rust.toml.example
                                                             📁 mmlabc-to-smf-wasm/
                                                               📄 Cargo.lock
@@ -1618,13 +1641,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             🌐 index.html
                                                             📊 package.json
                                                           📁 generated-docs/
-                                                            📖 development-status-generated-prompt.md
                                                           🌐 googled947dc864c270e07.html
                                                           📁 issue-notes/
                                                             📖 39.md
                                                             📖 44.md
-                                                            📖 85.md
-                                                            📖 87.md
+                                                            📖 89.md
+                                                            📖 91.md
+                                                            📖 92.md
+                                                            📖 93.md
                                                           📄 mmlabc-to-smf-rust.toml.example
                                                           📁 mmlabc-to-smf-wasm/
                                                             📄 Cargo.lock
@@ -1691,13 +1715,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           🌐 index.html
                                                           📊 package.json
                                                         📁 generated-docs/
-                                                          📖 development-status-generated-prompt.md
                                                         🌐 googled947dc864c270e07.html
                                                         📁 issue-notes/
                                                           📖 39.md
                                                           📖 44.md
-                                                          📖 85.md
-                                                          📖 87.md
+                                                          📖 89.md
+                                                          📖 91.md
+                                                          📖 92.md
+                                                          📖 93.md
                                                         📄 mmlabc-to-smf-rust.toml.example
                                                         📁 mmlabc-to-smf-wasm/
                                                           📄 Cargo.lock
@@ -1764,13 +1789,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         🌐 index.html
                                                         📊 package.json
                                                       📁 generated-docs/
-                                                        📖 development-status-generated-prompt.md
                                                       🌐 googled947dc864c270e07.html
                                                       📁 issue-notes/
                                                         📖 39.md
                                                         📖 44.md
-                                                        📖 85.md
-                                                        📖 87.md
+                                                        📖 89.md
+                                                        📖 91.md
+                                                        📖 92.md
+                                                        📖 93.md
                                                       📄 mmlabc-to-smf-rust.toml.example
                                                       📁 mmlabc-to-smf-wasm/
                                                         📄 Cargo.lock
@@ -1837,13 +1863,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       🌐 index.html
                                                       📊 package.json
                                                     📁 generated-docs/
-                                                      📖 development-status-generated-prompt.md
                                                     🌐 googled947dc864c270e07.html
                                                     📁 issue-notes/
                                                       📖 39.md
                                                       📖 44.md
-                                                      📖 85.md
-                                                      📖 87.md
+                                                      📖 89.md
+                                                      📖 91.md
+                                                      📖 92.md
+                                                      📖 93.md
                                                     📄 mmlabc-to-smf-rust.toml.example
                                                     📁 mmlabc-to-smf-wasm/
                                                       📄 Cargo.lock
@@ -1910,13 +1937,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     🌐 index.html
                                                     📊 package.json
                                                   📁 generated-docs/
-                                                    📖 development-status-generated-prompt.md
                                                   🌐 googled947dc864c270e07.html
                                                   📁 issue-notes/
                                                     📖 39.md
                                                     📖 44.md
-                                                    📖 85.md
-                                                    📖 87.md
+                                                    📖 89.md
+                                                    📖 91.md
+                                                    📖 92.md
+                                                    📖 93.md
                                                   📄 mmlabc-to-smf-rust.toml.example
                                                   📁 mmlabc-to-smf-wasm/
                                                     📄 Cargo.lock
@@ -1983,13 +2011,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   🌐 index.html
                                                   📊 package.json
                                                 📁 generated-docs/
-                                                  📖 development-status-generated-prompt.md
                                                 🌐 googled947dc864c270e07.html
                                                 📁 issue-notes/
                                                   📖 39.md
                                                   📖 44.md
-                                                  📖 85.md
-                                                  📖 87.md
+                                                  📖 89.md
+                                                  📖 91.md
+                                                  📖 92.md
+                                                  📖 93.md
                                                 📄 mmlabc-to-smf-rust.toml.example
                                                 📁 mmlabc-to-smf-wasm/
                                                   📄 Cargo.lock
@@ -2056,13 +2085,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 🌐 index.html
                                                 📊 package.json
                                               📁 generated-docs/
-                                                📖 development-status-generated-prompt.md
                                               🌐 googled947dc864c270e07.html
                                               📁 issue-notes/
                                                 📖 39.md
                                                 📖 44.md
-                                                📖 85.md
-                                                📖 87.md
+                                                📖 89.md
+                                                📖 91.md
+                                                📖 92.md
+                                                📖 93.md
                                               📄 mmlabc-to-smf-rust.toml.example
                                               📁 mmlabc-to-smf-wasm/
                                                 📄 Cargo.lock
@@ -2129,13 +2159,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               🌐 index.html
                                               📊 package.json
                                             📁 generated-docs/
-                                              📖 development-status-generated-prompt.md
                                             🌐 googled947dc864c270e07.html
                                             📁 issue-notes/
                                               📖 39.md
                                               📖 44.md
-                                              📖 85.md
-                                              📖 87.md
+                                              📖 89.md
+                                              📖 91.md
+                                              📖 92.md
+                                              📖 93.md
                                             📄 mmlabc-to-smf-rust.toml.example
                                             📁 mmlabc-to-smf-wasm/
                                               📄 Cargo.lock
@@ -2202,13 +2233,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             🌐 index.html
                                             📊 package.json
                                           📁 generated-docs/
-                                            📖 development-status-generated-prompt.md
                                           🌐 googled947dc864c270e07.html
                                           📁 issue-notes/
                                             📖 39.md
                                             📖 44.md
-                                            📖 85.md
-                                            📖 87.md
+                                            📖 89.md
+                                            📖 91.md
+                                            📖 92.md
+                                            📖 93.md
                                           📄 mmlabc-to-smf-rust.toml.example
                                           📁 mmlabc-to-smf-wasm/
                                             📄 Cargo.lock
@@ -2275,13 +2307,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           🌐 index.html
                                           📊 package.json
                                         📁 generated-docs/
-                                          📖 development-status-generated-prompt.md
                                         🌐 googled947dc864c270e07.html
                                         📁 issue-notes/
                                           📖 39.md
                                           📖 44.md
-                                          📖 85.md
-                                          📖 87.md
+                                          📖 89.md
+                                          📖 91.md
+                                          📖 92.md
+                                          📖 93.md
                                         📄 mmlabc-to-smf-rust.toml.example
                                         📁 mmlabc-to-smf-wasm/
                                           📄 Cargo.lock
@@ -2348,13 +2381,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         🌐 index.html
                                         📊 package.json
                                       📁 generated-docs/
-                                        📖 development-status-generated-prompt.md
                                       🌐 googled947dc864c270e07.html
                                       📁 issue-notes/
                                         📖 39.md
                                         📖 44.md
-                                        📖 85.md
-                                        📖 87.md
+                                        📖 89.md
+                                        📖 91.md
+                                        📖 92.md
+                                        📖 93.md
                                       📄 mmlabc-to-smf-rust.toml.example
                                       📁 mmlabc-to-smf-wasm/
                                         📄 Cargo.lock
@@ -2421,13 +2455,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       🌐 index.html
                                       📊 package.json
                                     📁 generated-docs/
-                                      📖 development-status-generated-prompt.md
                                     🌐 googled947dc864c270e07.html
                                     📁 issue-notes/
                                       📖 39.md
                                       📖 44.md
-                                      📖 85.md
-                                      📖 87.md
+                                      📖 89.md
+                                      📖 91.md
+                                      📖 92.md
+                                      📖 93.md
                                     📄 mmlabc-to-smf-rust.toml.example
                                     📁 mmlabc-to-smf-wasm/
                                       📄 Cargo.lock
@@ -2494,13 +2529,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     🌐 index.html
                                     📊 package.json
                                   📁 generated-docs/
-                                    📖 development-status-generated-prompt.md
                                   🌐 googled947dc864c270e07.html
                                   📁 issue-notes/
                                     📖 39.md
                                     📖 44.md
-                                    📖 85.md
-                                    📖 87.md
+                                    📖 89.md
+                                    📖 91.md
+                                    📖 92.md
+                                    📖 93.md
                                   📄 mmlabc-to-smf-rust.toml.example
                                   📁 mmlabc-to-smf-wasm/
                                     📄 Cargo.lock
@@ -2567,13 +2603,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   🌐 index.html
                                   📊 package.json
                                 📁 generated-docs/
-                                  📖 development-status-generated-prompt.md
                                 🌐 googled947dc864c270e07.html
                                 📁 issue-notes/
                                   📖 39.md
                                   📖 44.md
-                                  📖 85.md
-                                  📖 87.md
+                                  📖 89.md
+                                  📖 91.md
+                                  📖 92.md
+                                  📖 93.md
                                 📄 mmlabc-to-smf-rust.toml.example
                                 📁 mmlabc-to-smf-wasm/
                                   📄 Cargo.lock
@@ -2640,13 +2677,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 🌐 index.html
                                 📊 package.json
                               📁 generated-docs/
-                                📖 development-status-generated-prompt.md
                               🌐 googled947dc864c270e07.html
                               📁 issue-notes/
                                 📖 39.md
                                 📖 44.md
-                                📖 85.md
-                                📖 87.md
+                                📖 89.md
+                                📖 91.md
+                                📖 92.md
+                                📖 93.md
                               📄 mmlabc-to-smf-rust.toml.example
                               📁 mmlabc-to-smf-wasm/
                                 📄 Cargo.lock
@@ -2713,13 +2751,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               🌐 index.html
                               📊 package.json
                             📁 generated-docs/
-                              📖 development-status-generated-prompt.md
                             🌐 googled947dc864c270e07.html
                             📁 issue-notes/
                               📖 39.md
                               📖 44.md
-                              📖 85.md
-                              📖 87.md
+                              📖 89.md
+                              📖 91.md
+                              📖 92.md
+                              📖 93.md
                             📄 mmlabc-to-smf-rust.toml.example
                             📁 mmlabc-to-smf-wasm/
                               📄 Cargo.lock
@@ -2786,13 +2825,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             🌐 index.html
                             📊 package.json
                           📁 generated-docs/
-                            📖 development-status-generated-prompt.md
                           🌐 googled947dc864c270e07.html
                           📁 issue-notes/
                             📖 39.md
                             📖 44.md
-                            📖 85.md
-                            📖 87.md
+                            📖 89.md
+                            📖 91.md
+                            📖 92.md
+                            📖 93.md
                           📄 mmlabc-to-smf-rust.toml.example
                           📁 mmlabc-to-smf-wasm/
                             📄 Cargo.lock
@@ -2859,13 +2899,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           🌐 index.html
                           📊 package.json
                         📁 generated-docs/
-                          📖 development-status-generated-prompt.md
                         🌐 googled947dc864c270e07.html
                         📁 issue-notes/
                           📖 39.md
                           📖 44.md
-                          📖 85.md
-                          📖 87.md
+                          📖 89.md
+                          📖 91.md
+                          📖 92.md
+                          📖 93.md
                         📄 mmlabc-to-smf-rust.toml.example
                         📁 mmlabc-to-smf-wasm/
                           📄 Cargo.lock
@@ -2932,13 +2973,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         🌐 index.html
                         📊 package.json
                       📁 generated-docs/
-                        📖 development-status-generated-prompt.md
                       🌐 googled947dc864c270e07.html
                       📁 issue-notes/
                         📖 39.md
                         📖 44.md
-                        📖 85.md
-                        📖 87.md
+                        📖 89.md
+                        📖 91.md
+                        📖 92.md
+                        📖 93.md
                       📄 mmlabc-to-smf-rust.toml.example
                       📁 mmlabc-to-smf-wasm/
                         📄 Cargo.lock
@@ -3005,13 +3047,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       🌐 index.html
                       📊 package.json
                     📁 generated-docs/
-                      📖 development-status-generated-prompt.md
                     🌐 googled947dc864c270e07.html
                     📁 issue-notes/
                       📖 39.md
                       📖 44.md
-                      📖 85.md
-                      📖 87.md
+                      📖 89.md
+                      📖 91.md
+                      📖 92.md
+                      📖 93.md
                     📄 mmlabc-to-smf-rust.toml.example
                     📁 mmlabc-to-smf-wasm/
                       📄 Cargo.lock
@@ -3078,13 +3121,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     🌐 index.html
                     📊 package.json
                   📁 generated-docs/
-                    📖 development-status-generated-prompt.md
                   🌐 googled947dc864c270e07.html
                   📁 issue-notes/
                     📖 39.md
                     📖 44.md
-                    📖 85.md
-                    📖 87.md
+                    📖 89.md
+                    📖 91.md
+                    📖 92.md
+                    📖 93.md
                   📄 mmlabc-to-smf-rust.toml.example
                   📁 mmlabc-to-smf-wasm/
                     📄 Cargo.lock
@@ -3151,13 +3195,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   🌐 index.html
                   📊 package.json
                 📁 generated-docs/
-                  📖 development-status-generated-prompt.md
                 🌐 googled947dc864c270e07.html
                 📁 issue-notes/
                   📖 39.md
                   📖 44.md
-                  📖 85.md
-                  📖 87.md
+                  📖 89.md
+                  📖 91.md
+                  📖 92.md
+                  📖 93.md
                 📄 mmlabc-to-smf-rust.toml.example
                 📁 mmlabc-to-smf-wasm/
                   📄 Cargo.lock
@@ -3224,13 +3269,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 🌐 index.html
                 📊 package.json
               📁 generated-docs/
-                📖 development-status-generated-prompt.md
               🌐 googled947dc864c270e07.html
               📁 issue-notes/
                 📖 39.md
                 📖 44.md
-                📖 85.md
-                📖 87.md
+                📖 89.md
+                📖 91.md
+                📖 92.md
+                📖 93.md
               📄 mmlabc-to-smf-rust.toml.example
               📁 mmlabc-to-smf-wasm/
                 📄 Cargo.lock
@@ -3297,13 +3343,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               🌐 index.html
               📊 package.json
             📁 generated-docs/
-              📖 development-status-generated-prompt.md
             🌐 googled947dc864c270e07.html
             📁 issue-notes/
               📖 39.md
               📖 44.md
-              📖 85.md
-              📖 87.md
+              📖 89.md
+              📖 91.md
+              📖 92.md
+              📖 93.md
             📄 mmlabc-to-smf-rust.toml.example
             📁 mmlabc-to-smf-wasm/
               📄 Cargo.lock
@@ -3370,13 +3417,14 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             🌐 index.html
             📊 package.json
           📁 generated-docs/
-            📖 development-status-generated-prompt.md
           🌐 googled947dc864c270e07.html
           📁 issue-notes/
             📖 39.md
             📖 44.md
-            📖 85.md
-            📖 87.md
+            📖 89.md
+            📖 91.md
+            📖 92.md
+            📖 93.md
           📄 mmlabc-to-smf-rust.toml.example
           📁 mmlabc-to-smf-wasm/
             📄 Cargo.lock
@@ -3448,8 +3496,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📁 issue-notes/
           📖 39.md
           📖 44.md
-          📖 85.md
-          📖 87.md
+          📖 89.md
+          📖 91.md
+          📖 92.md
+          📖 93.md
         📄 mmlabc-to-smf-rust.toml.example
         📁 mmlabc-to-smf-wasm/
           📄 Cargo.lock
@@ -3521,8 +3571,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📁 issue-notes/
         📖 39.md
         📖 44.md
-        📖 85.md
-        📖 87.md
+        📖 89.md
+        📖 91.md
+        📖 92.md
+        📖 93.md
       📄 mmlabc-to-smf-rust.toml.example
       📁 mmlabc-to-smf-wasm/
         📄 Cargo.lock
@@ -3594,8 +3646,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📁 issue-notes/
       📖 39.md
       📖 44.md
-      📖 85.md
-      📖 87.md
+      📖 89.md
+      📖 91.md
+      📖 92.md
+      📖 93.md
     📄 mmlabc-to-smf-rust.toml.example
     📁 mmlabc-to-smf-wasm/
       📄 Cargo.lock
@@ -3667,8 +3721,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📁 issue-notes/
     📖 39.md
     📖 44.md
-    📖 85.md
-    📖 87.md
+    📖 89.md
+    📖 91.md
+    📖 92.md
+    📖 93.md
   📄 mmlabc-to-smf-rust.toml.example
   📁 mmlabc-to-smf-wasm/
     📄 Cargo.lock
@@ -3740,8 +3796,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 📁 issue-notes/
   📖 39.md
   📖 44.md
-  📖 85.md
-  📖 87.md
+  📖 89.md
+  📖 91.md
+  📖 92.md
+  📖 93.md
 📄 mmlabc-to-smf-rust.toml.example
 📁 mmlabc-to-smf-wasm/
   📄 Cargo.lock
@@ -4514,4 +4572,4 @@ googled947dc864c270e07.html
 
 
 ---
-Generated at: 2026-02-15 07:05:43 JST
+Generated at: 2026-02-16 07:06:03 JST

@@ -1,4 +1,4 @@
-Last updated: 2026-02-15
+Last updated: 2026-02-16
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -233,8 +233,10 @@ Last updated: 2026-02-15
 - googled947dc864c270e07.html
 - issue-notes/39.md
 - issue-notes/44.md
-- issue-notes/85.md
-- issue-notes/87.md
+- issue-notes/89.md
+- issue-notes/91.md
+- issue-notes/92.md
+- issue-notes/93.md
 - mmlabc-to-smf-rust.toml.example
 - mmlabc-to-smf-wasm/Cargo.lock
 - mmlabc-to-smf-wasm/Cargo.toml
@@ -283,66 +285,421 @@ Last updated: 2026-02-15
 - tree-sitter-mml/tree-sitter-mml.wasm
 
 ## 現在のオープンIssues
-オープン中のIssueはありません
+## [Issue #93](../issue-notes/93.md): ソースが500行overの時点で単一責任の原則に従ってソース分割をするよう、CIにチェックを入れつつ、AGENTS.md系にも明記する
+[issue-notes/93.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/93.md)
+
+...
+ラベル: 
+--- issue-notes/93.md の内容 ---
+
+```markdown
+# issue ソースが500行overの時点で単一責任の原則に従ってソース分割をするよう、CIにチェックを入れつつ、AGENTS.md系にも明記する #93
+[issues #93](https://github.com/cat2151/mmlabc-to-smf-rust/issues/93)
+
+
+
+```
+
+## [Issue #92](../issue-notes/92.md): demoのソースが1000行overでハルシネーションのリスクが高い。TypeScriptで単一責任の原則に従ってソース分割する
+[issue-notes/92.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/92.md)
+
+...
+ラベル: 
+--- issue-notes/92.md の内容 ---
+
+```markdown
+# issue demoのソースが1000行overでハルシネーションのリスクが高い。TypeScriptで単一責任の原則に従ってソース分割する #92
+[issues #92](https://github.com/cat2151/mmlabc-to-smf-rust/issues/92)
+
+
+
+```
+
+## [Issue #91](../issue-notes/91.md): demoでライブラリを使わず自前実装に逃げている部分が複数ある。そのため根が深いトラブルの温床になっている。AGENTS.md系にライブラリ利用を明記する
+[issue-notes/91.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/91.md)
+
+...
+ラベル: 
+--- issue-notes/91.md の内容 ---
+
+```markdown
+# issue demoでライブラリを使わず自前実装に逃げている部分が複数ある。そのため根が深いトラブルの温床になっている。AGENTS.md系にライブラリ利用を明記する #91
+[issues #91](https://github.com/cat2151/mmlabc-to-smf-rust/issues/91)
+
+
+
+```
+
+## [Issue #90](../issue-notes/90.md): demoでソースをみるとweb-ym2151ライブラリを使わず自前のsmf to Tone.js演奏をしているように見受けられる。web-ym2151を使うよう修正する
+
+ラベル: 
+--- issue-notes/90.md の内容 ---
+
+```markdown
+
+```
+
+## [Issue #89](../issue-notes/89.md): demoで和音のパースがおかしく、先頭のnote lengthが2つ目以降に適用されていない。agentがライブラリを使わず自前実装しているかチェックせよ
+[issue-notes/89.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/89.md)
+
+...
+ラベル: 
+--- issue-notes/89.md の内容 ---
+
+```markdown
+# issue demoで和音のパースがおかしく、先頭のnote lengthが2つ目以降に適用されていない。agentがライブラリを使わず自前実装しているかチェックせよ #89
+[issues #89](https://github.com/cat2151/mmlabc-to-smf-rust/issues/89)
+
+
+
+```
 
 ## ドキュメントで言及されているファイルの内容
+### .github/actions-tmp/issue-notes/2.md
+```md
+{% raw %}
+# issue GitHub Actions「関数コールグラフhtmlビジュアライズ生成」を共通ワークフロー化する #2
+[issues #2](https://github.com/cat2151/github-actions/issues/2)
 
+
+# prompt
+```
+あなたはGitHub Actionsと共通ワークフローのスペシャリストです。
+このymlファイルを、以下の2つのファイルに分割してください。
+1. 共通ワークフロー       cat2151/github-actions/.github/workflows/callgraph_enhanced.yml
+2. 呼び出し元ワークフロー cat2151/github-actions/.github/workflows/call-callgraph_enhanced.yml
+まずplanしてください
+```
+
+# 結果
+- indent
+    - linter？がindentのエラーを出しているがyml内容は見た感じOK
+    - テキストエディタとagentの相性問題と判断する
+    - 別のテキストエディタでsaveしなおし、テキストエディタをreload
+    - indentのエラーは解消した
+- LLMレビュー
+    - agent以外の複数のLLMにレビューさせる
+    - prompt
+```
+あなたはGitHub Actionsと共通ワークフローのスペシャリストです。
+以下の2つのファイルをレビューしてください。最優先で、エラーが発生するかどうかだけレビューしてください。エラー以外の改善事項のチェックをするかわりに、エラー発生有無チェックに最大限注力してください。
+
+--- 共通ワークフロー
+
+# GitHub Actions Reusable Workflow for Call Graph Generation
+name: Generate Call Graph
+
+# TODO Windowsネイティブでのtestをしていた名残が残っているので、今後整理していく。今はWSL act でtestしており、Windowsネイティブ環境依存問題が解決した
+#  ChatGPTにレビューさせるとそこそこ有用そうな提案が得られたので、今後それをやる予定
+#  agentに自己チェックさせる手も、セカンドオピニオンとして選択肢に入れておく
+
+on:
+  workflow_call:
+
+jobs:
+  check-commits:
+    runs-on: ubuntu-latest
+    outputs:
+      should-run: ${{ steps.check.outputs.should-run }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 50 # 過去のコミットを取得
+
+      - name: Check for user commits in last 24 hours
+        id: check
+        run: |
+          node .github/scripts/callgraph_enhanced/check-commits.cjs
+
+  generate-callgraph:
+    needs: check-commits
+    if: needs.check-commits.outputs.should-run == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      security-events: write
+      actions: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Remove old CodeQL packages cache
+        run: rm -rf ~/.codeql/packages
+
+      - name: Check Node.js version
+        run: |
+          node .github/scripts/callgraph_enhanced/check-node-version.cjs
+
+      - name: Install CodeQL CLI
+        run: |
+          wget https://github.com/github/codeql-cli-binaries/releases/download/v2.22.1/codeql-linux64.zip
+          unzip codeql-linux64.zip
+          sudo mv codeql /opt/codeql
+          echo "/opt/codeql" >> $GITHUB_PATH
+
+      - name: Install CodeQL query packs
+        run: |
+          /opt/codeql/codeql pack install .github/codeql-queries
+
+      - name: Check CodeQL exists
+        run: |
+          node .github/scripts/callgraph_enhanced/check-codeql-exists.cjs
+
+      - name: Verify CodeQL Configuration
+        run: |
+          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs verify-config
+
+      - name: Remove existing CodeQL DB (if any)
+        run: |
+          rm -rf codeql-db
+
+      - name: Perform CodeQL Analysis
+        run: |
+          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs analyze
+
+      - name: Check CodeQL Analysis Results
+        run: |
+          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs check-results
+
+      - name: Debug CodeQL execution
+        run: |
+          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs debug
+
+      - name: Wait for CodeQL results
+        run: |
+          node -e "setTimeout(()=>{}, 10000)"
+
+      - name: Find and process CodeQL results
+        run: |
+          node .github/scripts/callgraph_enhanced/find-process-results.cjs
+
+      - name: Generate HTML graph
+        run: |
+          node .github/scripts/callgraph_enhanced/generate-html-graph.cjs
+
+      - name: Copy files to generated-docs and commit results
+        run: |
+          node .github/scripts/callgraph_enhanced/copy-commit-results.cjs
+
+--- 呼び出し元
+# 呼び出し元ワークフロー: call-callgraph_enhanced.yml
+name: Call Call Graph Enhanced
+
+on:
+  schedule:
+    # 毎日午前5時(JST) = UTC 20:00前日
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+
+jobs:
+  call-callgraph-enhanced:
+    # uses: cat2151/github-actions/.github/workflows/callgraph_enhanced.yml
+    uses: ./.github/workflows/callgraph_enhanced.yml # ローカルでのテスト用
+```
+
+# レビュー結果OKと判断する
+- レビュー結果を人力でレビューした形になった
+
+# test
+- #4 同様にローカル WSL + act でtestする
+- エラー。userのtest設計ミス。
+  - scriptの挙動 : src/ がある前提
+  - 今回の共通ワークフローのリポジトリ : src/ がない
+  - 今回testで実現したいこと
+    - 仮のソースでよいので、関数コールグラフを生成させる
+  - 対策
+    - src/ にダミーを配置する
+- test green
+  - ただしcommit pushはしてないので、html内容が0件NG、といったケースの検知はできない
+  - もしそうなったら別issueとしよう
+
+# test green
+
+# commit用に、yml 呼び出し元 uses をlocal用から本番用に書き換える
+
+# closeとする
+- もしhtml内容が0件NG、などになったら、別issueとするつもり
+
+{% endraw %}
+```
+
+### .github/actions-tmp/issue-notes/3.md
+```md
+{% raw %}
+# issue GitHub Actions「issue note生成」を共通ワークフロー化する #3
+[issues #3](https://github.com/cat2151/github-actions/issues/3)
+
+- 前提
+  - userは、translateのworkflowを共通ワークフロー化し、動くようにしたので、共通ワークフロー化の知識がある
+  - よって、今回は、promptでplanさせ、そのplanをuserがレビューし、planの改善を指示できるので、ハルシネーションのリスクを下げることができる
+
+- prompt
+```
+あなたはGitHub Actionsと共通ワークフローのスペシャリストです。
+このymlはまだ共通ワークフロー化されず、
+呼び出し元からコピーされたままの状態です。
+このymlファイル名のまま、
+中身を共通ワークフロー化してください。
+呼び出し元ymlは別途書きますので気にしないでください。
+まずplanしてください
+```
+
+- plan 生成結果
+```
+共通ワークフロー化のためのplanは以下の通りです。
+
+1. 目的
+現在の issue-note.yml を「共通ワークフロー」として再設計し、他リポジトリや他ワークフローから workflow_call で呼び出せるようにする。
+2. 主な変更点
+on: トリガーを workflow_call に変更（直接イベントで起動しない）。
+必要な入力（inputs）やシークレット（secrets）を workflow_call セクションで定義。
+github.event.issue などのイベント依存部分を、inputs経由で受け取る形に修正。
+既存の処理（issueノート生成、コミット、issue body更新）はそのまま活かすが、パラメータ化する。
+3. 具体的な修正内容
+on: issues: → on: workflow_call: に変更。
+inputs で必要な値（例: issue_title, issue_number, issue_body, issue_url など）を受け取る。
+スクリプト内の ${{ github.event.issue.xxx }} を ${{ inputs.xxx }} に置換。
+github-script ステップも同様にinputsを参照。
+必要に応じて secrets も workflow_call で受け取れるようにする。
+4. ファイル名・配置
+ファイル名はそのまま issue-note.yml。
+配置場所は workflows でOK（共通ワークフローとしてもこの場所で良い）。
+5. 呼び出し元への影響
+呼び出し元ワークフローで uses: <repo>/.github/workflows/issue-note.yml@main のように参照し、inputsを渡す形になる。
+このplanで進めます。次に、実際の共通ワークフロー化のためのyml修正案を作成しますか？
+```
+
+- userがplanレビューし、OKを出した
+- agentに生成結果ymlをレビューさせた、OKとなった
+  - userはこのレビューは認知負荷が高いのでskipとする（単純な細かい間違い探し作業になるので、それはagentに任せた）
+-  エラー。呼び出し元ymlのエラーがあり修正。共通ワークフローのエラー指摘があり、共通ワークフロー側の修正が必要となった
+```
+原因の分析：
+
+呼び出し元（tonejs-mml-to-jsonのissue-note.yml）は、reusable workflow（cat2151/github-actions/.github/workflows/issue-note.yml@main）をusesで呼び出し、inputsをwithで渡しています。
+共通ワークフロー（reusable workflow）は inputs を workflow_call で受け取り、各ステップで ${{ inputs.xxx }} で参照しています。
+しかし、エラーが発生したのは actions/github-script@v7 の script 内です。
+エラーの本質的な原因：
+
+actions/github-script の script: で ${{ inputs.issue_number }} のような式を直接 JavaScript テンプレートリテラル内で使っていますが、これはサポートされていません。
+script: の中は JavaScript であり、YAMLの ${{ ... }} は展開されません（または意図通りに展開されません）。
+そのため、inputs 変数は script 内の JavaScript で未定義となり、ReferenceError になります。
+正しい書き方：
+
+actions/github-script の script: でワークフローの inputs を使いたい場合は、with: で input を environment 変数や script の引数として渡し、JavaScript で process.env から取得するか、github-script の input 機能を使う必要があります。
+例（修正版）：
+
+このように、inputs の値を env で渡し、script 内では process.env で参照してください。
+
+まとめ：
+
+actions/github-script の script 内で ${{ inputs.xxx }} を直接使うと ReferenceError になる
+env: で値を渡し、process.env で参照するのが正しい
+修正が必要です。修正版のワークフローが必要な場合はお知らせください。
+```
+
+- test green
+- closeとする
+
+{% endraw %}
+```
+
+### .github/actions-tmp/issue-notes/9.md
+```md
+{% raw %}
+# issue 関数コールグラフhtmlビジュアライズが0件なので、原因を可視化する #9
+[issues #9](https://github.com/cat2151/github-actions/issues/9)
+
+# agentに修正させたり、人力で修正したりした
+- agentがハルシネーションし、いろいろ根の深いバグにつながる、エラー隠蔽などを仕込んでいたため、検知が遅れた
+- 詳しくはcommit logを参照のこと
+- WSL + actの環境を少し変更、act起動時のコマンドライン引数を変更し、generated-docsをmountする（ほかはデフォルト挙動であるcpだけにする）ことで、デバッグ情報をコンテナ外に出力できるようにし、デバッグを効率化した
+
+# test green
+
+# closeとする
+
+{% endraw %}
+```
+
+### issue-notes/89.md
+```md
+{% raw %}
+# issue demoで和音のパースがおかしく、先頭のnote lengthが2つ目以降に適用されていない。agentがライブラリを使わず自前実装しているかチェックせよ #89
+[issues #89](https://github.com/cat2151/mmlabc-to-smf-rust/issues/89)
+
+
+
+{% endraw %}
+```
+
+### issue-notes/91.md
+```md
+{% raw %}
+# issue demoでライブラリを使わず自前実装に逃げている部分が複数ある。そのため根が深いトラブルの温床になっている。AGENTS.md系にライブラリ利用を明記する #91
+[issues #91](https://github.com/cat2151/mmlabc-to-smf-rust/issues/91)
+
+
+
+{% endraw %}
+```
+
+### issue-notes/92.md
+```md
+{% raw %}
+# issue demoのソースが1000行overでハルシネーションのリスクが高い。TypeScriptで単一責任の原則に従ってソース分割する #92
+[issues #92](https://github.com/cat2151/mmlabc-to-smf-rust/issues/92)
+
+
+
+{% endraw %}
+```
+
+### issue-notes/93.md
+```md
+{% raw %}
+# issue ソースが500行overの時点で単一責任の原則に従ってソース分割をするよう、CIにチェックを入れつつ、AGENTS.md系にも明記する #93
+[issues #93](https://github.com/cat2151/mmlabc-to-smf-rust/issues/93)
+
+
+
+{% endraw %}
+```
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
+5b4d10a Add issue note for #93 [auto]
+d3309f8 Add issue note for #92 [auto]
+6d6c041 Auto-translate README.ja.md to README.md [auto]
+3417468 Update README.ja.md with maintenance notes and bugs
+f030376 Add issue note for #91 [auto]
+e112ae8 Add issue note for #89 [auto]
+e4a7a0e Update project summaries (overview & development status) [auto]
 da82e8f Merge pull request #88 from cat2151/codex/add-collapsible-areas-to-demo
 4f45ba8 Tweak JSON textarea styling
 02a4832 Add collapsible toggles to demo outputs
-16194a0 Initial plan
-28dcfee Merge pull request #86 from cat2151/codex/fix-play-button-error
-293af69 Fix demo playback buffer setup
-793f7de Add issue note for #87 [auto]
-620abae Initial plan
-c51d662 Add issue note for #85 [auto]
-eb2b367 Update project summaries (overview & development status) [auto]
 
 ### 変更されたファイル:
-.github/copilot-instructions.md
-demo/index.html
-demo/package.json
+README.ja.md
+README.md
 generated-docs/development-status-generated-prompt.md
 generated-docs/development-status.md
 generated-docs/project-overview-generated-prompt.md
 generated-docs/project-overview.md
-issue-notes/14.md
-issue-notes/17.md
-issue-notes/18.md
-issue-notes/19.md
-issue-notes/20.md
-issue-notes/21.md
-issue-notes/22.md
-issue-notes/23.md
-issue-notes/24.md
-issue-notes/30.md
-issue-notes/36.md
-issue-notes/37.md
-issue-notes/40.md
-issue-notes/42.md
-issue-notes/46.md
-issue-notes/48.md
-issue-notes/50.md
-issue-notes/52.md
-issue-notes/54.md
-issue-notes/55.md
-issue-notes/56.md
-issue-notes/62.md
-issue-notes/64.md
-issue-notes/66.md
-issue-notes/68.md
-issue-notes/69.md
-issue-notes/70.md
-issue-notes/73.md
-issue-notes/79.md
-issue-notes/81.md
 issue-notes/85.md
 issue-notes/87.md
-scripts/build-demo.sh
+issue-notes/89.md
+issue-notes/91.md
+issue-notes/92.md
+issue-notes/93.md
 
 
 ---
-Generated at: 2026-02-15 07:05:43 JST
+Generated at: 2026-02-16 07:06:03 JST
