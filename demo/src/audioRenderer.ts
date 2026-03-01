@@ -28,7 +28,13 @@ function waitForWebYm2151(): Promise<void> {
 
 function calculateDuration(events: YM2151Event[]): number {
     if (events.length === 0) return 1.0;
-    const maxTime = Math.max(...events.map(e => e.time));
+    let maxTime = events[0].time;
+    for (let i = 1; i < events.length; i++) {
+        const t = events[i].time;
+        if (t > maxTime) {
+            maxTime = t;
+        }
+    }
     return maxTime + 0.5;
 }
 
@@ -48,19 +54,27 @@ export async function renderWaveformAndAudio(events: YM2151Event[]): Promise<voi
         const STRUCT_SIZE = 8; // Must match C struct: float time (4) + uint8 addr (1) + uint8 data (1) + padding (2)
         // See web-ym2151/demo-library/index.html for the authoritative struct layout definition
         const dataPtr = mod._malloc(events.length * STRUCT_SIZE);
+        if (!dataPtr) {
+            console.error('web-ym2151: failed to allocate memory for YM2151 event buffer');
+            return;
+        }
         const view = new DataView(mod.HEAPU8.buffer);
 
-        for (let i = 0; i < events.length; i++) {
-            const baseAddr = dataPtr + i * STRUCT_SIZE;
-            view.setFloat32(baseAddr, events[i].time, true);
-            const addrByte = parseInt(events[i].addr, 16);
-            const dataByte = parseInt(events[i].data, 16);
-            mod.HEAPU8[baseAddr + 4] = isNaN(addrByte) ? 0 : addrByte;
-            mod.HEAPU8[baseAddr + 5] = isNaN(dataByte) ? 0 : dataByte;
-        }
+        let actualFrames: number;
+        try {
+            for (let i = 0; i < events.length; i++) {
+                const baseAddr = dataPtr + i * STRUCT_SIZE;
+                view.setFloat32(baseAddr, events[i].time, true);
+                const addrByte = parseInt(events[i].addr, 16);
+                const dataByte = parseInt(events[i].data, 16);
+                mod.HEAPU8[baseAddr + 4] = isNaN(addrByte) ? 0 : addrByte;
+                mod.HEAPU8[baseAddr + 5] = isNaN(dataByte) ? 0 : dataByte;
+            }
 
-        const actualFrames = mod._generate_sound(dataPtr, events.length, numFrames);
-        mod._free(dataPtr);
+            actualFrames = mod._generate_sound(dataPtr, events.length, numFrames);
+        } finally {
+            mod._free(dataPtr);
+        }
 
         if (actualFrames <= 0) {
             console.error('web-ym2151: no frames generated');

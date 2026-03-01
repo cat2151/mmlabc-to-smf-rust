@@ -1,5 +1,5 @@
 // Converts an SMF (Standard MIDI File) to YM2151 log format JSON using the smf-to-ym2151log-rust WASM library
-import init, { smf_to_ym2151_json } from '../smf-to-ym2151log-wasm/smf_to_ym2151log.js';
+import init, { smf_to_ym2151_json } from './smf-to-ym2151log-wasm/smf_to_ym2151log.js';
 
 // Hex string format (e.g. "0x08", "0x28") as returned by smf-to-ym2151log-rust WASM library
 export interface YM2151Event {
@@ -14,12 +14,19 @@ export interface YM2151Json {
 }
 
 let wasmInitialized = false;
+let wasmInitPromise: Promise<void> | null = null;
 
 async function ensureInitialized(): Promise<void> {
-    if (!wasmInitialized) {
-        await init();
-        wasmInitialized = true;
+    if (wasmInitialized) return;
+    if (!wasmInitPromise) {
+        wasmInitPromise = init().then(() => {
+            wasmInitialized = true;
+        }).catch((err) => {
+            wasmInitPromise = null; // Allow retry on failure
+            throw err;
+        });
     }
+    await wasmInitPromise;
 }
 
 export async function smfToYM2151Json(smfData: Uint8Array): Promise<YM2151Json> {

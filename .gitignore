@@ -56,8 +56,5 @@ demo/web-tree-sitter.wasm
 mmlabc-to-smf-wasm/pkg/
 mmlabc-to-smf-wasm/target/
 
-# smf-to-ym2151log-rust WASM (downloaded during build)
-smf-to-ym2151log-wasm/
-
 # GitHub Pages deployment artifacts
 _site/

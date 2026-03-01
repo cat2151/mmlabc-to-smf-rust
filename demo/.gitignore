@@ -15,5 +15,8 @@ tone/
 sine_test.js
 sine_test.wasm
 
+# smf-to-ym2151log-rust WASM (copied from node_modules during build)
+smf-to-ym2151log-wasm/
+
 # Compiled TypeScript bundle
 app.js
