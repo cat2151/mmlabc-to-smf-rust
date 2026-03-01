@@ -20,10 +20,7 @@ fi
 
 # Transform paths using sed with double quotes for clarity
 sed \
-  -e "s|from './web-tree-sitter.js'|from './demo/web-tree-sitter.js'|g" \
-  -e "s|from './tone/index.js'|from './demo/tone/index.js'|g" \
-  -e "s|from '../mmlabc-to-smf-wasm/|from './mmlabc-to-smf-wasm/|g" \
-  -e "s|load('../tree-sitter-mml/|load('./tree-sitter-mml/|g" \
+  -e "s|src=\"./app.js\"|src=\"./demo/app.js\"|g" \
   -e "s|href=\"../demo-library/\"|href=\"./demo-library/\"|g" \
   "$INPUT_FILE" > "$OUTPUT_FILE"
 
@@ -35,20 +32,8 @@ fi
 
 # Verify all transformations were applied
 VALIDATION_FAILED=0
-if ! grep -q "from './demo/web-tree-sitter.js'" "$OUTPUT_FILE"; then
-    echo "Warning: Expected transformation 'from ./demo/web-tree-sitter.js' not found in output"
-    VALIDATION_FAILED=1
-fi
-if ! grep -q "from './demo/tone/index.js'" "$OUTPUT_FILE"; then
-    echo "Warning: Expected transformation 'from ./demo/tone/index.js' not found in output"
-    VALIDATION_FAILED=1
-fi
-if ! grep -q "from './mmlabc-to-smf-wasm/" "$OUTPUT_FILE"; then
-    echo "Warning: Expected transformation 'from ./mmlabc-to-smf-wasm/' not found in output"
-    VALIDATION_FAILED=1
-fi
-if ! grep -q "load('./tree-sitter-mml/" "$OUTPUT_FILE"; then
-    echo "Warning: Expected transformation 'load(./tree-sitter-mml/' not found in output"
+if ! grep -q "src=\"./demo/app.js\"" "$OUTPUT_FILE"; then
+    echo "Warning: Expected transformation 'src=\"./demo/app.js\"' not found in output"
     VALIDATION_FAILED=1
 fi
 if ! grep -q "href=\"./demo-library/\"" "$OUTPUT_FILE"; then

@@ -18,16 +18,22 @@ echo "Step 1/4: Installing demo npm dependencies..."
 cd "${ROOT_DIR}/demo"
 npm install
 
-# Step 2: Copy web-tree-sitter and bundle Tone.js for browser ESM
+# Step 2: Copy web-tree-sitter, bundle Tone.js, and compile TypeScript source
 echo ""
-echo "Step 2/4: Copying web-tree-sitter and bundling Tone.js..."
+echo "Step 2/4: Copying web-tree-sitter, bundling Tone.js, and compiling TypeScript..."
 cp node_modules/web-tree-sitter/web-tree-sitter.js web-tree-sitter.js
 cp node_modules/web-tree-sitter/web-tree-sitter.wasm web-tree-sitter.wasm
 # Bundle Tone.js and its dependencies into a single ESM file for browsers
 rm -rf tone
 mkdir -p tone
 npx esbuild node_modules/tone/build/esm/index.js --bundle --format=esm --platform=browser --outfile=tone/index.js
-echo "✓ Copied web-tree-sitter files and bundled Tone.js"
+# Compile TypeScript source modules into a single bundled app.js
+npx esbuild src/main.ts --bundle --format=esm --platform=browser \
+    --external:./web-tree-sitter.js \
+    --external:./tone/index.js \
+    '--external:../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js' \
+    --outfile=app.js
+echo "✓ Copied web-tree-sitter files, bundled Tone.js, and compiled TypeScript"
 
 # Step 3: Build the WASM module
 echo ""
