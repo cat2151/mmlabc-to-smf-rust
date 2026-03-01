@@ -1,4 +1,4 @@
-Last updated: 2026-02-16
+Last updated: 2026-03-02
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -106,6 +106,7 @@ Last updated: 2026-02-16
 - .editorconfig
 - .github/IMPLEMENTATION_SUMMARY.md
 - .github/actions-tmp/.github/workflows/call-callgraph.yml
+- .github/actions-tmp/.github/workflows/call-check-large-files.yml
 - .github/actions-tmp/.github/workflows/call-daily-project-summary.yml
 - .github/actions-tmp/.github/workflows/call-issue-note.yml
 - .github/actions-tmp/.github/workflows/call-rust-windows-check.yml
@@ -135,7 +136,7 @@ Last updated: 2026-02-16
 - .github/actions-tmp/.github_automation/callgraph/scripts/generate-html-graph.cjs
 - .github/actions-tmp/.github_automation/callgraph/scripts/generateHTML.cjs
 - .github/actions-tmp/.github_automation/check-large-files/README.md
-- .github/actions-tmp/.github_automation/check-large-files/check-large-files.toml.example
+- .github/actions-tmp/.github_automation/check-large-files/check-large-files.toml.default
 - .github/actions-tmp/.github_automation/check-large-files/scripts/check_large_files.py
 - .github/actions-tmp/.github_automation/check_recent_human_commit/scripts/check-recent-human-commit.cjs
 - .github/actions-tmp/.github_automation/project_summary/docs/daily-summary-setup.md
@@ -197,7 +198,8 @@ Last updated: 2026-02-16
 - .github/actions-tmp/issue-notes/38.md
 - .github/actions-tmp/issue-notes/4.md
 - .github/actions-tmp/issue-notes/40.md
-- .github/actions-tmp/issue-notes/42.md
+- .github/actions-tmp/issue-notes/44.md
+- .github/actions-tmp/issue-notes/46.md
 - .github/actions-tmp/issue-notes/7.md
 - .github/actions-tmp/issue-notes/8.md
 - .github/actions-tmp/issue-notes/9.md
@@ -207,6 +209,7 @@ Last updated: 2026-02-16
 - .github/copilot-instructions.md
 - .github/scripts/README.md
 - .github/scripts/create-build-failure-issue.js
+- .github/workflows/call-check-large-files.yml
 - .github/workflows/call-daily-project-summary.yml
 - .github/workflows/call-issue-note.yml
 - .github/workflows/call-translate-readme.yml
@@ -228,15 +231,24 @@ Last updated: 2026-02-16
 - demo/README.md
 - demo/index.html
 - demo/package.json
+- demo/src/audioPlayback.ts
+- demo/src/audioRenderer.ts
+- demo/src/main.ts
+- demo/src/midiReader.ts
+- demo/src/mmlConverter.ts
+- demo/src/parseMidiNotes.ts
+- demo/src/smfToYm2151.ts
+- demo/src/state.ts
+- demo/src/ui.ts
+- demo/src/visualization.ts
+- demo/src/wavExport.ts
 - demo-library/index.html
 - demo-library/package.json
 - googled947dc864c270e07.html
 - issue-notes/39.md
 - issue-notes/44.md
 - issue-notes/89.md
-- issue-notes/91.md
-- issue-notes/92.md
-- issue-notes/93.md
+- issue-notes/97.md
 - mmlabc-to-smf-rust.toml.example
 - mmlabc-to-smf-wasm/Cargo.lock
 - mmlabc-to-smf-wasm/Cargo.toml
@@ -285,48 +297,30 @@ Last updated: 2026-02-16
 - tree-sitter-mml/tree-sitter-mml.wasm
 
 ## 現在のオープンIssues
-## [Issue #93](../issue-notes/93.md): ソースが500行overの時点で単一責任の原則に従ってソース分割をするよう、CIにチェックを入れつつ、AGENTS.md系にも明記する
-[issue-notes/93.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/93.md)
+## [Issue #100](../issue-notes/100.md): 大きなファイルの検出: 82個のファイルが500行を超えています
+以下のファイルが500行を超えています。リファクタリングを検討してください。
 
-...
-ラベル: 
---- issue-notes/93.md の内容 ---
+## 検出されたファイル
+
+| ファイル | 行数 | 超過行数 |
+|---------|------|----------|
+| `_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_s...
+ラベル: refactoring, code-quality, automated
+--- issue-notes/100.md の内容 ---
 
 ```markdown
-# issue ソースが500行overの時点で単一責任の原則に従ってソース分割をするよう、CIにチェックを入れつつ、AGENTS.md系にも明記する #93
-[issues #93](https://github.com/cat2151/mmlabc-to-smf-rust/issues/93)
-
-
 
 ```
 
-## [Issue #92](../issue-notes/92.md): demoのソースが1000行overでハルシネーションのリスクが高い。TypeScriptで単一責任の原則に従ってソース分割する
-[issue-notes/92.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/92.md)
-
-...
+## [Issue #99](../issue-notes/99.md): Replace custom SMF→audio pipeline with web-ym2151 and smf-to-ym2151log-rust libraries
+- [x] Explore codebase and understand current demo implementation
+- [x] Update `demo/package.json` to add `smf-to-ym2151log-rust` and `web-ym2151` dependencies
+- [x] Update `demo/.gitignore` for new build artifacts
+- [x] Update `scripts/build-demo.sh` to copy new library files and update esbuild ext...
 ラベル: 
---- issue-notes/92.md の内容 ---
+--- issue-notes/99.md の内容 ---
 
 ```markdown
-# issue demoのソースが1000行overでハルシネーションのリスクが高い。TypeScriptで単一責任の原則に従ってソース分割する #92
-[issues #92](https://github.com/cat2151/mmlabc-to-smf-rust/issues/92)
-
-
-
-```
-
-## [Issue #91](../issue-notes/91.md): demoでライブラリを使わず自前実装に逃げている部分が複数ある。そのため根が深いトラブルの温床になっている。AGENTS.md系にライブラリ利用を明記する
-[issue-notes/91.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/91.md)
-
-...
-ラベル: 
---- issue-notes/91.md の内容 ---
-
-```markdown
-# issue demoでライブラリを使わず自前実装に逃げている部分が複数ある。そのため根が深いトラブルの温床になっている。AGENTS.md系にライブラリ利用を明記する #91
-[issues #91](https://github.com/cat2151/mmlabc-to-smf-rust/issues/91)
-
-
 
 ```
 
@@ -339,274 +333,102 @@ Last updated: 2026-02-16
 
 ```
 
-## [Issue #89](../issue-notes/89.md): demoで和音のパースがおかしく、先頭のnote lengthが2つ目以降に適用されていない。agentがライブラリを使わず自前実装しているかチェックせよ
-[issue-notes/89.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/89.md)
-
-...
-ラベル: 
---- issue-notes/89.md の内容 ---
-
-```markdown
-# issue demoで和音のパースがおかしく、先頭のnote lengthが2つ目以降に適用されていない。agentがライブラリを使わず自前実装しているかチェックせよ #89
-[issues #89](https://github.com/cat2151/mmlabc-to-smf-rust/issues/89)
-
-
-
-```
-
 ## ドキュメントで言及されているファイルの内容
-### .github/actions-tmp/issue-notes/2.md
-```md
+### .github/actions-tmp/.gitignore
+```gitignore
 {% raw %}
-# issue GitHub Actions「関数コールグラフhtmlビジュアライズ生成」を共通ワークフロー化する #2
-[issues #2](https://github.com/cat2151/github-actions/issues/2)
-
-
-# prompt
-```
-あなたはGitHub Actionsと共通ワークフローのスペシャリストです。
-このymlファイルを、以下の2つのファイルに分割してください。
-1. 共通ワークフロー       cat2151/github-actions/.github/workflows/callgraph_enhanced.yml
-2. 呼び出し元ワークフロー cat2151/github-actions/.github/workflows/call-callgraph_enhanced.yml
-まずplanしてください
-```
-
-# 結果
-- indent
-    - linter？がindentのエラーを出しているがyml内容は見た感じOK
-    - テキストエディタとagentの相性問題と判断する
-    - 別のテキストエディタでsaveしなおし、テキストエディタをreload
-    - indentのエラーは解消した
-- LLMレビュー
-    - agent以外の複数のLLMにレビューさせる
-    - prompt
-```
-あなたはGitHub Actionsと共通ワークフローのスペシャリストです。
-以下の2つのファイルをレビューしてください。最優先で、エラーが発生するかどうかだけレビューしてください。エラー以外の改善事項のチェックをするかわりに、エラー発生有無チェックに最大限注力してください。
-
---- 共通ワークフロー
-
-# GitHub Actions Reusable Workflow for Call Graph Generation
-name: Generate Call Graph
-
-# TODO Windowsネイティブでのtestをしていた名残が残っているので、今後整理していく。今はWSL act でtestしており、Windowsネイティブ環境依存問題が解決した
-#  ChatGPTにレビューさせるとそこそこ有用そうな提案が得られたので、今後それをやる予定
-#  agentに自己チェックさせる手も、セカンドオピニオンとして選択肢に入れておく
-
-on:
-  workflow_call:
-
-jobs:
-  check-commits:
-    runs-on: ubuntu-latest
-    outputs:
-      should-run: ${{ steps.check.outputs.should-run }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 50 # 過去のコミットを取得
-
-      - name: Check for user commits in last 24 hours
-        id: check
-        run: |
-          node .github/scripts/callgraph_enhanced/check-commits.cjs
-
-  generate-callgraph:
-    needs: check-commits
-    if: needs.check-commits.outputs.should-run == 'true'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      security-events: write
-      actions: read
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set Git identity
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Remove old CodeQL packages cache
-        run: rm -rf ~/.codeql/packages
-
-      - name: Check Node.js version
-        run: |
-          node .github/scripts/callgraph_enhanced/check-node-version.cjs
-
-      - name: Install CodeQL CLI
-        run: |
-          wget https://github.com/github/codeql-cli-binaries/releases/download/v2.22.1/codeql-linux64.zip
-          unzip codeql-linux64.zip
-          sudo mv codeql /opt/codeql
-          echo "/opt/codeql" >> $GITHUB_PATH
-
-      - name: Install CodeQL query packs
-        run: |
-          /opt/codeql/codeql pack install .github/codeql-queries
-
-      - name: Check CodeQL exists
-        run: |
-          node .github/scripts/callgraph_enhanced/check-codeql-exists.cjs
-
-      - name: Verify CodeQL Configuration
-        run: |
-          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs verify-config
-
-      - name: Remove existing CodeQL DB (if any)
-        run: |
-          rm -rf codeql-db
-
-      - name: Perform CodeQL Analysis
-        run: |
-          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs analyze
-
-      - name: Check CodeQL Analysis Results
-        run: |
-          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs check-results
-
-      - name: Debug CodeQL execution
-        run: |
-          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs debug
-
-      - name: Wait for CodeQL results
-        run: |
-          node -e "setTimeout(()=>{}, 10000)"
-
-      - name: Find and process CodeQL results
-        run: |
-          node .github/scripts/callgraph_enhanced/find-process-results.cjs
-
-      - name: Generate HTML graph
-        run: |
-          node .github/scripts/callgraph_enhanced/generate-html-graph.cjs
-
-      - name: Copy files to generated-docs and commit results
-        run: |
-          node .github/scripts/callgraph_enhanced/copy-commit-results.cjs
-
---- 呼び出し元
-# 呼び出し元ワークフロー: call-callgraph_enhanced.yml
-name: Call Call Graph Enhanced
-
-on:
-  schedule:
-    # 毎日午前5時(JST) = UTC 20:00前日
-    - cron: '0 20 * * *'
-  workflow_dispatch:
-
-jobs:
-  call-callgraph-enhanced:
-    # uses: cat2151/github-actions/.github/workflows/callgraph_enhanced.yml
-    uses: ./.github/workflows/callgraph_enhanced.yml # ローカルでのテスト用
-```
-
-# レビュー結果OKと判断する
-- レビュー結果を人力でレビューした形になった
-
-# test
-- #4 同様にローカル WSL + act でtestする
-- エラー。userのtest設計ミス。
-  - scriptの挙動 : src/ がある前提
-  - 今回の共通ワークフローのリポジトリ : src/ がない
-  - 今回testで実現したいこと
-    - 仮のソースでよいので、関数コールグラフを生成させる
-  - 対策
-    - src/ にダミーを配置する
-- test green
-  - ただしcommit pushはしてないので、html内容が0件NG、といったケースの検知はできない
-  - もしそうなったら別issueとしよう
-
-# test green
-
-# commit用に、yml 呼び出し元 uses をlocal用から本番用に書き換える
-
-# closeとする
-- もしhtml内容が0件NG、などになったら、別issueとするつもり
+.secrets
+copilot-instructions.md
+__pycache__/
 
 {% endraw %}
 ```
 
-### .github/actions-tmp/issue-notes/3.md
-```md
+### .gitignore
+```gitignore
 {% raw %}
-# issue GitHub Actions「issue note生成」を共通ワークフロー化する #3
-[issues #3](https://github.com/cat2151/github-actions/issues/3)
+# Generated by Cargo
+# will have compiled files and executables
+debug
+target
 
-- 前提
-  - userは、translateのworkflowを共通ワークフロー化し、動くようにしたので、共通ワークフロー化の知識がある
-  - よって、今回は、promptでplanさせ、そのplanをuserがレビューし、planの改善を指示できるので、ハルシネーションのリスクを下げることができる
+# These are backup files generated by rustfmt
+**/*.rs.bk
 
-- prompt
-```
-あなたはGitHub Actionsと共通ワークフローのスペシャリストです。
-このymlはまだ共通ワークフロー化されず、
-呼び出し元からコピーされたままの状態です。
-このymlファイル名のまま、
-中身を共通ワークフロー化してください。
-呼び出し元ymlは別途書きますので気にしないでください。
-まずplanしてください
-```
+# MSVC Windows builds of rustc generate these, which store debugging information
+*.pdb
 
-- plan 生成結果
-```
-共通ワークフロー化のためのplanは以下の通りです。
+# Generated by cargo mutants
+# Contains mutation testing data
+**/mutants.out*/
 
-1. 目的
-現在の issue-note.yml を「共通ワークフロー」として再設計し、他リポジトリや他ワークフローから workflow_call で呼び出せるようにする。
-2. 主な変更点
-on: トリガーを workflow_call に変更（直接イベントで起動しない）。
-必要な入力（inputs）やシークレット（secrets）を workflow_call セクションで定義。
-github.event.issue などのイベント依存部分を、inputs経由で受け取る形に修正。
-既存の処理（issueノート生成、コミット、issue body更新）はそのまま活かすが、パラメータ化する。
-3. 具体的な修正内容
-on: issues: → on: workflow_call: に変更。
-inputs で必要な値（例: issue_title, issue_number, issue_body, issue_url など）を受け取る。
-スクリプト内の ${{ github.event.issue.xxx }} を ${{ inputs.xxx }} に置換。
-github-script ステップも同様にinputsを参照。
-必要に応じて secrets も workflow_call で受け取れるようにする。
-4. ファイル名・配置
-ファイル名はそのまま issue-note.yml。
-配置場所は workflows でOK（共通ワークフローとしてもこの場所で良い）。
-5. 呼び出し元への影響
-呼び出し元ワークフローで uses: <repo>/.github/workflows/issue-note.yml@main のように参照し、inputsを渡す形になる。
-このplanで進めます。次に、実際の共通ワークフロー化のためのyml修正案を作成しますか？
-```
+# RustRover
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/
 
-- userがplanレビューし、OKを出した
-- agentに生成結果ymlをレビューさせた、OKとなった
-  - userはこのレビューは認知負荷が高いのでskipとする（単純な細かい間違い探し作業になるので、それはagentに任せた）
--  エラー。呼び出し元ymlのエラーがあり修正。共通ワークフローのエラー指摘があり、共通ワークフロー側の修正が必要となった
-```
-原因の分析：
 
-呼び出し元（tonejs-mml-to-jsonのissue-note.yml）は、reusable workflow（cat2151/github-actions/.github/workflows/issue-note.yml@main）をusesで呼び出し、inputsをwithで渡しています。
-共通ワークフロー（reusable workflow）は inputs を workflow_call で受け取り、各ステップで ${{ inputs.xxx }} で参照しています。
-しかし、エラーが発生したのは actions/github-script@v7 の script 内です。
-エラーの本質的な原因：
+# Added by cargo
 
-actions/github-script の script: で ${{ inputs.issue_number }} のような式を直接 JavaScript テンプレートリテラル内で使っていますが、これはサポートされていません。
-script: の中は JavaScript であり、YAMLの ${{ ... }} は展開されません（または意図通りに展開されません）。
-そのため、inputs 変数は script 内の JavaScript で未定義となり、ReferenceError になります。
-正しい書き方：
+/target
 
-actions/github-script の script: でワークフローの inputs を使いたい場合は、with: で input を environment 変数や script の引数として渡し、JavaScript で process.env から取得するか、github-script の input 機能を使う必要があります。
-例（修正版）：
+# Debug output files
+pass*.json
+*.mid
+!tests/**/*.mid
 
-このように、inputs の値を env で渡し、script 内では process.env で参照してください。
+# TOML configuration file (user-specific)
+mmlabc-to-smf-rust.toml
 
-まとめ：
+# Node modules and npm artifacts
+node_modules/
+package-lock.json
 
-actions/github-script の script 内で ${{ inputs.xxx }} を直接使うと ReferenceError になる
-env: で値を渡し、process.env で参照するのが正しい
-修正が必要です。修正版のワークフローが必要な場合はお知らせください。
+# tree-sitter generated files and npm artifacts
+tree-sitter-mml/node_modules/
+tree-sitter-mml/package-lock.json
+tree-sitter-mml/Cargo.toml
+tree-sitter-mml/binding.gyp
+tree-sitter-mml/bindings/
+
+# Demo node_modules
+demo/node_modules/
+demo/package-lock.json
+
+# Demo copied web-tree-sitter files
+demo/web-tree-sitter.js
+demo/web-tree-sitter.wasm
+
+# WASM package output
+mmlabc-to-smf-wasm/pkg/
+mmlabc-to-smf-wasm/target/
+
+# GitHub Pages deployment artifacts
+_site/
+
+{% endraw %}
 ```
 
-- test green
-- closeとする
+### demo/.gitignore
+```gitignore
+{% raw %}
+# Node.js dependencies
+node_modules/
+
+# Build output
+pkg/
+
+# Web tree-sitter files (copied from node_modules)
+web-tree-sitter.js
+web-tree-sitter.wasm
+
+# Tone.js directory (copied from node_modules)
+tone/
+
+# Compiled TypeScript bundle
+app.js
 
 {% endraw %}
 ```
@@ -629,77 +451,259 @@ env: で値を渡し、process.env で参照するのが正しい
 {% endraw %}
 ```
 
-### issue-notes/89.md
-```md
+### .github/actions-tmp/package.json
+```json
 {% raw %}
-# issue demoで和音のパースがおかしく、先頭のnote lengthが2つ目以降に適用されていない。agentがライブラリを使わず自前実装しているかチェックせよ #89
-[issues #89](https://github.com/cat2151/mmlabc-to-smf-rust/issues/89)
-
-
+{
+  "name": "actions-tmp",
+  "version": "1.0.0",
+  "description": "This repository is a **collection of GitHub Actions shared workflows reusable across multiple projects.**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@octokit/rest": "^22.0.1"
+  }
+}
 
 {% endraw %}
 ```
 
-### issue-notes/91.md
-```md
+### demo/package.json
+```json
 {% raw %}
-# issue demoでライブラリを使わず自前実装に逃げている部分が複数ある。そのため根が深いトラブルの温床になっている。AGENTS.md系にライブラリ利用を明記する #91
-[issues #91](https://github.com/cat2151/mmlabc-to-smf-rust/issues/91)
-
-
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "This demo demonstrates browser-based MML to SMF conversion using Option A architecture: - **JavaScript (web-tree-sitter)**: Parses MML text and generates parse tree - **Rust WASM**: Receives parse tree JSON, extracts tokens, and generates SMF binary",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "web-tree-sitter": "^0.26.5",
+    "tone": "^15.0.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}
 
 {% endraw %}
 ```
 
-### issue-notes/92.md
-```md
+### demo-library/package.json
+```json
 {% raw %}
-# issue demoのソースが1000行overでハルシネーションのリスクが高い。TypeScriptで単一責任の原則に従ってソース分割する #92
-[issues #92](https://github.com/cat2151/mmlabc-to-smf-rust/issues/92)
-
-
+{
+  "name": "mmlabc-to-smf-demo-library",
+  "version": "0.1.0",
+  "description": "Minimal demo for using mmlabc-to-smf (WASM) from a GitHub npm install.",
+  "scripts": {
+    "fetch:cdn": "bash -lc 'set -euo pipefail; BASE=https://cat2151.github.io/mmlabc-to-smf-rust; mkdir -p ../mmlabc-to-smf-wasm/pkg ../tree-sitter-mml ../demo; curl -L \"$BASE/mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js\" -o ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js; curl -L \"$BASE/mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm_bg.wasm\" -o ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm_bg.wasm; curl -L \"$BASE/tree-sitter-mml/tree-sitter-mml.wasm\" -o ../tree-sitter-mml/tree-sitter-mml.wasm; curl -L \"$BASE/demo/web-tree-sitter.js\" -o ../demo/web-tree-sitter.js; curl -L \"$BASE/demo/web-tree-sitter.wasm\" -o ../demo/web-tree-sitter.wasm'",
+    "build": "cd .. && bash ./scripts/build-demo.sh",
+    "serve": "npm exec -- http-server .. -p 8080 -o /demo-library/"
+  },
+  "author": "cat2151",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
 
 {% endraw %}
 ```
 
-### issue-notes/93.md
-```md
+### package.json
+```json
 {% raw %}
-# issue ソースが500行overの時点で単一責任の原則に従ってソース分割をするよう、CIにチェックを入れつつ、AGENTS.md系にも明記する #93
-[issues #93](https://github.com/cat2151/mmlabc-to-smf-rust/issues/93)
+{
+  "dependencies": {
+    "tree-sitter-cli": "^0.26.5"
+  }
+}
 
+{% endraw %}
+```
 
+### tree-sitter-mml/package.json
+```json
+{% raw %}
+{
+  "name": "tree-sitter-mml",
+  "version": "1.0.0",
+  "description": "Music Macro Language grammar for tree-sitter",
+  "main": "bindings/node",
+  "keywords": [
+    "tree-sitter",
+    "parser",
+    "mml"
+  ],
+  "author": "cat2151",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.17.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.mml",
+      "file-types": [
+        "mml"
+      ]
+    }
+  ]
+}
+
+{% endraw %}
+```
+
+### _codeql_detected_source_root
+```_codeql_detected_source_root
+{% raw %}
+（ファイル読み込み失敗: EISDIR: illegal operation on a directory, read）
+{% endraw %}
+```
+
+### scripts/build-demo.sh
+```sh
+{% raw %}
+#!/bin/bash
+set -e
+
+# Build script for GitHub Pages demo
+# This script can be run standalone or called by GitHub Actions
+
+echo "=== Building MML to SMF WASM Demo ==="
+
+# Get the root directory (parent of scripts/)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+echo "Root directory: ${ROOT_DIR}"
+
+# Step 1: Install npm dependencies for demo
+echo ""
+echo "Step 1/4: Installing demo npm dependencies..."
+cd "${ROOT_DIR}/demo"
+npm install
+
+# Step 2: Copy web-tree-sitter, bundle Tone.js, and compile TypeScript source
+echo ""
+echo "Step 2/4: Copying web-tree-sitter, bundling Tone.js, and compiling TypeScript..."
+cp node_modules/web-tree-sitter/web-tree-sitter.js web-tree-sitter.js
+cp node_modules/web-tree-sitter/web-tree-sitter.wasm web-tree-sitter.wasm
+# Bundle Tone.js and its dependencies into a single ESM file for browsers
+rm -rf tone
+mkdir -p tone
+npx esbuild node_modules/tone/build/esm/index.js --bundle --format=esm --platform=browser --outfile=tone/index.js
+# Compile TypeScript source modules into a single bundled app.js
+npx esbuild src/main.ts --bundle --format=esm --platform=browser \
+    --external:./web-tree-sitter.js \
+    --external:./tone/index.js \
+    '--external:../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js' \
+    --outfile=app.js
+echo "✓ Copied web-tree-sitter files, bundled Tone.js, and compiled TypeScript"
+
+# Step 3: Build the WASM module
+echo ""
+echo "Step 3/4: Building Rust WASM module..."
+cd "${ROOT_DIR}/mmlabc-to-smf-wasm"
+
+# Check if wasm-pack is installed
+if ! command -v wasm-pack &> /dev/null; then
+    echo "Error: wasm-pack is not installed"
+    echo "Please install it with: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh"
+    exit 1
+fi
+
+wasm-pack build --target web --release
+
+# Step 4: Build tree-sitter-mml.wasm
+echo ""
+echo "Step 4/4: Building tree-sitter-mml.wasm..."
+cd "${ROOT_DIR}/tree-sitter-mml"
+
+# Ensure tree-sitter-cli is installed
+echo "Installing/updating tree-sitter-cli..."
+npm install
+
+# Build the WASM grammar
+echo "Running tree-sitter build-wasm..."
+npx tree-sitter build-wasm
+
+if [ -f "${ROOT_DIR}/tree-sitter-mml/tree-sitter-mml.wasm" ]; then
+    echo "✓ tree-sitter-mml.wasm built successfully"
+else
+    echo "Error: Failed to build tree-sitter-mml.wasm"
+    exit 1
+fi
+
+echo ""
+echo "=== Build completed successfully! ==="
+echo ""
+echo "Demo files are ready in:"
+echo "  - demo/ (HTML, JS, copied web-tree-sitter and Tone.js files)"
+echo "  - mmlabc-to-smf-wasm/pkg/ (Rust WASM module)"
+echo "  - tree-sitter-mml/ (tree-sitter-mml.wasm)"
+echo ""
+echo "To test locally, run from repository root:"
+echo "  python3 -m http.server 8000"
+echo "Then open: http://localhost:8000/"
 
 {% endraw %}
 ```
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-5b4d10a Add issue note for #93 [auto]
-d3309f8 Add issue note for #92 [auto]
-6d6c041 Auto-translate README.ja.md to README.md [auto]
-3417468 Update README.ja.md with maintenance notes and bugs
-f030376 Add issue note for #91 [auto]
-e112ae8 Add issue note for #89 [auto]
-e4a7a0e Update project summaries (overview & development status) [auto]
-da82e8f Merge pull request #88 from cat2151/codex/add-collapsible-areas-to-demo
-4f45ba8 Tweak JSON textarea styling
-02a4832 Add collapsible toggles to demo outputs
+5c18906 Merge pull request #98 from cat2151/copilot/translate-copilot-instructions-to-japanese
+cdd4c0a translate copilot-instructions.md from English to Japanese
+0c04230 Initial plan
+c8c7ec4 Merge pull request #96 from cat2151/copilot/fix-harmony-parsing-issue
+74c4bb9 Support chord length on any note position (first, middle, or last)
+66071b3 Address review feedback: fix comment clarity and rename ambiguous test
+e8bea68 Fix chord note length inheritance (pass2) and chord duration time advance (pass3)
+92fd064 Add issue note for #97 [auto]
+6a68200 Add instructions for using libraries in demo
+80a91a0 Initial plan
 
 ### 変更されたファイル:
-README.ja.md
-README.md
-generated-docs/development-status-generated-prompt.md
-generated-docs/development-status.md
-generated-docs/project-overview-generated-prompt.md
-generated-docs/project-overview.md
-issue-notes/85.md
-issue-notes/87.md
-issue-notes/89.md
+.github/copilot-instructions.md
+.github/workflows/call-check-large-files.yml
+demo/.gitignore
+demo/index.html
+demo/src/audioPlayback.ts
+demo/src/audioRenderer.ts
+demo/src/main.ts
+demo/src/midiReader.ts
+demo/src/mmlConverter.ts
+demo/src/parseMidiNotes.ts
+demo/src/smfToYm2151.ts
+demo/src/state.ts
+demo/src/ui.ts
+demo/src/visualization.ts
+demo/src/wavExport.ts
 issue-notes/91.md
 issue-notes/92.md
 issue-notes/93.md
+issue-notes/97.md
+scripts/build-demo.sh
+scripts/transform-demo-paths.sh
+src/pass2_ast.rs
+src/pass3_events.rs
+tests/test_chord.rs
 
 
 ---
-Generated at: 2026-02-16 07:06:03 JST
+Generated at: 2026-03-02 07:05:43 JST
