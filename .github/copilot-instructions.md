@@ -177,3 +177,6 @@ When adding new MML commands:
 - Debug output files help understand processing at each stage
 - When unsure about MML commands, refer to the original Python implementation or mml2abc repository
 - Before committing, open the browser demo headlessly and confirm the console is error-free; if you cannot run this check, report that fact.
+
+# userからの追加指示
+- ソースが500行を超えるなら、単一責任の原則に従ってファイル分割をすること。その際、段階的にやること。つまり、1つの関数をファイル移動し、testし、必要ならtest修正、のサイクルをまわすこと
