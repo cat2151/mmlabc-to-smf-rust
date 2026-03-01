@@ -143,8 +143,11 @@ pub fn ast_to_events(ast: &Ast, use_drum_channel_for_128: bool) -> Vec<MidiEvent
         }
     } else if has_chords {
         // Chord mode: notes with the same chord_id play simultaneously on the same channel
-        // Track the last chord_id processed
+        // Track the last chord_id processed and the duration of the active chord.
         let mut last_chord_id: Option<usize> = None;
+        // Duration of the chord currently being processed (set from the first chord note).
+        // Used to advance time correctly when leaving a chord.
+        let mut chord_duration: u32 = 0;
 
         for note in &ast.notes {
             let duration = if let Some(length) = note.length {
@@ -157,9 +160,11 @@ pub fn ast_to_events(ast: &Ast, use_drum_channel_for_128: bool) -> Vec<MidiEvent
             let is_chord_note = note.chord_id.is_some();
             let current_chord_id = note.chord_id;
 
-            // If this is a different chord or a non-chord note after a chord, advance time
+            // When leaving a chord (different chord_id or non-chord note), advance time
+            // by the *chord's* duration (not the incoming note's duration).
             if last_chord_id.is_some() && last_chord_id != current_chord_id {
-                time += duration;
+                time += chord_duration;
+                chord_duration = 0;
             }
 
             if note.note_type == "rest" {
@@ -220,6 +225,10 @@ pub fn ast_to_events(ast: &Ast, use_drum_channel_for_128: bool) -> Vec<MidiEvent
                     time += duration;
                     last_chord_id = None;
                 } else {
+                    // Record the first chord note's duration for use when leaving the chord
+                    if last_chord_id != current_chord_id {
+                        chord_duration = duration;
+                    }
                     last_chord_id = current_chord_id;
                 }
             }
