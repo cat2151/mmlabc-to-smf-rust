@@ -46,7 +46,10 @@ export function smfToYM2151Json(smfData: Uint8Array): YM2151Json {
 
             const id = reader.readChar4();
             const trackLength = reader.readUint32();
-            const trackEnd = reader.offset + trackLength;
+            let trackEnd = reader.offset + trackLength;
+            if (trackEnd > reader.length || trackEnd < reader.offset) {
+                trackEnd = reader.length;
+            }
 
             if (id !== 'MTrk') {
                 reader.offset = trackEnd;

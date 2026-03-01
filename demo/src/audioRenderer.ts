@@ -54,7 +54,9 @@ export async function midiToAudio(smfData: Uint8Array): Promise<AudioData> {
 export async function renderWaveformAndAudio(smfData: Uint8Array): Promise<void> {
     try {
         if (!state.audioContext) {
-            state.audioContext = new AudioContext();
+            const AudioContextClass =
+                (window as any).AudioContext || (window as any).webkitAudioContext;
+            state.audioContext = new AudioContextClass();
         }
 
         const audioData = await midiToAudio(smfData);

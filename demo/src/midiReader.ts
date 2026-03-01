@@ -12,6 +12,9 @@ export class MidiReader {
     }
 
     readUint8(): number {
+        if (this.offset >= this.data.length) {
+            throw new Error('Unexpected EOF while reading uint8');
+        }
         return this.data[this.offset++];
     }
 
@@ -51,6 +54,9 @@ export class MidiReader {
     }
 
     readChar4(): string {
+        if (this.offset + 4 > this.data.length) {
+            throw new Error('Unexpected EOF while reading char4');
+        }
         const result = String.fromCharCode(
             this.data[this.offset],
             this.data[this.offset + 1],
