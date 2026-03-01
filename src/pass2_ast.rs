@@ -72,8 +72,9 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
             // Get current octave for this channel (default to 5)
             let octave = *current_octaves.get(&token.channel_group).unwrap_or(&5);
 
-            // Within a chord, the first note's explicit length/dots propagate to
-            // subsequent notes that have no explicit length of their own.
+            // Within a chord, the first note's explicit length propagates to subsequent
+            // notes that have no explicit length of their own, and its explicit dots
+            // propagate to subsequent notes that have no explicit dots of their own.
             if let Some(chord_id) = token.chord_id {
                 if Some(chord_id) != current_chord_id_for_length {
                     // First note of this chord – record its explicit length/dots.

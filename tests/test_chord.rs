@@ -298,7 +298,7 @@ fn test_chord_with_octave() {
 }
 
 #[test]
-fn test_chord_first_note_length_propagates_to_rest() {
+fn test_chord_first_note_length_propagates_within_chord() {
     // 'c8eg' – only the first note has an explicit length (8).
     // The second and third notes should inherit that length.
     let tokens = pass1_parser::parse_mml("'c8eg'");
