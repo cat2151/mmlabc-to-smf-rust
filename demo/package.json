@@ -11,7 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "web-tree-sitter": "^0.26.5",
-    "tone": "^15.0.4"
+    "tone": "^15.0.4",
+    "smf-to-ym2151log-rust": "github:cat2151/smf-to-ym2151log-rust",
+    "web-ym2151": "github:cat2151/web-ym2151"
   },
   "devDependencies": {
     "esbuild": "^0.24.0"

@@ -11,5 +11,9 @@ web-tree-sitter.wasm
 # Tone.js directory (copied from node_modules)
 tone/
 
+# web-ym2151 files (copied from node_modules)
+sine_test.js
+sine_test.wasm
+
 # Compiled TypeScript bundle
 app.js
