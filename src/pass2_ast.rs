@@ -52,11 +52,20 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     // Default transpose is 0 (no transposition)
     let mut current_transposes: HashMap<Option<usize>, i8> = HashMap::new();
 
-    // Track the first note's explicit length/dots within a chord so subsequent
-    // chord notes inherit them when they have no explicit length of their own.
-    let mut current_chord_id_for_length: Option<usize> = None;
-    let mut current_chord_explicit_length: Option<u32> = None;
-    let mut current_chord_explicit_dots: Option<u32> = None;
+    // Pre-scan tokens to find each chord's explicit length/dots.
+    // Per MML dialect, any one note in a chord can specify the length and dots
+    // (e.g., 'c2.eg' and 'ceg2.' are equivalent); that value applies to all
+    // notes in the chord.
+    let mut chord_length_map: HashMap<usize, (Option<u32>, Option<u32>)> = HashMap::new();
+    for token in tokens {
+        if token.token_type == "note" {
+            if let Some(chord_id) = token.chord_id {
+                if token.note_length.is_some() || token.dots.is_some() {
+                    chord_length_map.insert(chord_id, (token.note_length, token.dots));
+                }
+            }
+        }
+    }
 
     // Track which channel groups have @128 (for drum channel mapping)
     let mut channel_groups_with_128: std::collections::HashSet<usize> =
@@ -72,38 +81,23 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
             // Get current octave for this channel (default to 5)
             let octave = *current_octaves.get(&token.channel_group).unwrap_or(&5);
 
-            // Within a chord, the first note's explicit length propagates to subsequent
-            // notes that have no explicit length of their own, and its explicit dots
-            // propagate to subsequent notes that have no explicit dots of their own.
-            if let Some(chord_id) = token.chord_id {
-                if Some(chord_id) != current_chord_id_for_length {
-                    // First note of this chord – record its explicit length/dots.
-                    current_chord_id_for_length = Some(chord_id);
-                    current_chord_explicit_length = token.note_length;
-                    current_chord_explicit_dots = token.dots;
-                }
-            } else {
-                // Non-chord note – reset chord length tracking.
-                current_chord_id_for_length = None;
-                current_chord_explicit_length = None;
-                current_chord_explicit_dots = None;
-            }
+            // Look up the chord's explicit length/dots (from whichever chord note
+            // carries them).  Any note in a chord may specify the length; that
+            // value is shared by every note in the chord.
+            let (chord_explicit_length, chord_explicit_dots) = token
+                .chord_id
+                .and_then(|id| chord_length_map.get(&id).copied())
+                .unwrap_or((None, None));
 
             // Get current length for this channel (default to 4 = quarter note).
-            // Priority: note's own explicit length → first chord note's explicit length
-            //           → channel's current length (l command) → default 4.
-            let length = token
-                .note_length
-                .or(current_chord_explicit_length)
+            // Priority: chord's explicit length → channel's current length (l command) → default 4.
+            let length = chord_explicit_length
                 .or_else(|| current_lengths.get(&token.channel_group).copied())
                 .unwrap_or(4);
 
             // Get current dots for this channel (default to 0).
-            // Priority: note's own explicit dots → first chord note's explicit dots
-            //           → channel's current dots (l command) → default 0.
-            let dots = token
-                .dots
-                .or(current_chord_explicit_dots)
+            // Priority: chord's explicit dots → channel's current dots (l command) → default 0.
+            let dots = chord_explicit_dots
                 .or_else(|| current_dots.get(&token.channel_group).copied())
                 .unwrap_or(0);
 

@@ -311,11 +311,11 @@ fn test_chord_first_note_length_propagates_within_chord() {
 
     let events = pass3_events::ast_to_events(&ast, true);
     // All chord notes start at 0 and end at 240 (eighth-note = 240 ticks)
-    assert_eq!(events[0].time, 0);   // C on
+    assert_eq!(events[0].time, 0); // C on
     assert_eq!(events[1].time, 240); // C off
-    assert_eq!(events[2].time, 0);   // E on
+    assert_eq!(events[2].time, 0); // E on
     assert_eq!(events[3].time, 240); // E off
-    assert_eq!(events[4].time, 0);   // G on
+    assert_eq!(events[4].time, 0); // G on
     assert_eq!(events[5].time, 240); // G off
 }
 
@@ -333,10 +333,59 @@ fn test_chord_then_different_length_note() {
         .collect();
 
     assert_eq!(note_on_events.len(), 4);
-    assert_eq!(note_on_events[0].time, 0);   // c (chord)
-    assert_eq!(note_on_events[1].time, 0);   // e (chord)
-    assert_eq!(note_on_events[2].time, 0);   // g (chord)
+    assert_eq!(note_on_events[0].time, 0); // c (chord)
+    assert_eq!(note_on_events[1].time, 0); // e (chord)
+    assert_eq!(note_on_events[2].time, 0); // g (chord)
     assert_eq!(note_on_events[3].time, 240); // d – starts after the chord ends
+}
+
+#[test]
+fn test_chord_last_note_length_propagates_within_chord() {
+    // 'ceg2.' – the length is on the LAST note; all notes should inherit it.
+    // dotted half note: 1920/2 * 1.5 = 1440 ticks
+    let tokens = pass1_parser::parse_mml("'ceg2.'");
+    let ast = pass2_ast::tokens_to_ast(&tokens);
+
+    assert_eq!(ast.notes.len(), 3);
+    assert_eq!(ast.notes[0].length, Some(2)); // c – inherits from g2.
+    assert_eq!(ast.notes[1].length, Some(2)); // e – inherits from g2.
+    assert_eq!(ast.notes[2].length, Some(2)); // g2. – explicit
+
+    // All dots should be 1
+    assert_eq!(ast.notes[0].dots, Some(1));
+    assert_eq!(ast.notes[1].dots, Some(1));
+    assert_eq!(ast.notes[2].dots, Some(1));
+
+    let events = pass3_events::ast_to_events(&ast, true);
+    // All chord notes on at 0, off at 1440 (dotted half note)
+    assert_eq!(events[0].time, 0); // C on
+    assert_eq!(events[1].time, 1440); // C off
+    assert_eq!(events[2].time, 0); // E on
+    assert_eq!(events[3].time, 1440); // E off
+    assert_eq!(events[4].time, 0); // G on
+    assert_eq!(events[5].time, 1440); // G off
+}
+
+#[test]
+fn test_chord_middle_note_length_propagates_within_chord() {
+    // 'ce8g' – the length is on a middle note; all notes should inherit it.
+    // eighth note: 1920/8 = 240 ticks
+    let tokens = pass1_parser::parse_mml("'ce8g'");
+    let ast = pass2_ast::tokens_to_ast(&tokens);
+
+    assert_eq!(ast.notes.len(), 3);
+    assert_eq!(ast.notes[0].length, Some(8)); // c – inherits from e8
+    assert_eq!(ast.notes[1].length, Some(8)); // e8 – explicit
+    assert_eq!(ast.notes[2].length, Some(8)); // g – inherits from e8
+
+    let events = pass3_events::ast_to_events(&ast, true);
+    // All chord notes on at 0, off at 240 (eighth note)
+    assert_eq!(events[0].time, 0); // C on
+    assert_eq!(events[1].time, 240); // C off
+    assert_eq!(events[2].time, 0); // E on
+    assert_eq!(events[3].time, 240); // E off
+    assert_eq!(events[4].time, 0); // G on
+    assert_eq!(events[5].time, 240); // G off
 }
 
 #[test]
@@ -357,7 +406,7 @@ fn test_two_chords_different_lengths() {
     assert_eq!(note_on_events[0].time, 0); // c
     assert_eq!(note_on_events[1].time, 0); // e
     assert_eq!(note_on_events[2].time, 0); // g
-    // Second chord starts after first chord (240 ticks)
+                                           // Second chord starts after first chord (240 ticks)
     assert_eq!(note_on_events[3].time, 240); // d
     assert_eq!(note_on_events[4].time, 240); // f
     assert_eq!(note_on_events[5].time, 240); // a
