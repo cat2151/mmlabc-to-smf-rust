@@ -1,182 +1,182 @@
 # copilot-instructions.md
 
-## Overview
+## 概要
 
-This repository implements a Music Macro Language (MML) to Standard MIDI File (SMF) converter in Rust. It is a Rust implementation of the original Python project [mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf). The converter uses a 4-pass architecture to transform MML strings into MIDI files with comprehensive debug output at each stage.
+このリポジトリは、Music Macro Language（MML）をStandard MIDI File（SMF）に変換するコンバーターをRustで実装したものです。元のPythonプロジェクト [mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf) のRust実装です。コンバーターは4パスアーキテクチャを採用し、MML文字列をMIDIファイルに変換します。各ステージで詳細なデバッグ出力を行います。
 
-The project aims to:
-- Convert MML format strings to Standard MIDI Files
-- Provide detailed debug output (JSON) for each processing pass
-- Eventually support the full mmlabc MML command set (see mml2abc repository)
+プロジェクトの目的：
+- MML形式の文字列をStandard MIDI Fileに変換する
+- 各処理パスで詳細なデバッグ出力（JSON）を提供する
+- 最終的にmmlabc MMLコマンドセット全体をサポートする（mml2abcリポジトリ参照）
 
-## Contribution Guidelines
+## コントリビューションガイドライン
 
-### Building
-Build the project using:
+### ビルド
+以下のコマンドでプロジェクトをビルドします：
 ```bash
 cargo build
 ```
 
-For release builds:
+リリースビルドの場合：
 ```bash
 cargo build --release
 ```
 
-### Testing
-Run all tests using:
+### テスト
+以下のコマンドで全テストを実行します：
 ```bash
 cargo test
 ```
 
-All code changes must include passing tests. The project uses:
-- Unit tests in individual modules
-- Integration tests in the `tests/` directory
-- Tests should validate behavior at each pass of the 4-pass architecture
+すべてのコード変更にはテストの通過が必要です。プロジェクトでは以下を使用します：
+- 各モジュール内のユニットテスト
+- `tests/` ディレクトリの統合テスト
+- 4パスアーキテクチャの各パスで動作を検証するテスト
 
-### Linting and Formatting
-Before committing, ensure code passes linting and formatting checks:
+### リントとフォーマット
+コミット前に、コードがリントおよびフォーマットチェックを通過していることを確認してください：
 
 ```bash
-# Run clippy for linting
+# clippyでリント
 cargo clippy
 
-# Check code formatting
+# コードフォーマットの確認
 cargo fmt --check
 
-# Auto-format code
+# コードの自動フォーマット
 cargo fmt
 ```
 
-All code must:
-- Pass `cargo clippy` without warnings
-- Be formatted with `cargo fmt`
-- Follow Rust idioms and best practices
+すべてのコードは以下を満たす必要があります：
+- `cargo clippy` で警告なしに通過する
+- `cargo fmt` でフォーマットされている
+- Rustのイディオムとベストプラクティスに従っている
 
-### Running the Application
-After building, run the converter with:
+### アプリケーションの実行
+ビルド後、以下のコマンドでコンバーターを実行します：
 ```bash
 cargo run -- "cde"
 cargo run -- "cde" -o output.mid
 ```
 
-## Project Structure
+## プロジェクト構造
 
-- `src/`: Primary source code
-  - `main.rs`: CLI entry point
-  - `lib.rs`: Library root
-  - `pass1_parser.rs`: Pass 1 - Parse MML to tokens using tree-sitter
-  - `pass2_ast.rs`: Pass 2 - Convert tokens to Abstract Syntax Tree
-  - `pass3_events.rs`: Pass 3 - Generate MIDI events from AST
-  - `pass4_midi.rs`: Pass 4 - Create Standard MIDI File
-  - `tree_sitter_mml.rs`: Tree-sitter MML grammar integration
-  - `types.rs`: Common type definitions
-- `tests/`: Integration and unit tests
-  - `integration_test.rs`: Full pipeline tests
-  - `test_pass1.rs`: Pass 1 tests
-  - `test_pass2.rs`: Pass 2 tests
-  - `test_pass3.rs`: Pass 3 tests
-  - `test_pass4.rs`: Pass 4 tests
-- `tree-sitter-mml/`: Tree-sitter grammar for MML parsing
-- `build.rs`: Build script for tree-sitter compilation
+- `src/`: 主要なソースコード
+  - `main.rs`: CLIエントリポイント
+  - `lib.rs`: ライブラリルート
+  - `pass1_parser.rs`: Pass 1 - tree-sitterを使ってMMLをトークンにパース
+  - `pass2_ast.rs`: Pass 2 - トークンを抽象構文木（AST）に変換
+  - `pass3_events.rs`: Pass 3 - ASTからMIDIイベントを生成
+  - `pass4_midi.rs`: Pass 4 - Standard MIDI Fileを作成
+  - `tree_sitter_mml.rs`: Tree-sitter MML文法の統合
+  - `types.rs`: 共通型定義
+- `tests/`: 統合テストとユニットテスト
+  - `integration_test.rs`: フルパイプラインテスト
+  - `test_pass1.rs`: Pass 1テスト
+  - `test_pass2.rs`: Pass 2テスト
+  - `test_pass3.rs`: Pass 3テスト
+  - `test_pass4.rs`: Pass 4テスト
+- `tree-sitter-mml/`: MMLパース用Tree-sitter文法
+- `build.rs`: tree-sitterコンパイル用ビルドスクリプト
 
-### Generated Files
-The following files are generated during execution and should not be committed:
-- `pass*.json`: Debug output JSON files from each pass
-- `*.mid`: Generated MIDI files (except test fixtures in `tests/`)
+### 生成ファイル
+実行時に生成される以下のファイルはコミットしないでください：
+- `pass*.json`: 各パスのデバッグ出力JSONファイル
+- `*.mid`: 生成されたMIDIファイル（`tests/` 内のテストフィクスチャを除く）
 
-## Technical Principles
+## 技術原則
 
-### Language and Framework
-- **Rust Edition**: 2021
-- **Minimum Rust Version**: 1.70.0
-- Use Rust's type system and ownership model for memory safety
-- Prefer idiomatic Rust patterns
+### 言語とフレームワーク
+- **Rustエディション**: 2021
+- **最低Rustバージョン**: 1.70.0
+- Rustの型システムと所有権モデルによるメモリ安全性を活用する
+- イディオマティックなRustパターンを優先する
 
-### Key Dependencies
-- `midly`: MIDI file manipulation
-- `serde` & `serde_json`: JSON serialization for debug output
-- `clap`: Command-line argument parsing
-- `tree-sitter`: Parsing MML syntax (fully integrated)
-- `anyhow` & `thiserror`: Error handling
+### 主要な依存関係
+- `midly`: MIDIファイル操作
+- `serde` & `serde_json`: デバッグ出力のJSONシリアライズ
+- `clap`: コマンドライン引数のパース
+- `tree-sitter`: MML構文のパース（完全統合済み）
+- `anyhow` & `thiserror`: エラーハンドリング
 
-### Coding Standards
-- Use meaningful variable and function names
-- Add documentation comments (`///`) for public APIs
-- Prefer explicit error handling with `Result` types
-- Keep functions focused and single-purpose
-- Write tests for new functionality
+### コーディング規約
+- 意味のある変数名・関数名を使用する
+- パブリックAPIにはドキュメントコメント（`///`）を追加する
+- `Result` 型による明示的なエラーハンドリングを優先する
+- 関数は単一目的に絞る
+- 新機能にはテストを書く
 
-### Architecture
-The project follows a **4-pass architecture**:
-1. **Pass 1**: Parse MML string into tokens using tree-sitter
-2. **Pass 2**: Transform tokens into Abstract Syntax Tree (AST)
-3. **Pass 3**: Generate MIDI events from AST
-4. **Pass 4**: Create Standard MIDI File from events
+### アーキテクチャ
+プロジェクトは **4パスアーキテクチャ** に従います：
+1. **Pass 1**: tree-sitterを使ってMML文字列をトークンにパース
+2. **Pass 2**: トークンを抽象構文木（AST）に変換
+3. **Pass 3**: ASTからMIDIイベントを生成
+4. **Pass 4**: イベントからStandard MIDI Fileを作成
 
-Each pass:
-- Has its own module
-- Produces JSON debug output
-- Is independently testable
-- Has clear input/output types
+各パスは：
+- 独自モジュールを持つ
+- JSONデバッグ出力を生成する
+- 独立してテスト可能
+- 明確な入出力型を持つ
 
-## Build, Test, and Validation Steps
+## ビルド・テスト・検証手順
 
-### Complete Validation Workflow
-Before submitting changes:
-1. Build the project: `cargo build`
-2. Run all tests: `cargo test`
-3. Check formatting: `cargo fmt --check`
-4. Run linter: `cargo clippy`
-5. Test the CLI: `cargo run -- "cde" -o test.mid`
+### 完全な検証ワークフロー
+変更を提出する前に：
+1. プロジェクトをビルドする: `cargo build`
+2. 全テストを実行する: `cargo test`
+3. フォーマットを確認する: `cargo fmt --check`
+4. リンターを実行する: `cargo clippy`
+5. CLIをテストする: `cargo run -- "cde" -o test.mid`
 
-### Continuous Integration
-The project should maintain:
-- All tests passing
-- Zero clippy warnings
-- Proper code formatting
-- Documentation for public APIs
+### 継続的インテグレーション
+プロジェクトでは以下を維持する必要があります：
+- 全テストの通過
+- clippyの警告ゼロ
+- 適切なコードフォーマット
+- パブリックAPIのドキュメント
 
-## Pull Request Expectations
+## プルリクエストの期待事項
 
-When submitting pull requests:
-- Ensure all tests pass
-- Add tests for new functionality
-- Update documentation if adding/changing public APIs
-- Keep changes focused and minimal
-- Follow the existing code style and patterns
-- Update README.md if adding user-facing features
+プルリクエストを提出する際は：
+- 全テストが通過していることを確認する
+- 新機能にはテストを追加する
+- パブリックAPIを追加・変更する場合はドキュメントを更新する
+- 変更を集中的かつ最小限に保つ
+- 既存のコードスタイルとパターンに従う
+- ユーザー向け機能を追加する場合はREADME.mdを更新する
 
-### Making Changes
-- Focus on one feature or fix per PR
-- Avoid refactoring unrelated code
-- Maintain backward compatibility when possible
-- Consider the 4-pass architecture when making changes
+### 変更を行う場合
+- 1つのPRにつき1つの機能または修正に集中する
+- 無関係なコードのリファクタリングを避ける
+- 可能な限り後方互換性を維持する
+- 変更時には4パスアーキテクチャを考慮する
 
-### Debug Output
-When adding new MML commands:
-- Update the appropriate pass module
-- Ensure JSON debug output reflects new functionality
-- Add tests at each affected pass level
+### デバッグ出力
+新しいMMLコマンドを追加する場合：
+- 対応するパスモジュールを更新する
+- JSONデバッグ出力が新機能を反映していることを確認する
+- 影響を受ける各パスレベルでテストを追加する
 
-## Current Status and Roadmap
+## 現在の状態とロードマップ
 
-### Current Status
-- ✅ Basic note conversion (c, d, e → MIDI)
-- ✅ 4-pass architecture implemented
-- ✅ Debug JSON output at each pass
-- ✅ Tree-sitter integration (fully implemented)
+### 現在の状態
+- ✅ 基本的な音符変換（c, d, e → MIDI）
+- ✅ 4パスアーキテクチャの実装
+- ✅ 各パスでのJSONデバッグ出力
+- ✅ Tree-sitter統合（完全実装済み）
 
-### Future Work
-- Repository configuration (formatter settings, etc.)
-- Implement complete mmlabc MML command set
-- Reference: See mml2abc repository for mmlabc format specification
+### 今後の作業
+- リポジトリ設定（フォーマッタ設定など）
+- mmlabc MMLコマンドセット全体の実装
+- 参考: mmlabc形式の仕様はmml2abcリポジトリを参照
 
-## Additional Notes
+## 補足
 
-- The project is Japanese-originated; both English and Japanese documentation exist
-- Debug output files help understand processing at each stage
-- When unsure about MML commands, refer to the original Python implementation or mml2abc repository
-- Before committing, open the browser demo headlessly and confirm the console is error-free; if you cannot run this check, report that fact.
+- このプロジェクトは日本語由来であり、英語・日本語両方のドキュメントが存在する
+- デバッグ出力ファイルは各ステージの処理を理解するのに役立つ
+- MMLコマンドについて不明な場合は、元のPython実装またはmml2abcリポジトリを参照する
+- コミット前に、ブラウザデモをヘッドレスで開いてコンソールにエラーがないことを確認する。このチェックを実行できない場合はその旨を報告する。
 
 # userからの追加指示
 - ソースが500行を超えるなら、単一責任の原則に従ってファイル分割をすること。その際、段階的にやること。つまり、1つの関数をファイル移動し、testし、必要ならtest修正、のサイクルをまわすこと
