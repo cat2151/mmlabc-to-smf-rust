@@ -26,7 +26,7 @@ export function smfToYM2151Json(smfData: Uint8Array): YM2151Json {
         }
 
         const headerLength = reader.readUint32();
-        reader.readUint16(); // formatType (unused)
+        reader.readUint16(); // _formatType (read to advance buffer position)
         const numTracks = reader.readUint16();
         const division = reader.readUint16();
 

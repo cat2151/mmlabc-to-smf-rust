@@ -39,8 +39,8 @@ export function audioBufferToWav(buffer: AudioBuffer): ArrayBuffer {
     for (let i = 0; i < buffer.length; i++) {
         for (let channel = 0; channel < numChannels; channel++) {
             const sample = buffer.getChannelData(channel)[i];
-            const clamped = Math.max(-1, Math.min(1, sample));
-            const pcmValue = Math.floor(clamped < 0 ? clamped * 0x8000 : clamped * 0x7fff);
+            const clampedSample = Math.max(-1, Math.min(1, sample));
+            const pcmValue = Math.floor(clampedSample < 0 ? clampedSample * 0x8000 : clampedSample * 0x7fff);
             view.setInt16(offset, pcmValue, true);
             offset += 2;
         }

@@ -23,7 +23,7 @@ export function parseMidiNotes(smfData: Uint8Array): NoteInfo[] {
         }
 
         const headerLength = reader.readUint32();
-        reader.readUint16(); // formatType (unused)
+        reader.readUint16(); // _formatType (read to advance buffer position)
         const numTracks = reader.readUint16();
         const division = reader.readUint16();
 
