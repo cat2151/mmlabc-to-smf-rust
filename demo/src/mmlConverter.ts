@@ -59,12 +59,12 @@ export async function convertMML(): Promise<void> {
         const smfData = parse_tree_json_to_smf(parseTreeStr, mml);
         state.currentSmfData = smfData;
 
-        const ym2151Json = smfToYM2151Json(smfData);
+        const ym2151Json = await smfToYM2151Json(smfData);
         (document.getElementById('jsonOutput') as HTMLTextAreaElement).value =
             JSON.stringify(ym2151Json, null, 2);
         document.getElementById('jsonSection')!.classList.remove('hidden');
 
-        await renderWaveformAndAudio(smfData);
+        await renderWaveformAndAudio(ym2151Json.events);
 
         const blob = new Blob([smfData], { type: 'audio/midi' });
         const url = URL.createObjectURL(blob);
