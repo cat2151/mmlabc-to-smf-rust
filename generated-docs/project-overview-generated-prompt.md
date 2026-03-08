@@ -1,4 +1,4 @@
-Last updated: 2026-03-03
+Last updated: 2026-03-09
 
 
 # プロジェクト概要生成プロンプト（来訪者向け）
@@ -832,9 +832,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                     📘 parseMidiNotes.ts
                                                                                     📘 smfToYm2151.ts
                                                                                     📘 state.ts
+                                                                                    📘 treeToJSON.ts
                                                                                     📘 ui.ts
                                                                                     📘 visualization.ts
                                                                                     📘 wavExport.ts
+                                                                                  📄 test-loader.mjs
+                                                                                  📄 test-register.mjs
+                                                                                  📁 tests/
+                                                                                    📘 audioBufferToWav.test.ts
+                                                                                    📘 midiReader.test.ts
+                                                                                    📘 parseMidiNotes.test.ts
+                                                                                    📘 treeToJSON.test.ts
                                                                                 📁 demo-library/
                                                                                   🌐 index.html
                                                                                   📊 package.json
@@ -842,6 +850,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 🌐 googled947dc864c270e07.html
                                                                                 📁 issue-notes/
                                                                                   📖 103.md
+                                                                                  📖 111.md
                                                                                   📖 39.md
                                                                                   📖 44.md
                                                                                 📄 mmlabc-to-smf-rust.toml.example
@@ -868,6 +877,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                   📄 types.rs
                                                                                 📁 tests/
                                                                                   📄 integration_test.rs
+                                                                                  📄 test_c1_vs_c64.rs
                                                                                   📄 test_channel.rs
                                                                                   📄 test_chord.rs
                                                                                   📄 test_cli.rs
@@ -916,9 +926,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                   📘 parseMidiNotes.ts
                                                                                   📘 smfToYm2151.ts
                                                                                   📘 state.ts
+                                                                                  📘 treeToJSON.ts
                                                                                   📘 ui.ts
                                                                                   📘 visualization.ts
                                                                                   📘 wavExport.ts
+                                                                                📄 test-loader.mjs
+                                                                                📄 test-register.mjs
+                                                                                📁 tests/
+                                                                                  📘 audioBufferToWav.test.ts
+                                                                                  📘 midiReader.test.ts
+                                                                                  📘 parseMidiNotes.test.ts
+                                                                                  📘 treeToJSON.test.ts
                                                                               📁 demo-library/
                                                                                 🌐 index.html
                                                                                 📊 package.json
@@ -926,6 +944,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               🌐 googled947dc864c270e07.html
                                                                               📁 issue-notes/
                                                                                 📖 103.md
+                                                                                📖 111.md
                                                                                 📖 39.md
                                                                                 📖 44.md
                                                                               📄 mmlabc-to-smf-rust.toml.example
@@ -952,6 +971,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📄 types.rs
                                                                               📁 tests/
                                                                                 📄 integration_test.rs
+                                                                                📄 test_c1_vs_c64.rs
                                                                                 📄 test_channel.rs
                                                                                 📄 test_chord.rs
                                                                                 📄 test_cli.rs
@@ -1000,9 +1020,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📘 parseMidiNotes.ts
                                                                                 📘 smfToYm2151.ts
                                                                                 📘 state.ts
+                                                                                📘 treeToJSON.ts
                                                                                 📘 ui.ts
                                                                                 📘 visualization.ts
                                                                                 📘 wavExport.ts
+                                                                              📄 test-loader.mjs
+                                                                              📄 test-register.mjs
+                                                                              📁 tests/
+                                                                                📘 audioBufferToWav.test.ts
+                                                                                📘 midiReader.test.ts
+                                                                                📘 parseMidiNotes.test.ts
+                                                                                📘 treeToJSON.test.ts
                                                                             📁 demo-library/
                                                                               🌐 index.html
                                                                               📊 package.json
@@ -1010,6 +1038,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             🌐 googled947dc864c270e07.html
                                                                             📁 issue-notes/
                                                                               📖 103.md
+                                                                              📖 111.md
                                                                               📖 39.md
                                                                               📖 44.md
                                                                             📄 mmlabc-to-smf-rust.toml.example
@@ -1036,6 +1065,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📄 types.rs
                                                                             📁 tests/
                                                                               📄 integration_test.rs
+                                                                              📄 test_c1_vs_c64.rs
                                                                               📄 test_channel.rs
                                                                               📄 test_chord.rs
                                                                               📄 test_cli.rs
@@ -1084,9 +1114,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📘 parseMidiNotes.ts
                                                                               📘 smfToYm2151.ts
                                                                               📘 state.ts
+                                                                              📘 treeToJSON.ts
                                                                               📘 ui.ts
                                                                               📘 visualization.ts
                                                                               📘 wavExport.ts
+                                                                            📄 test-loader.mjs
+                                                                            📄 test-register.mjs
+                                                                            📁 tests/
+                                                                              📘 audioBufferToWav.test.ts
+                                                                              📘 midiReader.test.ts
+                                                                              📘 parseMidiNotes.test.ts
+                                                                              📘 treeToJSON.test.ts
                                                                           📁 demo-library/
                                                                             🌐 index.html
                                                                             📊 package.json
@@ -1094,6 +1132,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           🌐 googled947dc864c270e07.html
                                                                           📁 issue-notes/
                                                                             📖 103.md
+                                                                            📖 111.md
                                                                             📖 39.md
                                                                             📖 44.md
                                                                           📄 mmlabc-to-smf-rust.toml.example
@@ -1120,6 +1159,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📄 types.rs
                                                                           📁 tests/
                                                                             📄 integration_test.rs
+                                                                            📄 test_c1_vs_c64.rs
                                                                             📄 test_channel.rs
                                                                             📄 test_chord.rs
                                                                             📄 test_cli.rs
@@ -1168,9 +1208,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📘 parseMidiNotes.ts
                                                                             📘 smfToYm2151.ts
                                                                             📘 state.ts
+                                                                            📘 treeToJSON.ts
                                                                             📘 ui.ts
                                                                             📘 visualization.ts
                                                                             📘 wavExport.ts
+                                                                          📄 test-loader.mjs
+                                                                          📄 test-register.mjs
+                                                                          📁 tests/
+                                                                            📘 audioBufferToWav.test.ts
+                                                                            📘 midiReader.test.ts
+                                                                            📘 parseMidiNotes.test.ts
+                                                                            📘 treeToJSON.test.ts
                                                                         📁 demo-library/
                                                                           🌐 index.html
                                                                           📊 package.json
@@ -1178,6 +1226,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         🌐 googled947dc864c270e07.html
                                                                         📁 issue-notes/
                                                                           📖 103.md
+                                                                          📖 111.md
                                                                           📖 39.md
                                                                           📖 44.md
                                                                         📄 mmlabc-to-smf-rust.toml.example
@@ -1204,6 +1253,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📄 types.rs
                                                                         📁 tests/
                                                                           📄 integration_test.rs
+                                                                          📄 test_c1_vs_c64.rs
                                                                           📄 test_channel.rs
                                                                           📄 test_chord.rs
                                                                           📄 test_cli.rs
@@ -1252,9 +1302,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📘 parseMidiNotes.ts
                                                                           📘 smfToYm2151.ts
                                                                           📘 state.ts
+                                                                          📘 treeToJSON.ts
                                                                           📘 ui.ts
                                                                           📘 visualization.ts
                                                                           📘 wavExport.ts
+                                                                        📄 test-loader.mjs
+                                                                        📄 test-register.mjs
+                                                                        📁 tests/
+                                                                          📘 audioBufferToWav.test.ts
+                                                                          📘 midiReader.test.ts
+                                                                          📘 parseMidiNotes.test.ts
+                                                                          📘 treeToJSON.test.ts
                                                                       📁 demo-library/
                                                                         🌐 index.html
                                                                         📊 package.json
@@ -1262,6 +1320,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       🌐 googled947dc864c270e07.html
                                                                       📁 issue-notes/
                                                                         📖 103.md
+                                                                        📖 111.md
                                                                         📖 39.md
                                                                         📖 44.md
                                                                       📄 mmlabc-to-smf-rust.toml.example
@@ -1288,6 +1347,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📄 types.rs
                                                                       📁 tests/
                                                                         📄 integration_test.rs
+                                                                        📄 test_c1_vs_c64.rs
                                                                         📄 test_channel.rs
                                                                         📄 test_chord.rs
                                                                         📄 test_cli.rs
@@ -1336,9 +1396,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📘 parseMidiNotes.ts
                                                                         📘 smfToYm2151.ts
                                                                         📘 state.ts
+                                                                        📘 treeToJSON.ts
                                                                         📘 ui.ts
                                                                         📘 visualization.ts
                                                                         📘 wavExport.ts
+                                                                      📄 test-loader.mjs
+                                                                      📄 test-register.mjs
+                                                                      📁 tests/
+                                                                        📘 audioBufferToWav.test.ts
+                                                                        📘 midiReader.test.ts
+                                                                        📘 parseMidiNotes.test.ts
+                                                                        📘 treeToJSON.test.ts
                                                                     📁 demo-library/
                                                                       🌐 index.html
                                                                       📊 package.json
@@ -1346,6 +1414,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     🌐 googled947dc864c270e07.html
                                                                     📁 issue-notes/
                                                                       📖 103.md
+                                                                      📖 111.md
                                                                       📖 39.md
                                                                       📖 44.md
                                                                     📄 mmlabc-to-smf-rust.toml.example
@@ -1372,6 +1441,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📄 types.rs
                                                                     📁 tests/
                                                                       📄 integration_test.rs
+                                                                      📄 test_c1_vs_c64.rs
                                                                       📄 test_channel.rs
                                                                       📄 test_chord.rs
                                                                       📄 test_cli.rs
@@ -1420,9 +1490,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📘 parseMidiNotes.ts
                                                                       📘 smfToYm2151.ts
                                                                       📘 state.ts
+                                                                      📘 treeToJSON.ts
                                                                       📘 ui.ts
                                                                       📘 visualization.ts
                                                                       📘 wavExport.ts
+                                                                    📄 test-loader.mjs
+                                                                    📄 test-register.mjs
+                                                                    📁 tests/
+                                                                      📘 audioBufferToWav.test.ts
+                                                                      📘 midiReader.test.ts
+                                                                      📘 parseMidiNotes.test.ts
+                                                                      📘 treeToJSON.test.ts
                                                                   📁 demo-library/
                                                                     🌐 index.html
                                                                     📊 package.json
@@ -1430,6 +1508,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   🌐 googled947dc864c270e07.html
                                                                   📁 issue-notes/
                                                                     📖 103.md
+                                                                    📖 111.md
                                                                     📖 39.md
                                                                     📖 44.md
                                                                   📄 mmlabc-to-smf-rust.toml.example
@@ -1456,6 +1535,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📄 types.rs
                                                                   📁 tests/
                                                                     📄 integration_test.rs
+                                                                    📄 test_c1_vs_c64.rs
                                                                     📄 test_channel.rs
                                                                     📄 test_chord.rs
                                                                     📄 test_cli.rs
@@ -1504,9 +1584,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📘 parseMidiNotes.ts
                                                                     📘 smfToYm2151.ts
                                                                     📘 state.ts
+                                                                    📘 treeToJSON.ts
                                                                     📘 ui.ts
                                                                     📘 visualization.ts
                                                                     📘 wavExport.ts
+                                                                  📄 test-loader.mjs
+                                                                  📄 test-register.mjs
+                                                                  📁 tests/
+                                                                    📘 audioBufferToWav.test.ts
+                                                                    📘 midiReader.test.ts
+                                                                    📘 parseMidiNotes.test.ts
+                                                                    📘 treeToJSON.test.ts
                                                                 📁 demo-library/
                                                                   🌐 index.html
                                                                   📊 package.json
@@ -1514,6 +1602,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 🌐 googled947dc864c270e07.html
                                                                 📁 issue-notes/
                                                                   📖 103.md
+                                                                  📖 111.md
                                                                   📖 39.md
                                                                   📖 44.md
                                                                 📄 mmlabc-to-smf-rust.toml.example
@@ -1540,6 +1629,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📄 types.rs
                                                                 📁 tests/
                                                                   📄 integration_test.rs
+                                                                  📄 test_c1_vs_c64.rs
                                                                   📄 test_channel.rs
                                                                   📄 test_chord.rs
                                                                   📄 test_cli.rs
@@ -1588,9 +1678,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📘 parseMidiNotes.ts
                                                                   📘 smfToYm2151.ts
                                                                   📘 state.ts
+                                                                  📘 treeToJSON.ts
                                                                   📘 ui.ts
                                                                   📘 visualization.ts
                                                                   📘 wavExport.ts
+                                                                📄 test-loader.mjs
+                                                                📄 test-register.mjs
+                                                                📁 tests/
+                                                                  📘 audioBufferToWav.test.ts
+                                                                  📘 midiReader.test.ts
+                                                                  📘 parseMidiNotes.test.ts
+                                                                  📘 treeToJSON.test.ts
                                                               📁 demo-library/
                                                                 🌐 index.html
                                                                 📊 package.json
@@ -1598,6 +1696,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               🌐 googled947dc864c270e07.html
                                                               📁 issue-notes/
                                                                 📖 103.md
+                                                                📖 111.md
                                                                 📖 39.md
                                                                 📖 44.md
                                                               📄 mmlabc-to-smf-rust.toml.example
@@ -1624,6 +1723,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📄 types.rs
                                                               📁 tests/
                                                                 📄 integration_test.rs
+                                                                📄 test_c1_vs_c64.rs
                                                                 📄 test_channel.rs
                                                                 📄 test_chord.rs
                                                                 📄 test_cli.rs
@@ -1672,9 +1772,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📘 parseMidiNotes.ts
                                                                 📘 smfToYm2151.ts
                                                                 📘 state.ts
+                                                                📘 treeToJSON.ts
                                                                 📘 ui.ts
                                                                 📘 visualization.ts
                                                                 📘 wavExport.ts
+                                                              📄 test-loader.mjs
+                                                              📄 test-register.mjs
+                                                              📁 tests/
+                                                                📘 audioBufferToWav.test.ts
+                                                                📘 midiReader.test.ts
+                                                                📘 parseMidiNotes.test.ts
+                                                                📘 treeToJSON.test.ts
                                                             📁 demo-library/
                                                               🌐 index.html
                                                               📊 package.json
@@ -1682,6 +1790,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             🌐 googled947dc864c270e07.html
                                                             📁 issue-notes/
                                                               📖 103.md
+                                                              📖 111.md
                                                               📖 39.md
                                                               📖 44.md
                                                             📄 mmlabc-to-smf-rust.toml.example
@@ -1708,6 +1817,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📄 types.rs
                                                             📁 tests/
                                                               📄 integration_test.rs
+                                                              📄 test_c1_vs_c64.rs
                                                               📄 test_channel.rs
                                                               📄 test_chord.rs
                                                               📄 test_cli.rs
@@ -1756,9 +1866,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📘 parseMidiNotes.ts
                                                               📘 smfToYm2151.ts
                                                               📘 state.ts
+                                                              📘 treeToJSON.ts
                                                               📘 ui.ts
                                                               📘 visualization.ts
                                                               📘 wavExport.ts
+                                                            📄 test-loader.mjs
+                                                            📄 test-register.mjs
+                                                            📁 tests/
+                                                              📘 audioBufferToWav.test.ts
+                                                              📘 midiReader.test.ts
+                                                              📘 parseMidiNotes.test.ts
+                                                              📘 treeToJSON.test.ts
                                                           📁 demo-library/
                                                             🌐 index.html
                                                             📊 package.json
@@ -1766,6 +1884,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           🌐 googled947dc864c270e07.html
                                                           📁 issue-notes/
                                                             📖 103.md
+                                                            📖 111.md
                                                             📖 39.md
                                                             📖 44.md
                                                           📄 mmlabc-to-smf-rust.toml.example
@@ -1792,6 +1911,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📄 types.rs
                                                           📁 tests/
                                                             📄 integration_test.rs
+                                                            📄 test_c1_vs_c64.rs
                                                             📄 test_channel.rs
                                                             📄 test_chord.rs
                                                             📄 test_cli.rs
@@ -1840,9 +1960,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📘 parseMidiNotes.ts
                                                             📘 smfToYm2151.ts
                                                             📘 state.ts
+                                                            📘 treeToJSON.ts
                                                             📘 ui.ts
                                                             📘 visualization.ts
                                                             📘 wavExport.ts
+                                                          📄 test-loader.mjs
+                                                          📄 test-register.mjs
+                                                          📁 tests/
+                                                            📘 audioBufferToWav.test.ts
+                                                            📘 midiReader.test.ts
+                                                            📘 parseMidiNotes.test.ts
+                                                            📘 treeToJSON.test.ts
                                                         📁 demo-library/
                                                           🌐 index.html
                                                           📊 package.json
@@ -1850,6 +1978,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         🌐 googled947dc864c270e07.html
                                                         📁 issue-notes/
                                                           📖 103.md
+                                                          📖 111.md
                                                           📖 39.md
                                                           📖 44.md
                                                         📄 mmlabc-to-smf-rust.toml.example
@@ -1876,6 +2005,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📄 types.rs
                                                         📁 tests/
                                                           📄 integration_test.rs
+                                                          📄 test_c1_vs_c64.rs
                                                           📄 test_channel.rs
                                                           📄 test_chord.rs
                                                           📄 test_cli.rs
@@ -1924,9 +2054,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📘 parseMidiNotes.ts
                                                           📘 smfToYm2151.ts
                                                           📘 state.ts
+                                                          📘 treeToJSON.ts
                                                           📘 ui.ts
                                                           📘 visualization.ts
                                                           📘 wavExport.ts
+                                                        📄 test-loader.mjs
+                                                        📄 test-register.mjs
+                                                        📁 tests/
+                                                          📘 audioBufferToWav.test.ts
+                                                          📘 midiReader.test.ts
+                                                          📘 parseMidiNotes.test.ts
+                                                          📘 treeToJSON.test.ts
                                                       📁 demo-library/
                                                         🌐 index.html
                                                         📊 package.json
@@ -1934,6 +2072,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       🌐 googled947dc864c270e07.html
                                                       📁 issue-notes/
                                                         📖 103.md
+                                                        📖 111.md
                                                         📖 39.md
                                                         📖 44.md
                                                       📄 mmlabc-to-smf-rust.toml.example
@@ -1960,6 +2099,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📄 types.rs
                                                       📁 tests/
                                                         📄 integration_test.rs
+                                                        📄 test_c1_vs_c64.rs
                                                         📄 test_channel.rs
                                                         📄 test_chord.rs
                                                         📄 test_cli.rs
@@ -2008,9 +2148,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📘 parseMidiNotes.ts
                                                         📘 smfToYm2151.ts
                                                         📘 state.ts
+                                                        📘 treeToJSON.ts
                                                         📘 ui.ts
                                                         📘 visualization.ts
                                                         📘 wavExport.ts
+                                                      📄 test-loader.mjs
+                                                      📄 test-register.mjs
+                                                      📁 tests/
+                                                        📘 audioBufferToWav.test.ts
+                                                        📘 midiReader.test.ts
+                                                        📘 parseMidiNotes.test.ts
+                                                        📘 treeToJSON.test.ts
                                                     📁 demo-library/
                                                       🌐 index.html
                                                       📊 package.json
@@ -2018,6 +2166,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     🌐 googled947dc864c270e07.html
                                                     📁 issue-notes/
                                                       📖 103.md
+                                                      📖 111.md
                                                       📖 39.md
                                                       📖 44.md
                                                     📄 mmlabc-to-smf-rust.toml.example
@@ -2044,6 +2193,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📄 types.rs
                                                     📁 tests/
                                                       📄 integration_test.rs
+                                                      📄 test_c1_vs_c64.rs
                                                       📄 test_channel.rs
                                                       📄 test_chord.rs
                                                       📄 test_cli.rs
@@ -2092,9 +2242,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📘 parseMidiNotes.ts
                                                       📘 smfToYm2151.ts
                                                       📘 state.ts
+                                                      📘 treeToJSON.ts
                                                       📘 ui.ts
                                                       📘 visualization.ts
                                                       📘 wavExport.ts
+                                                    📄 test-loader.mjs
+                                                    📄 test-register.mjs
+                                                    📁 tests/
+                                                      📘 audioBufferToWav.test.ts
+                                                      📘 midiReader.test.ts
+                                                      📘 parseMidiNotes.test.ts
+                                                      📘 treeToJSON.test.ts
                                                   📁 demo-library/
                                                     🌐 index.html
                                                     📊 package.json
@@ -2102,6 +2260,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   🌐 googled947dc864c270e07.html
                                                   📁 issue-notes/
                                                     📖 103.md
+                                                    📖 111.md
                                                     📖 39.md
                                                     📖 44.md
                                                   📄 mmlabc-to-smf-rust.toml.example
@@ -2128,6 +2287,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📄 types.rs
                                                   📁 tests/
                                                     📄 integration_test.rs
+                                                    📄 test_c1_vs_c64.rs
                                                     📄 test_channel.rs
                                                     📄 test_chord.rs
                                                     📄 test_cli.rs
@@ -2176,9 +2336,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📘 parseMidiNotes.ts
                                                     📘 smfToYm2151.ts
                                                     📘 state.ts
+                                                    📘 treeToJSON.ts
                                                     📘 ui.ts
                                                     📘 visualization.ts
                                                     📘 wavExport.ts
+                                                  📄 test-loader.mjs
+                                                  📄 test-register.mjs
+                                                  📁 tests/
+                                                    📘 audioBufferToWav.test.ts
+                                                    📘 midiReader.test.ts
+                                                    📘 parseMidiNotes.test.ts
+                                                    📘 treeToJSON.test.ts
                                                 📁 demo-library/
                                                   🌐 index.html
                                                   📊 package.json
@@ -2186,6 +2354,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 🌐 googled947dc864c270e07.html
                                                 📁 issue-notes/
                                                   📖 103.md
+                                                  📖 111.md
                                                   📖 39.md
                                                   📖 44.md
                                                 📄 mmlabc-to-smf-rust.toml.example
@@ -2212,6 +2381,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📄 types.rs
                                                 📁 tests/
                                                   📄 integration_test.rs
+                                                  📄 test_c1_vs_c64.rs
                                                   📄 test_channel.rs
                                                   📄 test_chord.rs
                                                   📄 test_cli.rs
@@ -2260,9 +2430,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📘 parseMidiNotes.ts
                                                   📘 smfToYm2151.ts
                                                   📘 state.ts
+                                                  📘 treeToJSON.ts
                                                   📘 ui.ts
                                                   📘 visualization.ts
                                                   📘 wavExport.ts
+                                                📄 test-loader.mjs
+                                                📄 test-register.mjs
+                                                📁 tests/
+                                                  📘 audioBufferToWav.test.ts
+                                                  📘 midiReader.test.ts
+                                                  📘 parseMidiNotes.test.ts
+                                                  📘 treeToJSON.test.ts
                                               📁 demo-library/
                                                 🌐 index.html
                                                 📊 package.json
@@ -2270,6 +2448,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               🌐 googled947dc864c270e07.html
                                               📁 issue-notes/
                                                 📖 103.md
+                                                📖 111.md
                                                 📖 39.md
                                                 📖 44.md
                                               📄 mmlabc-to-smf-rust.toml.example
@@ -2296,6 +2475,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📄 types.rs
                                               📁 tests/
                                                 📄 integration_test.rs
+                                                📄 test_c1_vs_c64.rs
                                                 📄 test_channel.rs
                                                 📄 test_chord.rs
                                                 📄 test_cli.rs
@@ -2344,16 +2524,26 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📘 parseMidiNotes.ts
                                                 📘 smfToYm2151.ts
                                                 📘 state.ts
+                                                📘 treeToJSON.ts
                                                 📘 ui.ts
                                                 📘 visualization.ts
                                                 📘 wavExport.ts
+                                              📄 test-loader.mjs
+                                              📄 test-register.mjs
+                                              📁 tests/
+                                                📘 audioBufferToWav.test.ts
+                                                📘 midiReader.test.ts
+                                                📘 parseMidiNotes.test.ts
+                                                📘 treeToJSON.test.ts
                                             📁 demo-library/
                                               🌐 index.html
                                               📊 package.json
                                             📁 generated-docs/
+                                              📖 development-status-generated-prompt.md
                                             🌐 googled947dc864c270e07.html
                                             📁 issue-notes/
                                               📖 103.md
+                                              📖 111.md
                                               📖 39.md
                                               📖 44.md
                                             📄 mmlabc-to-smf-rust.toml.example
@@ -2380,6 +2570,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📄 types.rs
                                             📁 tests/
                                               📄 integration_test.rs
+                                              📄 test_c1_vs_c64.rs
                                               📄 test_channel.rs
                                               📄 test_chord.rs
                                               📄 test_cli.rs
@@ -2428,16 +2619,26 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📘 parseMidiNotes.ts
                                               📘 smfToYm2151.ts
                                               📘 state.ts
+                                              📘 treeToJSON.ts
                                               📘 ui.ts
                                               📘 visualization.ts
                                               📘 wavExport.ts
+                                            📄 test-loader.mjs
+                                            📄 test-register.mjs
+                                            📁 tests/
+                                              📘 audioBufferToWav.test.ts
+                                              📘 midiReader.test.ts
+                                              📘 parseMidiNotes.test.ts
+                                              📘 treeToJSON.test.ts
                                           📁 demo-library/
                                             🌐 index.html
                                             📊 package.json
                                           📁 generated-docs/
+                                            📖 development-status-generated-prompt.md
                                           🌐 googled947dc864c270e07.html
                                           📁 issue-notes/
                                             📖 103.md
+                                            📖 111.md
                                             📖 39.md
                                             📖 44.md
                                           📄 mmlabc-to-smf-rust.toml.example
@@ -2464,6 +2665,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📄 types.rs
                                           📁 tests/
                                             📄 integration_test.rs
+                                            📄 test_c1_vs_c64.rs
                                             📄 test_channel.rs
                                             📄 test_chord.rs
                                             📄 test_cli.rs
@@ -2512,16 +2714,26 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📘 parseMidiNotes.ts
                                             📘 smfToYm2151.ts
                                             📘 state.ts
+                                            📘 treeToJSON.ts
                                             📘 ui.ts
                                             📘 visualization.ts
                                             📘 wavExport.ts
+                                          📄 test-loader.mjs
+                                          📄 test-register.mjs
+                                          📁 tests/
+                                            📘 audioBufferToWav.test.ts
+                                            📘 midiReader.test.ts
+                                            📘 parseMidiNotes.test.ts
+                                            📘 treeToJSON.test.ts
                                         📁 demo-library/
                                           🌐 index.html
                                           📊 package.json
                                         📁 generated-docs/
+                                          📖 development-status-generated-prompt.md
                                         🌐 googled947dc864c270e07.html
                                         📁 issue-notes/
                                           📖 103.md
+                                          📖 111.md
                                           📖 39.md
                                           📖 44.md
                                         📄 mmlabc-to-smf-rust.toml.example
@@ -2548,6 +2760,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📄 types.rs
                                         📁 tests/
                                           📄 integration_test.rs
+                                          📄 test_c1_vs_c64.rs
                                           📄 test_channel.rs
                                           📄 test_chord.rs
                                           📄 test_cli.rs
@@ -2596,16 +2809,26 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📘 parseMidiNotes.ts
                                           📘 smfToYm2151.ts
                                           📘 state.ts
+                                          📘 treeToJSON.ts
                                           📘 ui.ts
                                           📘 visualization.ts
                                           📘 wavExport.ts
+                                        📄 test-loader.mjs
+                                        📄 test-register.mjs
+                                        📁 tests/
+                                          📘 audioBufferToWav.test.ts
+                                          📘 midiReader.test.ts
+                                          📘 parseMidiNotes.test.ts
+                                          📘 treeToJSON.test.ts
                                       📁 demo-library/
                                         🌐 index.html
                                         📊 package.json
                                       📁 generated-docs/
+                                        📖 development-status-generated-prompt.md
                                       🌐 googled947dc864c270e07.html
                                       📁 issue-notes/
                                         📖 103.md
+                                        📖 111.md
                                         📖 39.md
                                         📖 44.md
                                       📄 mmlabc-to-smf-rust.toml.example
@@ -2632,6 +2855,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📄 types.rs
                                       📁 tests/
                                         📄 integration_test.rs
+                                        📄 test_c1_vs_c64.rs
                                         📄 test_channel.rs
                                         📄 test_chord.rs
                                         📄 test_cli.rs
@@ -2680,16 +2904,26 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📘 parseMidiNotes.ts
                                         📘 smfToYm2151.ts
                                         📘 state.ts
+                                        📘 treeToJSON.ts
                                         📘 ui.ts
                                         📘 visualization.ts
                                         📘 wavExport.ts
+                                      📄 test-loader.mjs
+                                      📄 test-register.mjs
+                                      📁 tests/
+                                        📘 audioBufferToWav.test.ts
+                                        📘 midiReader.test.ts
+                                        📘 parseMidiNotes.test.ts
+                                        📘 treeToJSON.test.ts
                                     📁 demo-library/
                                       🌐 index.html
                                       📊 package.json
                                     📁 generated-docs/
+                                      📖 development-status-generated-prompt.md
                                     🌐 googled947dc864c270e07.html
                                     📁 issue-notes/
                                       📖 103.md
+                                      📖 111.md
                                       📖 39.md
                                       📖 44.md
                                     📄 mmlabc-to-smf-rust.toml.example
@@ -2716,6 +2950,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📄 types.rs
                                     📁 tests/
                                       📄 integration_test.rs
+                                      📄 test_c1_vs_c64.rs
                                       📄 test_channel.rs
                                       📄 test_chord.rs
                                       📄 test_cli.rs
@@ -2764,16 +2999,26 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📘 parseMidiNotes.ts
                                       📘 smfToYm2151.ts
                                       📘 state.ts
+                                      📘 treeToJSON.ts
                                       📘 ui.ts
                                       📘 visualization.ts
                                       📘 wavExport.ts
+                                    📄 test-loader.mjs
+                                    📄 test-register.mjs
+                                    📁 tests/
+                                      📘 audioBufferToWav.test.ts
+                                      📘 midiReader.test.ts
+                                      📘 parseMidiNotes.test.ts
+                                      📘 treeToJSON.test.ts
                                   📁 demo-library/
                                     🌐 index.html
                                     📊 package.json
                                   📁 generated-docs/
+                                    📖 development-status-generated-prompt.md
                                   🌐 googled947dc864c270e07.html
                                   📁 issue-notes/
                                     📖 103.md
+                                    📖 111.md
                                     📖 39.md
                                     📖 44.md
                                   📄 mmlabc-to-smf-rust.toml.example
@@ -2800,6 +3045,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📄 types.rs
                                   📁 tests/
                                     📄 integration_test.rs
+                                    📄 test_c1_vs_c64.rs
                                     📄 test_channel.rs
                                     📄 test_chord.rs
                                     📄 test_cli.rs
@@ -2848,16 +3094,26 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📘 parseMidiNotes.ts
                                     📘 smfToYm2151.ts
                                     📘 state.ts
+                                    📘 treeToJSON.ts
                                     📘 ui.ts
                                     📘 visualization.ts
                                     📘 wavExport.ts
+                                  📄 test-loader.mjs
+                                  📄 test-register.mjs
+                                  📁 tests/
+                                    📘 audioBufferToWav.test.ts
+                                    📘 midiReader.test.ts
+                                    📘 parseMidiNotes.test.ts
+                                    📘 treeToJSON.test.ts
                                 📁 demo-library/
                                   🌐 index.html
                                   📊 package.json
                                 📁 generated-docs/
+                                  📖 development-status-generated-prompt.md
                                 🌐 googled947dc864c270e07.html
                                 📁 issue-notes/
                                   📖 103.md
+                                  📖 111.md
                                   📖 39.md
                                   📖 44.md
                                 📄 mmlabc-to-smf-rust.toml.example
@@ -2884,6 +3140,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📄 types.rs
                                 📁 tests/
                                   📄 integration_test.rs
+                                  📄 test_c1_vs_c64.rs
                                   📄 test_channel.rs
                                   📄 test_chord.rs
                                   📄 test_cli.rs
@@ -2932,16 +3189,26 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📘 parseMidiNotes.ts
                                   📘 smfToYm2151.ts
                                   📘 state.ts
+                                  📘 treeToJSON.ts
                                   📘 ui.ts
                                   📘 visualization.ts
                                   📘 wavExport.ts
+                                📄 test-loader.mjs
+                                📄 test-register.mjs
+                                📁 tests/
+                                  📘 audioBufferToWav.test.ts
+                                  📘 midiReader.test.ts
+                                  📘 parseMidiNotes.test.ts
+                                  📘 treeToJSON.test.ts
                               📁 demo-library/
                                 🌐 index.html
                                 📊 package.json
                               📁 generated-docs/
+                                📖 development-status-generated-prompt.md
                               🌐 googled947dc864c270e07.html
                               📁 issue-notes/
                                 📖 103.md
+                                📖 111.md
                                 📖 39.md
                                 📖 44.md
                               📄 mmlabc-to-smf-rust.toml.example
@@ -2968,6 +3235,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📄 types.rs
                               📁 tests/
                                 📄 integration_test.rs
+                                📄 test_c1_vs_c64.rs
                                 📄 test_channel.rs
                                 📄 test_chord.rs
                                 📄 test_cli.rs
@@ -3016,16 +3284,26 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📘 parseMidiNotes.ts
                                 📘 smfToYm2151.ts
                                 📘 state.ts
+                                📘 treeToJSON.ts
                                 📘 ui.ts
                                 📘 visualization.ts
                                 📘 wavExport.ts
+                              📄 test-loader.mjs
+                              📄 test-register.mjs
+                              📁 tests/
+                                📘 audioBufferToWav.test.ts
+                                📘 midiReader.test.ts
+                                📘 parseMidiNotes.test.ts
+                                📘 treeToJSON.test.ts
                             📁 demo-library/
                               🌐 index.html
                               📊 package.json
                             📁 generated-docs/
+                              📖 development-status-generated-prompt.md
                             🌐 googled947dc864c270e07.html
                             📁 issue-notes/
                               📖 103.md
+                              📖 111.md
                               📖 39.md
                               📖 44.md
                             📄 mmlabc-to-smf-rust.toml.example
@@ -3052,6 +3330,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📄 types.rs
                             📁 tests/
                               📄 integration_test.rs
+                              📄 test_c1_vs_c64.rs
                               📄 test_channel.rs
                               📄 test_chord.rs
                               📄 test_cli.rs
@@ -3100,9 +3379,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📘 parseMidiNotes.ts
                               📘 smfToYm2151.ts
                               📘 state.ts
+                              📘 treeToJSON.ts
                               📘 ui.ts
                               📘 visualization.ts
                               📘 wavExport.ts
+                            📄 test-loader.mjs
+                            📄 test-register.mjs
+                            📁 tests/
+                              📘 audioBufferToWav.test.ts
+                              📘 midiReader.test.ts
+                              📘 parseMidiNotes.test.ts
+                              📘 treeToJSON.test.ts
                           📁 demo-library/
                             🌐 index.html
                             📊 package.json
@@ -3111,6 +3398,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           🌐 googled947dc864c270e07.html
                           📁 issue-notes/
                             📖 103.md
+                            📖 111.md
                             📖 39.md
                             📖 44.md
                           📄 mmlabc-to-smf-rust.toml.example
@@ -3137,6 +3425,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📄 types.rs
                           📁 tests/
                             📄 integration_test.rs
+                            📄 test_c1_vs_c64.rs
                             📄 test_channel.rs
                             📄 test_chord.rs
                             📄 test_cli.rs
@@ -3185,9 +3474,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📘 parseMidiNotes.ts
                             📘 smfToYm2151.ts
                             📘 state.ts
+                            📘 treeToJSON.ts
                             📘 ui.ts
                             📘 visualization.ts
                             📘 wavExport.ts
+                          📄 test-loader.mjs
+                          📄 test-register.mjs
+                          📁 tests/
+                            📘 audioBufferToWav.test.ts
+                            📘 midiReader.test.ts
+                            📘 parseMidiNotes.test.ts
+                            📘 treeToJSON.test.ts
                         📁 demo-library/
                           🌐 index.html
                           📊 package.json
@@ -3196,6 +3493,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         🌐 googled947dc864c270e07.html
                         📁 issue-notes/
                           📖 103.md
+                          📖 111.md
                           📖 39.md
                           📖 44.md
                         📄 mmlabc-to-smf-rust.toml.example
@@ -3222,6 +3520,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📄 types.rs
                         📁 tests/
                           📄 integration_test.rs
+                          📄 test_c1_vs_c64.rs
                           📄 test_channel.rs
                           📄 test_chord.rs
                           📄 test_cli.rs
@@ -3270,9 +3569,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📘 parseMidiNotes.ts
                           📘 smfToYm2151.ts
                           📘 state.ts
+                          📘 treeToJSON.ts
                           📘 ui.ts
                           📘 visualization.ts
                           📘 wavExport.ts
+                        📄 test-loader.mjs
+                        📄 test-register.mjs
+                        📁 tests/
+                          📘 audioBufferToWav.test.ts
+                          📘 midiReader.test.ts
+                          📘 parseMidiNotes.test.ts
+                          📘 treeToJSON.test.ts
                       📁 demo-library/
                         🌐 index.html
                         📊 package.json
@@ -3281,6 +3588,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       🌐 googled947dc864c270e07.html
                       📁 issue-notes/
                         📖 103.md
+                        📖 111.md
                         📖 39.md
                         📖 44.md
                       📄 mmlabc-to-smf-rust.toml.example
@@ -3307,6 +3615,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📄 types.rs
                       📁 tests/
                         📄 integration_test.rs
+                        📄 test_c1_vs_c64.rs
                         📄 test_channel.rs
                         📄 test_chord.rs
                         📄 test_cli.rs
@@ -3355,9 +3664,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📘 parseMidiNotes.ts
                         📘 smfToYm2151.ts
                         📘 state.ts
+                        📘 treeToJSON.ts
                         📘 ui.ts
                         📘 visualization.ts
                         📘 wavExport.ts
+                      📄 test-loader.mjs
+                      📄 test-register.mjs
+                      📁 tests/
+                        📘 audioBufferToWav.test.ts
+                        📘 midiReader.test.ts
+                        📘 parseMidiNotes.test.ts
+                        📘 treeToJSON.test.ts
                     📁 demo-library/
                       🌐 index.html
                       📊 package.json
@@ -3366,6 +3683,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     🌐 googled947dc864c270e07.html
                     📁 issue-notes/
                       📖 103.md
+                      📖 111.md
                       📖 39.md
                       📖 44.md
                     📄 mmlabc-to-smf-rust.toml.example
@@ -3392,6 +3710,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📄 types.rs
                     📁 tests/
                       📄 integration_test.rs
+                      📄 test_c1_vs_c64.rs
                       📄 test_channel.rs
                       📄 test_chord.rs
                       📄 test_cli.rs
@@ -3440,9 +3759,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📘 parseMidiNotes.ts
                       📘 smfToYm2151.ts
                       📘 state.ts
+                      📘 treeToJSON.ts
                       📘 ui.ts
                       📘 visualization.ts
                       📘 wavExport.ts
+                    📄 test-loader.mjs
+                    📄 test-register.mjs
+                    📁 tests/
+                      📘 audioBufferToWav.test.ts
+                      📘 midiReader.test.ts
+                      📘 parseMidiNotes.test.ts
+                      📘 treeToJSON.test.ts
                   📁 demo-library/
                     🌐 index.html
                     📊 package.json
@@ -3451,6 +3778,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   🌐 googled947dc864c270e07.html
                   📁 issue-notes/
                     📖 103.md
+                    📖 111.md
                     📖 39.md
                     📖 44.md
                   📄 mmlabc-to-smf-rust.toml.example
@@ -3477,6 +3805,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📄 types.rs
                   📁 tests/
                     📄 integration_test.rs
+                    📄 test_c1_vs_c64.rs
                     📄 test_channel.rs
                     📄 test_chord.rs
                     📄 test_cli.rs
@@ -3525,9 +3854,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📘 parseMidiNotes.ts
                     📘 smfToYm2151.ts
                     📘 state.ts
+                    📘 treeToJSON.ts
                     📘 ui.ts
                     📘 visualization.ts
                     📘 wavExport.ts
+                  📄 test-loader.mjs
+                  📄 test-register.mjs
+                  📁 tests/
+                    📘 audioBufferToWav.test.ts
+                    📘 midiReader.test.ts
+                    📘 parseMidiNotes.test.ts
+                    📘 treeToJSON.test.ts
                 📁 demo-library/
                   🌐 index.html
                   📊 package.json
@@ -3536,6 +3873,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 🌐 googled947dc864c270e07.html
                 📁 issue-notes/
                   📖 103.md
+                  📖 111.md
                   📖 39.md
                   📖 44.md
                 📄 mmlabc-to-smf-rust.toml.example
@@ -3562,6 +3900,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📄 types.rs
                 📁 tests/
                   📄 integration_test.rs
+                  📄 test_c1_vs_c64.rs
                   📄 test_channel.rs
                   📄 test_chord.rs
                   📄 test_cli.rs
@@ -3610,9 +3949,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📘 parseMidiNotes.ts
                   📘 smfToYm2151.ts
                   📘 state.ts
+                  📘 treeToJSON.ts
                   📘 ui.ts
                   📘 visualization.ts
                   📘 wavExport.ts
+                📄 test-loader.mjs
+                📄 test-register.mjs
+                📁 tests/
+                  📘 audioBufferToWav.test.ts
+                  📘 midiReader.test.ts
+                  📘 parseMidiNotes.test.ts
+                  📘 treeToJSON.test.ts
               📁 demo-library/
                 🌐 index.html
                 📊 package.json
@@ -3621,6 +3968,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               🌐 googled947dc864c270e07.html
               📁 issue-notes/
                 📖 103.md
+                📖 111.md
                 📖 39.md
                 📖 44.md
               📄 mmlabc-to-smf-rust.toml.example
@@ -3647,6 +3995,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📄 types.rs
               📁 tests/
                 📄 integration_test.rs
+                📄 test_c1_vs_c64.rs
                 📄 test_channel.rs
                 📄 test_chord.rs
                 📄 test_cli.rs
@@ -3695,9 +4044,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📘 parseMidiNotes.ts
                 📘 smfToYm2151.ts
                 📘 state.ts
+                📘 treeToJSON.ts
                 📘 ui.ts
                 📘 visualization.ts
                 📘 wavExport.ts
+              📄 test-loader.mjs
+              📄 test-register.mjs
+              📁 tests/
+                📘 audioBufferToWav.test.ts
+                📘 midiReader.test.ts
+                📘 parseMidiNotes.test.ts
+                📘 treeToJSON.test.ts
             📁 demo-library/
               🌐 index.html
               📊 package.json
@@ -3706,6 +4063,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             🌐 googled947dc864c270e07.html
             📁 issue-notes/
               📖 103.md
+              📖 111.md
               📖 39.md
               📖 44.md
             📄 mmlabc-to-smf-rust.toml.example
@@ -3732,6 +4090,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📄 types.rs
             📁 tests/
               📄 integration_test.rs
+              📄 test_c1_vs_c64.rs
               📄 test_channel.rs
               📄 test_chord.rs
               📄 test_cli.rs
@@ -3780,9 +4139,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📘 parseMidiNotes.ts
               📘 smfToYm2151.ts
               📘 state.ts
+              📘 treeToJSON.ts
               📘 ui.ts
               📘 visualization.ts
               📘 wavExport.ts
+            📄 test-loader.mjs
+            📄 test-register.mjs
+            📁 tests/
+              📘 audioBufferToWav.test.ts
+              📘 midiReader.test.ts
+              📘 parseMidiNotes.test.ts
+              📘 treeToJSON.test.ts
           📁 demo-library/
             🌐 index.html
             📊 package.json
@@ -3791,6 +4158,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           🌐 googled947dc864c270e07.html
           📁 issue-notes/
             📖 103.md
+            📖 111.md
             📖 39.md
             📖 44.md
           📄 mmlabc-to-smf-rust.toml.example
@@ -3817,6 +4185,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📄 types.rs
           📁 tests/
             📄 integration_test.rs
+            📄 test_c1_vs_c64.rs
             📄 test_channel.rs
             📄 test_chord.rs
             📄 test_cli.rs
@@ -3865,9 +4234,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📘 parseMidiNotes.ts
             📘 smfToYm2151.ts
             📘 state.ts
+            📘 treeToJSON.ts
             📘 ui.ts
             📘 visualization.ts
             📘 wavExport.ts
+          📄 test-loader.mjs
+          📄 test-register.mjs
+          📁 tests/
+            📘 audioBufferToWav.test.ts
+            📘 midiReader.test.ts
+            📘 parseMidiNotes.test.ts
+            📘 treeToJSON.test.ts
         📁 demo-library/
           🌐 index.html
           📊 package.json
@@ -3876,6 +4253,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         🌐 googled947dc864c270e07.html
         📁 issue-notes/
           📖 103.md
+          📖 111.md
           📖 39.md
           📖 44.md
         📄 mmlabc-to-smf-rust.toml.example
@@ -3902,6 +4280,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📄 types.rs
         📁 tests/
           📄 integration_test.rs
+          📄 test_c1_vs_c64.rs
           📄 test_channel.rs
           📄 test_chord.rs
           📄 test_cli.rs
@@ -3950,9 +4329,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📘 parseMidiNotes.ts
           📘 smfToYm2151.ts
           📘 state.ts
+          📘 treeToJSON.ts
           📘 ui.ts
           📘 visualization.ts
           📘 wavExport.ts
+        📄 test-loader.mjs
+        📄 test-register.mjs
+        📁 tests/
+          📘 audioBufferToWav.test.ts
+          📘 midiReader.test.ts
+          📘 parseMidiNotes.test.ts
+          📘 treeToJSON.test.ts
       📁 demo-library/
         🌐 index.html
         📊 package.json
@@ -3961,6 +4348,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       🌐 googled947dc864c270e07.html
       📁 issue-notes/
         📖 103.md
+        📖 111.md
         📖 39.md
         📖 44.md
       📄 mmlabc-to-smf-rust.toml.example
@@ -3987,6 +4375,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📄 types.rs
       📁 tests/
         📄 integration_test.rs
+        📄 test_c1_vs_c64.rs
         📄 test_channel.rs
         📄 test_chord.rs
         📄 test_cli.rs
@@ -4035,9 +4424,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📘 parseMidiNotes.ts
         📘 smfToYm2151.ts
         📘 state.ts
+        📘 treeToJSON.ts
         📘 ui.ts
         📘 visualization.ts
         📘 wavExport.ts
+      📄 test-loader.mjs
+      📄 test-register.mjs
+      📁 tests/
+        📘 audioBufferToWav.test.ts
+        📘 midiReader.test.ts
+        📘 parseMidiNotes.test.ts
+        📘 treeToJSON.test.ts
     📁 demo-library/
       🌐 index.html
       📊 package.json
@@ -4046,6 +4443,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     🌐 googled947dc864c270e07.html
     📁 issue-notes/
       📖 103.md
+      📖 111.md
       📖 39.md
       📖 44.md
     📄 mmlabc-to-smf-rust.toml.example
@@ -4072,6 +4470,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📄 types.rs
     📁 tests/
       📄 integration_test.rs
+      📄 test_c1_vs_c64.rs
       📄 test_channel.rs
       📄 test_chord.rs
       📄 test_cli.rs
@@ -4120,9 +4519,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📘 parseMidiNotes.ts
       📘 smfToYm2151.ts
       📘 state.ts
+      📘 treeToJSON.ts
       📘 ui.ts
       📘 visualization.ts
       📘 wavExport.ts
+    📄 test-loader.mjs
+    📄 test-register.mjs
+    📁 tests/
+      📘 audioBufferToWav.test.ts
+      📘 midiReader.test.ts
+      📘 parseMidiNotes.test.ts
+      📘 treeToJSON.test.ts
   📁 demo-library/
     🌐 index.html
     📊 package.json
@@ -4131,6 +4538,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   🌐 googled947dc864c270e07.html
   📁 issue-notes/
     📖 103.md
+    📖 111.md
     📖 39.md
     📖 44.md
   📄 mmlabc-to-smf-rust.toml.example
@@ -4157,6 +4565,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📄 types.rs
   📁 tests/
     📄 integration_test.rs
+    📄 test_c1_vs_c64.rs
     📄 test_channel.rs
     📄 test_chord.rs
     📄 test_cli.rs
@@ -4205,9 +4614,17 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📘 parseMidiNotes.ts
     📘 smfToYm2151.ts
     📘 state.ts
+    📘 treeToJSON.ts
     📘 ui.ts
     📘 visualization.ts
     📘 wavExport.ts
+  📄 test-loader.mjs
+  📄 test-register.mjs
+  📁 tests/
+    📘 audioBufferToWav.test.ts
+    📘 midiReader.test.ts
+    📘 parseMidiNotes.test.ts
+    📘 treeToJSON.test.ts
 📁 demo-library/
   🌐 index.html
   📊 package.json
@@ -4216,6 +4633,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 🌐 googled947dc864c270e07.html
 📁 issue-notes/
   📖 103.md
+  📖 111.md
   📖 39.md
   📖 44.md
 📄 mmlabc-to-smf-rust.toml.example
@@ -4242,6 +4660,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📄 types.rs
 📁 tests/
   📄 integration_test.rs
+  📄 test_c1_vs_c64.rs
   📄 test_channel.rs
   📄 test_chord.rs
   📄 test_cli.rs
@@ -4275,7 +4694,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📄 tree-sitter-mml.wasm
 
 ## ファイル詳細分析
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4295,8 +4714,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4311,6 +4730,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4322,6 +4745,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4335,7 +4774,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4355,8 +4794,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4371,6 +4810,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4382,6 +4825,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4395,7 +4854,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4415,8 +4874,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4431,6 +4890,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4442,6 +4905,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4455,7 +4934,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4475,8 +4954,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4491,6 +4970,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4502,6 +4985,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4515,7 +5014,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4535,8 +5034,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4551,6 +5050,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4562,6 +5065,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4575,7 +5094,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4595,8 +5114,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4611,6 +5130,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4622,6 +5145,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4635,7 +5174,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4655,8 +5194,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4671,6 +5210,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4682,6 +5225,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4695,7 +5254,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4715,8 +5274,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4731,6 +5290,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4742,6 +5305,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4755,7 +5334,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4775,8 +5354,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4791,6 +5370,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4802,6 +5385,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4815,7 +5414,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4835,8 +5434,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4851,6 +5450,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4862,6 +5465,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4875,7 +5494,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4895,8 +5514,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4911,6 +5530,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4922,6 +5545,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4935,7 +5574,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4955,8 +5594,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -4971,6 +5610,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -4982,6 +5625,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -4995,7 +5654,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5015,8 +5674,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5031,6 +5690,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5042,6 +5705,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5055,7 +5734,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5075,8 +5754,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5091,6 +5770,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5102,6 +5785,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5115,7 +5814,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5135,8 +5834,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5151,6 +5850,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5162,6 +5865,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5175,7 +5894,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5195,8 +5914,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5211,6 +5930,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5222,6 +5945,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5235,7 +5974,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5255,8 +5994,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5271,6 +6010,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5282,6 +6025,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5295,7 +6054,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5315,8 +6074,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5331,6 +6090,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5342,6 +6105,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5355,7 +6134,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5375,8 +6154,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5391,6 +6170,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5402,6 +6185,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5415,7 +6214,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5435,8 +6234,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5451,6 +6250,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5462,6 +6265,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5475,7 +6294,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5495,8 +6314,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5511,6 +6330,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5522,6 +6345,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5535,7 +6374,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5555,8 +6394,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5571,6 +6410,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5582,6 +6425,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5595,7 +6454,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5615,8 +6474,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5631,6 +6490,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5642,6 +6505,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5655,7 +6534,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5675,8 +6554,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5691,6 +6570,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5702,6 +6585,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5715,7 +6614,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5735,8 +6634,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5751,6 +6650,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5762,6 +6665,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5775,7 +6694,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5795,8 +6714,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5811,6 +6730,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5822,6 +6745,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5835,7 +6774,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5855,8 +6794,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5871,6 +6810,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5882,6 +6825,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5895,7 +6854,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5915,8 +6874,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5931,6 +6890,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -5942,6 +6905,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -5955,7 +6934,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5975,8 +6954,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -5991,6 +6970,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6002,6 +6985,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6015,7 +7014,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6035,8 +7034,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6051,6 +7050,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6062,6 +7065,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6075,7 +7094,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6095,8 +7114,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6111,6 +7130,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6122,6 +7145,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6135,7 +7174,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6155,8 +7194,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6171,6 +7210,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6182,6 +7225,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6195,7 +7254,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6215,8 +7274,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6231,6 +7290,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6242,6 +7305,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6255,7 +7334,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6275,8 +7354,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6291,6 +7370,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6302,6 +7385,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6315,7 +7414,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6335,8 +7434,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6351,6 +7450,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6362,6 +7465,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6375,7 +7494,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6395,8 +7514,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6411,6 +7530,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6422,6 +7545,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6435,7 +7574,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6455,8 +7594,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6471,6 +7610,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6482,6 +7625,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6495,7 +7654,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6515,8 +7674,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6531,6 +7690,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6542,6 +7705,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6555,7 +7734,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6575,8 +7754,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6591,6 +7770,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6602,6 +7785,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6615,7 +7814,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/demo/index.html** (305行, 9523バイト)
+**_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6635,8 +7834,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **_codeql_detected_source_root/demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6651,6 +7850,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**_codeql_detected_source_root/demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **_codeql_detected_source_root/demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6662,6 +7865,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **_codeql_detected_source_root/demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**_codeql_detected_source_root/demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**_codeql_detected_source_root/demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **_codeql_detected_source_root/demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6675,7 +7894,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**demo/index.html** (305行, 9523バイト)
+**demo/index.html** (303行, 9345バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6695,8 +7914,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**demo/src/mmlConverter.ts** (87行, 3249バイト)
-  - 関数: treeToJSON, convertMML, if, for, catch
+**demo/src/mmlConverter.ts** (72行, 2878バイト)
+  - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
 **demo/src/parseMidiNotes.ts** (154行, 5418バイト)
@@ -6711,6 +7930,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
+**demo/src/treeToJSON.ts** (20行, 702バイト)
+  - 関数: treeToJSON, if, for
+  - インポート: なし
+
 **demo/src/ui.ts** (14行, 466バイト)
   - 関数: showStatus, loadExample
   - インポート: なし
@@ -6722,6 +7945,22 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 **demo/src/wavExport.ts** (75行, 2528バイト)
   - 関数: writeString, audioBufferToWav, exportWav, for, if, catch
   - インポート: ./state.js, ./ui.js
+
+**demo/tests/audioBufferToWav.test.ts** (75行, 2868バイト)
+  - 関数: mockAudioBuffer, for
+  - インポート: node:test, node:assert/strict, ../src/wavExport.ts
+
+**demo/tests/midiReader.test.ts** (64行, 2306バイト)
+  - 関数: なし
+  - インポート: node:test, node:assert/strict, ../src/midiReader.ts
+
+**demo/tests/parseMidiNotes.test.ts** (102行, 3901バイト)
+  - 関数: buildSmf, for, while
+  - インポート: node:test, node:assert/strict, ../src/parseMidiNotes.ts
+
+**demo/tests/treeToJSON.test.ts** (73行, 3169バイト)
+  - 関数: mockNode
+  - インポート: node:test, node:assert/strict, ../src/treeToJSON.ts
 
 **demo-library/index.html** (320行, 10573バイト)
   - 関数: なし
@@ -6748,8 +7987,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       - drawWaveform ()
   - initialize (_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/main.ts)
     - convertMML ()
-      - treeToJSON (_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts)
       - smfToYM2151Json ()
+      - treeToJSON ()
   - constructor (undefined)
   - parseMidiNotes (_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts)
     - deltaTicksToSeconds ()
@@ -6760,7 +7999,10 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - ensureInitialized (_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/smfToYm2151.ts)
   - draw ()
 - for (_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/audioRenderer.ts)
+  - mockAudioBuffer (_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/audioBufferToWav.test.ts)
+  - buildSmf (_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/parseMidiNotes.test.ts)
 - while (_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/parseMidiNotes.ts)
+- mockNode (_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/tests/treeToJSON.test.ts)
 
 
 ## プロジェクト構造（ファイル一覧）
@@ -6820,4 +8062,4 @@ googled947dc864c270e07.html
 
 
 ---
-Generated at: 2026-03-03 07:09:12 JST
+Generated at: 2026-03-09 07:05:55 JST

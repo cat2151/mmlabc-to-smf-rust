@@ -1,48 +1,57 @@
-Last updated: 2026-03-03
+Last updated: 2026-03-09
 
 # Development Status
 
 ## 現在のIssues
-現在オープン中のIssueはありません。
+- [Issue #112](../issue-notes/112.md) では、MMLからSMFとは別に添付JSONを生成する仮仕様の実装が進行中で、MIDIイベントからユニークな`ProgramChange`を収集し、smf-to-ym2151log-rust互換フォーマットでの出力を目指しています。
+- [Issue #111](../issue-notes/111.md) は、MMLからSMFファイルとは個別に添付JSONを出力できるか、その際の具体的な影響範囲と仮仕様を整理することを目的としています。
+- 添付JSONはNRPN等よりも破壊的変更コストが低い自己記述的フォーマットとして検討されており、`@N`コマンドがない場合のプログラム0のデフォルト出力や、複数の`@N`のデデュープ・ソート済み出力が計画されています。
 
 ## 次の一手候補
-1. `mmlabc-to-smf-wasm` モジュールとデモの統合安定化とユーザー体験向上 (新規)
-   - 最初の小さな一歩: `mmlabc-to-smf-wasm` の最新変更がデモ環境で期待通りに動作するか、機能テストと視覚的な確認を行う。特にエラーハンドリングやパフォーマンスに注意を払う。
-   - Agent実行プロンプト:
-     ```
-     対象ファイル: `mmlabc-to-smf-wasm/src/lib.rs`, `mmlabc-to-smf-wasm/src/token_extractor.rs`, `demo/src/main.ts`, `demo/src/smfToYm2151.ts`, `demo/index.html`, `demo/package.json`
+1.  [Issue #111](../issue-notes/111.md): MMLからの添付JSON出力の仮仕様と影響範囲の整理
+    -   最初の小さな一歩: 添付JSON出力の具体的なユースケースと、既存のMML-to-SMF変換処理への影響を文書化する。
+    -   Agent実行プロンプト:
+        ```
+        対象ファイル: `src/pass4_midi.rs`, `src/lib.rs`, `mmlabc-to-smf-rust.toml.example`, `demo/src/smfToYm2151.ts`
 
-     実行内容: `mmlabc-to-smf-wasm` モジュールの最近のリファクタリング（`lib.rs`から`token_extractor.rs`への分割）が、`demo`アプリケーションでどのように利用され、期待通りの動作をしているかを分析してください。特に、WebAssemblyモジュールのロード、MMLからSMFへの変換、そしてYM2151形式への変換プロセスにおいて、エラーが発生しないか、またはパフォーマンスのボトルネックがないかを確認してください。ユーザーインターフェース（`demo/index.html`, `demo/src/ui.ts`）との連携も考慮に入れてください。`demo/package.json`の依存関係も確認し、`mmlabc-to-smf-wasm`のビルドと連携がスムーズであるかを評価してください。
+        実行内容: [Issue #111](../issue-notes/111.md) の内容を基に、MMLからSMFとは別に添付JSONを出力する際の以下の影響範囲を分析し、Markdown形式で整理してください：
+        1. 既存のMML解析/SMF生成フロー（`src/pass*`モジュール）への変更点の検討。
+        2. 新しい出力ファイル（添付JSON）のスキーマの検討と、既存の出力（SMF）との整合性。
+        3. 設定ファイル（`mmlabc-to-smf-rust.toml.example`など）での出力オプションの追加の可能性。
+        4. デモ（`demo/src/smfToYm2151.ts`など）やその他のツールが添付JSONを利用する際のインターフェース。
 
-     確認事項: `scripts/build-demo.sh` が正しく実行され、デモがビルドできること。ブラウザの開発者ツールでWASMモジュールの実行状況やコンソールエラーを確認すること。既存のデモ機能がすべて維持されていることを確認してください。
+        確認事項: 添付JSONがSMFと独立したファイルであること、既存のSMF出力フローに不要な副作用を与えないことを確認してください。また、smf-to-ym2151log-rustとの互換性についても考慮してください。
 
-     期待する出力: `mmlabc-to-smf-wasm` とデモアプリケーションの統合における現状評価レポートをMarkdown形式で生成してください。これには、潜在的な改善点、発見されたバグ、またはユーザー体験向上に貢献する提案を含めてください。
-     ```
+        期待する出力: 「添付JSON出力の影響範囲分析」と題したMarkdownファイル。各分析項目について詳細な説明と、可能な場合はコードスニペットの例を含めてください。
+        ```
 
-2. GitHub Actions CI/CDワークフローの健全性評価と最適化 (新規)
-   - 最初の小さな一歩: プロジェクト内のすべてのGitHub Actionsワークフロー（`.github/workflows`および`.github/actions-tmp/.github/workflows`以下）の最近の実行履歴を確認し、失敗しているものがないか、または実行に異常に時間がかかっているものがないか特定する。
-   - Agent実行プロンプト:
-     ```
-     対象ファイル: `.github/workflows/call-check-large-files.yml`, `.github/workflows/call-daily-project-summary.yml`, `.github/workflows/call-issue-note.yml`, `.github/check-large-files.toml` および `.github/actions-tmp/.github/workflows/` ディレクトリ内の全てのワークフローファイル。
+2.  [Issue #112](../issue-notes/112.md): MMLから添付JSONを出力する仮仕様の実装
+    -   最初の小さな一歩: MIDIイベントからProgramChangeを収集し、仮の添付JSONフォーマットで出力するモック関数を`src/attachment_json.rs`として新規作成する。
+    -   Agent実行プロンプト:
+        ```
+        対象ファイル: `src/pass3_events.rs`, `src/pass4_midi.rs`, `src/lib.rs`, `src/main.rs`, `src/attachment_json.rs` (新規作成)
 
-     実行内容: プロジェクト内のCI/CDワークフロー（GitHub Actions）の全体的な健全性を分析してください。特に、`check-large-files`や`daily-project-summary`などの自動化されたワークフローが意図通りに機能しているか、その設定（例: `.github/check-large-files.toml`）が適切であるかを確認してください。ワークフローの実行効率、エラーログ、および各ステップの出力が期待通りかを評価してください。
+        実行内容: [Issue #112](../issue-notes/112.md) で言及されている「MIDIイベントからユニークな`ProgramChange`を収集し、エントリを生成」するロジックを`src/attachment_json.rs`として新規作成し、`src/lib.rs`または`src/main.rs`から呼び出せるように実装してください。`@N`コマンドがない場合はプログラム0をデフォルト出力し、複数の`@N`はデデュープしてソート済みで出力するようにします。出力フォーマットはsmf-to-ym2151log-rust互換を意識してください。
 
-     確認事項: 各ワークフローの目的と依存関係を理解し、不要なトリガーや重複する処理がないことを確認してください。過去のワークフロー実行履歴を参照し、安定性を評価してください。
+        確認事項: 新規作成する`src/attachment_json.rs`が既存のMIDIイベント処理 (`src/pass3_events.rs`, `src/pass4_midi.rs`) から必要な情報を適切に取得できるか確認してください。また、SMF生成処理に影響を与えないこと、そしてプログラム変更イベントが正しく収集・整形されることを確認してください。
 
-     期待する出力: CI/CDワークフローの現状評価と最適化のための提案リストをMarkdown形式で生成してください。これには、パフォーマンス改善、信頼性向上、または設定ファイルの改善に関する具体的なアクションを含めてください。
-     ```
+        期待する出力: `src/attachment_json.rs`ファイルとその呼び出し部分を含む`src/lib.rs`または`src/main.rs`の修正差分。実装された関数のテストコードの提案もあれば含めてください。
+        ```
 
-3. 主要なRustクレートのドキュメントと利用例の拡充 (新規)
-   - 最初の小さな一歩: `mmlabc-to-smf-wasm/src/lib.rs` と `src/lib.rs` に存在するパブリックAPIについて、既存のドキュメントコメント（`///`）の有無と内容を確認し、不足している箇所を特定する。
-   - Agent実行プロンプト:
-     ```
-     対象ファイル: `mmlabc-to-smf-wasm/src/lib.rs`, `mmlabc-to-smf-wasm/src/token_extractor.rs`, `src/lib.rs`, `src/main.rs`, `README.md`, `.github/IMPLEMENTATION_SUMMARY.md`
+3.  [Issue #112](../issue-notes/112.md) の実装に伴うデモの更新と結合テストの準備
+    -   最初の小さな一歩: 添付JSON出力機能をMMLパーサーに追加した後、デモ環境 (`demo/`) で新しい添付JSONファイルが正しく生成され、読み込まれることを確認するためのテスト計画を立てる。
+    -   Agent実行プロンプト:
+        ```
+        対象ファイル: `demo/src/mmlConverter.ts`, `demo/src/smfToYm2151.ts`, `demo/index.html`, `scripts/build-demo.sh`, `tests/integration_test.rs`
 
-     実行内容: プロジェクトの主要なRustクレート（特に`mmlabc-to-smf-wasm`およびコアのMMLパーサー/コンバーター）について、現在のドキュメンテーションの品質と網羅性を分析してください。パブリックAPIや主要なデータ構造について、その目的、使用方法、および入力/出力に関する情報が十分に提供されているかを確認してください。また、コード内のコメントや既存のドキュメントファイルとの整合性も評価してください。
+        実行内容: [Issue #112](../issue-notes/112.md) で実装される添付JSON出力機能が完成した際に、その機能をデモ (`demo/`) で活用するための準備と、機能が正しく動作するかを確認するための結合テスト計画を策定してください。具体的には、
+        1. デモ環境で添付JSONファイルを読み込み、表示または利用するための`demo/src/mmlConverter.ts`および`demo/src/smfToYm2151.ts`の変更点の検討。
+        2. `scripts/build-demo.sh`に添付JSON出力処理を組み込む必要性の分析。
+        3. 添付JSONの出力内容が正しいかを確認するための統合テストシナリオ (`tests/integration_test.rs`の拡張を考慮) の提案。
 
-     確認事項: `cargo doc` コマンドで生成されるドキュメントが期待通りであるか確認してください。既存の`README.md`や`.github/IMPLEMENTATION_SUMMARY.md`に、これらのクレートに関する最新情報が反映されているか確認してください。
+        確認事項: デモのUIや既存のSMF再生機能に影響を与えないこと。添付JSONの読み込み/利用が非同期的に行われる場合の影響も考慮すること。WASMモジュールとの連携がスムーズであること。
 
-     期待する出力: 主要なRustクレートのドキュメント改善計画をMarkdown形式で生成してください。これには、不足しているドキュメントコメントの箇所、追加すべき利用例の提案、および既存のドキュメントとの整合性を高めるための具体的なアクションを含めてください。
+        期待する出力: 添付JSONを利用するデモの更新計画と、統合テストの具体的なシナリオを記述したMarkdownファイル。必要に応じて擬似コードやコマンド例を含めてください。
 
 ---
-Generated at: 2026-03-03 07:09:49 JST
+Generated at: 2026-03-09 07:06:14 JST
