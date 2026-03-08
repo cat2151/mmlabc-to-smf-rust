@@ -1,58 +1,11 @@
 // MML to SMF conversion: parses MML text, invokes Rust WASM, updates the UI
-import { parse_tree_json_to_smf, parse_tree_json_to_attachment_json } from '../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js';
+import { parse_tree_json_to_smf, parse_tree_json_to_attachment_json, preprocess_mml } from '../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js';
 import { state } from './state.js';
 import { showStatus } from './ui.js';
 import { smfToYM2151Json } from './smfToYm2151.js';
 import { renderWaveformAndAudio } from './audioRenderer.js';
 import { treeToJSON } from './treeToJSON.js';
 export { treeToJSON };
-
-/**
- * Extract embedded JSON from the start of MML text.
- *
- * Provisional spec: writing JSON directly at the beginning of MML is recognized
- * as the attachment JSON (添付JSON). The remaining text after the JSON is the
- * actual MML to parse.
- *
- * Example: `[{"ProgramChange":1,"Tone":{"events":[]}}]@1cde`
- *   → json = '[{"ProgramChange":1,"Tone":{"events":[]}}]', remainingMml = '@1cde'
- */
-export function extractEmbeddedJson(mml: string): { json: string | null; remainingMml: string } {
-    const trimmed = mml.trimStart();
-    if (!trimmed.startsWith('{') && !trimmed.startsWith('[')) {
-        return { json: null, remainingMml: mml };
-    }
-
-    let depth = 0;
-    let inString = false;
-    let escaped = false;
-    let endIdx = -1;
-
-    for (let i = 0; i < trimmed.length; i++) {
-        const c = trimmed[i];
-        if (escaped) { escaped = false; continue; }
-        if (c === '\\' && inString) { escaped = true; continue; }
-        if (c === '"') { inString = !inString; continue; }
-        if (inString) continue;
-        if (c === '{' || c === '[') depth++;
-        else if (c === '}' || c === ']') {
-            depth--;
-            if (depth === 0) { endIdx = i; break; }
-        }
-    }
-
-    if (endIdx === -1) {
-        return { json: null, remainingMml: mml };
-    }
-
-    const jsonStr = trimmed.substring(0, endIdx + 1);
-    try {
-        JSON.parse(jsonStr);
-        return { json: jsonStr, remainingMml: trimmed.substring(endIdx + 1).trimStart() };
-    } catch {
-        return { json: null, remainingMml: mml };
-    }
-}
 
 export async function convertMML(): Promise<void> {
     if (!state.wasmInitialized || !state.parser) {
@@ -78,9 +31,11 @@ export async function convertMML(): Promise<void> {
     try {
         showStatus('Parsing MML...', 'info');
 
-        // Extract embedded JSON from MML (provisional spec: JSON at start of MML is attachment JSON)
-        const { json: embeddedJson, remainingMml } = extractEmbeddedJson(mml);
-        const mmlToParse = remainingMml;
+        // Preprocess: extract embedded JSON from MML using Rust WASM
+        // (provisional spec: JSON at start of MML is attachment JSON / 添付JSON)
+        const preprocessResult = JSON.parse(preprocess_mml(mml));
+        const embeddedJson: string | null = preprocessResult.embeddedJson;
+        const mmlToParse: string = preprocessResult.remainingMml;
 
         const tree = state.parser.parse(mmlToParse);
         const parseTreeJSON = treeToJSON(tree.rootNode, mmlToParse);

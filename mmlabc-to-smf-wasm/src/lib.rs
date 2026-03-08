@@ -9,7 +9,7 @@ mod token_extractor;
 
 pub use token_extractor::{parse_tree_to_tokens, ParseTreeNode, Position};
 
-use mmlabc_to_smf::{attachment_json, pass2_ast, pass3_events, pass4_midi};
+use mmlabc_to_smf::{attachment_json, mml_preprocessor, pass2_ast, pass3_events, pass4_midi};
 use wasm_bindgen::prelude::*;
 
 /// Convert MML parse tree JSON to SMF binary (WASM entry point)
@@ -84,6 +84,33 @@ pub fn parse_tree_json_to_attachment_json(parse_tree_json: &str, _mml_source: &s
         .map_err(|e| JsValue::from_str(&format!("Failed to generate attachment JSON: {}", e)))?;
 
     Ok(json)
+}
+
+/// Extract a leading JSON block from MML text (WASM entry point)
+///
+/// Implements the JSON-in-MML provisional spec: if the MML string starts with a
+/// JSON object (`{…}`) or array (`[…]`), that block is returned as the embedded
+/// JSON (intended as attachment JSON / 添付JSON), and the remainder is the actual
+/// MML to be parsed.
+///
+/// Returns a JSON-encoded object with two fields:
+/// - `"embeddedJson"`: `null` or the extracted JSON string
+/// - `"remainingMml"`: the MML text after stripping the JSON prefix
+///
+/// # Arguments
+/// * `mml` - Full MML input string, possibly starting with a JSON block
+///
+/// # Returns
+/// JSON string: `{"embeddedJson": <null|string>, "remainingMml": <string>}`
+#[wasm_bindgen]
+pub fn preprocess_mml(mml: &str) -> Result<String, JsValue> {
+    let result = mml_preprocessor::extract_embedded_json(mml);
+    let output = serde_json::json!({
+        "embeddedJson": result.embedded_json,
+        "remainingMml": result.remaining_mml,
+    });
+    serde_json::to_string(&output)
+        .map_err(|e| JsValue::from_str(&format!("Failed to serialize result: {}", e)))
 }
 
 #[cfg(test)]
