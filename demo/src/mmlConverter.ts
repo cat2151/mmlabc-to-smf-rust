@@ -6,11 +6,10 @@ import { smfToYM2151Json } from './smfToYm2151.js';
 import { renderWaveformAndAudio } from './audioRenderer.js';
 
 export function treeToJSON(node: any, source: string): any {
-    const result: any = { type: node.type };
-
-    if (node.childCount === 0) {
-        result.text = source.substring(node.startIndex, node.endIndex);
-    }
+    const result: any = {
+        type: node.type,
+        text: source.substring(node.startIndex, node.endIndex),
+    };
 
     if (node.childCount > 0) {
         result.children = [];
