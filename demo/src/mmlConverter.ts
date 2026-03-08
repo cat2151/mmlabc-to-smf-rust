@@ -56,7 +56,6 @@ export async function convertMML(): Promise<void> {
             if (attachmentOutput) {
                 attachmentOutput.value = attachmentJson;
             }
-            document.getElementById('attachmentJsonSection')!.classList.remove('hidden');
         } catch (attachErr) {
             console.warn('Attachment JSON generation failed:', attachErr);
         }
