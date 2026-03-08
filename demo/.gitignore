@@ -12,8 +12,8 @@ web-tree-sitter.wasm
 tone/
 
 # web-ym2151 files (copied from node_modules)
-sine_test.js
-sine_test.wasm
+ym2151.js
+ym2151.wasm
 
 # smf-to-ym2151log-rust WASM (copied from node_modules during build)
 smf-to-ym2151log-wasm/
