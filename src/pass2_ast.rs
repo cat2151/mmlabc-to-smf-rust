@@ -90,14 +90,18 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 .unwrap_or((None, None));
 
             // Get current length for this channel (default to 4 = quarter note).
-            // Priority: chord's explicit length → channel's current length (l command) → default 4.
-            let length = chord_explicit_length
+            // Priority: note's own length → chord's explicit length → channel's current length (l command) → default 4.
+            let length = token
+                .note_length
+                .or(chord_explicit_length)
                 .or_else(|| current_lengths.get(&token.channel_group).copied())
                 .unwrap_or(4);
 
             // Get current dots for this channel (default to 0).
-            // Priority: chord's explicit dots → channel's current dots (l command) → default 0.
-            let dots = chord_explicit_dots
+            // Priority: note's own dots → chord's explicit dots → channel's current dots (l command) → default 0.
+            let dots = token
+                .dots
+                .or(chord_explicit_dots)
                 .or_else(|| current_dots.get(&token.channel_group).copied())
                 .unwrap_or(0);
 
