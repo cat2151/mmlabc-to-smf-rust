@@ -9,7 +9,7 @@ mod token_extractor;
 
 pub use token_extractor::{parse_tree_to_tokens, ParseTreeNode, Position};
 
-use mmlabc_to_smf::{pass2_ast, pass3_events, pass4_midi};
+use mmlabc_to_smf::{attachment_json, pass2_ast, pass3_events, pass4_midi};
 use wasm_bindgen::prelude::*;
 
 /// Convert MML parse tree JSON to SMF binary (WASM entry point)
@@ -49,6 +49,41 @@ pub fn parse_tree_json_to_smf(parse_tree_json: &str, _mml_source: &str) -> Resul
         .map_err(|e| JsValue::from_str(&format!("Failed to create MIDI: {}", e)))?;
 
     Ok(smf_data)
+}
+
+/// Convert MML parse tree JSON to attachment JSON string (WASM entry point)
+///
+/// Generates an "attached JSON" (添付JSON) that describes per-ProgramChange settings
+/// (Tone, Portamento, LFO, etc.) separately from the SMF file.
+/// The format is compatible with smf-to-ym2151log-rust's attachment input.
+///
+/// # Arguments
+/// * `parse_tree_json` - JSON string representing the parse tree from web-tree-sitter
+/// * `mml_source` - Original MML source text (reserved for diagnostics or future features)
+///
+/// # Returns
+/// Attachment JSON string
+#[wasm_bindgen]
+pub fn parse_tree_json_to_attachment_json(parse_tree_json: &str, _mml_source: &str) -> Result<String, JsValue> {
+    // Parse the parse tree JSON
+    let parse_tree: ParseTreeNode = serde_json::from_str(parse_tree_json)
+        .map_err(|e| JsValue::from_str(&format!("Failed to parse JSON: {}", e)))?;
+
+    // Extract tokens from parse tree
+    let mut chord_id = 0;
+    let tokens = parse_tree_to_tokens(&parse_tree, None, &mut chord_id);
+
+    // Pass 2: Convert tokens to AST
+    let ast = pass2_ast::tokens_to_ast(&tokens);
+
+    // Pass 3: Generate MIDI events
+    let events = pass3_events::ast_to_events(&ast, true);
+
+    // Generate attachment JSON
+    let json = attachment_json::generate_attachment_json(&events)
+        .map_err(|e| JsValue::from_str(&format!("Failed to generate attachment JSON: {}", e)))?;
+
+    Ok(json)
 }
 
 #[cfg(test)]

@@ -228,6 +228,15 @@
         <button class="example-button" onclick="loadExample('c;e;g')">Multi-Channel</button>
     </div>
 
+    <div class="examples">
+        <strong>添付JSON プリセット (Attachment JSON Presets):</strong><br>
+        <button class="example-button" onclick="loadExample('@1cde')">Program 1</button>
+        <button class="example-button" onclick="loadExample('@2cde')">Program 2</button>
+        <button class="example-button" onclick="loadExample('@1cde;@2ege')">2 Programs (Multi-Ch)</button>
+        <button class="example-button" onclick="loadExample('t120@1v100o5cde')">Prog 1 Full</button>
+        <button class="example-button" onclick="loadExample('t120@3v80o4c4d4e4f4g4')">Prog 3 Melody</button>
+    </div>
+
     <label for="mmlInput"><strong>Enter MML:</strong></label>
     <textarea id="mmlInput" placeholder="Enter MML code here, e.g., cde">cde</textarea>
 
@@ -278,6 +287,21 @@
             <summary>YM2151 Log Format JSON</summary>
             <div class="collapsible-content">
                 <textarea id="jsonOutput" rows="12" spellcheck="false" wrap="off"></textarea>
+            </div>
+        </details>
+    </div>
+
+    <!-- Attachment JSON Output -->
+    <div id="attachmentJsonSection">
+        <details id="attachmentJsonDetails" open>
+            <summary>添付JSON (Attachment JSON)</summary>
+            <div class="collapsible-content">
+                <p style="font-size:13px; color:#555;">
+                    SMFとは別に出力する添付JSONのテンプレートです。<br>
+                    smf-to-ym2151log-rust の添付JSONとして使用できます。<br>
+                    Tone の events に YM2151 レジスタ設定を記入してください。
+                </p>
+                <textarea id="attachmentJsonOutput" rows="12" spellcheck="false" wrap="off"></textarea>
             </div>
         </details>
     </div>

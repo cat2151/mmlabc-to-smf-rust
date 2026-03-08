@@ -5,7 +5,9 @@
 
 use anyhow::Result;
 use clap::Parser;
-use mmlabc_to_smf::{config::Config, pass1_parser, pass2_ast, pass3_events, pass4_midi};
+use mmlabc_to_smf::{
+    attachment_json, config::Config, pass1_parser, pass2_ast, pass3_events, pass4_midi,
+};
 use std::process::Command;
 
 #[derive(Parser, Debug)]
@@ -17,6 +19,12 @@ struct Args {
     /// Output MIDI file path
     #[arg(short, long, default_value = "output.mid")]
     output: String,
+
+    /// Output attachment JSON file path (optional).
+    /// The attachment JSON describes per-ProgramChange settings (Tone, etc.)
+    /// for use with smf-to-ym2151log-rust.
+    #[arg(long)]
+    attachment_output: Option<String>,
 
     /// Disable auto-playing the generated MIDI file
     /// Default player is cat-play-mml, configurable via mmlabc-to-smf-rust.toml
@@ -56,12 +64,23 @@ fn main() -> Result<()> {
     pass4_midi::process_pass4(&events, &args.output)?;
     println!("  Generated MIDI file → {}", args.output);
 
+    // Optional: Generate attachment JSON
+    if let Some(ref attachment_path) = args.attachment_output {
+        println!("Generating attachment JSON...");
+        let attachment = attachment_json::generate_attachment_json(&events)?;
+        std::fs::write(attachment_path, &attachment)?;
+        println!("  Generated attachment JSON → {}", attachment_path);
+    }
+
     println!("\nConversion complete!");
     println!("Output files:");
     println!("  - pass1_tokens.json (debug)");
     println!("  - pass2_ast.json (debug)");
     println!("  - pass3_events.json (debug)");
     println!("  - {} (final output)", args.output);
+    if let Some(ref attachment_path) = args.attachment_output {
+        println!("  - {} (attachment JSON)", attachment_path);
+    }
 
     // Auto-play the generated MIDI file (unless --no-play is specified)
     if !args.no_play {

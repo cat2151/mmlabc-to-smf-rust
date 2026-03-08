@@ -1,5 +1,5 @@
 // MML to SMF conversion: parses MML text, invokes Rust WASM, updates the UI
-import { parse_tree_json_to_smf } from '../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js';
+import { parse_tree_json_to_smf, parse_tree_json_to_attachment_json } from '../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js';
 import { state } from './state.js';
 import { showStatus } from './ui.js';
 import { smfToYM2151Json } from './smfToYm2151.js';
@@ -48,6 +48,17 @@ export async function convertMML(): Promise<void> {
         (document.getElementById('jsonOutput') as HTMLTextAreaElement).value =
             JSON.stringify(ym2151Json, null, 2);
         document.getElementById('jsonSection')!.classList.remove('hidden');
+
+        // Generate and display attachment JSON
+        try {
+            const attachmentJson = parse_tree_json_to_attachment_json(parseTreeStr, mml);
+            const attachmentOutput = document.getElementById('attachmentJsonOutput') as HTMLTextAreaElement | null;
+            if (attachmentOutput) {
+                attachmentOutput.value = attachmentJson;
+            }
+        } catch (attachErr) {
+            console.warn('Attachment JSON generation failed:', attachErr);
+        }
 
         await renderWaveformAndAudio(ym2151Json.events);
 
