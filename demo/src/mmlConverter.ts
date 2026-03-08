@@ -4,22 +4,8 @@ import { state } from './state.js';
 import { showStatus } from './ui.js';
 import { smfToYM2151Json } from './smfToYm2151.js';
 import { renderWaveformAndAudio } from './audioRenderer.js';
-
-export function treeToJSON(node: any, source: string): any {
-    const result: any = {
-        type: node.type,
-        text: source.substring(node.startIndex, node.endIndex),
-    };
-
-    if (node.childCount > 0) {
-        result.children = [];
-        for (let i = 0; i < node.childCount; i++) {
-            result.children.push(treeToJSON(node.child(i), source));
-        }
-    }
-
-    return result;
-}
+import { treeToJSON } from './treeToJSON.js';
+export { treeToJSON };
 
 export async function convertMML(): Promise<void> {
     if (!state.wasmInitialized || !state.parser) {
