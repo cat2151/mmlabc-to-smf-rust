@@ -1,45 +1,41 @@
 //! CLI tests for mmlabc-to-smf binary
 
 use std::fs;
-use std::path::Path;
 use std::process::Command;
+use tempfile::tempdir;
 
 /// Test that the CLI runs successfully with --no-play flag
 #[test]
 fn test_cli_no_play() {
-    let output = Command::new("cargo")
-        .args(&[
-            "run",
-            "--",
-            "cde",
-            "--no-play",
-            "-o",
-            "/tmp/test_cli_output.mid",
-        ])
+    let dir = tempdir().expect("Failed to create temp dir");
+    let mid_path = dir.path().join("output.mid");
+
+    let output = Command::new(env!("CARGO_BIN_EXE_mmlabc-to-smf"))
+        .args(&["cde", "--no-play", "-o", mid_path.to_str().unwrap()])
         .output()
         .expect("Failed to execute command");
 
     assert!(output.status.success(), "Command failed: {:?}", output);
-    assert!(Path::new("/tmp/test_cli_output.mid").exists());
+    assert!(mid_path.exists());
 
     // Check that output doesn't contain playback-related messages
     let stdout = String::from_utf8_lossy(&output.stdout);
     assert!(!stdout.contains("Attempting to play"));
-
-    // Cleanup
-    let _ = fs::remove_file("/tmp/test_cli_output.mid");
 }
 
 /// Test that the CLI attempts to play by default
 #[test]
 fn test_cli_auto_play_attempt() {
-    let output = Command::new("cargo")
-        .args(&["run", "--", "cde", "-o", "/tmp/test_cli_autoplay.mid"])
+    let dir = tempdir().expect("Failed to create temp dir");
+    let mid_path = dir.path().join("autoplay.mid");
+
+    let output = Command::new(env!("CARGO_BIN_EXE_mmlabc-to-smf"))
+        .args(&["cde", "-o", mid_path.to_str().unwrap()])
         .output()
         .expect("Failed to execute command");
 
     assert!(output.status.success(), "Command failed: {:?}", output);
-    assert!(Path::new("/tmp/test_cli_autoplay.mid").exists());
+    assert!(mid_path.exists());
 
     // Check that output contains playback-related messages
     // It should either succeed or show warning about cat-play-mml not being available
@@ -51,16 +47,13 @@ fn test_cli_auto_play_attempt() {
         combined.contains("Attempting to play") || combined.contains("cat-play-mml"),
         "Expected playback attempt message"
     );
-
-    // Cleanup
-    let _ = fs::remove_file("/tmp/test_cli_autoplay.mid");
 }
 
 /// Test help output includes --no-play option
 #[test]
 fn test_cli_help_includes_no_play() {
-    let output = Command::new("cargo")
-        .args(&["run", "--", "--help"])
+    let output = Command::new(env!("CARGO_BIN_EXE_mmlabc-to-smf"))
+        .args(&["--help"])
         .output()
         .expect("Failed to execute command");
 
@@ -74,27 +67,28 @@ fn test_cli_help_includes_no_play() {
 /// Test that --attachment-output generates a JSON file
 #[test]
 fn test_cli_attachment_output() {
-    let output = Command::new("cargo")
+    let dir = tempdir().expect("Failed to create temp dir");
+    let mid_path = dir.path().join("output.mid");
+    let json_path = dir.path().join("attachment.json");
+
+    let output = Command::new(env!("CARGO_BIN_EXE_mmlabc-to-smf"))
         .args(&[
-            "run",
-            "--",
             "@1cde",
             "--no-play",
             "-o",
-            "/tmp/test_cli_attachment.mid",
+            mid_path.to_str().unwrap(),
             "--attachment-output",
-            "/tmp/test_cli_attachment.json",
+            json_path.to_str().unwrap(),
         ])
         .output()
         .expect("Failed to execute command");
 
     assert!(output.status.success(), "Command failed: {:?}", output);
-    assert!(Path::new("/tmp/test_cli_attachment.mid").exists());
-    assert!(Path::new("/tmp/test_cli_attachment.json").exists());
+    assert!(mid_path.exists());
+    assert!(json_path.exists());
 
     // Verify the attachment JSON is valid and contains the expected structure
-    let json_content =
-        fs::read_to_string("/tmp/test_cli_attachment.json").expect("Failed to read JSON file");
+    let json_content = fs::read_to_string(&json_path).expect("Failed to read JSON file");
     let parsed: serde_json::Value =
         serde_json::from_str(&json_content).expect("Attachment JSON is not valid JSON");
     assert!(parsed.is_array());
@@ -106,35 +100,21 @@ fn test_cli_attachment_output() {
     // Check stdout mentions the attachment JSON
     let stdout = String::from_utf8_lossy(&output.stdout);
     assert!(stdout.contains("attachment JSON"));
-
-    // Cleanup
-    let _ = fs::remove_file("/tmp/test_cli_attachment.mid");
-    let _ = fs::remove_file("/tmp/test_cli_attachment.json");
 }
 
 /// Test that omitting --attachment-output does not create a JSON file
 #[test]
 fn test_cli_no_attachment_output_by_default() {
-    let json_path = "/tmp/test_cli_no_attachment.json";
-    // Ensure file doesn't exist before the test
-    let _ = fs::remove_file(json_path);
+    let dir = tempdir().expect("Failed to create temp dir");
+    let mid_path = dir.path().join("output.mid");
+    let json_path = dir.path().join("attachment.json");
 
-    let output = Command::new("cargo")
-        .args(&[
-            "run",
-            "--",
-            "@1cde",
-            "--no-play",
-            "-o",
-            "/tmp/test_cli_no_attachment.mid",
-        ])
+    let output = Command::new(env!("CARGO_BIN_EXE_mmlabc-to-smf"))
+        .args(&["@1cde", "--no-play", "-o", mid_path.to_str().unwrap()])
         .output()
         .expect("Failed to execute command");
 
     assert!(output.status.success(), "Command failed: {:?}", output);
     // No attachment JSON should be created
-    assert!(!Path::new(json_path).exists());
-
-    // Cleanup
-    let _ = fs::remove_file("/tmp/test_cli_no_attachment.mid");
+    assert!(!json_path.exists());
 }
