@@ -28,9 +28,9 @@ rm -rf tone
 mkdir -p tone
 npx esbuild node_modules/tone/build/esm/index.js --bundle --format=esm --platform=browser --outfile=tone/index.js
 # Copy web-ym2151 WASM files (Emscripten-compiled C code for YM2151 emulation)
-cp node_modules/web-ym2151/sine_test.js sine_test.js
-cp node_modules/web-ym2151/sine_test.wasm sine_test.wasm
-echo "✓ Copied web-ym2151 files (sine_test.js, sine_test.wasm)"
+cp node_modules/web-ym2151/ym2151.js ym2151.js
+cp node_modules/web-ym2151/ym2151.wasm ym2151.wasm
+echo "✓ Copied web-ym2151 files (ym2151.js, ym2151.wasm)"
 # Copy smf-to-ym2151log-rust WASM pkg (downloaded by postinstall from GitHub Pages)
 rm -rf "${ROOT_DIR}/demo/smf-to-ym2151log-wasm"
 mkdir -p "${ROOT_DIR}/demo/smf-to-ym2151log-wasm"

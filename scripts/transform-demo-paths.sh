@@ -22,7 +22,7 @@ fi
 sed \
   -e "s|src=\"./app.js\"|src=\"./demo/app.js\"|g" \
   -e "s|href=\"../demo-library/\"|href=\"./demo-library/\"|g" \
-  -e "s|src=\"./sine_test.js\"|src=\"./demo/sine_test.js\"|g" \
+  -e "s|src=\"./ym2151.js\"|src=\"./demo/ym2151.js\"|g" \
   "$INPUT_FILE" > "$OUTPUT_FILE"
 
 # Validate output file was created and is non-empty
@@ -42,8 +42,8 @@ if ! grep -q "href=\"./demo-library/\"" "$OUTPUT_FILE"; then
     VALIDATION_FAILED=1
 fi
 
-if ! grep -q "src=\"./demo/sine_test.js\"" "$OUTPUT_FILE"; then
-    echo "Warning: Expected transformation 'src=\"./demo/sine_test.js\"' not found in output"
+if ! grep -q "src=\"./demo/ym2151.js\"" "$OUTPUT_FILE"; then
+    echo "Warning: Expected transformation 'src=\"./demo/ym2151.js\"' not found in output"
     VALIDATION_FAILED=1
 fi
 

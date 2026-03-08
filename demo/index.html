@@ -291,14 +291,12 @@
     <script type="module" src="./app.js"></script>
     <script>
         // Initialize Emscripten Module for web-ym2151 WASM (YM2151 FM sound chip emulator)
-        // Note: sine_test.js is the library filename from web-ym2151 and cannot be renamed
-        // because the JS file internally loads sine_test.wasm by that exact name.
         var Module = {
             onRuntimeInitialized: function() {
                 console.log('web-ym2151 WASM (YM2151 emulator) initialized');
             }
         };
     </script>
-    <script defer src="./sine_test.js"></script>
+    <script defer src="./ym2151.js"></script>
 </body>
 </html>
