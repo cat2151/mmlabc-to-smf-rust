@@ -411,3 +411,29 @@ fn test_two_chords_different_lengths() {
     assert_eq!(note_on_events[4].time, 240); // f
     assert_eq!(note_on_events[5].time, 240); // a
 }
+
+#[test]
+fn test_chord_and_channel_simultaneous() {
+    // 'cg';e – C and G as a chord on channel 0, E on channel 1.
+    // All three should sound simultaneously (C major chord spread across channels).
+    let tokens = pass1_parser::parse_mml("'cg';e");
+    let ast = pass2_ast::tokens_to_ast(&tokens);
+    let events = pass3_events::ast_to_events(&ast, true);
+
+    let note_on_events: Vec<_> = events
+        .iter()
+        .filter(|e| e.event_type == "note_on")
+        .collect();
+
+    assert_eq!(note_on_events.len(), 3);
+
+    // All three notes should start at time 0
+    assert_eq!(note_on_events[0].time, 0); // c (chord, ch 0)
+    assert_eq!(note_on_events[1].time, 0); // g (chord, ch 0)
+    assert_eq!(note_on_events[2].time, 0); // e (ch 1)
+
+    // C and G on channel 0, E on channel 1
+    assert_eq!(note_on_events[0].channel, 0); // c
+    assert_eq!(note_on_events[1].channel, 0); // g
+    assert_eq!(note_on_events[2].channel, 1); // e
+}
