@@ -5,6 +5,7 @@
 
 pub mod attachment_json;
 pub mod config;
+pub mod mml_preprocessor;
 #[cfg(feature = "cli")]
 pub mod pass1_parser;
 pub mod pass2_ast;

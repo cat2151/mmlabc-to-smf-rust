@@ -237,6 +237,13 @@
         <button class="example-button" onclick="loadExample('t120@3v80o4c4d4e4f4g4')">Prog 3 Melody</button>
     </div>
 
+    <div class="examples">
+        <strong>JSON in MML (添付JSONをMMLに直接記述):</strong><br>
+        <button class="example-button" onclick="loadExample('[{&quot;ProgramChange&quot;:1,&quot;Tone&quot;:{&quot;events&quot;:[]}}]@1cde')">JSON + Notes</button>
+        <button class="example-button" onclick="loadExample('[{&quot;ProgramChange&quot;:1,&quot;Tone&quot;:{&quot;events&quot;:[{&quot;time&quot;:0,&quot;addr&quot;:&quot;0x28&quot;,&quot;data&quot;:&quot;0x01&quot;}]}}]@1t120o5cde')">JSON with Register</button>
+        <button class="example-button" onclick="loadExample('[{&quot;ProgramChange&quot;:0,&quot;Tone&quot;:{&quot;events&quot;:[]}}]cde')">JSON Prog 0</button>
+    </div>
+
     <label for="mmlInput"><strong>Enter MML:</strong></label>
     <textarea id="mmlInput" placeholder="Enter MML code here, e.g., cde">cde</textarea>
 
@@ -297,9 +304,11 @@
             <summary>添付JSON (Attachment JSON)</summary>
             <div class="collapsible-content">
                 <p style="font-size:13px; color:#555;">
-                    SMFとは別に出力する添付JSONのテンプレートです。<br>
+                    SMFとは別に出力する添付JSONです。<br>
                     smf-to-ym2151log-rust の添付JSONとして使用できます。<br>
-                    Tone の events に YM2151 レジスタ設定を記入してください。
+                    Tone の events に YM2151 レジスタ設定を記入してください。<br>
+                    <strong>MML先頭にJSONを直接書くと、それが添付JSONとして使用されます（仮仕様）。</strong><br>
+                    例: <code>[{"ProgramChange":1,"Tone":{"events":[]}}]@1cde</code>
                 </p>
                 <textarea id="attachmentJsonOutput" rows="12" spellcheck="false" wrap="off"></textarea>
             </div>

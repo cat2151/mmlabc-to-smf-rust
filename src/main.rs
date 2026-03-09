@@ -6,7 +6,8 @@
 use anyhow::Result;
 use clap::Parser;
 use mmlabc_to_smf::{
-    attachment_json, config::Config, pass1_parser, pass2_ast, pass3_events, pass4_midi,
+    attachment_json, config::Config, mml_preprocessor, pass1_parser, pass2_ast, pass3_events,
+    pass4_midi,
 };
 use std::process::Command;
 
@@ -40,9 +41,16 @@ fn main() -> Result<()> {
 
     println!("Converting MML: {}", args.mml_string);
 
+    // Preprocess: extract embedded JSON (JSON-in-MML provisional spec)
+    let preprocessed = mml_preprocessor::extract_embedded_json(&args.mml_string);
+    let mml_to_parse = &preprocessed.remaining_mml;
+    if preprocessed.embedded_json.is_some() {
+        println!("Preprocessor: embedded attachment JSON detected; parsing remaining MML");
+    }
+
     // Pass 1: Parse MML string to tokens
     println!("Pass 1: Parsing MML...");
-    let tokens = pass1_parser::process_pass1(&args.mml_string, "pass1_tokens.json")?;
+    let tokens = pass1_parser::process_pass1(mml_to_parse, "pass1_tokens.json")?;
     println!("  Generated {} tokens → pass1_tokens.json", tokens.len());
 
     // Pass 2: Convert tokens to AST
@@ -64,12 +72,17 @@ fn main() -> Result<()> {
     pass4_midi::process_pass4(&events, &args.output)?;
     println!("  Generated MIDI file → {}", args.output);
 
-    // Optional: Generate attachment JSON
+    // Optional: Write attachment JSON
+    // If embedded JSON was present in MML, use it directly; otherwise generate from events.
     if let Some(ref attachment_path) = args.attachment_output {
-        println!("Generating attachment JSON...");
-        let attachment = attachment_json::generate_attachment_json(&events)?;
+        println!("Writing attachment JSON...");
+        let attachment = if let Some(ref embedded) = preprocessed.embedded_json {
+            embedded.clone()
+        } else {
+            attachment_json::generate_attachment_json(&events)?
+        };
         std::fs::write(attachment_path, &attachment)?;
-        println!("  Generated attachment JSON → {}", attachment_path);
+        println!("  Written attachment JSON → {}", attachment_path);
     }
 
     println!("\nConversion complete!");
