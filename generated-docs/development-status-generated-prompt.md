@@ -1,4 +1,4 @@
-Last updated: 2026-03-09
+Last updated: 2026-03-10
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -254,7 +254,7 @@ Last updated: 2026-03-09
 - demo-library/package.json
 - googled947dc864c270e07.html
 - issue-notes/103.md
-- issue-notes/111.md
+- issue-notes/115.md
 - issue-notes/39.md
 - issue-notes/44.md
 - mmlabc-to-smf-rust.toml.example
@@ -266,9 +266,11 @@ Last updated: 2026-03-09
 - scripts/README.md
 - scripts/build-demo.sh
 - scripts/transform-demo-paths.sh
+- src/attachment_json.rs
 - src/config.rs
 - src/lib.rs
 - src/main.rs
+- src/mml_preprocessor.rs
 - src/pass1_parser.rs
 - src/pass2_ast.rs
 - src/pass3_events.rs
@@ -276,6 +278,7 @@ Last updated: 2026-03-09
 - src/tree_sitter_mml.rs
 - src/types.rs
 - tests/integration_test.rs
+- tests/test_attachment_json.rs
 - tests/test_c1_vs_c64.rs
 - tests/test_channel.rs
 - tests/test_chord.rs
@@ -307,317 +310,43 @@ Last updated: 2026-03-09
 - tree-sitter-mml/tree-sitter-mml.wasm
 
 ## 現在のオープンIssues
-## [Issue #112](../issue-notes/112.md): feat: MMLから添付JSON(添付JSON)を出力する仮仕様実装
-MMLのSMF変換時に、smf-to-ym2151log-rustの添付JSONフォーマット互換の「添付JSON」をSMFとは別ファイルで出力できるようにする。添付JSONはNRPN等より破壊的変更コストが低い自己記述的フォーマット。
-
-## 変更内容
-
-### ライブラリ (`src/attachment_json.rs` 新規)
-- MIDIイベントからユニークな`ProgramChange`を収集し、エントリを生成
-- `@N`コマンドがない場合はプログラム0をデフォルト出力
-- 複数の`@N`はデデュープしてソート済みで出力
-- smf-to-ym2151log-rust互換フォーマッ...
-ラベル: 
---- issue-notes/112.md の内容 ---
-
-```markdown
-
-```
-
-## [Issue #111](../issue-notes/111.md): 仮仕様で、MMLから、SMFファイルとは個別に、添付JSON、を出力できるか、影響範囲はどうなるか、を整理する
-[issue-notes/111.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/111.md)
-
-...
-ラベル: 
---- issue-notes/111.md の内容 ---
-
-```markdown
-# issue 仮仕様で、MMLから、SMFファイルとは個別に、添付JSON、を出力できるか、影響範囲はどうなるか、を整理する #111
-[issues #111](https://github.com/cat2151/mmlabc-to-smf-rust/issues/111)
-
-
-
-```
+オープン中のIssueはありません
 
 ## ドキュメントで言及されているファイルの内容
-### .github/actions-tmp/issue-notes/11.md
-```md
-{% raw %}
-# issue translate を他projectから使いやすくする #11
-[issues #11](https://github.com/cat2151/github-actions/issues/11)
 
-# ブレインストーミング
-- 課題、個別dirへの移動が必要。
-    - scripts
-- 課題、promptをハードコーディングでなく、promptsに切り出す。
-    - さらに、呼び出し元ymlから任意のpromptsを指定できるようにする。
-- 済、課題、README以外のtranslateも可能にするか検討する
-    - 対策、シンプル優先でREADME決め打ちにする
-        - 理由、README以外の用途となると、複数ファイルをどうGemini APIにわたすか？等、仕様が爆発的にふくらんでいくリスクがある
-        - README以外の用途が明確でないうちは、README決め打ちにするほうがよい
-- docs
-    - call導入手順を書く
-
-# 状況
-- 上記のうち、別dirへの切り分け等は実施済みのはず
-- どうする？
-    - それをここに可視化する。
-
-{% endraw %}
-```
-
-### .github/actions-tmp/issue-notes/12.md
-```md
-{% raw %}
-# issue project-summary を他projectから使いやすくする #12
-[issues #12](https://github.com/cat2151/github-actions/issues/12)
-
-# 保留、別projectでの検証待ちのもの
-- promptsをcall側ymlで指定可能にする
-  - 保留の理由
-    - YAGNI原則
-      - 現状の共通workflow側のpromptsで問題ないうちは、保留とする
-        - そのままで使える可能性が高い見込み
-      - 検証が必要
-      - 別promptsを実際に書く必要が出たときに、追加実装をする
-# 課題、 docs/ をメンテする
-- 対象は、 daily-summary-setup.md
-- call-daily-project-summary.yml の導入手順を書く
-- どうする？
-  - 次の日次バッチでagent用promptを生成させる
-- 結果
-  - 生成させた
-  - 導入手順をメンテさせた
-  - 人力でさらにメンテした
-  - これでOKと判断する。
-  - あとは必要に応じてissue起票すればよい、今すぐのissue起票は不要（YAGNI原則）、と判断する
-
-# closeとする
-
-{% endraw %}
-```
-
-### .github/actions-tmp/issue-notes/2.md
-```md
-{% raw %}
-# issue GitHub Actions「関数コールグラフhtmlビジュアライズ生成」を共通ワークフロー化する #2
-[issues #2](https://github.com/cat2151/github-actions/issues/2)
-
-
-# prompt
-```
-あなたはGitHub Actionsと共通ワークフローのスペシャリストです。
-このymlファイルを、以下の2つのファイルに分割してください。
-1. 共通ワークフロー       cat2151/github-actions/.github/workflows/callgraph_enhanced.yml
-2. 呼び出し元ワークフロー cat2151/github-actions/.github/workflows/call-callgraph_enhanced.yml
-まずplanしてください
-```
-
-# 結果
-- indent
-    - linter？がindentのエラーを出しているがyml内容は見た感じOK
-    - テキストエディタとagentの相性問題と判断する
-    - 別のテキストエディタでsaveしなおし、テキストエディタをreload
-    - indentのエラーは解消した
-- LLMレビュー
-    - agent以外の複数のLLMにレビューさせる
-    - prompt
-```
-あなたはGitHub Actionsと共通ワークフローのスペシャリストです。
-以下の2つのファイルをレビューしてください。最優先で、エラーが発生するかどうかだけレビューしてください。エラー以外の改善事項のチェックをするかわりに、エラー発生有無チェックに最大限注力してください。
-
---- 共通ワークフロー
-
-# GitHub Actions Reusable Workflow for Call Graph Generation
-name: Generate Call Graph
-
-# TODO Windowsネイティブでのtestをしていた名残が残っているので、今後整理していく。今はWSL act でtestしており、Windowsネイティブ環境依存問題が解決した
-#  ChatGPTにレビューさせるとそこそこ有用そうな提案が得られたので、今後それをやる予定
-#  agentに自己チェックさせる手も、セカンドオピニオンとして選択肢に入れておく
-
-on:
-  workflow_call:
-
-jobs:
-  check-commits:
-    runs-on: ubuntu-latest
-    outputs:
-      should-run: ${{ steps.check.outputs.should-run }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 50 # 過去のコミットを取得
-
-      - name: Check for user commits in last 24 hours
-        id: check
-        run: |
-          node .github/scripts/callgraph_enhanced/check-commits.cjs
-
-  generate-callgraph:
-    needs: check-commits
-    if: needs.check-commits.outputs.should-run == 'true'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      security-events: write
-      actions: read
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set Git identity
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Remove old CodeQL packages cache
-        run: rm -rf ~/.codeql/packages
-
-      - name: Check Node.js version
-        run: |
-          node .github/scripts/callgraph_enhanced/check-node-version.cjs
-
-      - name: Install CodeQL CLI
-        run: |
-          wget https://github.com/github/codeql-cli-binaries/releases/download/v2.22.1/codeql-linux64.zip
-          unzip codeql-linux64.zip
-          sudo mv codeql /opt/codeql
-          echo "/opt/codeql" >> $GITHUB_PATH
-
-      - name: Install CodeQL query packs
-        run: |
-          /opt/codeql/codeql pack install .github/codeql-queries
-
-      - name: Check CodeQL exists
-        run: |
-          node .github/scripts/callgraph_enhanced/check-codeql-exists.cjs
-
-      - name: Verify CodeQL Configuration
-        run: |
-          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs verify-config
-
-      - name: Remove existing CodeQL DB (if any)
-        run: |
-          rm -rf codeql-db
-
-      - name: Perform CodeQL Analysis
-        run: |
-          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs analyze
-
-      - name: Check CodeQL Analysis Results
-        run: |
-          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs check-results
-
-      - name: Debug CodeQL execution
-        run: |
-          node .github/scripts/callgraph_enhanced/analyze-codeql.cjs debug
-
-      - name: Wait for CodeQL results
-        run: |
-          node -e "setTimeout(()=>{}, 10000)"
-
-      - name: Find and process CodeQL results
-        run: |
-          node .github/scripts/callgraph_enhanced/find-process-results.cjs
-
-      - name: Generate HTML graph
-        run: |
-          node .github/scripts/callgraph_enhanced/generate-html-graph.cjs
-
-      - name: Copy files to generated-docs and commit results
-        run: |
-          node .github/scripts/callgraph_enhanced/copy-commit-results.cjs
-
---- 呼び出し元
-# 呼び出し元ワークフロー: call-callgraph_enhanced.yml
-name: Call Call Graph Enhanced
-
-on:
-  schedule:
-    # 毎日午前5時(JST) = UTC 20:00前日
-    - cron: '0 20 * * *'
-  workflow_dispatch:
-
-jobs:
-  call-callgraph-enhanced:
-    # uses: cat2151/github-actions/.github/workflows/callgraph_enhanced.yml
-    uses: ./.github/workflows/callgraph_enhanced.yml # ローカルでのテスト用
-```
-
-# レビュー結果OKと判断する
-- レビュー結果を人力でレビューした形になった
-
-# test
-- #4 同様にローカル WSL + act でtestする
-- エラー。userのtest設計ミス。
-  - scriptの挙動 : src/ がある前提
-  - 今回の共通ワークフローのリポジトリ : src/ がない
-  - 今回testで実現したいこと
-    - 仮のソースでよいので、関数コールグラフを生成させる
-  - 対策
-    - src/ にダミーを配置する
-- test green
-  - ただしcommit pushはしてないので、html内容が0件NG、といったケースの検知はできない
-  - もしそうなったら別issueとしよう
-
-# test green
-
-# commit用に、yml 呼び出し元 uses をlocal用から本番用に書き換える
-
-# closeとする
-- もしhtml内容が0件NG、などになったら、別issueとするつもり
-
-{% endraw %}
-```
-
-### issue-notes/111.md
-```md
-{% raw %}
-# issue 仮仕様で、MMLから、SMFファイルとは個別に、添付JSON、を出力できるか、影響範囲はどうなるか、を整理する #111
-[issues #111](https://github.com/cat2151/mmlabc-to-smf-rust/issues/111)
-
-
-
-{% endraw %}
-```
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-9d62144 Add issue note for #111 [auto]
-30c0083 Merge pull request #110 from cat2151/copilot/fix-same-smf-issue-c1-c64
-5cd11e9 Clean up test: remove println!, add length assertions before indexing
-6f6eb7e Fix note length bug: c1 and c64 now produce different SMF
-eebdee1 Initial plan for fixing note length bug
-ea9dcef Add issue note for #109 [auto]
-6a2ace3 Initial plan
-249dfae Merge pull request #108 from cat2151/copilot/fix-build-failure-in-actions
-7665f47 Fix build failure: update web-ym2151 file names from sine_test to ym2151
-55d4aee Initial plan
+9612741 Merge pull request #116 from cat2151/copilot/fix-cg-bug-in-harmony
+7ee2644 Fix: chord notation 'cg';e now plays all notes simultaneously
+48fb8d5 Add issue note for #115 [auto]
+ce2b192 Initial plan
+0486ef2 Merge pull request #114 from cat2151/copilot/add-json-editability-in-mml
+88700aa Move JSON-in-MML preprocessor to Rust; expose via WASM; apply in CLI
+1504fb7 Add JSON-in-MML feature: embed attachment JSON directly in MML text
+dcda1c9 Add issue note for #113 [auto]
+9522b60 Initial plan
+b7cc698 Merge pull request #112 from cat2151/copilot/add-attach-json-output
 
 ### 変更されたファイル:
-demo/.gitignore
 demo/index.html
-demo/package.json
 demo/src/mmlConverter.ts
-demo/src/treeToJSON.ts
-demo/test-loader.mjs
-demo/test-register.mjs
-demo/tests/audioBufferToWav.test.ts
-demo/tests/midiReader.test.ts
-demo/tests/parseMidiNotes.test.ts
-demo/tests/treeToJSON.test.ts
 generated-docs/development-status-generated-prompt.md
 generated-docs/development-status.md
 generated-docs/project-overview-generated-prompt.md
 generated-docs/project-overview.md
-issue-notes/111.md
-scripts/build-demo.sh
-scripts/transform-demo-paths.sh
-src/pass2_ast.rs
-tests/test_c1_vs_c64.rs
+issue-notes/109.md
+issue-notes/115.md
+mmlabc-to-smf-wasm/src/lib.rs
+src/attachment_json.rs
+src/lib.rs
+src/main.rs
+src/mml_preprocessor.rs
+src/pass3_events.rs
+tests/test_attachment_json.rs
+tests/test_chord.rs
+tests/test_cli.rs
 
 
 ---
-Generated at: 2026-03-09 07:05:51 JST
+Generated at: 2026-03-10 07:08:25 JST

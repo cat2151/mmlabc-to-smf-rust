@@ -1,4 +1,4 @@
-Last updated: 2026-03-09
+Last updated: 2026-03-10
 
 
 # プロジェクト概要生成プロンプト（来訪者向け）
@@ -850,7 +850,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 🌐 googled947dc864c270e07.html
                                                                                 📁 issue-notes/
                                                                                   📖 103.md
-                                                                                  📖 111.md
+                                                                                  📖 115.md
                                                                                   📖 39.md
                                                                                   📖 44.md
                                                                                 📄 mmlabc-to-smf-rust.toml.example
@@ -866,9 +866,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                   📄 build-demo.sh
                                                                                   📄 transform-demo-paths.sh
                                                                                 📁 src/
+                                                                                  📄 attachment_json.rs
                                                                                   📄 config.rs
                                                                                   📄 lib.rs
                                                                                   📄 main.rs
+                                                                                  📄 mml_preprocessor.rs
                                                                                   📄 pass1_parser.rs
                                                                                   📄 pass2_ast.rs
                                                                                   📄 pass3_events.rs
@@ -877,6 +879,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                   📄 types.rs
                                                                                 📁 tests/
                                                                                   📄 integration_test.rs
+                                                                                  📄 test_attachment_json.rs
                                                                                   📄 test_c1_vs_c64.rs
                                                                                   📄 test_channel.rs
                                                                                   📄 test_chord.rs
@@ -944,7 +947,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               🌐 googled947dc864c270e07.html
                                                                               📁 issue-notes/
                                                                                 📖 103.md
-                                                                                📖 111.md
+                                                                                📖 115.md
                                                                                 📖 39.md
                                                                                 📖 44.md
                                                                               📄 mmlabc-to-smf-rust.toml.example
@@ -960,9 +963,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📄 build-demo.sh
                                                                                 📄 transform-demo-paths.sh
                                                                               📁 src/
+                                                                                📄 attachment_json.rs
                                                                                 📄 config.rs
                                                                                 📄 lib.rs
                                                                                 📄 main.rs
+                                                                                📄 mml_preprocessor.rs
                                                                                 📄 pass1_parser.rs
                                                                                 📄 pass2_ast.rs
                                                                                 📄 pass3_events.rs
@@ -971,6 +976,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                                 📄 types.rs
                                                                               📁 tests/
                                                                                 📄 integration_test.rs
+                                                                                📄 test_attachment_json.rs
                                                                                 📄 test_c1_vs_c64.rs
                                                                                 📄 test_channel.rs
                                                                                 📄 test_chord.rs
@@ -1038,7 +1044,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             🌐 googled947dc864c270e07.html
                                                                             📁 issue-notes/
                                                                               📖 103.md
-                                                                              📖 111.md
+                                                                              📖 115.md
                                                                               📖 39.md
                                                                               📖 44.md
                                                                             📄 mmlabc-to-smf-rust.toml.example
@@ -1054,9 +1060,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📄 build-demo.sh
                                                                               📄 transform-demo-paths.sh
                                                                             📁 src/
+                                                                              📄 attachment_json.rs
                                                                               📄 config.rs
                                                                               📄 lib.rs
                                                                               📄 main.rs
+                                                                              📄 mml_preprocessor.rs
                                                                               📄 pass1_parser.rs
                                                                               📄 pass2_ast.rs
                                                                               📄 pass3_events.rs
@@ -1065,6 +1073,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                               📄 types.rs
                                                                             📁 tests/
                                                                               📄 integration_test.rs
+                                                                              📄 test_attachment_json.rs
                                                                               📄 test_c1_vs_c64.rs
                                                                               📄 test_channel.rs
                                                                               📄 test_chord.rs
@@ -1132,7 +1141,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           🌐 googled947dc864c270e07.html
                                                                           📁 issue-notes/
                                                                             📖 103.md
-                                                                            📖 111.md
+                                                                            📖 115.md
                                                                             📖 39.md
                                                                             📖 44.md
                                                                           📄 mmlabc-to-smf-rust.toml.example
@@ -1148,9 +1157,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📄 build-demo.sh
                                                                             📄 transform-demo-paths.sh
                                                                           📁 src/
+                                                                            📄 attachment_json.rs
                                                                             📄 config.rs
                                                                             📄 lib.rs
                                                                             📄 main.rs
+                                                                            📄 mml_preprocessor.rs
                                                                             📄 pass1_parser.rs
                                                                             📄 pass2_ast.rs
                                                                             📄 pass3_events.rs
@@ -1159,6 +1170,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                             📄 types.rs
                                                                           📁 tests/
                                                                             📄 integration_test.rs
+                                                                            📄 test_attachment_json.rs
                                                                             📄 test_c1_vs_c64.rs
                                                                             📄 test_channel.rs
                                                                             📄 test_chord.rs
@@ -1226,7 +1238,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         🌐 googled947dc864c270e07.html
                                                                         📁 issue-notes/
                                                                           📖 103.md
-                                                                          📖 111.md
+                                                                          📖 115.md
                                                                           📖 39.md
                                                                           📖 44.md
                                                                         📄 mmlabc-to-smf-rust.toml.example
@@ -1242,9 +1254,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📄 build-demo.sh
                                                                           📄 transform-demo-paths.sh
                                                                         📁 src/
+                                                                          📄 attachment_json.rs
                                                                           📄 config.rs
                                                                           📄 lib.rs
                                                                           📄 main.rs
+                                                                          📄 mml_preprocessor.rs
                                                                           📄 pass1_parser.rs
                                                                           📄 pass2_ast.rs
                                                                           📄 pass3_events.rs
@@ -1253,6 +1267,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                           📄 types.rs
                                                                         📁 tests/
                                                                           📄 integration_test.rs
+                                                                          📄 test_attachment_json.rs
                                                                           📄 test_c1_vs_c64.rs
                                                                           📄 test_channel.rs
                                                                           📄 test_chord.rs
@@ -1320,7 +1335,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       🌐 googled947dc864c270e07.html
                                                                       📁 issue-notes/
                                                                         📖 103.md
-                                                                        📖 111.md
+                                                                        📖 115.md
                                                                         📖 39.md
                                                                         📖 44.md
                                                                       📄 mmlabc-to-smf-rust.toml.example
@@ -1336,9 +1351,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📄 build-demo.sh
                                                                         📄 transform-demo-paths.sh
                                                                       📁 src/
+                                                                        📄 attachment_json.rs
                                                                         📄 config.rs
                                                                         📄 lib.rs
                                                                         📄 main.rs
+                                                                        📄 mml_preprocessor.rs
                                                                         📄 pass1_parser.rs
                                                                         📄 pass2_ast.rs
                                                                         📄 pass3_events.rs
@@ -1347,6 +1364,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                         📄 types.rs
                                                                       📁 tests/
                                                                         📄 integration_test.rs
+                                                                        📄 test_attachment_json.rs
                                                                         📄 test_c1_vs_c64.rs
                                                                         📄 test_channel.rs
                                                                         📄 test_chord.rs
@@ -1414,7 +1432,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     🌐 googled947dc864c270e07.html
                                                                     📁 issue-notes/
                                                                       📖 103.md
-                                                                      📖 111.md
+                                                                      📖 115.md
                                                                       📖 39.md
                                                                       📖 44.md
                                                                     📄 mmlabc-to-smf-rust.toml.example
@@ -1430,9 +1448,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📄 build-demo.sh
                                                                       📄 transform-demo-paths.sh
                                                                     📁 src/
+                                                                      📄 attachment_json.rs
                                                                       📄 config.rs
                                                                       📄 lib.rs
                                                                       📄 main.rs
+                                                                      📄 mml_preprocessor.rs
                                                                       📄 pass1_parser.rs
                                                                       📄 pass2_ast.rs
                                                                       📄 pass3_events.rs
@@ -1441,6 +1461,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                       📄 types.rs
                                                                     📁 tests/
                                                                       📄 integration_test.rs
+                                                                      📄 test_attachment_json.rs
                                                                       📄 test_c1_vs_c64.rs
                                                                       📄 test_channel.rs
                                                                       📄 test_chord.rs
@@ -1508,7 +1529,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   🌐 googled947dc864c270e07.html
                                                                   📁 issue-notes/
                                                                     📖 103.md
-                                                                    📖 111.md
+                                                                    📖 115.md
                                                                     📖 39.md
                                                                     📖 44.md
                                                                   📄 mmlabc-to-smf-rust.toml.example
@@ -1524,9 +1545,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📄 build-demo.sh
                                                                     📄 transform-demo-paths.sh
                                                                   📁 src/
+                                                                    📄 attachment_json.rs
                                                                     📄 config.rs
                                                                     📄 lib.rs
                                                                     📄 main.rs
+                                                                    📄 mml_preprocessor.rs
                                                                     📄 pass1_parser.rs
                                                                     📄 pass2_ast.rs
                                                                     📄 pass3_events.rs
@@ -1535,6 +1558,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                     📄 types.rs
                                                                   📁 tests/
                                                                     📄 integration_test.rs
+                                                                    📄 test_attachment_json.rs
                                                                     📄 test_c1_vs_c64.rs
                                                                     📄 test_channel.rs
                                                                     📄 test_chord.rs
@@ -1602,7 +1626,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 🌐 googled947dc864c270e07.html
                                                                 📁 issue-notes/
                                                                   📖 103.md
-                                                                  📖 111.md
+                                                                  📖 115.md
                                                                   📖 39.md
                                                                   📖 44.md
                                                                 📄 mmlabc-to-smf-rust.toml.example
@@ -1618,9 +1642,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📄 build-demo.sh
                                                                   📄 transform-demo-paths.sh
                                                                 📁 src/
+                                                                  📄 attachment_json.rs
                                                                   📄 config.rs
                                                                   📄 lib.rs
                                                                   📄 main.rs
+                                                                  📄 mml_preprocessor.rs
                                                                   📄 pass1_parser.rs
                                                                   📄 pass2_ast.rs
                                                                   📄 pass3_events.rs
@@ -1629,6 +1655,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                   📄 types.rs
                                                                 📁 tests/
                                                                   📄 integration_test.rs
+                                                                  📄 test_attachment_json.rs
                                                                   📄 test_c1_vs_c64.rs
                                                                   📄 test_channel.rs
                                                                   📄 test_chord.rs
@@ -1696,7 +1723,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               🌐 googled947dc864c270e07.html
                                                               📁 issue-notes/
                                                                 📖 103.md
-                                                                📖 111.md
+                                                                📖 115.md
                                                                 📖 39.md
                                                                 📖 44.md
                                                               📄 mmlabc-to-smf-rust.toml.example
@@ -1712,9 +1739,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📄 build-demo.sh
                                                                 📄 transform-demo-paths.sh
                                                               📁 src/
+                                                                📄 attachment_json.rs
                                                                 📄 config.rs
                                                                 📄 lib.rs
                                                                 📄 main.rs
+                                                                📄 mml_preprocessor.rs
                                                                 📄 pass1_parser.rs
                                                                 📄 pass2_ast.rs
                                                                 📄 pass3_events.rs
@@ -1723,6 +1752,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                                 📄 types.rs
                                                               📁 tests/
                                                                 📄 integration_test.rs
+                                                                📄 test_attachment_json.rs
                                                                 📄 test_c1_vs_c64.rs
                                                                 📄 test_channel.rs
                                                                 📄 test_chord.rs
@@ -1790,7 +1820,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             🌐 googled947dc864c270e07.html
                                                             📁 issue-notes/
                                                               📖 103.md
-                                                              📖 111.md
+                                                              📖 115.md
                                                               📖 39.md
                                                               📖 44.md
                                                             📄 mmlabc-to-smf-rust.toml.example
@@ -1806,9 +1836,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📄 build-demo.sh
                                                               📄 transform-demo-paths.sh
                                                             📁 src/
+                                                              📄 attachment_json.rs
                                                               📄 config.rs
                                                               📄 lib.rs
                                                               📄 main.rs
+                                                              📄 mml_preprocessor.rs
                                                               📄 pass1_parser.rs
                                                               📄 pass2_ast.rs
                                                               📄 pass3_events.rs
@@ -1817,6 +1849,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                               📄 types.rs
                                                             📁 tests/
                                                               📄 integration_test.rs
+                                                              📄 test_attachment_json.rs
                                                               📄 test_c1_vs_c64.rs
                                                               📄 test_channel.rs
                                                               📄 test_chord.rs
@@ -1884,7 +1917,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           🌐 googled947dc864c270e07.html
                                                           📁 issue-notes/
                                                             📖 103.md
-                                                            📖 111.md
+                                                            📖 115.md
                                                             📖 39.md
                                                             📖 44.md
                                                           📄 mmlabc-to-smf-rust.toml.example
@@ -1900,9 +1933,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📄 build-demo.sh
                                                             📄 transform-demo-paths.sh
                                                           📁 src/
+                                                            📄 attachment_json.rs
                                                             📄 config.rs
                                                             📄 lib.rs
                                                             📄 main.rs
+                                                            📄 mml_preprocessor.rs
                                                             📄 pass1_parser.rs
                                                             📄 pass2_ast.rs
                                                             📄 pass3_events.rs
@@ -1911,6 +1946,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                             📄 types.rs
                                                           📁 tests/
                                                             📄 integration_test.rs
+                                                            📄 test_attachment_json.rs
                                                             📄 test_c1_vs_c64.rs
                                                             📄 test_channel.rs
                                                             📄 test_chord.rs
@@ -1978,7 +2014,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         🌐 googled947dc864c270e07.html
                                                         📁 issue-notes/
                                                           📖 103.md
-                                                          📖 111.md
+                                                          📖 115.md
                                                           📖 39.md
                                                           📖 44.md
                                                         📄 mmlabc-to-smf-rust.toml.example
@@ -1994,9 +2030,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📄 build-demo.sh
                                                           📄 transform-demo-paths.sh
                                                         📁 src/
+                                                          📄 attachment_json.rs
                                                           📄 config.rs
                                                           📄 lib.rs
                                                           📄 main.rs
+                                                          📄 mml_preprocessor.rs
                                                           📄 pass1_parser.rs
                                                           📄 pass2_ast.rs
                                                           📄 pass3_events.rs
@@ -2005,6 +2043,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                           📄 types.rs
                                                         📁 tests/
                                                           📄 integration_test.rs
+                                                          📄 test_attachment_json.rs
                                                           📄 test_c1_vs_c64.rs
                                                           📄 test_channel.rs
                                                           📄 test_chord.rs
@@ -2072,7 +2111,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       🌐 googled947dc864c270e07.html
                                                       📁 issue-notes/
                                                         📖 103.md
-                                                        📖 111.md
+                                                        📖 115.md
                                                         📖 39.md
                                                         📖 44.md
                                                       📄 mmlabc-to-smf-rust.toml.example
@@ -2088,9 +2127,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📄 build-demo.sh
                                                         📄 transform-demo-paths.sh
                                                       📁 src/
+                                                        📄 attachment_json.rs
                                                         📄 config.rs
                                                         📄 lib.rs
                                                         📄 main.rs
+                                                        📄 mml_preprocessor.rs
                                                         📄 pass1_parser.rs
                                                         📄 pass2_ast.rs
                                                         📄 pass3_events.rs
@@ -2099,6 +2140,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                         📄 types.rs
                                                       📁 tests/
                                                         📄 integration_test.rs
+                                                        📄 test_attachment_json.rs
                                                         📄 test_c1_vs_c64.rs
                                                         📄 test_channel.rs
                                                         📄 test_chord.rs
@@ -2166,7 +2208,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     🌐 googled947dc864c270e07.html
                                                     📁 issue-notes/
                                                       📖 103.md
-                                                      📖 111.md
+                                                      📖 115.md
                                                       📖 39.md
                                                       📖 44.md
                                                     📄 mmlabc-to-smf-rust.toml.example
@@ -2182,9 +2224,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📄 build-demo.sh
                                                       📄 transform-demo-paths.sh
                                                     📁 src/
+                                                      📄 attachment_json.rs
                                                       📄 config.rs
                                                       📄 lib.rs
                                                       📄 main.rs
+                                                      📄 mml_preprocessor.rs
                                                       📄 pass1_parser.rs
                                                       📄 pass2_ast.rs
                                                       📄 pass3_events.rs
@@ -2193,6 +2237,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                       📄 types.rs
                                                     📁 tests/
                                                       📄 integration_test.rs
+                                                      📄 test_attachment_json.rs
                                                       📄 test_c1_vs_c64.rs
                                                       📄 test_channel.rs
                                                       📄 test_chord.rs
@@ -2260,7 +2305,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   🌐 googled947dc864c270e07.html
                                                   📁 issue-notes/
                                                     📖 103.md
-                                                    📖 111.md
+                                                    📖 115.md
                                                     📖 39.md
                                                     📖 44.md
                                                   📄 mmlabc-to-smf-rust.toml.example
@@ -2276,9 +2321,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📄 build-demo.sh
                                                     📄 transform-demo-paths.sh
                                                   📁 src/
+                                                    📄 attachment_json.rs
                                                     📄 config.rs
                                                     📄 lib.rs
                                                     📄 main.rs
+                                                    📄 mml_preprocessor.rs
                                                     📄 pass1_parser.rs
                                                     📄 pass2_ast.rs
                                                     📄 pass3_events.rs
@@ -2287,6 +2334,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                     📄 types.rs
                                                   📁 tests/
                                                     📄 integration_test.rs
+                                                    📄 test_attachment_json.rs
                                                     📄 test_c1_vs_c64.rs
                                                     📄 test_channel.rs
                                                     📄 test_chord.rs
@@ -2351,10 +2399,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   🌐 index.html
                                                   📊 package.json
                                                 📁 generated-docs/
+                                                  📖 development-status-generated-prompt.md
                                                 🌐 googled947dc864c270e07.html
                                                 📁 issue-notes/
                                                   📖 103.md
-                                                  📖 111.md
+                                                  📖 115.md
                                                   📖 39.md
                                                   📖 44.md
                                                 📄 mmlabc-to-smf-rust.toml.example
@@ -2370,9 +2419,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📄 build-demo.sh
                                                   📄 transform-demo-paths.sh
                                                 📁 src/
+                                                  📄 attachment_json.rs
                                                   📄 config.rs
                                                   📄 lib.rs
                                                   📄 main.rs
+                                                  📄 mml_preprocessor.rs
                                                   📄 pass1_parser.rs
                                                   📄 pass2_ast.rs
                                                   📄 pass3_events.rs
@@ -2381,6 +2432,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                   📄 types.rs
                                                 📁 tests/
                                                   📄 integration_test.rs
+                                                  📄 test_attachment_json.rs
                                                   📄 test_c1_vs_c64.rs
                                                   📄 test_channel.rs
                                                   📄 test_chord.rs
@@ -2445,10 +2497,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 🌐 index.html
                                                 📊 package.json
                                               📁 generated-docs/
+                                                📖 development-status-generated-prompt.md
                                               🌐 googled947dc864c270e07.html
                                               📁 issue-notes/
                                                 📖 103.md
-                                                📖 111.md
+                                                📖 115.md
                                                 📖 39.md
                                                 📖 44.md
                                               📄 mmlabc-to-smf-rust.toml.example
@@ -2464,9 +2517,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📄 build-demo.sh
                                                 📄 transform-demo-paths.sh
                                               📁 src/
+                                                📄 attachment_json.rs
                                                 📄 config.rs
                                                 📄 lib.rs
                                                 📄 main.rs
+                                                📄 mml_preprocessor.rs
                                                 📄 pass1_parser.rs
                                                 📄 pass2_ast.rs
                                                 📄 pass3_events.rs
@@ -2475,6 +2530,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                                 📄 types.rs
                                               📁 tests/
                                                 📄 integration_test.rs
+                                                📄 test_attachment_json.rs
                                                 📄 test_c1_vs_c64.rs
                                                 📄 test_channel.rs
                                                 📄 test_chord.rs
@@ -2543,7 +2599,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             🌐 googled947dc864c270e07.html
                                             📁 issue-notes/
                                               📖 103.md
-                                              📖 111.md
+                                              📖 115.md
                                               📖 39.md
                                               📖 44.md
                                             📄 mmlabc-to-smf-rust.toml.example
@@ -2559,9 +2615,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📄 build-demo.sh
                                               📄 transform-demo-paths.sh
                                             📁 src/
+                                              📄 attachment_json.rs
                                               📄 config.rs
                                               📄 lib.rs
                                               📄 main.rs
+                                              📄 mml_preprocessor.rs
                                               📄 pass1_parser.rs
                                               📄 pass2_ast.rs
                                               📄 pass3_events.rs
@@ -2570,6 +2628,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                               📄 types.rs
                                             📁 tests/
                                               📄 integration_test.rs
+                                              📄 test_attachment_json.rs
                                               📄 test_c1_vs_c64.rs
                                               📄 test_channel.rs
                                               📄 test_chord.rs
@@ -2638,7 +2697,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           🌐 googled947dc864c270e07.html
                                           📁 issue-notes/
                                             📖 103.md
-                                            📖 111.md
+                                            📖 115.md
                                             📖 39.md
                                             📖 44.md
                                           📄 mmlabc-to-smf-rust.toml.example
@@ -2654,9 +2713,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📄 build-demo.sh
                                             📄 transform-demo-paths.sh
                                           📁 src/
+                                            📄 attachment_json.rs
                                             📄 config.rs
                                             📄 lib.rs
                                             📄 main.rs
+                                            📄 mml_preprocessor.rs
                                             📄 pass1_parser.rs
                                             📄 pass2_ast.rs
                                             📄 pass3_events.rs
@@ -2665,6 +2726,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                             📄 types.rs
                                           📁 tests/
                                             📄 integration_test.rs
+                                            📄 test_attachment_json.rs
                                             📄 test_c1_vs_c64.rs
                                             📄 test_channel.rs
                                             📄 test_chord.rs
@@ -2733,7 +2795,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         🌐 googled947dc864c270e07.html
                                         📁 issue-notes/
                                           📖 103.md
-                                          📖 111.md
+                                          📖 115.md
                                           📖 39.md
                                           📖 44.md
                                         📄 mmlabc-to-smf-rust.toml.example
@@ -2749,9 +2811,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📄 build-demo.sh
                                           📄 transform-demo-paths.sh
                                         📁 src/
+                                          📄 attachment_json.rs
                                           📄 config.rs
                                           📄 lib.rs
                                           📄 main.rs
+                                          📄 mml_preprocessor.rs
                                           📄 pass1_parser.rs
                                           📄 pass2_ast.rs
                                           📄 pass3_events.rs
@@ -2760,6 +2824,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                           📄 types.rs
                                         📁 tests/
                                           📄 integration_test.rs
+                                          📄 test_attachment_json.rs
                                           📄 test_c1_vs_c64.rs
                                           📄 test_channel.rs
                                           📄 test_chord.rs
@@ -2828,7 +2893,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       🌐 googled947dc864c270e07.html
                                       📁 issue-notes/
                                         📖 103.md
-                                        📖 111.md
+                                        📖 115.md
                                         📖 39.md
                                         📖 44.md
                                       📄 mmlabc-to-smf-rust.toml.example
@@ -2844,9 +2909,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📄 build-demo.sh
                                         📄 transform-demo-paths.sh
                                       📁 src/
+                                        📄 attachment_json.rs
                                         📄 config.rs
                                         📄 lib.rs
                                         📄 main.rs
+                                        📄 mml_preprocessor.rs
                                         📄 pass1_parser.rs
                                         📄 pass2_ast.rs
                                         📄 pass3_events.rs
@@ -2855,6 +2922,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                         📄 types.rs
                                       📁 tests/
                                         📄 integration_test.rs
+                                        📄 test_attachment_json.rs
                                         📄 test_c1_vs_c64.rs
                                         📄 test_channel.rs
                                         📄 test_chord.rs
@@ -2923,7 +2991,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     🌐 googled947dc864c270e07.html
                                     📁 issue-notes/
                                       📖 103.md
-                                      📖 111.md
+                                      📖 115.md
                                       📖 39.md
                                       📖 44.md
                                     📄 mmlabc-to-smf-rust.toml.example
@@ -2939,9 +3007,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📄 build-demo.sh
                                       📄 transform-demo-paths.sh
                                     📁 src/
+                                      📄 attachment_json.rs
                                       📄 config.rs
                                       📄 lib.rs
                                       📄 main.rs
+                                      📄 mml_preprocessor.rs
                                       📄 pass1_parser.rs
                                       📄 pass2_ast.rs
                                       📄 pass3_events.rs
@@ -2950,6 +3020,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                       📄 types.rs
                                     📁 tests/
                                       📄 integration_test.rs
+                                      📄 test_attachment_json.rs
                                       📄 test_c1_vs_c64.rs
                                       📄 test_channel.rs
                                       📄 test_chord.rs
@@ -3018,7 +3089,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   🌐 googled947dc864c270e07.html
                                   📁 issue-notes/
                                     📖 103.md
-                                    📖 111.md
+                                    📖 115.md
                                     📖 39.md
                                     📖 44.md
                                   📄 mmlabc-to-smf-rust.toml.example
@@ -3034,9 +3105,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📄 build-demo.sh
                                     📄 transform-demo-paths.sh
                                   📁 src/
+                                    📄 attachment_json.rs
                                     📄 config.rs
                                     📄 lib.rs
                                     📄 main.rs
+                                    📄 mml_preprocessor.rs
                                     📄 pass1_parser.rs
                                     📄 pass2_ast.rs
                                     📄 pass3_events.rs
@@ -3045,6 +3118,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                     📄 types.rs
                                   📁 tests/
                                     📄 integration_test.rs
+                                    📄 test_attachment_json.rs
                                     📄 test_c1_vs_c64.rs
                                     📄 test_channel.rs
                                     📄 test_chord.rs
@@ -3113,7 +3187,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 🌐 googled947dc864c270e07.html
                                 📁 issue-notes/
                                   📖 103.md
-                                  📖 111.md
+                                  📖 115.md
                                   📖 39.md
                                   📖 44.md
                                 📄 mmlabc-to-smf-rust.toml.example
@@ -3129,9 +3203,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📄 build-demo.sh
                                   📄 transform-demo-paths.sh
                                 📁 src/
+                                  📄 attachment_json.rs
                                   📄 config.rs
                                   📄 lib.rs
                                   📄 main.rs
+                                  📄 mml_preprocessor.rs
                                   📄 pass1_parser.rs
                                   📄 pass2_ast.rs
                                   📄 pass3_events.rs
@@ -3140,6 +3216,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                   📄 types.rs
                                 📁 tests/
                                   📄 integration_test.rs
+                                  📄 test_attachment_json.rs
                                   📄 test_c1_vs_c64.rs
                                   📄 test_channel.rs
                                   📄 test_chord.rs
@@ -3208,7 +3285,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               🌐 googled947dc864c270e07.html
                               📁 issue-notes/
                                 📖 103.md
-                                📖 111.md
+                                📖 115.md
                                 📖 39.md
                                 📖 44.md
                               📄 mmlabc-to-smf-rust.toml.example
@@ -3224,9 +3301,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📄 build-demo.sh
                                 📄 transform-demo-paths.sh
                               📁 src/
+                                📄 attachment_json.rs
                                 📄 config.rs
                                 📄 lib.rs
                                 📄 main.rs
+                                📄 mml_preprocessor.rs
                                 📄 pass1_parser.rs
                                 📄 pass2_ast.rs
                                 📄 pass3_events.rs
@@ -3235,6 +3314,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                                 📄 types.rs
                               📁 tests/
                                 📄 integration_test.rs
+                                📄 test_attachment_json.rs
                                 📄 test_c1_vs_c64.rs
                                 📄 test_channel.rs
                                 📄 test_chord.rs
@@ -3303,7 +3383,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             🌐 googled947dc864c270e07.html
                             📁 issue-notes/
                               📖 103.md
-                              📖 111.md
+                              📖 115.md
                               📖 39.md
                               📖 44.md
                             📄 mmlabc-to-smf-rust.toml.example
@@ -3319,9 +3399,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📄 build-demo.sh
                               📄 transform-demo-paths.sh
                             📁 src/
+                              📄 attachment_json.rs
                               📄 config.rs
                               📄 lib.rs
                               📄 main.rs
+                              📄 mml_preprocessor.rs
                               📄 pass1_parser.rs
                               📄 pass2_ast.rs
                               📄 pass3_events.rs
@@ -3330,6 +3412,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                               📄 types.rs
                             📁 tests/
                               📄 integration_test.rs
+                              📄 test_attachment_json.rs
                               📄 test_c1_vs_c64.rs
                               📄 test_channel.rs
                               📄 test_chord.rs
@@ -3398,7 +3481,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           🌐 googled947dc864c270e07.html
                           📁 issue-notes/
                             📖 103.md
-                            📖 111.md
+                            📖 115.md
                             📖 39.md
                             📖 44.md
                           📄 mmlabc-to-smf-rust.toml.example
@@ -3414,9 +3497,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📄 build-demo.sh
                             📄 transform-demo-paths.sh
                           📁 src/
+                            📄 attachment_json.rs
                             📄 config.rs
                             📄 lib.rs
                             📄 main.rs
+                            📄 mml_preprocessor.rs
                             📄 pass1_parser.rs
                             📄 pass2_ast.rs
                             📄 pass3_events.rs
@@ -3425,6 +3510,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                             📄 types.rs
                           📁 tests/
                             📄 integration_test.rs
+                            📄 test_attachment_json.rs
                             📄 test_c1_vs_c64.rs
                             📄 test_channel.rs
                             📄 test_chord.rs
@@ -3493,7 +3579,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         🌐 googled947dc864c270e07.html
                         📁 issue-notes/
                           📖 103.md
-                          📖 111.md
+                          📖 115.md
                           📖 39.md
                           📖 44.md
                         📄 mmlabc-to-smf-rust.toml.example
@@ -3509,9 +3595,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📄 build-demo.sh
                           📄 transform-demo-paths.sh
                         📁 src/
+                          📄 attachment_json.rs
                           📄 config.rs
                           📄 lib.rs
                           📄 main.rs
+                          📄 mml_preprocessor.rs
                           📄 pass1_parser.rs
                           📄 pass2_ast.rs
                           📄 pass3_events.rs
@@ -3520,6 +3608,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                           📄 types.rs
                         📁 tests/
                           📄 integration_test.rs
+                          📄 test_attachment_json.rs
                           📄 test_c1_vs_c64.rs
                           📄 test_channel.rs
                           📄 test_chord.rs
@@ -3588,7 +3677,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       🌐 googled947dc864c270e07.html
                       📁 issue-notes/
                         📖 103.md
-                        📖 111.md
+                        📖 115.md
                         📖 39.md
                         📖 44.md
                       📄 mmlabc-to-smf-rust.toml.example
@@ -3604,9 +3693,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📄 build-demo.sh
                         📄 transform-demo-paths.sh
                       📁 src/
+                        📄 attachment_json.rs
                         📄 config.rs
                         📄 lib.rs
                         📄 main.rs
+                        📄 mml_preprocessor.rs
                         📄 pass1_parser.rs
                         📄 pass2_ast.rs
                         📄 pass3_events.rs
@@ -3615,6 +3706,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                         📄 types.rs
                       📁 tests/
                         📄 integration_test.rs
+                        📄 test_attachment_json.rs
                         📄 test_c1_vs_c64.rs
                         📄 test_channel.rs
                         📄 test_chord.rs
@@ -3683,7 +3775,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     🌐 googled947dc864c270e07.html
                     📁 issue-notes/
                       📖 103.md
-                      📖 111.md
+                      📖 115.md
                       📖 39.md
                       📖 44.md
                     📄 mmlabc-to-smf-rust.toml.example
@@ -3699,9 +3791,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📄 build-demo.sh
                       📄 transform-demo-paths.sh
                     📁 src/
+                      📄 attachment_json.rs
                       📄 config.rs
                       📄 lib.rs
                       📄 main.rs
+                      📄 mml_preprocessor.rs
                       📄 pass1_parser.rs
                       📄 pass2_ast.rs
                       📄 pass3_events.rs
@@ -3710,6 +3804,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                       📄 types.rs
                     📁 tests/
                       📄 integration_test.rs
+                      📄 test_attachment_json.rs
                       📄 test_c1_vs_c64.rs
                       📄 test_channel.rs
                       📄 test_chord.rs
@@ -3778,7 +3873,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   🌐 googled947dc864c270e07.html
                   📁 issue-notes/
                     📖 103.md
-                    📖 111.md
+                    📖 115.md
                     📖 39.md
                     📖 44.md
                   📄 mmlabc-to-smf-rust.toml.example
@@ -3794,9 +3889,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📄 build-demo.sh
                     📄 transform-demo-paths.sh
                   📁 src/
+                    📄 attachment_json.rs
                     📄 config.rs
                     📄 lib.rs
                     📄 main.rs
+                    📄 mml_preprocessor.rs
                     📄 pass1_parser.rs
                     📄 pass2_ast.rs
                     📄 pass3_events.rs
@@ -3805,6 +3902,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                     📄 types.rs
                   📁 tests/
                     📄 integration_test.rs
+                    📄 test_attachment_json.rs
                     📄 test_c1_vs_c64.rs
                     📄 test_channel.rs
                     📄 test_chord.rs
@@ -3873,7 +3971,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 🌐 googled947dc864c270e07.html
                 📁 issue-notes/
                   📖 103.md
-                  📖 111.md
+                  📖 115.md
                   📖 39.md
                   📖 44.md
                 📄 mmlabc-to-smf-rust.toml.example
@@ -3889,9 +3987,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📄 build-demo.sh
                   📄 transform-demo-paths.sh
                 📁 src/
+                  📄 attachment_json.rs
                   📄 config.rs
                   📄 lib.rs
                   📄 main.rs
+                  📄 mml_preprocessor.rs
                   📄 pass1_parser.rs
                   📄 pass2_ast.rs
                   📄 pass3_events.rs
@@ -3900,6 +4000,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                   📄 types.rs
                 📁 tests/
                   📄 integration_test.rs
+                  📄 test_attachment_json.rs
                   📄 test_c1_vs_c64.rs
                   📄 test_channel.rs
                   📄 test_chord.rs
@@ -3968,7 +4069,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               🌐 googled947dc864c270e07.html
               📁 issue-notes/
                 📖 103.md
-                📖 111.md
+                📖 115.md
                 📖 39.md
                 📖 44.md
               📄 mmlabc-to-smf-rust.toml.example
@@ -3984,9 +4085,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📄 build-demo.sh
                 📄 transform-demo-paths.sh
               📁 src/
+                📄 attachment_json.rs
                 📄 config.rs
                 📄 lib.rs
                 📄 main.rs
+                📄 mml_preprocessor.rs
                 📄 pass1_parser.rs
                 📄 pass2_ast.rs
                 📄 pass3_events.rs
@@ -3995,6 +4098,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
                 📄 types.rs
               📁 tests/
                 📄 integration_test.rs
+                📄 test_attachment_json.rs
                 📄 test_c1_vs_c64.rs
                 📄 test_channel.rs
                 📄 test_chord.rs
@@ -4063,7 +4167,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             🌐 googled947dc864c270e07.html
             📁 issue-notes/
               📖 103.md
-              📖 111.md
+              📖 115.md
               📖 39.md
               📖 44.md
             📄 mmlabc-to-smf-rust.toml.example
@@ -4079,9 +4183,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📄 build-demo.sh
               📄 transform-demo-paths.sh
             📁 src/
+              📄 attachment_json.rs
               📄 config.rs
               📄 lib.rs
               📄 main.rs
+              📄 mml_preprocessor.rs
               📄 pass1_parser.rs
               📄 pass2_ast.rs
               📄 pass3_events.rs
@@ -4090,6 +4196,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
               📄 types.rs
             📁 tests/
               📄 integration_test.rs
+              📄 test_attachment_json.rs
               📄 test_c1_vs_c64.rs
               📄 test_channel.rs
               📄 test_chord.rs
@@ -4158,7 +4265,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           🌐 googled947dc864c270e07.html
           📁 issue-notes/
             📖 103.md
-            📖 111.md
+            📖 115.md
             📖 39.md
             📖 44.md
           📄 mmlabc-to-smf-rust.toml.example
@@ -4174,9 +4281,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📄 build-demo.sh
             📄 transform-demo-paths.sh
           📁 src/
+            📄 attachment_json.rs
             📄 config.rs
             📄 lib.rs
             📄 main.rs
+            📄 mml_preprocessor.rs
             📄 pass1_parser.rs
             📄 pass2_ast.rs
             📄 pass3_events.rs
@@ -4185,6 +4294,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
             📄 types.rs
           📁 tests/
             📄 integration_test.rs
+            📄 test_attachment_json.rs
             📄 test_c1_vs_c64.rs
             📄 test_channel.rs
             📄 test_chord.rs
@@ -4253,7 +4363,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         🌐 googled947dc864c270e07.html
         📁 issue-notes/
           📖 103.md
-          📖 111.md
+          📖 115.md
           📖 39.md
           📖 44.md
         📄 mmlabc-to-smf-rust.toml.example
@@ -4269,9 +4379,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📄 build-demo.sh
           📄 transform-demo-paths.sh
         📁 src/
+          📄 attachment_json.rs
           📄 config.rs
           📄 lib.rs
           📄 main.rs
+          📄 mml_preprocessor.rs
           📄 pass1_parser.rs
           📄 pass2_ast.rs
           📄 pass3_events.rs
@@ -4280,6 +4392,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
           📄 types.rs
         📁 tests/
           📄 integration_test.rs
+          📄 test_attachment_json.rs
           📄 test_c1_vs_c64.rs
           📄 test_channel.rs
           📄 test_chord.rs
@@ -4348,7 +4461,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       🌐 googled947dc864c270e07.html
       📁 issue-notes/
         📖 103.md
-        📖 111.md
+        📖 115.md
         📖 39.md
         📖 44.md
       📄 mmlabc-to-smf-rust.toml.example
@@ -4364,9 +4477,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📄 build-demo.sh
         📄 transform-demo-paths.sh
       📁 src/
+        📄 attachment_json.rs
         📄 config.rs
         📄 lib.rs
         📄 main.rs
+        📄 mml_preprocessor.rs
         📄 pass1_parser.rs
         📄 pass2_ast.rs
         📄 pass3_events.rs
@@ -4375,6 +4490,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
         📄 types.rs
       📁 tests/
         📄 integration_test.rs
+        📄 test_attachment_json.rs
         📄 test_c1_vs_c64.rs
         📄 test_channel.rs
         📄 test_chord.rs
@@ -4443,7 +4559,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     🌐 googled947dc864c270e07.html
     📁 issue-notes/
       📖 103.md
-      📖 111.md
+      📖 115.md
       📖 39.md
       📖 44.md
     📄 mmlabc-to-smf-rust.toml.example
@@ -4459,9 +4575,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📄 build-demo.sh
       📄 transform-demo-paths.sh
     📁 src/
+      📄 attachment_json.rs
       📄 config.rs
       📄 lib.rs
       📄 main.rs
+      📄 mml_preprocessor.rs
       📄 pass1_parser.rs
       📄 pass2_ast.rs
       📄 pass3_events.rs
@@ -4470,6 +4588,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
       📄 types.rs
     📁 tests/
       📄 integration_test.rs
+      📄 test_attachment_json.rs
       📄 test_c1_vs_c64.rs
       📄 test_channel.rs
       📄 test_chord.rs
@@ -4538,7 +4657,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   🌐 googled947dc864c270e07.html
   📁 issue-notes/
     📖 103.md
-    📖 111.md
+    📖 115.md
     📖 39.md
     📖 44.md
   📄 mmlabc-to-smf-rust.toml.example
@@ -4554,9 +4673,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📄 build-demo.sh
     📄 transform-demo-paths.sh
   📁 src/
+    📄 attachment_json.rs
     📄 config.rs
     📄 lib.rs
     📄 main.rs
+    📄 mml_preprocessor.rs
     📄 pass1_parser.rs
     📄 pass2_ast.rs
     📄 pass3_events.rs
@@ -4565,6 +4686,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
     📄 types.rs
   📁 tests/
     📄 integration_test.rs
+    📄 test_attachment_json.rs
     📄 test_c1_vs_c64.rs
     📄 test_channel.rs
     📄 test_chord.rs
@@ -4633,7 +4755,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 🌐 googled947dc864c270e07.html
 📁 issue-notes/
   📖 103.md
-  📖 111.md
+  📖 115.md
   📖 39.md
   📖 44.md
 📄 mmlabc-to-smf-rust.toml.example
@@ -4649,9 +4771,11 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📄 build-demo.sh
   📄 transform-demo-paths.sh
 📁 src/
+  📄 attachment_json.rs
   📄 config.rs
   📄 lib.rs
   📄 main.rs
+  📄 mml_preprocessor.rs
   📄 pass1_parser.rs
   📄 pass2_ast.rs
   📄 pass3_events.rs
@@ -4660,6 +4784,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📄 types.rs
 📁 tests/
   📄 integration_test.rs
+  📄 test_attachment_json.rs
   📄 test_c1_vs_c64.rs
   📄 test_channel.rs
   📄 test_chord.rs
@@ -4694,7 +4819,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   📄 tree-sitter-mml.wasm
 
 ## ファイル詳細分析
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4714,7 +4839,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -4774,7 +4899,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4794,7 +4919,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -4854,7 +4979,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4874,7 +4999,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -4934,7 +5059,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -4954,7 +5079,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5014,7 +5139,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5034,7 +5159,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5094,7 +5219,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5114,7 +5239,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5174,7 +5299,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5194,7 +5319,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5254,7 +5379,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5274,7 +5399,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5334,7 +5459,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5354,7 +5479,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5414,7 +5539,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5434,7 +5559,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5494,7 +5619,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5514,7 +5639,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5574,7 +5699,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5594,7 +5719,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5654,7 +5779,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5674,7 +5799,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5734,7 +5859,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5754,7 +5879,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5814,7 +5939,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5834,7 +5959,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5894,7 +6019,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5914,7 +6039,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -5974,7 +6099,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -5994,7 +6119,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6054,7 +6179,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6074,7 +6199,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6134,7 +6259,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6154,7 +6279,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6214,7 +6339,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6234,7 +6359,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6294,7 +6419,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6314,7 +6439,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6374,7 +6499,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6394,7 +6519,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6454,7 +6579,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6474,7 +6599,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6534,7 +6659,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6554,7 +6679,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6614,7 +6739,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6634,7 +6759,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6694,7 +6819,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6714,7 +6839,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6774,7 +6899,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6794,7 +6919,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6854,7 +6979,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6874,7 +6999,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -6934,7 +7059,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -6954,7 +7079,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7014,7 +7139,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7034,7 +7159,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7094,7 +7219,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7114,7 +7239,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7174,7 +7299,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7194,7 +7319,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7254,7 +7379,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7274,7 +7399,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7334,7 +7459,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7354,7 +7479,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7414,7 +7539,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7434,7 +7559,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7494,7 +7619,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7514,7 +7639,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7574,7 +7699,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7594,7 +7719,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7654,7 +7779,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7674,7 +7799,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7734,7 +7859,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7754,7 +7879,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7814,7 +7939,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**_codeql_detected_source_root/demo/index.html** (303行, 9345バイト)
+**_codeql_detected_source_root/demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7834,7 +7959,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**_codeql_detected_source_root/demo/src/mmlConverter.ts** (72行, 2878バイト)
+**_codeql_detected_source_root/demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -7894,7 +8019,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: なし
   - インポート: なし
 
-**demo/index.html** (303行, 9345バイト)
+**demo/index.html** (336行, 11432バイト)
   - 関数: なし
   - インポート: なし
 
@@ -7914,7 +8039,7 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
   - 関数: constructor, if, while
   - インポート: なし
 
-**demo/src/mmlConverter.ts** (72行, 2878バイト)
+**demo/src/mmlConverter.ts** (98行, 4304バイト)
   - 関数: convertMML, if, catch
   - インポート: ../mmlabc-to-smf-wasm/pkg/mmlabc_to_smf_wasm.js, ./state.js, ./ui.js
 
@@ -8062,4 +8187,4 @@ googled947dc864c270e07.html
 
 
 ---
-Generated at: 2026-03-09 07:05:55 JST
+Generated at: 2026-03-10 07:08:29 JST
