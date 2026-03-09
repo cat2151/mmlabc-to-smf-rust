@@ -71,24 +71,47 @@ pub fn ast_to_events(ast: &Ast, use_drum_channel_for_128: bool) -> Vec<MidiEvent
     };
 
     if has_multiple_channels {
-        // Multi-channel mode: notes within each channel are sequential
-        // Track time separately for each channel
+        // Multi-channel mode: notes within each channel are sequential.
+        // Chords (same chord_id) within a channel play simultaneously.
+        // Track time separately for each channel.
         let mut channel_times: std::collections::HashMap<u8, u32> =
+            std::collections::HashMap::new();
+        // Per-channel chord state: (Option<last_chord_id>, chord_duration)
+        let mut channel_chord_states: std::collections::HashMap<u8, (Option<usize>, u32)> =
             std::collections::HashMap::new();
 
         for note in &ast.notes {
             let channel = note.channel.unwrap_or(0);
             let mapped_channel = map_channel(channel);
-            let current_time = channel_times.get(&channel).copied().unwrap_or(0);
             let duration = if let Some(length) = note.length {
                 calculate_duration(length, note.dots.unwrap_or(0))
             } else {
                 default_duration
             };
 
+            let is_chord_note = note.chord_id.is_some();
+            let current_chord_id = note.chord_id;
+
+            // Get chord state for this channel
+            let (last_chord_id, chord_duration) = channel_chord_states
+                .get(&channel)
+                .copied()
+                .unwrap_or((None, 0));
+
+            // When leaving a chord (different chord_id or non-chord note after a chord),
+            // advance this channel's time by the chord's duration.
+            if last_chord_id.is_some() && last_chord_id != current_chord_id {
+                let t = channel_times.entry(channel).or_insert(0);
+                *t += chord_duration;
+                channel_chord_states.insert(channel, (None, 0));
+            }
+
+            let current_time = channel_times.get(&channel).copied().unwrap_or(0);
+
             if note.note_type == "rest" {
                 // Rest: just advance time without generating events
                 channel_times.insert(channel, current_time + duration);
+                channel_chord_states.insert(channel, (None, 0));
             } else if note.note_type == "program_change" {
                 // Program change: generate program_change event without advancing time
                 events.push(MidiEvent {
@@ -100,6 +123,7 @@ pub fn ast_to_events(ast: &Ast, use_drum_channel_for_128: bool) -> Vec<MidiEvent
                     program: Some(note.pitch),
                     tempo: None,
                 });
+                channel_chord_states.insert(channel, (None, 0));
             } else if note.note_type == "tempo_set" {
                 // Tempo change: generate tempo_set event without advancing time
                 // Convert BPM to microseconds per beat: usec_per_beat = 60,000,000 / BPM
@@ -114,6 +138,7 @@ pub fn ast_to_events(ast: &Ast, use_drum_channel_for_128: bool) -> Vec<MidiEvent
                     program: None,
                     tempo: Some(usec_per_beat),
                 });
+                channel_chord_states.insert(channel, (None, 0));
             } else {
                 // Note on event
                 events.push(MidiEvent {
@@ -137,8 +162,21 @@ pub fn ast_to_events(ast: &Ast, use_drum_channel_for_128: bool) -> Vec<MidiEvent
                     tempo: None,
                 });
 
-                // Advance time for this channel
-                channel_times.insert(channel, current_time + duration);
+                if !is_chord_note {
+                    // Non-chord note: advance time immediately
+                    channel_times.insert(channel, current_time + duration);
+                    channel_chord_states.insert(channel, (None, 0));
+                } else {
+                    // Chord note: if this is the first note of this chord, record its duration.
+                    // Subsequent chord notes preserve the first note's duration so the chord
+                    // advances by a consistent amount when we leave it.
+                    let new_chord_duration = if last_chord_id != current_chord_id {
+                        duration
+                    } else {
+                        chord_duration
+                    };
+                    channel_chord_states.insert(channel, (current_chord_id, new_chord_duration));
+                }
             }
         }
     } else if has_chords {
