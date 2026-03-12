@@ -258,9 +258,9 @@ fn test_key_transpose_to_events() {
     assert_eq!(events[0].time, 0);
     assert_eq!(events[0].note, Some(61)); // C5 + 1
 
-    // Note off at time 480 (quarter note duration)
+    // Note off at time 240 (eighth note duration per mmlabc default)
     assert_eq!(events[1].event_type, "note_off");
-    assert_eq!(events[1].time, 480);
+    assert_eq!(events[1].time, 240);
     assert_eq!(events[1].note, Some(61)); // C5 + 1
 }
 

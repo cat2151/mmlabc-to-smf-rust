@@ -286,6 +286,6 @@ fn test_128_with_rest() {
     // First note at time 0
     assert_eq!(note_on_events[0].time, 0);
 
-    // Second note after quarter note (480) + eighth rest (240) = 720
-    assert_eq!(note_on_events[1].time, 720);
+    // Second note after eighth note (240) + eighth rest (240) = 480
+    assert_eq!(note_on_events[1].time, 480);
 }

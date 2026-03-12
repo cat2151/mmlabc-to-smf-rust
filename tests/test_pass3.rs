@@ -100,12 +100,12 @@ fn test_event_timing() {
     let events = ast_to_events(&ast, true);
     // First note on at time 0
     assert_eq!(events[0].time, 0);
-    // First note off at time 480
-    assert_eq!(events[1].time, 480);
-    // Second note on at time 480
-    assert_eq!(events[2].time, 480);
-    // Second note off at time 960
-    assert_eq!(events[3].time, 960);
+    // First note off at time 240 (eighth note = default per mmlabc dialect)
+    assert_eq!(events[1].time, 240);
+    // Second note on at time 240
+    assert_eq!(events[2].time, 240);
+    // Second note off at time 480
+    assert_eq!(events[3].time, 480);
 }
 
 #[test]

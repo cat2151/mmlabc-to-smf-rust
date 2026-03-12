@@ -72,9 +72,9 @@ fn test_program_change_to_events() {
     assert_eq!(events[1].time, 0);
     assert_eq!(events[1].note, Some(60));
 
-    // Note off at time 480 (quarter note duration)
+    // Note off at time 240 (eighth note duration per mmlabc default)
     assert_eq!(events[2].event_type, "note_off");
-    assert_eq!(events[2].time, 480);
+    assert_eq!(events[2].time, 240);
 }
 
 #[test]
@@ -91,8 +91,8 @@ fn test_program_change_doesnt_advance_time() {
         .collect();
 
     assert_eq!(program_change_events.len(), 1);
-    // Program change happens at time 480 (after first note)
-    assert_eq!(program_change_events[0].time, 480);
+    // Program change happens at time 240 (after first note, default l8)
+    assert_eq!(program_change_events[0].time, 240);
 
     // Second note should start right after program change (same time)
     let note_on_events: Vec<_> = events
@@ -100,7 +100,7 @@ fn test_program_change_doesnt_advance_time() {
         .filter(|e| e.event_type == "note_on")
         .collect();
 
-    assert_eq!(note_on_events[1].time, 480); // D starts at same time as program change
+    assert_eq!(note_on_events[1].time, 240); // D starts at same time as program change
 }
 
 #[test]
@@ -251,12 +251,12 @@ fn test_program_change_between_notes() {
     assert_eq!(note_on_events[0].time, 0);
     assert_eq!(note_on_events[0].note, Some(60)); // C
 
-    // Program change should happen at 480 (after C)
-    assert_eq!(program_change_events[0].time, 480);
+    // Program change should happen at 240 (after C, default l8)
+    assert_eq!(program_change_events[0].time, 240);
     assert_eq!(program_change_events[0].program, Some(5));
 
-    // D should start at 480 (same time as program change)
-    assert_eq!(note_on_events[1].time, 480);
+    // D should start at 240 (same time as program change)
+    assert_eq!(note_on_events[1].time, 240);
     assert_eq!(note_on_events[1].note, Some(62)); // D
 }
 

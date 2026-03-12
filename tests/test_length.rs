@@ -141,16 +141,16 @@ fn test_length_independent_per_channel() {
 }
 
 #[test]
-fn test_default_length_is_quarter_note() {
-    // Without any length command, default should be quarter note (4)
+fn test_default_length_is_eighth_note() {
+    // Without any length command, default should be eighth note (8) per mmlabc dialect
     let tokens = parse_mml("c");
     let ast = tokens_to_ast(&tokens);
     assert_eq!(ast.notes.len(), 1);
-    assert_eq!(ast.notes[0].length, Some(4)); // Default quarter note
+    assert_eq!(ast.notes[0].length, Some(8)); // Default eighth note
 
     let events = ast_to_events(&ast, true);
     assert_eq!(events[0].time, 0);
-    assert_eq!(events[1].time, 480); // Quarter note duration
+    assert_eq!(events[1].time, 240); // Eighth note duration
 }
 
 #[test]
