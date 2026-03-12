@@ -49,7 +49,7 @@ fn calculate_duration(length: u32, dots: u32) -> u32 {
 pub fn ast_to_events(ast: &Ast, use_drum_channel_for_128: bool) -> Vec<MidiEvent> {
     let mut events = Vec::new();
     let mut time = 0;
-    let default_duration = 480; // Default duration in ticks (quarter note at 480 ticks per beat)
+    let default_duration = calculate_duration(8, 0); // Default duration in ticks (eighth note per mmlabc dialect)
 
     // Check if notes have channel assignments (multi-channel mode)
     // When notes have channel assignments, each note plays on a different channel (0, 1, 2, etc.)

@@ -79,9 +79,9 @@ fn test_velocity_to_events() {
     assert_eq!(events[0].note, Some(60));
     assert_eq!(events[0].velocity, Some(127)); // v15 = 127
 
-    // Note off at time 480 (quarter note duration)
+    // Note off at time 240 (eighth note duration per mmlabc default)
     assert_eq!(events[1].event_type, "note_off");
-    assert_eq!(events[1].time, 480);
+    assert_eq!(events[1].time, 240);
 }
 
 #[test]

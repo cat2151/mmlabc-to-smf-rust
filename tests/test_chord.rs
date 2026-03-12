@@ -107,11 +107,11 @@ fn test_sequential_notes_then_chord() {
         .filter(|e| e.event_type == "note_on")
         .collect();
 
-    // c at time 0, d at time 480, e and g both at time 960
+    // c at time 0, d at time 240, e and g both at time 480
     assert_eq!(note_on_events[0].time, 0); // c
-    assert_eq!(note_on_events[1].time, 480); // d
-    assert_eq!(note_on_events[2].time, 960); // e (chord)
-    assert_eq!(note_on_events[3].time, 960); // g (chord)
+    assert_eq!(note_on_events[1].time, 240); // d
+    assert_eq!(note_on_events[2].time, 480); // e (chord)
+    assert_eq!(note_on_events[3].time, 480); // g (chord)
 }
 
 #[test]
@@ -138,12 +138,12 @@ fn test_chord_then_sequential_notes() {
         .filter(|e| e.event_type == "note_on")
         .collect();
 
-    // c, e, g all at time 0 (chord), d at time 480, e at time 960
+    // c, e, g all at time 0 (chord), d at time 240, e at time 480
     assert_eq!(note_on_events[0].time, 0); // c (chord)
     assert_eq!(note_on_events[1].time, 0); // e (chord)
     assert_eq!(note_on_events[2].time, 0); // g (chord)
-    assert_eq!(note_on_events[3].time, 480); // d (sequential)
-    assert_eq!(note_on_events[4].time, 960); // e (sequential)
+    assert_eq!(note_on_events[3].time, 240); // d (sequential)
+    assert_eq!(note_on_events[4].time, 480); // e (sequential)
 }
 
 #[test]
@@ -173,9 +173,9 @@ fn test_multiple_chords() {
     assert_eq!(note_on_events[0].time, 0); // c
     assert_eq!(note_on_events[1].time, 0); // e
 
-    // Second chord at time 480
-    assert_eq!(note_on_events[2].time, 480); // d
-    assert_eq!(note_on_events[3].time, 480); // f
+    // Second chord at time 240
+    assert_eq!(note_on_events[2].time, 240); // d
+    assert_eq!(note_on_events[3].time, 240); // f
 }
 
 #[test]
@@ -224,8 +224,8 @@ fn test_sequential_notes_without_chords_unchanged() {
         .collect();
 
     assert_eq!(note_on_events[0].time, 0);
-    assert_eq!(note_on_events[1].time, 480);
-    assert_eq!(note_on_events[2].time, 960);
+    assert_eq!(note_on_events[1].time, 240);
+    assert_eq!(note_on_events[2].time, 480);
 }
 
 #[test]

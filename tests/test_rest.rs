@@ -73,8 +73,8 @@ fn test_rest_events_timing() {
     assert_eq!(note_on_events[0].time, 0);
     assert_eq!(note_on_events[0].note, Some(60));
 
-    // Second C starts at time 960 (after first note duration 480 + rest duration 480)
-    assert_eq!(note_on_events[1].time, 960);
+    // Second C starts at time 480 (after first note duration 240 + rest duration 240)
+    assert_eq!(note_on_events[1].time, 480);
     assert_eq!(note_on_events[1].note, Some(60));
 }
 
@@ -94,8 +94,8 @@ fn test_multiple_rests() {
 
     // First C at time 0
     assert_eq!(note_on_events[0].time, 0);
-    // Second C at time 1920 (480 for first note + 480*3 for three rests)
-    assert_eq!(note_on_events[1].time, 1920);
+    // Second C at time 960 (240 for first note + 240*3 for three rests)
+    assert_eq!(note_on_events[1].time, 960);
 }
 
 #[test]
@@ -118,12 +118,12 @@ fn test_rest_between_different_notes() {
     assert_eq!(note_on_events[0].time, 0);
     assert_eq!(note_on_events[0].note, Some(60)); // C
 
-    // D at time 960 (480 for C + 480 for rest)
-    assert_eq!(note_on_events[1].time, 960);
+    // D at time 480 (240 for C + 240 for rest)
+    assert_eq!(note_on_events[1].time, 480);
     assert_eq!(note_on_events[1].note, Some(62)); // D
 
-    // E at time 1920 (480 for C + 480 for rest + 480 for D + 480 for rest)
-    assert_eq!(note_on_events[2].time, 1920);
+    // E at time 960 (240 for C + 240 for rest + 240 for D + 240 for rest)
+    assert_eq!(note_on_events[2].time, 960);
     assert_eq!(note_on_events[2].note, Some(64)); // E
 }
 
@@ -166,13 +166,13 @@ fn test_rest_in_multi_channel() {
     assert_eq!(channel_0_events.len(), 2);
     assert_eq!(channel_1_events.len(), 2);
 
-    // Channel 0: C at 0, C at 960
+    // Channel 0: C at 0, C at 480
     assert_eq!(channel_0_events[0].time, 0);
-    assert_eq!(channel_0_events[1].time, 960);
+    assert_eq!(channel_0_events[1].time, 480);
 
-    // Channel 1: E at 0, E at 960
+    // Channel 1: E at 0, E at 480
     assert_eq!(channel_1_events[0].time, 0);
-    assert_eq!(channel_1_events[1].time, 960);
+    assert_eq!(channel_1_events[1].time, 480);
 }
 
 #[test]

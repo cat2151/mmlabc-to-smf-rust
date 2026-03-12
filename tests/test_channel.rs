@@ -179,8 +179,8 @@ fn test_sequential_notes_unchanged() {
         .collect();
 
     assert_eq!(note_on_events[0].time, 0);
-    assert_eq!(note_on_events[1].time, 480);
-    assert_eq!(note_on_events[2].time, 960);
+    assert_eq!(note_on_events[1].time, 240);
+    assert_eq!(note_on_events[2].time, 480);
 }
 
 #[test]
@@ -217,21 +217,21 @@ fn test_multi_note_per_channel() {
 
     assert_eq!(note_on_events.len(), 6);
 
-    // Channel 0: c at time 0, d at time 480
+    // Channel 0: c at time 0, d at time 240
     assert_eq!(note_on_events[0].channel, 0);
     assert_eq!(note_on_events[0].time, 0);
     assert_eq!(note_on_events[1].channel, 0);
-    assert_eq!(note_on_events[1].time, 480);
+    assert_eq!(note_on_events[1].time, 240);
 
-    // Channel 1: e at time 0, f at time 480
+    // Channel 1: e at time 0, f at time 240
     assert_eq!(note_on_events[2].channel, 1);
     assert_eq!(note_on_events[2].time, 0);
     assert_eq!(note_on_events[3].channel, 1);
-    assert_eq!(note_on_events[3].time, 480);
+    assert_eq!(note_on_events[3].time, 240);
 
-    // Channel 2: g at time 0, a at time 480
+    // Channel 2: g at time 0, a at time 240
     assert_eq!(note_on_events[4].channel, 2);
     assert_eq!(note_on_events[4].time, 0);
     assert_eq!(note_on_events[5].channel, 2);
-    assert_eq!(note_on_events[5].time, 480);
+    assert_eq!(note_on_events[5].time, 240);
 }

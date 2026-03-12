@@ -37,7 +37,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     let mut current_octaves: HashMap<Option<usize>, u8> = HashMap::new();
 
     // Track current length per channel
-    // Default length is 4 (quarter note)
+    // Default length is 8 (eighth note) per mmlabc dialect
     let mut current_lengths: HashMap<Option<usize>, u32> = HashMap::new();
 
     // Track current dots per channel
@@ -89,13 +89,13 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 .and_then(|id| chord_length_map.get(&id).copied())
                 .unwrap_or((None, None));
 
-            // Get current length for this channel (default to 4 = quarter note).
-            // Priority: note's own length → chord's explicit length → channel's current length (l command) → default 4.
+            // Get current length for this channel (default to 8 = eighth note per mmlabc dialect).
+            // Priority: note's own length → chord's explicit length → channel's current length (l command) → default 8.
             let length = token
                 .note_length
                 .or(chord_explicit_length)
                 .or_else(|| current_lengths.get(&token.channel_group).copied())
-                .unwrap_or(4);
+                .unwrap_or(8);
 
             // Get current dots for this channel (default to 0).
             // Priority: note's own dots → chord's explicit dots → channel's current dots (l command) → default 0.
@@ -191,12 +191,12 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
             // Assign channel based on channel_group
             let channel = token.channel_group.map(|g| g as u8);
 
-            // Get current length for this channel (default to 4 = quarter note)
+            // Get current length for this channel (default to 8 = eighth note per mmlabc dialect)
             // Use rest-specific length if present, otherwise use current length
             let length = token
                 .note_length
                 .or_else(|| current_lengths.get(&token.channel_group).copied())
-                .unwrap_or(4);
+                .unwrap_or(8);
 
             // Get current dots for this channel (default to 0)
             // Use rest-specific dots if present, otherwise use current dots
