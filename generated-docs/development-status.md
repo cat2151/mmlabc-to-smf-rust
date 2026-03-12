@@ -1,61 +1,50 @@
-Last updated: 2026-03-10
+Last updated: 2026-03-13
 
 # Development Status
 
 ## 現在のIssues
-オープン中のIssueはありませんが、直近では和音表記のバグ修正 ([Issue #116](../issue-notes/116.md)) とMMLテキスト内にJSONを埋め込む新機能 ([Issue #115](../issue-notes/115.md)) がマージされ、プロジェクトのコア機能が強化されました。
-これにより、MMLの表現力が向上し、内部データ連携もRust側へ移行して効率化されました。
-現在は、これらの新機能の安定性向上や、自動生成される開発状況レポートの精度改善が次の焦点となります。
+- 現在、プロジェクトにおいて追跡中のオープンIssueは存在しません。
+- 直近では、[Issue #117](../issue-notes/117.md)でMMLのデフォルトノート長が`l4`から`l8`へ変更されました。
+- また、[Issue #116]（issue-noteは未作成ですが、コミット履歴から推測）で和音表記 `cg;e` のバグが修正され、MMLパーサーの正確性が向上しています。
 
 ## 次の一手候補
-1. [Issue #116](../issue-notes/116.md) 和音表記修正後のテストカバレッジ拡充と堅牢性向上
-   - 最初の小さな一歩: `tests/test_chord.rs` に、今回の修正に関連する複数の複雑な和音パターン（例: 異なる長さの音符を含む和音、休符が混じる和音など）を追加し、テストケースを作成する。
-   - Agent実行プロンプト:
-     ```
-     対象ファイル: `tests/test_chord.rs`および`src/pass3_events.rs`
+1.  デフォルトノート長 `l8` 変更 ([Issue #117](../issue-notes/117.md)) の影響検証とテスト拡充
+    -   最初の小さな一歩: `src/mml_preprocessor.rs` および関連するパーサーステージでの `l8` のデフォルト値の扱いの確認と、既存テスト `tests/test_length.rs` に `l8` がデフォルトとして正しく適用されるシナリオを追加する。
+    -   Agent実行プロンプト:
+        ```
+        対象ファイル: `src/mml_preprocessor.rs`, `src/pass1_parser.rs`, `tests/test_length.rs`, `tests/test_pass1.rs`
 
-     実行内容: `src/pass3_events.rs`における和音処理の最近の修正 (コミット`7ee2644`) に基づき、`tests/test_chord.rs`に以下の観点から追加テストケースを実装してください。
-     1) 複数の異なる音符長を持つ和音 (`c;8g;16e;32`)
-     2) 和音内に休符が含まれるケース (`<ceg>r`)
-     3) 連続する和音表記 (`<ceg><dfa>`)
-     各テストケースは、生成されるMIDIイベントが期待通りであることをアサートしてください。
+        実行内容: [Issue #117](../issue-notes/117.md)でデフォルトノート長が`l8`に変更されたことによる、MMLパーサー（特に`mml_preprocessor`と`pass1_parser`）への影響を分析してください。この変更が意図通りに動作し、予期せぬ副作用がないことを確認するため、`tests/test_length.rs`および`tests/test_pass1.rs`に、`l8`がデフォルトとして適用されるMML文字列のテストケースを追加することを検討してください。
 
-     確認事項: 既存のテストケースがパスすること。和音処理のロジックが意図通りに機能しているか、特に各音符の長さと開始時刻が正確にMIDIイベントに変換されているかを確認してください。
+        確認事項: `calculate_duration`関数の変更が他のノート長計算に影響を与えていないか、また`mmlabc`方言における`l8`の一般的な解釈と整合しているかを確認してください。
 
-     期待する出力: `tests/test_chord.rs`への追加テストケースのコードスニペットと、追加したテストケースがカバーする具体的なシナリオのmarkdown形式での説明。
-     ```
+        期待する出力: 既存のテストファイル(`tests/test_length.rs`, `tests/test_pass1.rs`)に`l8`デフォルト適用に関するテストケースを追加するための具体的なコードスニペット（Rust言語）と、追加テストの妥当性を説明するmarkdown形式のコメント。
+        ```
 
-2. [Issue #115](../issue-notes/115.md) JSON-in-MML機能のドキュメント整備とサンプル拡充
-   - 最初の小さな一歩: `README.md` (または専用のドキュメントファイル) に、MMLテキスト内にJSONを埋め込む機能の基本的な使用方法、サポートされるJSON構造、およびユースケースを示すセクションを追加する。
-   - Agent実行プロンプト:
-     ```
-     対象ファイル: `README.md`または新規ドキュメントファイル（例: `docs/JSON_IN_MML.md`）
+2.  大規模ファイルチェック (`.github/check-large-files.toml`) の効率化と設定柔軟化 ([Issue #44](../issue-notes/44.md))
+    -   最初の小さな一歩: `check-large-files.toml` の設定オプションと、関連スクリプト `check_large_files.py` を分析し、現在のプロジェクトでの大規模ファイル検出が適切に機能しているか、また設定の柔軟性を高める余地がないかを確認する。
+    -   Agent実行プロンプト:
+        ```
+        対象ファイル: `.github/check-large-files.toml`, `.github/actions-tmp/.github_automation/check-large-files/scripts/check_large_files.py`
 
-     実行内容: MMLテキスト内にJSONを埋め込む新機能について、ユーザー向けのドキュメントをmarkdown形式で作成または更新してください。以下の項目を必ず含めてください。
-     1) 機能の概要と目的
-     2) 基本的な構文とサンプルコード（簡単なJSONを埋め込む例）
-     3) サポートされるJSONのデータ型と構造の例
-     4) この機能を利用することで可能になる具体的なユースケース（例: メタデータ埋め込み）
+        実行内容: プロジェクトにおける大規模ファイル検出ワークフロー（`.github/workflows/call-check-large-files.yml`）の効率性と設定の柔軟性について分析してください。特に、`.github/check-large-files.toml`がプロジェクトのニーズに合致しているか、`check_large_files.py`スクリプトが効率的に動作しているかを確認し、必要に応じて設定項目やスクリプトの改善案を提示してください。例えば、特定のディレクトリを無視する機能や、ファイルサイズの閾値を動的に設定する機能などが考えられます。
 
-     確認事項: `src/attachment_json.rs`と`src/mml_preprocessor.rs`の実装内容と整合性が取れていること。読者が機能を容易に理解し、利用開始できるような分かりやすい説明になっているかを確認してください。
+        確認事項: 既存のワークフローに影響を与えないこと。また、`check-large-files.toml`の変更が`.github/check-large-files.toml.default`との整合性を保っていることを確認してください。
 
-     期待する出力: 更新された`README.md`の`[新しいセクション名]`の内容、または新規作成されたドキュメントファイルの内容をmarkdown形式で出力してください。
-     ```
+        期待する出力: 大規模ファイルチェックの効率化および設定の柔軟化のための具体的な`check-large-files.toml`の変更案、または`check_large_files.py`スクリプトの修正案をmarkdown形式で出力してください。
+        ```
 
-3. [Issue #44](../issue-notes/44.md) 開発状況レポートの生成精度と有用性の継続的改善
-   - 最初の小さな一歩: `development-status-prompt.md` の現在の指示内容をレビューし、生成されるレポートの「現在のIssues要約」と「次の一手候補」の関連性、具体性、ハルシネーション抑制の観点から改善点を洗い出す。
-   - Agent実行プロンプト:
-     ```
-     対象ファイル: `development-status-prompt.md`
+3.  WASMモジュール `mmlabc-to-smf-wasm` のデモ連携と機能拡張 ([Issue #103](../issue-notes/103.md))
+    -   最初の小さな一歩: `mmlabc-to-smf-wasm` クレートの現在の機能を確認し、`demo/src/mmlConverter.ts` がWASMモジュールを利用する際にどのようなAPIが必要となるかを洗い出す。
+    -   Agent実行プロンプト:
+        ```
+        対象ファイル: `mmlabc-to-smf-wasm/src/lib.rs`, `mmlabc-to-smf-wasm/Cargo.toml`, `demo/src/mmlConverter.ts`, `demo/index.html`
 
-     実行内容: `development-status-prompt.md`の内容を、以下の観点から分析し、改善案をmarkdown形式で記述してください。
-     1) 「現在のIssues」の要約が、オープンIssueがない場合でも有益な情報を提供できるよう、説明の追加や表現の調整。
-     2) 「次の一手候補」において、オープンIssueがない状況で、ハルシネーションを避けつつ、有効で具体的な候補を提案するための指示の明確化。
-     3) 「issue番号を必ず書く」という制約と、オープンIssueがない場合の整合性をどう取るかについての代替案の検討。
+        実行内容: `mmlabc-to-smf-wasm`クレートのWebAssemblyモジュールを`demo`プロジェクトでより効果的に利用するための機能拡張を検討してください。具体的には、既存の`mmlConverter.ts`でのWASMモジュールの利用を想定し、MML変換機能以外の、例えば特定のMML記法のエラーチェックや、SMF生成前のプレビュー機能など、WASMで提供可能な新機能の候補を洗い出してください。そして、これらの機能をデモで統合するためのロードマップと、必要な`mmlabc-to-smf-wasm`のAPI変更案を分析してください。
 
-     確認事項: 現行のプロンプトガイドラインと出力フォーマットの制約を遵守しつつ、生成されるレポートの品質と実用性が向上すること。特に、今回のような「オープン中のIssueはありません」という状況での出力がより適切になるかを確認してください。
+        確認事項: WASMモジュールのファイルサイズやパフォーマンスへの影響を最小限に抑えること。また、`demo`プロジェクトの既存のUI/UXデザインとの整合性を考慮してください。
 
-     期待する出力: `development-status-prompt.md`の改善提案（具体的な追記・修正案を含む）をmarkdown形式で出力してください。
+        期待する出力: `mmlabc-to-smf-wasm`にWASMとしてエクスポートすべき新規APIの具体的なシグネチャ例と、`demo`プロジェクトでそれらを統合するための`mmlConverter.ts`および`index.html`の変更案をmarkdown形式で出力してください。
 
 ---
-Generated at: 2026-03-10 07:08:57 JST
+Generated at: 2026-03-13 07:07:37 JST

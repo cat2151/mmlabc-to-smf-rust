@@ -1,4 +1,4 @@
-Last updated: 2026-03-10
+Last updated: 2026-03-13
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -254,7 +254,7 @@ Last updated: 2026-03-10
 - demo-library/package.json
 - googled947dc864c270e07.html
 - issue-notes/103.md
-- issue-notes/115.md
+- issue-notes/117.md
 - issue-notes/39.md
 - issue-notes/44.md
 - mmlabc-to-smf-rust.toml.example
@@ -317,16 +317,16 @@ Last updated: 2026-03-10
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
+8fcb5f2 Merge pull request #118 from cat2151/copilot/set-default-to-l8
+2bef5d4 Use calculate_duration(8, 0) for default duration instead of hard-coded 240
+742e050 Fix default note length from l4 to l8 per mmlabc dialect
+d1a2d26 Add issue note for #117 [auto]
+6e62158 Initial plan
+5ca8cc9 Update project summaries (overview & development status) [auto]
 9612741 Merge pull request #116 from cat2151/copilot/fix-cg-bug-in-harmony
 7ee2644 Fix: chord notation 'cg';e now plays all notes simultaneously
 48fb8d5 Add issue note for #115 [auto]
 ce2b192 Initial plan
-0486ef2 Merge pull request #114 from cat2151/copilot/add-json-editability-in-mml
-88700aa Move JSON-in-MML preprocessor to Rust; expose via WASM; apply in CLI
-1504fb7 Add JSON-in-MML feature: embed attachment JSON directly in MML text
-dcda1c9 Add issue note for #113 [auto]
-9522b60 Initial plan
-b7cc698 Merge pull request #112 from cat2151/copilot/add-attach-json-output
 
 ### 変更されたファイル:
 demo/index.html
@@ -335,18 +335,25 @@ generated-docs/development-status-generated-prompt.md
 generated-docs/development-status.md
 generated-docs/project-overview-generated-prompt.md
 generated-docs/project-overview.md
-issue-notes/109.md
-issue-notes/115.md
+issue-notes/111.md
+issue-notes/117.md
 mmlabc-to-smf-wasm/src/lib.rs
-src/attachment_json.rs
 src/lib.rs
 src/main.rs
 src/mml_preprocessor.rs
+src/pass2_ast.rs
 src/pass3_events.rs
-tests/test_attachment_json.rs
+tests/test_channel.rs
 tests/test_chord.rs
-tests/test_cli.rs
+tests/test_drum_channel.rs
+tests/test_key_transpose.rs
+tests/test_length.rs
+tests/test_pass3.rs
+tests/test_program_change.rs
+tests/test_rest.rs
+tests/test_tempo.rs
+tests/test_velocity.rs
 
 
 ---
-Generated at: 2026-03-10 07:08:25 JST
+Generated at: 2026-03-13 07:06:38 JST
