@@ -1,50 +1,50 @@
-Last updated: 2026-03-13
+Last updated: 2026-03-15
 
 # Development Status
 
 ## 現在のIssues
-- 現在、プロジェクトにおいて追跡中のオープンIssueは存在しません。
-- 直近では、[Issue #117](../issue-notes/117.md)でMMLのデフォルトノート長が`l4`から`l8`へ変更されました。
-- また、[Issue #116]（issue-noteは未作成ですが、コミット履歴から推測）で和音表記 `cg;e` のバグが修正され、MMLパーサーの正確性が向上しています。
+- [Issue #123](../issue-notes/123.md): デモのMML入力欄を5行に固定し、デバウンス付き自動演奏機能を実装、FFT表示の改善（周波数ラベルとモノトーン化）および波形ノーマライズ表示、examplesのプルダウン化を計画しています。
+- [Issue #121](../issue-notes/121.md): 新たに追加されたissue noteで、WASMモジュールとデモ間の連携における軽微な改善点や調整が必要となる可能性があります。
+- [Issue #103](../issue-notes/103.md): プロジェクトの長期的な健全性のためのコードベースのリファクタリング、特に内部パーサーの構造改善が検討されています。
 
 ## 次の一手候補
-1.  デフォルトノート長 `l8` 変更 ([Issue #117](../issue-notes/117.md)) の影響検証とテスト拡充
-    -   最初の小さな一歩: `src/mml_preprocessor.rs` および関連するパーサーステージでの `l8` のデフォルト値の扱いの確認と、既存テスト `tests/test_length.rs` に `l8` がデフォルトとして正しく適用されるシナリオを追加する。
-    -   Agent実行プロンプト:
+1.  [Issue #123](../issue-notes/123.md): デモのMML入力欄を5行に修正
+    -   最初の小さな一歩: `demo/src/ui.ts` ファイルを開き、MML入力エリアのHTML要素または関連するスタイル設定を調整して表示行数を5行に固定する。
+    -   Agent実行プロンプ:
         ```
-        対象ファイル: `src/mml_preprocessor.rs`, `src/pass1_parser.rs`, `tests/test_length.rs`, `tests/test_pass1.rs`
+        対象ファイル: `demo/src/ui.ts`
 
-        実行内容: [Issue #117](../issue-notes/117.md)でデフォルトノート長が`l8`に変更されたことによる、MMLパーサー（特に`mml_preprocessor`と`pass1_parser`）への影響を分析してください。この変更が意図通りに動作し、予期せぬ副作用がないことを確認するため、`tests/test_length.rs`および`tests/test_pass1.rs`に、`l8`がデフォルトとして適用されるMML文字列のテストケースを追加することを検討してください。
+        実行内容: `demo/src/ui.ts`ファイルを分析し、MML入力エリア（textareaなど）の行数を5行に設定する変更を行ってください。具体的には、HTML要素の`rows`属性またはCSSの`height`プロパティを調整します。
 
-        確認事項: `calculate_duration`関数の変更が他のノート長計算に影響を与えていないか、また`mmlabc`方言における`l8`の一般的な解釈と整合しているかを確認してください。
+        確認事項: 変更後にデモページをブラウザで開き、MML入力欄が正しく5行表示になっていることを確認してください。他のUI要素にレイアウトの崩れが発生していないかも合わせて確認します。
 
-        期待する出力: 既存のテストファイル(`tests/test_length.rs`, `tests/test_pass1.rs`)に`l8`デフォルト適用に関するテストケースを追加するための具体的なコードスニペット（Rust言語）と、追加テストの妥当性を説明するmarkdown形式のコメント。
-        ```
-
-2.  大規模ファイルチェック (`.github/check-large-files.toml`) の効率化と設定柔軟化 ([Issue #44](../issue-notes/44.md))
-    -   最初の小さな一歩: `check-large-files.toml` の設定オプションと、関連スクリプト `check_large_files.py` を分析し、現在のプロジェクトでの大規模ファイル検出が適切に機能しているか、また設定の柔軟性を高める余地がないかを確認する。
-    -   Agent実行プロンプト:
-        ```
-        対象ファイル: `.github/check-large-files.toml`, `.github/actions-tmp/.github_automation/check-large-files/scripts/check_large_files.py`
-
-        実行内容: プロジェクトにおける大規模ファイル検出ワークフロー（`.github/workflows/call-check-large-files.yml`）の効率性と設定の柔軟性について分析してください。特に、`.github/check-large-files.toml`がプロジェクトのニーズに合致しているか、`check_large_files.py`スクリプトが効率的に動作しているかを確認し、必要に応じて設定項目やスクリプトの改善案を提示してください。例えば、特定のディレクトリを無視する機能や、ファイルサイズの閾値を動的に設定する機能などが考えられます。
-
-        確認事項: 既存のワークフローに影響を与えないこと。また、`check-large-files.toml`の変更が`.github/check-large-files.toml.default`との整合性を保っていることを確認してください。
-
-        期待する出力: 大規模ファイルチェックの効率化および設定の柔軟化のための具体的な`check-large-files.toml`の変更案、または`check_large_files.py`スクリプトの修正案をmarkdown形式で出力してください。
+        期待する出力: `demo/src/ui.ts`の変更内容を記述した差分（diff）形式のMarkdown、および変更後のMML入力欄のスクリーンショット（想像）を説明するMarkdown。
         ```
 
-3.  WASMモジュール `mmlabc-to-smf-wasm` のデモ連携と機能拡張 ([Issue #103](../issue-notes/103.md))
-    -   最初の小さな一歩: `mmlabc-to-smf-wasm` クレートの現在の機能を確認し、`demo/src/mmlConverter.ts` がWASMモジュールを利用する際にどのようなAPIが必要となるかを洗い出す。
-    -   Agent実行プロンプト:
+2.  [Issue #123](../issue-notes/123.md): デモのMML自動演奏機能にデバウンスを導入
+    -   最初の小さな一歩: `demo/src/main.ts`または`demo/src/ui.ts`内で、MML入力値の変更を監視している箇所を特定し、入力イベントに1秒のデバウンス処理を追加する。
+    -   Agent実行プロンプ:
         ```
-        対象ファイル: `mmlabc-to-smf-wasm/src/lib.rs`, `mmlabc-to-smf-wasm/Cargo.toml`, `demo/src/mmlConverter.ts`, `demo/index.html`
+        対象ファイル: `demo/src/main.ts`, `demo/src/ui.ts`
 
-        実行内容: `mmlabc-to-smf-wasm`クレートのWebAssemblyモジュールを`demo`プロジェクトでより効果的に利用するための機能拡張を検討してください。具体的には、既存の`mmlConverter.ts`でのWASMモジュールの利用を想定し、MML変換機能以外の、例えば特定のMML記法のエラーチェックや、SMF生成前のプレビュー機能など、WASMで提供可能な新機能の候補を洗い出してください。そして、これらの機能をデモで統合するためのロードマップと、必要な`mmlabc-to-smf-wasm`のAPI変更案を分析してください。
+        実行内容: `demo/src/main.ts`と`demo/src/ui.ts`ファイルを分析し、MML入力欄の内容変更時に自動演奏が開始されるロジックに1秒のデバウンス機能を追加してください。`setTimeout`やデバウンスユーティリティ関数（もしあれば）を使用して実装します。
 
-        確認事項: WASMモジュールのファイルサイズやパフォーマンスへの影響を最小限に抑えること。また、`demo`プロジェクトの既存のUI/UXデザインとの整合性を考慮してください。
+        確認事項: デバウンス処理が正しく動作し、MML入力後1秒間操作がなければ自動演奏が開始され、その間に再入力があった場合はタイマーがリセットされることを確認してください。
 
-        期待する出力: `mmlabc-to-smf-wasm`にWASMとしてエクスポートすべき新規APIの具体的なシグネチャ例と、`demo`プロジェクトでそれらを統合するための`mmlConverter.ts`および`index.html`の変更案をmarkdown形式で出力してください。
+        期待する出力: デバウンス処理が追加された`demo/src/main.ts`または`demo/src/ui.ts`の変更内容を記述した差分（diff）形式のMarkdown。
+        ```
+
+3.  [Issue #121](../issue-notes/121.md): WASMモジュールとJavaScript間のエラーハンドリングの改善
+    -   最初の小さな一歩: `mmlabc-to-smf-wasm/src/lib.rs`内の主要な公開関数において、エラー発生時の詳細なエラー情報をJavaScript側へ適切に渡せるよう、エラー型を定義または既存のエラー型を調整する。
+    -   Agent実行プロンプ:
+        ```
+        対象ファイル: `mmlabc-to-smf-wasm/src/lib.rs`, `mmlabc-to-smf-wasm/src/token_extractor.rs`, `demo/src/main.ts`
+
+        実行内容: `mmlabc-to-smf-wasm`クレートのエラーハンドリングを強化し、WASMからJavaScriptへ詳細なエラーメッセージを返す仕組みを実装してください。具体的には、Rust側でカスタムエラー型を定義し、それを`wasm_bindgen`を使ってJavaScriptにエクスポートできるようにします。その後、`demo/src/main.ts`でそのエラーを捕捉し、ユーザーに分かりやすく表示する簡単な処理を追加します。
+
+        確認事項: WASMモジュール内の意図的なエラー発生パス（例: 不正なMML入力）を作成し、JavaScript側でそのエラーが捕捉され、期待通りの詳細情報が表示されることを確認してください。
+
+        期待する出力: `mmlabc-to-smf-wasm/src/lib.rs`および関連するRustファイル、`demo/src/main.ts`の変更内容を記述した差分（diff）形式のMarkdown。
 
 ---
-Generated at: 2026-03-13 07:07:37 JST
+Generated at: 2026-03-15 07:07:20 JST

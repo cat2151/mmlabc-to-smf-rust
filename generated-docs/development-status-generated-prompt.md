@@ -1,4 +1,4 @@
-Last updated: 2026-03-13
+Last updated: 2026-03-15
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -254,7 +254,8 @@ Last updated: 2026-03-13
 - demo-library/package.json
 - googled947dc864c270e07.html
 - issue-notes/103.md
-- issue-notes/117.md
+- issue-notes/121.md
+- issue-notes/123.md
 - issue-notes/39.md
 - issue-notes/44.md
 - mmlabc-to-smf-rust.toml.example
@@ -310,37 +311,169 @@ Last updated: 2026-03-13
 - tree-sitter-mml/tree-sitter-mml.wasm
 
 ## 現在のオープンIssues
-オープン中のIssueはありません
+## [Issue #123](../issue-notes/123.md): レイアウト修正
+[issue-notes/123.md](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/issue-notes/123.md)
+
+...
+ラベル: 
+--- issue-notes/123.md の内容 ---
+
+```markdown
+# issue レイアウト修正 #123
+[issues #123](https://github.com/cat2151/mmlabc-to-smf-rust/issues/123)
+
+- demoのMML欄は5行にする
+- demoのMML欄はデバウンス1秒で自動演奏する
+- demoのFFT欄に周波数を500Hz, 1000Hz,... のラベルをつけ、FFTの色はモノトーンの落ち着いた色にする
+- 波形は95%にノーマライズ表示する
+- examplesはすべてプルダウンにまとめる
+
+```
 
 ## ドキュメントで言及されているファイルの内容
+### .github/actions-tmp/issue-notes/23.md
+```md
+{% raw %}
+# issue issue 17が再発してしまっている #23
+[issues #23](https://github.com/cat2151/github-actions/issues/23)
 
+# 症状は？
+- issue 17と同じ
+
+# どうする？
+- development-status-generated-prompt.md を確認する
+- 結果
+    - >Issue番号を記載する際は、必ず [Issue #番号](issue-notes/番号.md) の形式でMarkdownリンクとして記載してください。
+    - 仮説、これが残っており、ほかの ../ 指定と競合し、どちらかがランダムで選ばれていた
+    - 対策、ここを ../ 指定にする
+
+# 結果
+- test green
+
+# closeとする
+
+{% endraw %}
+```
+
+### .github/actions-tmp/issue-notes/3.md
+```md
+{% raw %}
+# issue GitHub Actions「issue note生成」を共通ワークフロー化する #3
+[issues #3](https://github.com/cat2151/github-actions/issues/3)
+
+- 前提
+  - userは、translateのworkflowを共通ワークフロー化し、動くようにしたので、共通ワークフロー化の知識がある
+  - よって、今回は、promptでplanさせ、そのplanをuserがレビューし、planの改善を指示できるので、ハルシネーションのリスクを下げることができる
+
+- prompt
+```
+あなたはGitHub Actionsと共通ワークフローのスペシャリストです。
+このymlはまだ共通ワークフロー化されず、
+呼び出し元からコピーされたままの状態です。
+このymlファイル名のまま、
+中身を共通ワークフロー化してください。
+呼び出し元ymlは別途書きますので気にしないでください。
+まずplanしてください
+```
+
+- plan 生成結果
+```
+共通ワークフロー化のためのplanは以下の通りです。
+
+1. 目的
+現在の issue-note.yml を「共通ワークフロー」として再設計し、他リポジトリや他ワークフローから workflow_call で呼び出せるようにする。
+2. 主な変更点
+on: トリガーを workflow_call に変更（直接イベントで起動しない）。
+必要な入力（inputs）やシークレット（secrets）を workflow_call セクションで定義。
+github.event.issue などのイベント依存部分を、inputs経由で受け取る形に修正。
+既存の処理（issueノート生成、コミット、issue body更新）はそのまま活かすが、パラメータ化する。
+3. 具体的な修正内容
+on: issues: → on: workflow_call: に変更。
+inputs で必要な値（例: issue_title, issue_number, issue_body, issue_url など）を受け取る。
+スクリプト内の ${{ github.event.issue.xxx }} を ${{ inputs.xxx }} に置換。
+github-script ステップも同様にinputsを参照。
+必要に応じて secrets も workflow_call で受け取れるようにする。
+4. ファイル名・配置
+ファイル名はそのまま issue-note.yml。
+配置場所は workflows でOK（共通ワークフローとしてもこの場所で良い）。
+5. 呼び出し元への影響
+呼び出し元ワークフローで uses: <repo>/.github/workflows/issue-note.yml@main のように参照し、inputsを渡す形になる。
+このplanで進めます。次に、実際の共通ワークフロー化のためのyml修正案を作成しますか？
+```
+
+- userがplanレビューし、OKを出した
+- agentに生成結果ymlをレビューさせた、OKとなった
+  - userはこのレビューは認知負荷が高いのでskipとする（単純な細かい間違い探し作業になるので、それはagentに任せた）
+-  エラー。呼び出し元ymlのエラーがあり修正。共通ワークフローのエラー指摘があり、共通ワークフロー側の修正が必要となった
+```
+原因の分析：
+
+呼び出し元（tonejs-mml-to-jsonのissue-note.yml）は、reusable workflow（cat2151/github-actions/.github/workflows/issue-note.yml@main）をusesで呼び出し、inputsをwithで渡しています。
+共通ワークフロー（reusable workflow）は inputs を workflow_call で受け取り、各ステップで ${{ inputs.xxx }} で参照しています。
+しかし、エラーが発生したのは actions/github-script@v7 の script 内です。
+エラーの本質的な原因：
+
+actions/github-script の script: で ${{ inputs.issue_number }} のような式を直接 JavaScript テンプレートリテラル内で使っていますが、これはサポートされていません。
+script: の中は JavaScript であり、YAMLの ${{ ... }} は展開されません（または意図通りに展開されません）。
+そのため、inputs 変数は script 内の JavaScript で未定義となり、ReferenceError になります。
+正しい書き方：
+
+actions/github-script の script: でワークフローの inputs を使いたい場合は、with: で input を environment 変数や script の引数として渡し、JavaScript で process.env から取得するか、github-script の input 機能を使う必要があります。
+例（修正版）：
+
+このように、inputs の値を env で渡し、script 内では process.env で参照してください。
+
+まとめ：
+
+actions/github-script の script 内で ${{ inputs.xxx }} を直接使うと ReferenceError になる
+env: で値を渡し、process.env で参照するのが正しい
+修正が必要です。修正版のワークフローが必要な場合はお知らせください。
+```
+
+- test green
+- closeとする
+
+{% endraw %}
+```
+
+### issue-notes/123.md
+```md
+{% raw %}
+# issue レイアウト修正 #123
+[issues #123](https://github.com/cat2151/mmlabc-to-smf-rust/issues/123)
+
+- demoのMML欄は5行にする
+- demoのMML欄はデバウンス1秒で自動演奏する
+- demoのFFT欄に周波数を500Hz, 1000Hz,... のラベルをつけ、FFTの色はモノトーンの落ち着いた色にする
+- 波形は95%にノーマライズ表示する
+- examplesはすべてプルダウンにまとめる
+
+{% endraw %}
+```
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
+9c077a5 Merge pull request #122 from cat2151/copilot/fix-kt-command-on-demo
+fd04470 Add unit tests for key_transpose token extraction in WASM lib
+3c38399 Fix kt command not working in demo: add key_transpose handler to token_extractor
+8fb0b95 Update issue notes for layout fixes in demo
+f4b879b Add issue note for #123 [auto]
+075ea32 Initial plan
+9f221f5 Add issue note for #121 [auto]
+723d219 Add issue note for #119 [auto]
+9a7c10f Update project summaries (overview & development status) [auto]
 8fcb5f2 Merge pull request #118 from cat2151/copilot/set-default-to-l8
-2bef5d4 Use calculate_duration(8, 0) for default duration instead of hard-coded 240
-742e050 Fix default note length from l4 to l8 per mmlabc dialect
-d1a2d26 Add issue note for #117 [auto]
-6e62158 Initial plan
-5ca8cc9 Update project summaries (overview & development status) [auto]
-9612741 Merge pull request #116 from cat2151/copilot/fix-cg-bug-in-harmony
-7ee2644 Fix: chord notation 'cg';e now plays all notes simultaneously
-48fb8d5 Add issue note for #115 [auto]
-ce2b192 Initial plan
 
 ### 変更されたファイル:
-demo/index.html
-demo/src/mmlConverter.ts
 generated-docs/development-status-generated-prompt.md
 generated-docs/development-status.md
 generated-docs/project-overview-generated-prompt.md
 generated-docs/project-overview.md
-issue-notes/111.md
 issue-notes/117.md
+issue-notes/121.md
+issue-notes/123.md
 mmlabc-to-smf-wasm/src/lib.rs
-src/lib.rs
-src/main.rs
-src/mml_preprocessor.rs
+mmlabc-to-smf-wasm/src/token_extractor.rs
 src/pass2_ast.rs
 src/pass3_events.rs
 tests/test_channel.rs
@@ -356,4 +489,4 @@ tests/test_velocity.rs
 
 
 ---
-Generated at: 2026-03-13 07:06:38 JST
+Generated at: 2026-03-15 07:07:06 JST
