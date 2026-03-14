@@ -229,6 +229,18 @@ fn extract_tokens_from_node(
                 dots: None,
             });
         }
+    } else if kind == "key_transpose" {
+        if let Some(text) = &node.text {
+            tokens.push(Token {
+                token_type: "key_transpose".to_string(),
+                value: text.to_string(),
+                channel_group,
+                chord_id: None,
+                modifier: None,
+                note_length: None,
+                dots: None,
+            });
+        }
     } else {
         // For other node types, recurse into children
         if let Some(children) = &node.children {

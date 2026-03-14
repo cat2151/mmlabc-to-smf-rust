@@ -242,6 +242,60 @@ mod tests {
     }
 
     #[test]
+    fn test_parse_tree_json_with_key_transpose() {
+        // Test that key_transpose nodes are correctly extracted as tokens
+        let parse_tree_json = r#"{
+            "type": "source_file",
+            "children": [
+                {"type": "key_transpose", "text": "kt1"},
+                {
+                    "type": "note_with_modifier",
+                    "children": [
+                        {"type": "note", "text": "c"}
+                    ]
+                }
+            ]
+        }"#;
+
+        let parse_tree: ParseTreeNode = serde_json::from_str(parse_tree_json).unwrap();
+        let mut chord_id = 0;
+        let tokens = parse_tree_to_tokens(&parse_tree, None, &mut chord_id);
+
+        assert_eq!(tokens.len(), 2);
+        assert_eq!(tokens[0].token_type, "key_transpose");
+        assert_eq!(tokens[0].value, "kt1");
+        assert_eq!(tokens[1].token_type, "note");
+        assert_eq!(tokens[1].value, "c");
+    }
+
+    #[test]
+    fn test_parse_tree_json_with_key_transpose_negative() {
+        // Test that negative key_transpose (e.g. kt-1) is correctly extracted
+        let parse_tree_json = r#"{
+            "type": "source_file",
+            "children": [
+                {"type": "key_transpose", "text": "kt-1"},
+                {
+                    "type": "note_with_modifier",
+                    "children": [
+                        {"type": "note", "text": "c"}
+                    ]
+                }
+            ]
+        }"#;
+
+        let parse_tree: ParseTreeNode = serde_json::from_str(parse_tree_json).unwrap();
+        let mut chord_id = 0;
+        let tokens = parse_tree_to_tokens(&parse_tree, None, &mut chord_id);
+
+        assert_eq!(tokens.len(), 2);
+        assert_eq!(tokens[0].token_type, "key_transpose");
+        assert_eq!(tokens[0].value, "kt-1");
+        assert_eq!(tokens[1].token_type, "note");
+        assert_eq!(tokens[1].value, "c");
+    }
+
+    #[test]
     fn test_invalid_json_parsing() {
         let invalid_json = "not valid json";
         
