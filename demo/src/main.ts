@@ -21,14 +21,16 @@ async function initialize(): Promise<void> {
 
         showStatus('Ready! Parser and WASM initialized.', 'success');
 
-        const mmlInput = document.getElementById('mmlInput')!;
+        const mmlInput = document.getElementById('mmlInput') as HTMLTextAreaElement;
         mmlInput.addEventListener('input', () => {
             if (state.debounceTimer !== null) {
                 clearTimeout(state.debounceTimer);
             }
             state.debounceTimer = setTimeout(async () => {
                 await convertMML();
-                await playAudio();
+                if (mmlInput.value.trim() && state.currentAudioBuffer) {
+                    await playAudio();
+                }
             }, 1000) as unknown as number;
         });
 

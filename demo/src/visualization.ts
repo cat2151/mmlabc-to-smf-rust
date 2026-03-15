@@ -12,10 +12,14 @@ export function drawWaveform(audioData: Float32Array): void {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, width, height);
 
-    // Normalize to 95% of canvas height
+    // Downsample first (O(canvas width)), then compute peak normalization from those points
+    const step = Math.floor(audioData.length / width);
+    const samples = new Float32Array(width);
     let maxAmp = 0;
-    for (let i = 0; i < audioData.length; i++) {
-        const abs = Math.abs(audioData[i]);
+    for (let i = 0; i < width; i++) {
+        const value = audioData[i * step] || 0;
+        samples[i] = value;
+        const abs = Math.abs(value);
         if (abs > maxAmp) maxAmp = abs;
     }
     const scale = maxAmp > 0 ? 0.95 / maxAmp : 1;
@@ -24,12 +28,8 @@ export function drawWaveform(audioData: Float32Array): void {
     ctx.lineWidth = 1;
     ctx.beginPath();
 
-    const step = Math.floor(audioData.length / width);
-
     for (let i = 0; i < width; i++) {
-        const index = i * step;
-        const value = (audioData[index] || 0) * scale;
-        const y = (value * 0.5 + 0.5) * height;
+        const y = (samples[i] * scale * 0.5 + 0.5) * height;
 
         if (i === 0) {
             ctx.moveTo(i, y);
@@ -75,11 +75,12 @@ export function visualizeRealtime(waveform: any, fft: any, sampleRate: number): 
 
         const barWidth = fftCanvas.width / fftValues.length;
 
-        // Monotone bars
+        // Monotone bars — clamp FFT values to valid dB range to prevent negative/non-finite heights
         fftCtx.fillStyle = '#6688aa';
         for (let i = 0; i < fftValues.length; i++) {
-            const value = fftValues[i];
-            const percent = (value + 140) / 140;
+            const raw = fftValues[i];
+            const value = isFinite(raw) ? Math.max(-140, Math.min(0, raw)) : -140;
+            const percent = (value + 140) / 140; // always in [0, 1]
             const barHeight = percent * barAreaHeight;
             fftCtx.fillRect(i * barWidth, barAreaHeight - barHeight, barWidth - 1, barHeight);
         }
