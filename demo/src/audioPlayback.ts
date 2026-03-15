@@ -29,7 +29,7 @@ export async function playAudio(): Promise<void> {
         document.getElementById('playButton')!.setAttribute('disabled', 'true');
         document.getElementById('stopButton')!.removeAttribute('disabled');
 
-        visualizeRealtime(waveform, fft);
+        visualizeRealtime(waveform, fft, Tone.getContext().sampleRate);
 
         player.onstop = () => {
             document.getElementById('playButton')!.removeAttribute('disabled');

@@ -26,8 +26,21 @@ async function initialize(): Promise<void> {
             if (state.debounceTimer !== null) {
                 clearTimeout(state.debounceTimer);
             }
-            state.debounceTimer = setTimeout(() => convertMML(), 500) as unknown as number;
+            state.debounceTimer = setTimeout(async () => {
+                await convertMML();
+                await playAudio();
+            }, 1000) as unknown as number;
         });
+
+        const exampleSelect = document.getElementById('exampleSelect') as HTMLSelectElement | null;
+        if (exampleSelect) {
+            exampleSelect.addEventListener('change', () => {
+                if (exampleSelect.value) {
+                    loadExample(exampleSelect.value);
+                    exampleSelect.selectedIndex = 0;
+                }
+            });
+        }
 
         await convertMML();
     } catch (error: any) {
