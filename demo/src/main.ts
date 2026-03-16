@@ -21,13 +21,34 @@ async function initialize(): Promise<void> {
 
         showStatus('Ready! Parser and WASM initialized.', 'success');
 
-        const mmlInput = document.getElementById('mmlInput')!;
+        const mmlInput = document.getElementById('mmlInput') as HTMLTextAreaElement;
         mmlInput.addEventListener('input', () => {
+            // Reserve auto-play intent immediately so it survives across debounce firings.
+            // If the textarea is cleared, cancel the intent.
+            state.pendingPlay = mmlInput.value.trim().length > 0;
+
             if (state.debounceTimer !== null) {
                 clearTimeout(state.debounceTimer);
             }
-            state.debounceTimer = setTimeout(() => convertMML(), 500) as unknown as number;
+            state.debounceTimer = setTimeout(async () => {
+                await convertMML();
+                // Play as soon as a buffer is available, honoring the reserved intent.
+                if (state.pendingPlay && state.currentAudioBuffer) {
+                    state.pendingPlay = false;
+                    await playAudio();
+                }
+            }, 1000) as unknown as number;
         });
+
+        const exampleSelect = document.getElementById('exampleSelect') as HTMLSelectElement | null;
+        if (exampleSelect) {
+            exampleSelect.addEventListener('change', () => {
+                if (exampleSelect.value) {
+                    loadExample(exampleSelect.value);
+                    exampleSelect.selectedIndex = 0;
+                }
+            });
+        }
 
         await convertMML();
     } catch (error: any) {

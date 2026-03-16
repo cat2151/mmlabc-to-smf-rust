@@ -8,4 +8,6 @@ export const state = {
     parser: null as any,
     wasmInitialized: false,
     debounceTimer: null as number | null,
+    /** True when the user has typed non-empty MML and is waiting for auto-play. */
+    pendingPlay: false,
 };
