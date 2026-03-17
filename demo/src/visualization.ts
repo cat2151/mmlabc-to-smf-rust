@@ -1,8 +1,4 @@
-// Canvas-based waveform and FFT visualization
-import { state } from './state.js';
-
-const FFT_LABEL_HEIGHT = 14; // pixels reserved at bottom of FFT canvas for frequency labels
-const FFT_EDGE_PADDING = 4; // pixels to skip at canvas edges when drawing frequency labels
+// Canvas-based waveform visualization
 
 export function drawWaveform(audioData: Float32Array): void {
     const canvas = document.getElementById('waveformCanvas') as HTMLCanvasElement;
@@ -12,102 +8,38 @@ export function drawWaveform(audioData: Float32Array): void {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, width, height);
 
-    // Downsample first (O(canvas width)), then compute peak normalization from those points
-    const step = Math.floor(audioData.length / width);
-    const samples = new Float32Array(width);
+    if (audioData.length === 0) return;
+
+    // For each pixel column, find min/max of all samples in that range
+    const mins = new Float32Array(width);
+    const maxs = new Float32Array(width);
     let maxAmp = 0;
-    for (let i = 0; i < width; i++) {
-        const value = audioData[i * step] || 0;
-        samples[i] = value;
-        const abs = Math.abs(value);
-        if (abs > maxAmp) maxAmp = abs;
+
+    for (let x = 0; x < width; x++) {
+        const start = Math.floor(x * audioData.length / width);
+        const end = Math.max(start + 1, Math.floor((x + 1) * audioData.length / width));
+        let min = audioData[start] ?? 0;
+        let max = min;
+        for (let j = start + 1; j < end && j < audioData.length; j++) {
+            const v = audioData[j];
+            if (v < min) min = v;
+            if (v > max) max = v;
+        }
+        mins[x] = min;
+        maxs[x] = max;
+        if (Math.abs(min) > maxAmp) maxAmp = Math.abs(min);
+        if (Math.abs(max) > maxAmp) maxAmp = Math.abs(max);
     }
+
     const scale = maxAmp > 0 ? 0.95 / maxAmp : 1;
 
-    ctx.strokeStyle = '#0f0';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-
-    for (let i = 0; i < width; i++) {
-        const y = (samples[i] * scale * 0.5 + 0.5) * height;
-
-        if (i === 0) {
-            ctx.moveTo(i, y);
-        } else {
-            ctx.lineTo(i, y);
-        }
+    ctx.fillStyle = '#0f0';
+    for (let x = 0; x < width; x++) {
+        // Map amplitude to canvas y: positive amplitude → larger y (lower on canvas)
+        const yForMin = (mins[x] * scale * 0.5 + 0.5) * height;
+        const yForMax = (maxs[x] * scale * 0.5 + 0.5) * height;
+        const top = Math.min(yForMin, yForMax);
+        const barH = Math.max(1, Math.abs(yForMax - yForMin));
+        ctx.fillRect(x, top, 1, barH);
     }
-
-    ctx.stroke();
-}
-
-export function visualizeRealtime(waveform: any, fft: any, sampleRate: number): void {
-    const waveCanvas = document.getElementById('realtimeWaveform') as HTMLCanvasElement;
-    const fftCanvas = document.getElementById('realtimeFFT') as HTMLCanvasElement;
-    const waveCtx = waveCanvas.getContext('2d')!;
-    const fftCtx = fftCanvas.getContext('2d')!;
-
-    function draw() {
-        const waveformValues: Float32Array = waveform.getValue();
-        waveCtx.fillStyle = '#000';
-        waveCtx.fillRect(0, 0, waveCanvas.width, waveCanvas.height);
-
-        waveCtx.strokeStyle = '#0f0';
-        waveCtx.lineWidth = 2;
-        waveCtx.beginPath();
-
-        for (let i = 0; i < waveformValues.length; i++) {
-            const x = i * (waveCanvas.width / waveformValues.length);
-            const y = (1 - (waveformValues[i] + 1) / 2) * waveCanvas.height;
-
-            if (i === 0) {
-                waveCtx.moveTo(x, y);
-            } else {
-                waveCtx.lineTo(x, y);
-            }
-        }
-        waveCtx.stroke();
-
-        const fftValues: Float32Array = fft.getValue();
-        const numBins = fftValues.length;
-        const barAreaHeight = fftCanvas.height - FFT_LABEL_HEIGHT;
-        fftCtx.fillStyle = '#000';
-        fftCtx.fillRect(0, 0, fftCanvas.width, fftCanvas.height);
-
-        // Aggregate FFT bins into canvas columns (handles both numBins > width and numBins < width)
-        fftCtx.fillStyle = '#6688aa';
-        for (let col = 0; col < fftCanvas.width; col++) {
-            const binStart = Math.floor(col * numBins / fftCanvas.width);
-            const binEnd = Math.max(Math.floor((col + 1) * numBins / fftCanvas.width), binStart + 1);
-            // Find max dB value among bins mapped to this column
-            let maxDb = -Infinity;
-            for (let b = binStart; b < binEnd && b < numBins; b++) {
-                const raw = fftValues[b];
-                if (isFinite(raw) && raw > maxDb) maxDb = raw;
-            }
-            const value = isFinite(maxDb) ? Math.max(-140, Math.min(0, maxDb)) : -140;
-            const percent = (value + 140) / 140; // always in [0, 1]
-            const barHeight = percent * barAreaHeight;
-            fftCtx.fillRect(col, barAreaHeight - barHeight, 1, barHeight);
-        }
-
-        // Frequency labels every 1kHz, ticks every 500Hz
-        const nyquist = sampleRate / 2;
-        fftCtx.font = '8px Arial';
-        fftCtx.textAlign = 'center';
-        for (let freq = 500; freq < nyquist; freq += 500) {
-            const x = (freq / nyquist) * fftCanvas.width;
-            if (x < FFT_EDGE_PADDING || x > fftCanvas.width - FFT_EDGE_PADDING) continue;
-            fftCtx.fillStyle = '#556677';
-            fftCtx.fillRect(x, barAreaHeight, 1, freq % 1000 === 0 ? 4 : 2);
-            if (freq % 1000 === 0) {
-                fftCtx.fillStyle = '#889aaa';
-                fftCtx.fillText(`${freq / 1000}k`, x, fftCanvas.height - 1);
-            }
-        }
-
-        state.animationId = requestAnimationFrame(draw);
-    }
-
-    draw();
 }
