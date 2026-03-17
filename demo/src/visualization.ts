@@ -69,20 +69,26 @@ export function visualizeRealtime(waveform: any, fft: any, sampleRate: number): 
         waveCtx.stroke();
 
         const fftValues: Float32Array = fft.getValue();
+        const numBins = fftValues.length;
         const barAreaHeight = fftCanvas.height - FFT_LABEL_HEIGHT;
         fftCtx.fillStyle = '#000';
         fftCtx.fillRect(0, 0, fftCanvas.width, fftCanvas.height);
 
-        const barWidth = fftCanvas.width / fftValues.length;
-
-        // Monotone bars — clamp FFT values to valid dB range to prevent negative/non-finite heights
+        // Aggregate FFT bins into canvas columns (handles both numBins > width and numBins < width)
         fftCtx.fillStyle = '#6688aa';
-        for (let i = 0; i < fftValues.length; i++) {
-            const raw = fftValues[i];
-            const value = isFinite(raw) ? Math.max(-140, Math.min(0, raw)) : -140;
+        for (let col = 0; col < fftCanvas.width; col++) {
+            const binStart = Math.floor(col * numBins / fftCanvas.width);
+            const binEnd = Math.max(Math.floor((col + 1) * numBins / fftCanvas.width), binStart + 1);
+            // Find max dB value among bins mapped to this column
+            let maxDb = -Infinity;
+            for (let b = binStart; b < binEnd && b < numBins; b++) {
+                const raw = fftValues[b];
+                if (isFinite(raw) && raw > maxDb) maxDb = raw;
+            }
+            const value = isFinite(maxDb) ? Math.max(-140, Math.min(0, maxDb)) : -140;
             const percent = (value + 140) / 140; // always in [0, 1]
             const barHeight = percent * barAreaHeight;
-            fftCtx.fillRect(i * barWidth, barAreaHeight - barHeight, barWidth - 1, barHeight);
+            fftCtx.fillRect(col, barAreaHeight - barHeight, 1, barHeight);
         }
 
         // Frequency labels every 1kHz, ticks every 500Hz
