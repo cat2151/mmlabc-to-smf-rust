@@ -19,7 +19,7 @@ export async function playAudio(): Promise<void> {
         player.loop = false;
 
         const waveform = new Tone.Waveform(1024);
-        const fft = new Tone.FFT(512);
+        const fft = new Tone.FFT(4096);
 
         player.connect(waveform);
         player.connect(fft);
