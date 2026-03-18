@@ -1,20 +1,21 @@
-Last updated: 2026-03-17
+Last updated: 2026-03-19
 
 # Project Overview
 
 ## プロジェクト概要
-- Music Macro Language (MML) 形式の文字列をStandard MIDI File (SMF) に変換するRust製ライブラリです。
-- ネイティブアプリケーション向けと、WebAssembly (WASM) を利用したブラウザアプリケーション向けの両方で利用可能です。
-- MMLのトークン化、AST変換、MIDIイベント生成、SMF作成の4パスアーキテクチャにより、堅牢な変換処理を実現しています。
+- Music Macro Language (MML) からStandard MIDI File (SMF) へ変換するRust製のライブラリです。
+- MMLの解析からMIDIファイル生成までを4つの明確なパスで処理するアーキテクチャを採用しています。
+- ネイティブアプリおよびWebAssembly (WASM) を介したブラウザアプリとして利用可能で、多チャンネル対応やデバッグ機能も備えています。
 
 ## 技術スタック
-- フロントエンド: HTML (デモUI), TypeScript (デモアプリケーションロジック), JavaScript (Tone.js, web-tree-sitter.js), WebAssembly (mmlabc-to-smf-wasmクレートのブラウザ連携)
-- 音楽・オーディオ: Music Macro Language (MML) (入力形式), Standard MIDI File (SMF) (出力形式), MIDIイベント, Tone.js (Web Audio APIベースの音楽フレームワーク), TiMidity++, FluidSynth, VLC, cat-play-mml (外部MIDIプレイヤーとして利用可能)
-- 開発ツール: Rust (主要言語), Cargo (Rustのビルドシステム・パッケージマネージャ), Node.js, npm, npx (tree-sitterパーサー生成に使用), Git (バージョン管理), Visual Studio Code (エディタ設定ファイル)
-- テスト: `cargo test` (Rustユニット/統合テスト), `node:test`, `node:assert/strict` (TypeScriptテストフレームワーク/アサーションライブラリ)
-- ビルドツール: Cargo (Rustクレートビルド), tree-sitter (MMLパーサー生成), WebAssembly (WASM) (ブラウザ向けライブラリのターゲット)
-- 言語機能: Rustの型システムと所有権モデル (安全な設計を特徴とする)
-- 開発標準: .editorconfig (コーディングスタイルの統一), `cargo fmt` (コードフォーマッタ), `cargo clippy` (Linter)
+- フロントエンド: `TypeScript`, `JavaScript` (デモUI実装), `WebAssembly (WASM)` (ブラウザでのMML変換ライブラリ利用)。
+- 音楽・オーディオ: `Music Macro Language (MML)` (入力フォーマット), `Standard MIDI File (SMF)` (出力フォーマット), `Tone.js` (デモでのオーディオ再生)。
+- 開発ツール: `Rust 1.70.0+`, `Cargo` (Rustパッケージマネージャ), `tree-sitter-cli` (MML構文パーサー生成), `Node.js`, `npm` / `npx` (デモのビルドおよびパーサー生成)。
+- テスト: `cargo test` (Rustユニット/統合テスト), `node:test`, `node:assert/strict` (TypeScript/JavaScriptテスト)。
+- ビルドツール: `Cargo` (Rustプロジェクトのビルドと依存管理), `npm` (デモプロジェクトの依存管理)。
+- 言語機能: `Rust` (主要開発言語), `C` (tree-sitterパーサーの生成元言語)。
+- 自動化・CI/CD: `cargo clippy` (Linter), `cargo fmt` (Formatter)。
+- 開発標準: `.editorconfig` (IDE設定統一), `.gitignore` (Git管理除外設定), `.vscode/settings.json` (VS Code設定)。
 
 ## ファイル階層ツリー
 ```
@@ -66,8 +67,8 @@ Last updated: 2026-03-17
 ├── googled947dc864c270e07.html
 ├── issue-notes/
 │   ├── 103.md
-│   ├── 121.md
 │   ├── 123.md
+│   ├── 129.md
 │   ├── 39.md
 │   └── 44.md
 ├── mmlabc-to-smf-rust.toml.example
@@ -132,134 +133,268 @@ Last updated: 2026-03-17
 ```
 
 ## ファイル詳細説明
-- **`.editorconfig`**: プロジェクト全体で一貫したコーディングスタイル（インデント、改行コードなど）を強制するための設定ファイルです。
-- **`.gitignore`**: Gitがバージョン管理から除外すべきファイルやディレクトリを指定する設定ファイルです。
-- **`.vscode/settings.json`**: Visual Studio Codeのワークスペース固有の設定ファイルで、開発環境の統一に貢献します。
-- **`Cargo.lock`**: Rustプロジェクトの依存関係ツリーの正確なバージョンを記録し、再現性のあるビルドを保証します。
-- **`Cargo.toml`**: Rustプロジェクトのマニフェストファイルで、プロジェクト名、バージョン、ライブラリの種類、依存関係などが定義されています。
-- **`IMPLEMENTATION_REPORT.md`**: プロジェクトの実装に関する詳細なレポートや文書です。
-- **`LICENSE`**: プロジェクトのライセンス情報が記載されたファイルで、通常MITライセンスが適用されています。
-- **`OPTION_A_IMPLEMENTATION.md`**: 実装オプションAに関する詳細なドキュメントです。
-- **`README.ja.md`**: プロジェクトの概要、機能、使い方、開発状況などを日本語で説明するメインのドキュメントです。
-- **`README.md`**: プロジェクトの概要、機能、使い方、開発状況などを英語で説明するメインのドキュメントです。
-- **`_config.yml`**: おそらくJekyllなどの静的サイトジェネレータで使用される設定ファイルです。
-- **`build.rs`**: Rustのビルドスクリプトで、主に`tree-sitter-mml`パーサーのC言語ソースファイルの自動生成ロジックが含まれています。
-- **`demo/index.html`**: Webブラウザ上でMML to SMF変換を試せるデモアプリケーションのHTMLファイルです。
-- **`demo/src/audioPlayback.ts`**: デモアプリケーションにおける音声再生（Tone.jsを使用）の開始・停止ロジックを担当します。
-- **`demo/src/audioRenderer.ts`**: MIDIデータからYM2151ログを生成し、そのオーディオ波形をレンダリングする処理を担います。
-- **`demo/src/main.ts`**: デモアプリケーションのメインエントリーポイントで、初期化、WebAssemblyモジュールのロード、イベントハンドラの登録を行います。
-- **`demo/src/midiReader.ts`**: MIDIファイルのバイナリデータを読み込み、解析してMIDIイベントを抽出するクラスです。
-- **`demo/src/mmlConverter.ts`**: MML文字列をWebAssemblyモジュール（`mmlabc-to-smf-wasm`）を介してSMFに変換するロジックを含みます。
-- **`demo/src/parseMidiNotes.ts`**: 解析されたMIDIイベントから具体的な音符（ノートオン/オフ、ピッチ、ベロシティなど）の情報を抽出する処理を行います。
-- **`demo/src/smfToYm2151.ts`**: Standard MIDI File (SMF) データをYM2151ログ形式に変換するためのインターフェースを提供します。
-- **`demo/src/state.ts`**: デモアプリケーションの現在の状態（MMLコード、MIDIデータ、再生状況など）を管理するグローバルステート定義です。
-- **`demo/src/treeToJSON.ts`**: `tree-sitter`によって生成された抽象構文木（AST）をデバッグや表示のためにJSON形式にシリアライズするユーティリティ関数です。
-- **`demo/src/ui.ts`**: デモアプリケーションのユーザーインターフェース要素（ステータス表示、サンプルコードのロードなど）に関する操作ロジックを扱います。
-- **`demo/src/visualization.ts`**: 生成されたオーディオ波形をCanvas要素に描画し、視覚的に表示する処理を担います。
-- **`demo/src/wavExport.ts`**: 生成されたAudioBufferを標準的なWAVファイル形式に変換し、エクスポートする機能を提供します。
-- **`demo/tests/audioBufferToWav.test.ts`**: `wavExport.ts`の`audioBufferToWav`関数のテストケースを含みます。
-- **`demo/tests/midiReader.test.ts`**: `midiReader.ts`に実装されたMIDIデータ読み取り機能のテストケースを含みます。
-- **`demo/tests/parseMidiNotes.test.ts`**: `parseMidiNotes.ts`に実装されたMIDIノート解析機能のテストケースを含みます。
-- **`demo/tests/treeToJSON.test.ts`**: `treeToJSON.ts`に実装されたTree-sitter AST変換機能のテストケースを含みます。
-- **`demo-library/index.html`**: デモライブラリのインデックスHTMLファイルです。
-- **`googled947dc864c270e07.html`**: Googleサイト認証のために使用されるHTMLファイルです。
-- **`issue-notes/`**: 開発イシューに関するメモや記録が格納されています。
-- **`mmlabc-to-smf-rust.toml.example`**: カスタムMIDIプレイヤーのパスを設定するための設定ファイル例です。
-- **`mmlabc-to-smf-wasm/src/lib.rs`**: MMLをSMFに変換するロジックのWebAssembly (WASM) バインディングを提供するRustライブラリのエントリポイントです。
-- **`mmlabc-to-smf-wasm/src/token_extractor.rs`**: WASMモジュール内でMML文字列からトークンを抽出する特定のロジックを実装しています。
-- **`package.json`**: プロジェクト全体のJavaScriptエコシステムにおける依存関係（例: `tree-sitter-cli`）とスクリプトを定義します。
-- **`scripts/build-demo.sh`**: デモアプリケーションをビルドするためのシェルスクリプトです。
-- **`scripts/transform-demo-paths.sh`**: デモアプリケーション内のパスを変換するためのシェルスクリプトです。
-- **`src/attachment_json.rs`**: デバッグ目的で中間データをJSON形式で出力する機能に関するロジックを扱います。
-- **`src/config.rs`**: コマンドライン引数や設定ファイルからの構成情報をパースし、管理するロジックが含まれています。
-- **`src/lib.rs`**: Rustライブラリのメインエントリーポイントで、MMLからSMFへの変換を行う主要な公開APIを定義しています。
-- **`src/main.rs`**: プロジェクトのコマンドラインインターフェース (CLI) のエントリポイントです。コマンドライン引数を解析し、変換処理を呼び出します。
-- **`src/mml_preprocessor.rs`**: MML文字列の解析前に、特定の変換や正規化を行う前処理ロジックを実装しています。
-- **`src/pass1_parser.rs`**: MML文字列を`tree-sitter`パーサーを使用してトークンストリームに変換する4パスアーキテクチャの最初のステージです。
-- **`src/pass2_ast.rs`**: トークンストリームから抽象構文木（AST）を構築する4パスアーキテクチャの第2ステージです。
-- **`src/pass3_events.rs`**: ASTから具体的なMIDIイベント（ノートオン/オフ、テンポチェンジなど）を生成する4パスアーキテクチャの第3ステージです。
-- **`src/pass4_midi.rs`**: 生成されたMIDIイベントのリストから、最終的なStandard MIDI Fileのバイナリデータを作成する4パスアーキテクチャの最終ステージです。
-- **`src/tree_sitter_mml.rs`**: `tree-sitter` MMLパーサーとの連携およびそのRustラッパーに関するロジックが含まれています。
-- **`src/types.rs`**: プロジェクト全体で使用される共通のデータ構造や列挙型などの型定義をまとめています。
-- **`tests/integration_test.rs`**: プロジェクト全体のMML to SMF変換フローをテストする統合テストファイルです。
-- **`tests/test_attachment_json.rs`**: `attachment_json`モジュールの機能（JSON出力など）をテストします。
-- **`tests/test_c1_vs_c64.rs`**: C1とC64など、特定のMML音符記法に関する挙動をテストします。
-- **`tests/test_channel.rs`**: MMLにおける多チャンネル（`;`で区切られる）処理の正確性をテストします。
-- **`tests/test_chord.rs`**: MMLでの和音指定機能のテストケースを含みます。
-- **`tests/test_cli.rs`**: コマンドラインインターフェース（CLI）の引数解析や動作をテストします。
-- **`tests/test_config.rs`**: 設定ファイル（例: `mmlabc-to-smf-rust.toml`）の読み込みと適用をテストします。
-- **`tests/test_dotted_notes.rs`**: 付点音符（例: `c8.`）の解釈とMIDI変換のテストです。
-- **`tests/test_drum_channel.rs`**: ドラムチャンネル（MMLでの表現）のMIDI変換をテストします。
-- **`tests/test_key_transpose.rs`**: キー転調（移調）コマンドのテストです。
-- **`tests/test_length.rs`**: MMLでの音長指定（例: `l4`）の解釈をテストします。
-- **`tests/test_modifier.rs`**: MMLの音符修飾子（例: `^`, `#`, `v`）のテストです。
-- **`tests/test_note_length.rs`**: 音符の長さ（例: `c1`, `d2`）の正しい解釈をテストします。
-- **`tests/test_octave.rs`**: オクターブ指定（`o`, `<`, `>`）コマンドのテストです。
-- **`tests/test_pass1.rs`**: 4パスアーキテクチャの第一パス（MML文字列のトークン化）のユニットテストです。
-- **`tests/test_pass2.rs`**: 4パスアーキテクチャの第二パス（トークンからASTへの変換）のユニットテストです。
-- **`tests/test_pass3.rs`**: 4パスアーキテクチャの第三パス（ASTからMIDIイベント生成）のユニットテストです。
-- **`tests/test_pass4.rs`**: 4パスアーキテクチャの第四パス（MIDIイベントからSMF作成）のユニットテストです。
-- **`tests/test_program_change.rs`**: プログラムチェンジ（音色変更）コマンドのテストです。
-- **`tests/test_rest.rs`**: 休符（`r`）の解釈とMIDI変換のテストです。
-- **`tests/test_tempo.rs`**: テンポ指定（`t`）コマンドのテストです。
-- **`tests/test_velocity.rs`**: ベロシティ（音の強さ、`v`）指定コマンドのテストです。
-- **`tree-sitter-mml/grammar.js`**: `tree-sitter`パーサーのMML文法定義ファイルです。このファイルからC言語のパーサーが生成されます。
-- **`tree-sitter-mml/package.json`**: `tree-sitter-mml`パーサーのNode.js依存関係を定義します。
-- **`tree-sitter-mml/src/grammar.json`**: `grammar.js`から生成されるMML文法のJSON表現です。
-- **`tree-sitter-mml/src/node-types.json`**: `grammar.js`から生成されるASTノードタイプのJSON表現です。
-- **`tree-sitter-mml/src/parser.c`**: `grammar.js`から自動生成されたMMLパーサーのC言語ソースコードです。
-- **`tree-sitter-mml/src/tree_sitter/`**: `tree-sitter`のC言語ランタイムに必要なヘッダーファイルが含まれています。
-- **`tree-sitter-mml/tree-sitter-mml.wasm`**: `tree-sitter-mml`パーサーのWebAssemblyバイナリファイルで、ブラウザ環境での利用を可能にします。
+-   `.editorconfig`: 異なるエディタやIDE間で一貫したコーディングスタイルを維持するための設定ファイル。
+-   `.gitignore`: Gitによってバージョン管理から除外されるファイルやディレクトリを指定するファイル。
+-   `.vscode/settings.json`: Visual Studio Codeエディタのワークスペース固有の設定を定義するファイル。
+-   `Cargo.lock`: Rustプロジェクトの依存関係の正確なバージョンを記録し、再現可能なビルドを保証するファイル。
+-   `Cargo.toml`: Rustプロジェクトの主要なマニフェストファイル。プロジェクト名、バージョン、依存関係、ビルド設定などを定義する。
+-   `IMPLEMENTATION_REPORT.md`: プロジェクトの実装に関する詳細な報告やメモが記述されたMarkdownファイル。
+-   `LICENSE`: プロジェクトの配布および使用に関するライセンス情報 (MIT License)。
+-   `OPTION_A_IMPLEMENTATION.md`: 特定の実装オプションAに関する設計や詳細が記述されたMarkdownファイル。
+-   `README.ja.md`: プロジェクトの日本語版の概要、インストール方法、使用方法、開発状況などが記載された説明ファイル。
+-   `README.md`: プロジェクトの英語版の概要、インストール方法、使用方法、開発状況などが記載された説明ファイル。
+-   `_config.yml`: (もし存在すれば) Jekyllなどの静的サイトジェネレータの設定ファイルである可能性が高い。
+-   `build.rs`: Rustのカスタムビルドスクリプト。主にtree-sitterパーサー関連のC言語ファイルの再生成ロジックが含まれる。
+-   `mmlabc-to-smf-rust.toml.example`: カスタムMIDIプレイヤーの選択など、プロジェクトの動作設定の例を示すTOML形式の設定ファイル。
+-   `mmlabc-to-smf-wasm/Cargo.lock`: WASMラッパーの依存関係の正確なバージョンを記録するファイル。
+-   `mmlabc-to-smf-wasm/Cargo.toml`: WASMラッパーのRustプロジェクトマニフェスト。
+-   `mmlabc-to-smf-wasm/src/lib.rs`: Rustで書かれたMMLからSMFへの変換ロジックをWebAssemblyとして公開するためのライブラリエントリポイント。
+-   `mmlabc-to-smf-wasm/src/token_extractor.rs`: WASM環境でMMLからトークンを抽出する機能に関連するコード。
+-   `package.json`: JavaScript/TypeScriptプロジェクトのメタデータと依存関係を定義するファイル。主に`demo`ディレクトリで使用される。
+-   `scripts/README.md`: `scripts`ディレクトリ内のスクリプトに関する説明ファイル。
+-   `scripts/build-demo.sh`: デモアプリケーションをビルドするためのシェルスクリプト。
+-   `scripts/transform-demo-paths.sh`: デモ内のファイルパスなどを変換・調整するためのシェルスクリプト。
+-   `src/attachment_json.rs`: 中間パスのデバッグ情報などをJSON形式で出力するための機能を提供するRustモジュール。
+-   `src/config.rs`: プロジェクトの設定（例: 外部MIDIプレイヤーの指定）を管理するRustモジュール。
+-   `src/lib.rs`: `mmlabc-to-smf-rust` クレートの主要なライブラリエントリポイント。MMLからSMFへの変換機能を提供する。
+-   `src/main.rs`: コマンドラインインターフェース (CLI) のエントリポイント。MML文字列を引数として受け取り、変換処理を実行する。
+-   `src/mml_preprocessor.rs`: MML文字列の解析前に、特定の変換や整形を行う前処理ロジックを含むRustモジュール。
+-   `src/pass1_parser.rs`: MML文字列をtree-sitterを用いて構文解析し、トークンストリームを生成する「パス1」のRust実装。
+-   `src/pass2_ast.rs`: パス1で生成されたトークンストリームから抽象構文木 (AST) を構築する「パス2」のRust実装。
+-   `src/pass3_events.rs`: パス2で生成されたASTを基にMIDIイベント（ノートオン/オフなど）を生成する「パス3」のRust実装。
+-   `src/pass4_midi.rs`: パス3で生成されたMIDIイベントリストから最終的なStandard MIDI Fileのバイナリデータを作成する「パス4」のRust実装。
+-   `src/tree_sitter_mml.rs`: Rustコードとtree-sitterで生成されたMMLパーサーとの連携を担うモジュール。
+-   `src/types.rs`: プロジェクト全体で共有されるデータ構造や型定義を格納するRustモジュール。
+-   `tests/integration_test.rs`: プロジェクト全体のMMLからSMFへの変換フローを検証する統合テストスイート。
+-   `tests/test_attachment_json.rs`: `attachment_json`モジュールのテストケース。
+-   `tests/test_c1_vs_c64.rs`: 特定のMIDIノート番号の範囲や挙動に関するテストケース。
+-   `tests/test_channel.rs`: MMLの多チャンネル分離機能のテストケース。
+-   `tests/test_chord.rs`: 和音のMML記法とMIDI変換に関するテストケース。
+-   `tests/test_cli.rs`: コマンドラインインターフェースの引数処理や実行に関するテストケース。
+-   `tests/test_config.rs`: 設定ファイル (`mmlabc-to-smf-rust.toml`) の読み込みと反映に関するテストケース。
+-   `tests/test_dotted_notes.rs`: 付点音符のMML記法と音長計算に関するテストケース。
+-   `tests/test_drum_channel.rs`: ドラムチャンネルのMML記法とMIDI変換に関するテストケース。
+-   `tests/test_key_transpose.rs`: キーの移調コマンドの機能テストケース。
+-   `tests/test_length.rs`: 音長指定コマンド (`l`) の機能テストケース。
+-   `tests/test_modifier.rs`: 音符の修飾子（例:シャープ、フラット）に関するテストケース。
+-   `tests/test_note_length.rs`: 音符の基本的な長さ表現に関するテストケース。
+-   `tests/test_octave.rs`: オクターブ変更コマンド (`o`, `>`, `<`) の機能テストケース。
+-   `tests/test_pass1.rs`: `pass1_parser`モジュールのユニットテスト。
+-   `tests/test_pass2.rs`: `pass2_ast`モジュールのユニットテスト。
+-   `tests/test_pass3.rs`: `pass3_events`モジュールのユニットテスト。
+-   `tests/test_pass4.rs`: `pass4_midi`モジュールのユニットテスト。
+-   `tests/test_program_change.rs`: プログラムチェンジ（音色変更）コマンドに関するテストケース。
+-   `tests/test_rest.rs`: 休符 (`r`) のMML記法とMIDI変換に関するテストケース。
+-   `tests/test_tempo.rs`: テンポ変更コマンド (`t`) の機能テストケース。
+-   `tests/test_velocity.rs`: 音量 (ベロシティ) 制御コマンド (`v`) の機能テストケース。
+-   `tree-sitter-mml/grammar.js`: MML言語のtree-sitterパーサーを定義するJavaScriptファイル。
+-   `tree-sitter-mml/package.json`: `tree-sitter-mml`パーサーのNode.jsパッケージ設定ファイル。
+-   `tree-sitter-mml/src/grammar.json`: `grammar.js`から生成されたMML文法のJSON表現。
+-   `tree-sitter-mml/src/node-types.json`: `grammar.js`から生成されたMMLのASTノード型定義。
+-   `tree-sitter-mml/src/parser.c`: `grammar.js`から生成されたC言語のMMLパーサーソースコード。
+-   `tree-sitter-mml/src/tree_sitter/alloc.h`: tree-sitterパーサーが使用するメモリ割り当てに関するCヘッダーファイル。
+-   `tree-sitter-mml/src/tree_sitter/array.h`: tree-sitterパーサーが使用する動的配列に関するCヘッダーファイル。
+-   `tree-sitter-mml/src/tree_sitter/parser.h`: tree-sitterパーサーの主要なCヘッダーファイル。
+-   `tree-sitter-mml/tree-sitter-mml.wasm`: MMLパーサーのWebAssemblyバイナリファイル。
+-   `demo/.gitignore`: デモアプリケーション用のGit追跡除外設定。
+-   `demo/FEATURES.md`: デモアプリケーションの機能に関するドキュメント。
+-   `demo/README.md`: デモアプリケーションのREADMEファイル。
+-   `demo/index.html`: デモアプリケーションのメインHTMLファイル。
+-   `demo/package.json`: デモアプリケーションのNode.jsパッケージ設定ファイル。
+-   `demo/src/audioPlayback.ts`: デモのオーディオ再生ロジックをTypeScriptで実装。
+-   `demo/src/audioRenderer.ts`: デモのオーディオ波形レンダリングと可視化ロジックをTypeScriptで実装。
+-   `demo/src/main.ts`: デモアプリケーションの主要な初期化およびイベントハンドリングロジック。
+-   `demo/src/midiReader.ts`: MIDIファイルの内容を読み込み、解析するためのTypeScriptクラス。
+-   `demo/src/mmlConverter.ts`: WASMモジュールを呼び出してMMLからSMFへの変換を orchestrate するTypeScriptファイル。
+-   `demo/src/parseMidiNotes.ts`: MIDIデータからノートイベントを抽出し、時間情報と共に解析するTypeScript関数。
+-   `demo/src/smfToYm2151.ts`: Standard MIDI FileデータからYM2151ログ形式への変換をWASMを介して行うTypeScriptラッパー。
+-   `demo/src/state.ts`: デモアプリケーションのグローバルな状態を管理するTypeScriptファイル。
+-   `demo/src/treeToJSON.ts`: tree-sitterによって生成された構文木 (AST) をJSON形式に変換するTypeScript関数。
+-   `demo/src/ui.ts`: デモのユーザーインターフェース (UI) 要素の操作や表示更新を担当するTypeScriptファイル。
+-   `demo/src/visualization.ts`: 音源の波形データなどを視覚的に描画する機能を提供するTypeScriptファイル。
+-   `demo/src/wavExport.ts`: 生成されたオーディオデータをWAVファイルとしてエクスポートする機能を提供するTypeScriptファイル。
+-   `demo/test-loader.mjs`: Node.jsのテストランナーで使用されるESモジュールローダー。
+-   `demo/test-register.mjs`: Node.jsのテストランナーでテストを登録するためのESモジュール。
+-   `demo/tests/audioBufferToWav.test.ts`: `wavExport.ts`の`audioBufferToWav`関数に対するテストケース。
+-   `demo/tests/midiReader.test.ts`: `midiReader.ts`モジュールに対するテストケース。
+-   `demo/tests/parseMidiNotes.test.ts`: `parseMidiNotes.ts`関数に対するテストケース。
+-   `demo/tests/treeToJSON.test.ts`: `treeToJSON.ts`関数に対するテストケース。
+-   `demo-library/index.html`: ライブラリ利用例を示すHTMLデモファイル。
+-   `demo-library/package.json`: ライブラリデモのNode.jsパッケージ設定ファイル。
+-   `generated-docs/development-status-generated-prompt.md`: 自動生成された開発状況に関するドキュメント。
+-   `googled947dc864c270e07.html`: Googleサイト認証ファイル。
+-   `issue-notes/103.md`: Issue #103に関する開発メモ。
+-   `issue-notes/123.md`: Issue #123に関する開発メモ。
+-   `issue-notes/129.md`: Issue #129に関する開発メモ。
+-   `issue-notes/39.md`: Issue #39に関する開発メモ。
+-   `issue-notes/44.md`: Issue #44に関する開発メモ。
 
 ## 関数詳細説明
-- `playAudio()`: デモアプリケーションで、生成されたMIDIデータに基づいて音源を再生開始します。引数はありません。
-- `stopAudio()`: 現在再生中の音源を停止します。引数はありません。
-- `waitForWebYm2151()`: WebMidi APIを利用してYM2151エミュレータの初期化を待ち、オーディオレンダリングの準備をします。引数はありません。
-- `calculateDuration()`: MIDIデータから曲の総演奏時間を計算します。引数はありません。
-- `renderWaveformAndAudio()`: 生成されたYM2151ログデータから波形をレンダリングし、最終的なオーディオデータを生成します。引数はありません。
-- `check()`: （デモアプリケーションの内部的な状態や条件を）チェックする関数です。具体的な引数と戻り値は提供されていません。
-- `initialize()`: デモアプリケーションの起動時に必要な初期設定（Tree-sitterパーサーのロード、WASMモジュールの初期化、UI要素のイベントリスナー設定など）を実行します。引数はありません。
-- `convertMML()`: MML文字列を受け取り、WebAssemblyモジュールを介してStandard MIDI File (SMF) 形式に変換します。引数: `mml_string: string` (MML文字列)。戻り値: `Promise<Uint8Array>` (SMFバイナリデータ) またはエラー。
-- `parseMidiNotes()`: MIDIファイルバイナリデータから、各音符の開始時刻、終了時刻、ピッチ、ベロシティなどの詳細情報を解析し、構造化されたデータとして返します。引数: `midi_data: Uint8Array` (MIDIファイルバイナリデータ)。戻り値: `NoteEvent[]` (音符イベントの配列)。
-- `deltaTicksToSeconds()`: MIDIファイル内で使用されるデルタティック値（相対時間単位）を実際の秒数に変換します。引数: `delta_ticks: number`, `ticks_per_beat: number`, `tempo: number`。戻り値: `number` (秒数)。
-- `writeString()`: WAVファイルヘッダの特定の位置に文字列（例: "RIFF", "WAVE"）を書き込みます。引数: `view: DataView`, `offset: number`, `s: string`。戻り値: なし。
-- `audioBufferToWav()`: Web Audio APIの`AudioBuffer`オブジェクトを標準的なWAVファイル形式のバイナリデータに変換します。引数: `audio_buffer: AudioBuffer`。戻り値: `ArrayBuffer` (WAVファイルバイナリ)。
-- `exportWav()`: 指定されたAudioBufferをWAVファイルとしてブラウザからダウンロード可能にします。引数: `audio_buffer: AudioBuffer`。戻り値: なし。
-- `ensureInitialized()`: YM2151ログ変換のWebAssemblyモジュールがロードされ、初期化されていることを確認します。未初期化の場合はロードをトリガーします。引数はありません。
-- `smfToYM2151Json()`: Standard MIDI File (SMF) データを受け取り、それをYM2151という音源チップ用の操作ログを表すJSON形式に変換します。引数: `smf_data: Uint8Array` (SMFバイナリデータ)。戻り値: `string` (YM2151ログJSON文字列)。
-- `drawWaveform()`: 指定されたオーディオデータに基づいて、Canvas上に波形を視覚的に描画します。引数: `context: CanvasRenderingContext2D`, `data: Float32Array`。戻り値: なし。
-- `visualizeRealtime()`: リアルタイムで再生されるオーディオの波形を視覚化します。引数: `analyser_node: AnalyserNode`, `canvas_context: CanvasRenderingContext2D`, `buffer_length: number`, `data_array: Uint8Array`。戻り値: なし。
-- `draw()`: （視覚化関連の）描画処理を行います。具体的な引数と戻り値は提供されていません。
-- `treeToJSON()`: Tree-sitterで生成された構文木（Nodeオブジェクト）を再帰的に走査し、JSON形式のオブジェクトとして表現します。引数: `node: any` (Tree-sitterのNodeオブジェクト)。戻り値: `object` (JSON表現のAST)。
-- `showStatus()`: デモアプリケーションのUI上にユーザー向けの状態メッセージを表示します。引数: `message: string`。戻り値: なし。
-- `loadExample()`: デモ用のMMLサンプルコードをテキストエリアにロードします。引数はありません。
-- `mockAudioBuffer()`: テストの目的で、Web Audio APIのAudioBufferオブジェクトを模擬したオブジェクトを作成します。引数: `channels: number`, `length: number`, `sample_rate: number`, `data: number[][]`。戻り値: `AudioBuffer`のモックオブジェクト。
-- `buildSmf()`: テストの目的で、簡素なStandard MIDI File (SMF) バイナリデータを構築します。引数: `notes: {note: number, start: number, duration: number}[]` (音符イベントの配列)。戻り値: `Uint8Array` (SMFバイナリデータ)。
-- `mockNode()`: テストの目的で、Tree-sitterのNodeオブジェクトを模擬したオブジェクトを作成します。引数: `type: string`, `children: any[]`。戻り値: `Node`のモックオブジェクト。
+-   `playAudio()` (demo/src/audioPlayback.ts):
+    -   役割: 指定されたMIDIイベント配列を再生開始する。
+    -   引数: MIDIイベント配列、オーディオコンテキスト、MIDIプレイヤー設定。
+    -   戻り値: なし。
+    -   機能: Tone.jsを使用してMIDIイベントをオーディオに変換し、再生を開始します。
+-   `stopAudio()` (demo/src/audioPlayback.ts):
+    -   役割: 現在再生中のオーディオを停止する。
+    -   引数: なし。
+    -   戻り値: なし。
+    -   機能: Tone.jsのトランスポートを停止し、関連するUI要素をリセットします。
+-   `if` (demo/src/audioPlayback.ts, demo/src/audioRenderer.ts, demo/src/main.ts, demo/src/midiReader.ts, demo/src/mmlConverter.ts, demo/src/parseMidiNotes.ts, demo/src/smfToYm2151.ts, demo/src/treeToJSON.ts, demo/src/wavExport.ts):
+    -   役割: 条件分岐を制御する言語構文。
+    -   引数: 条件式。
+    -   戻り値: なし。
+    -   機能: 特定の条件が真の場合にコードブロックを実行します。
+-   `catch` (demo/src/audioPlayback.ts, demo/src/audioRenderer.ts, demo/src/main.ts, demo/src/mmlConverter.ts, demo/src/parseMidiNotes.ts, demo/src/wavExport.ts):
+    -   役割: エラー処理を捕捉する言語構文。
+    -   引数: エラーオブジェクト。
+    -   戻り値: なし。
+    -   機能: `try`ブロック内で発生した例外を捕捉し、指定されたエラーハンドリングコードを実行します。
+-   `waitForWebYm2151()` (demo/src/audioRenderer.ts):
+    -   役割: Web YM2151が初期化されるのを待機する。
+    -   引数: なし。
+    -   戻り値: Promise<void>。
+    -   機能: WebAssemblyモジュールのロード完了を待機し、初期化が完了したことを確認します。
+-   `calculateDuration()` (demo/src/audioRenderer.ts):
+    -   役割: MIDIイベントの総再生時間を計算する。
+    -   引数: MIDIイベント配列。
+    -   戻り値: number (秒)。
+    -   機能: MIDIイベントの時間情報から楽曲全体の長さを算出します。
+-   `renderWaveformAndAudio()` (demo/src/audioRenderer.ts):
+    -   役割: 波形をレンダリングし、オーディオを生成する。
+    -   引数: SMFデータ、オーディオコンテキスト、キャンバス要素。
+    -   戻り値: Promise<AudioBuffer>。
+    -   機能: SMFデータを基にYM2151サウンドを生成し、その波形をキャンバスに描画、オーディオバッファを返します。
+-   `check()` (demo/src/audioRenderer.ts):
+    -   役割: 内部的に状態や条件をチェックする。
+    -   引数: 不明。
+    -   戻り値: 不明。
+    -   機能: プログラムの進行に必要な内部的な条件を確認します。
+-   `for` (demo/src/audioRenderer.ts, demo/src/treeToJSON.ts, demo/src/visualization.ts, demo/src/wavExport.ts, demo/tests/audioBufferToWav.test.ts, demo/tests/parseMidiNotes.test.ts):
+    -   役割: 繰り返し処理を制御する言語構文。
+    -   引数: ループ条件。
+    -   戻り値: なし。
+    -   機能: 特定の回数または条件が満たされるまでコードブロックを繰り返し実行します。
+-   `initialize()` (demo/src/main.ts):
+    -   役割: デモアプリケーション全体の初期化を行う。
+    -   引数: なし。
+    -   戻り値: なし。
+    -   機能: tree-sitterおよびWASMモジュールのロード、UI要素のセットアップ、イベントリスナーの登録を行います。
+-   `convertMML()` (demo/src/mmlConverter.ts):
+    -   役割: MML文字列をStandard MIDI File (SMF) データに変換する。
+    -   引数: MML文字列。
+    -   戻り値: Promise<Uint8Array> (SMFバイナリデータ)。
+    -   機能: WASMラッパーを介してRustコアライブラリを呼び出し、MMLをSMFに変換します。
+-   `smfToYM2151Json()` (demo/src/smfToYm2151.ts):
+    -   役割: SMFデータをYM2151ログ形式のJSONに変換する。
+    -   引数: SMFバイナリデータ。
+    -   戻り値: Promise<any> (YM2151ログJSON)。
+    -   機能: `smf-to-ym2151log-wasm` WASMモジュールを利用してSMFをYM2151の内部ログ形式に変換します。
+-   `treeToJSON()` (demo/src/treeToJSON.ts):
+    -   役割: tree-sitterの構文木 (AST) をJSON形式で表現する。
+    -   引数: tree-sitterのNodeオブジェクト。
+    -   戻り値: JSONオブジェクト。
+    -   機能: ASTをデバッグや表示に適した構造化されたJSONデータに変換します。
+-   `loadExample()` (demo/src/ui.ts):
+    -   役割: プリセットのMML例をロードし、エディタに表示する。
+    -   引数: MML文字列。
+    -   戻り値: なし。
+    -   機能: 指定されたMML文字列をUIのエディタに設定し、変換処理をトリガーします。
+-   `constructor()` (demo/src/midiReader.ts):
+    -   役割: MIDIファイルリーダーのインスタンスを初期化する。
+    -   引数: Uint8Array (MIDIバイナリデータ)。
+    -   戻り値: MidiReaderオブジェクト。
+    -   機能: 提供されたMIDIバイナリデータを内部で保持し、解析の準備をします。
+-   `parseMidiNotes()` (demo/src/parseMidiNotes.ts):
+    -   役割: MIDIファイルからノートイベントを抽出し、時間情報に変換する。
+    -   引数: MIDIバイナリデータ。
+    -   戻り値: { notes: Array, duration: number }。
+    -   機能: MIDIファイルを解析し、演奏可能なノートイベントのリストと全体の長さを返します。
+-   `deltaTicksToSeconds()` (demo/src/parseMidiNotes.ts):
+    -   役割: MIDIのデルタティックを秒単位の時間に変換する。
+    -   引数: デルタティック、テンポ、ティックあたりの分解能。
+    -   戻り値: number (秒)。
+    -   機能: MIDIファイルの内部時間単位を実際の再生時間（秒）に変換します。
+-   `writeString()` (demo/src/wavExport.ts):
+    -   役割: DataViewに文字列を書き込む。
+    -   引数: DataViewオブジェクト、オフセット、文字列。
+    -   戻り値: なし。
+    -   機能: 指定されたオフセットからDataViewにASCII文字列を書き込みます。
+-   `audioBufferToWav()` (demo/src/wavExport.ts):
+    -   役割: AudioBufferをWAV形式のバイナリデータに変換する。
+    -   引数: AudioBufferオブジェクト。
+    -   戻り値: Blobオブジェクト (WAVファイル)。
+    -   機能: Web Audio APIのAudioBufferから標準的なWAVファイル形式を生成します。
+-   `exportWav()` (demo/src/wavExport.ts):
+    -   役割: 生成されたオーディオバッファをWAVファイルとしてダウンロードする。
+    -   引数: AudioBufferオブジェクト。
+    -   戻り値: なし。
+    -   機能: `audioBufferToWav`を呼び出し、その結果をユーザーのブラウザにダウンロードさせます。
+-   `ensureInitialized()` (demo/src/smfToYm2151.ts):
+    -   役割: `smf-to-ym2151log-wasm`モジュールがロードされていることを保証する。
+    -   引数: なし。
+    -   戻り値: Promise<void>。
+    -   機能: WASMモジュールの非同期ロード処理を管理し、利用可能な状態であることを確認します。
+-   `mockAudioBuffer()` (demo/tests/audioBufferToWav.test.ts):
+    -   役割: テスト用のダミーAudioBufferオブジェクトを作成する。
+    -   引数: channels、length、sampleRate。
+    -   戻り値: MockAudioBufferオブジェクト。
+    -   機能: `audioBufferToWav`関数のテストに必要なAudioBufferのモックを生成します。
+-   `buildSmf()` (demo/tests/parseMidiNotes.test.ts):
+    -   役割: テスト用のSMFバイナリデータを構築する。
+    -   引数: MIDIイベントデータ。
+    -   戻り値: Uint8Array (SMFバイナリデータ)。
+    -   機能: テストケースでMIDIイベントをシミュレートするために、簡易なSMF構造を作成します。
+-   `while` (demo/src/midiReader.ts, demo/src/parseMidiNotes.ts, demo/tests/parseMidiNotes.test.ts):
+    -   役割: 条件が真である間、繰り返し処理を実行する言語構文。
+    -   引数: 条件式。
+    -   戻り値: なし。
+    -   機能: 特定の条件が満たされている限り、コードブロックを繰り返し実行します。
+-   `mockNode()` (demo/tests/treeToJSON.test.ts):
+    -   役割: tree-sitterのNodeオブジェクトのモックを作成する。
+    -   引数: type、children配列。
+    -   戻り値: MockNodeオブジェクト。
+    -   機能: `treeToJSON`関数のテストに必要なtree-sitter Nodeのモックを生成します。
+-   `showStatus()` (demo/src/ui.ts):
+    -   役割: UI上にステータスメッセージを表示する。
+    -   引数: statusText (文字列), isError (ブーリアン)。
+    -   戻り値: なし。
+    -   機能: ユーザーに対して現在の処理状況やエラーメッセージを視覚的に通知します。
+-   `drawWaveform()` (demo/src/visualization.ts):
+    -   役割: オーディオ波形をキャンバスに描画する。
+    -   引数: AudioBufferオブジェクト, CanvasRenderingContext2Dオブジェクト。
+    -   戻り値: なし。
+    -   機能: 提供されたAudioBufferのデータを視覚的に表現する波形をキャンバス上に描画します。
 
 ## 関数呼び出し階層ツリー
 ```
-- initialize()
-    - convertMML()
-        - smfToYM2151Json()
-        - treeToJSON()
-    - loadExample()
-- playAudio()
-    - stopAudio()
-        - showStatus()
-        - visualizeRealtime()
-- waitForWebYm2151()
-    - calculateDuration()
-        - renderWaveformAndAudio()
-        - drawWaveform()
-- parseMidiNotes()
-    - deltaTicksToSeconds()
-- exportWav()
-    - writeString()
-        - audioBufferToWav()
-- mockAudioBuffer()
-- buildSmf()
-- mockNode()
+- if (demo/src/audioPlayback.ts)
+  - playAudio (demo/src/audioPlayback.ts)
+    - stopAudio (demo/src/audioPlayback.ts)
+      - showStatus (demo/src/ui.ts)
+- waitForWebYm2151 (demo/src/audioRenderer.ts)
+  - calculateDuration (demo/src/audioRenderer.ts)
+    - renderWaveformAndAudio (demo/src/audioRenderer.ts)
+    - check (demo/src/audioRenderer.ts)
+    - drawWaveform (demo/src/visualization.ts)
+- initialize (demo/src/main.ts)
+  - convertMML (demo/src/mmlConverter.ts)
+    - smfToYM2151Json (demo/src/smfToYm2151.ts)
+    - treeToJSON (demo/src/treeToJSON.ts)
+  - loadExample (demo/src/ui.ts)
+- constructor (demo/src/midiReader.ts)
+- parseMidiNotes (demo/src/parseMidiNotes.ts)
+  - deltaTicksToSeconds (demo/src/parseMidiNotes.ts)
+- catch (demo/src/audioPlayback.ts)
+  - writeString (demo/src/wavExport.ts)
+    - audioBufferToWav (demo/src/wavExport.ts)
+    - exportWav (demo/src/wavExport.ts)
+- ensureInitialized (demo/src/smfToYm2151.ts)
+- for (demo/src/audioRenderer.ts)
+- mockAudioBuffer (demo/tests/audioBufferToWav.test.ts)
+- buildSmf (demo/tests/parseMidiNotes.test.ts)
+- while (demo/src/parseMidiNotes.ts)
+- mockNode (demo/tests/treeToJSON.test.ts)
 
 ---
-Generated at: 2026-03-17 07:13:12 JST
+Generated at: 2026-03-19 07:11:00 JST

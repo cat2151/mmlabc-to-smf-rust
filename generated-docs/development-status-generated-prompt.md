@@ -1,4 +1,4 @@
-Last updated: 2026-03-17
+Last updated: 2026-03-19
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -254,8 +254,8 @@ Last updated: 2026-03-17
 - demo-library/package.json
 - googled947dc864c270e07.html
 - issue-notes/103.md
-- issue-notes/121.md
 - issue-notes/123.md
+- issue-notes/129.md
 - issue-notes/39.md
 - issue-notes/44.md
 - mmlabc-to-smf-rust.toml.example
@@ -318,16 +318,16 @@ Last updated: 2026-03-17
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-60db802 Merge pull request #124 from cat2151/copilot/fix-layout-issues
-ac3dc6e feat: pending play mechanism for auto-play guard
-42157bf fix: address PR review comments
-c640811 fix: layout adjustments per issue #123
-7527c86 Initial plan
-76b297f Update project summaries (overview & development status) [auto]
-9c077a5 Merge pull request #122 from cat2151/copilot/fix-kt-command-on-demo
-fd04470 Add unit tests for key_transpose token extraction in WASM lib
-3c38399 Fix kt command not working in demo: add key_transpose handler to token_extractor
-8fb0b95 Update issue notes for layout fixes in demo
+b09033c Merge pull request #130 from cat2151/copilot/fix-waveform-visualizer-quality
+00361ba Remove FFT/realtime visualizers; fix generated waveform display with per-pixel min/max
+20a2728 Add issue note for #129 [auto]
+048ad92 Initial plan
+80c6652 Merge pull request #128 from cat2151/copilot/investigate-fft-output-quality
+df87923 fix: improve FFT viewer quality by increasing FFT size to 4096 and aggregating bins per pixel
+de819b1 Initial plan
+d2f00dc Add issue note for #127 [auto]
+7d52c7b Add issue note for #125 [auto]
+ac95912 Update project summaries (overview & development status) [auto]
 
 ### 変更されたファイル:
 demo/index.html
@@ -339,12 +339,9 @@ generated-docs/development-status-generated-prompt.md
 generated-docs/development-status.md
 generated-docs/project-overview-generated-prompt.md
 generated-docs/project-overview.md
-issue-notes/117.md
 issue-notes/121.md
-issue-notes/123.md
-mmlabc-to-smf-wasm/src/lib.rs
-mmlabc-to-smf-wasm/src/token_extractor.rs
+issue-notes/129.md
 
 
 ---
-Generated at: 2026-03-17 07:11:57 JST
+Generated at: 2026-03-19 07:10:02 JST
