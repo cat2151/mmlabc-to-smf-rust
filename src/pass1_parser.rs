@@ -120,6 +120,26 @@ fn extract_tokens(
                         note_length,
                         dots,
                     });
+                } else if child_node.kind() == "octave_up" {
+                    tokens.push(Token {
+                        token_type: "octave_up".to_string(),
+                        value: "<".to_string(),
+                        channel_group,
+                        chord_id: Some(current_chord_id),
+                        modifier: None,
+                        note_length: None,
+                        dots: None,
+                    });
+                } else if child_node.kind() == "octave_down" {
+                    tokens.push(Token {
+                        token_type: "octave_down".to_string(),
+                        value: ">".to_string(),
+                        channel_group,
+                        chord_id: Some(current_chord_id),
+                        modifier: None,
+                        note_length: None,
+                        dots: None,
+                    });
                 }
                 if !cursor.goto_next_sibling() {
                     break;

@@ -80,6 +80,14 @@
         {
           "type": "note_with_modifier",
           "named": true
+        },
+        {
+          "type": "octave_down",
+          "named": true
+        },
+        {
+          "type": "octave_up",
+          "named": true
         }
       ]
     }
