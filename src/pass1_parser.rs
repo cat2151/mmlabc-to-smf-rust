@@ -99,11 +99,12 @@ fn extract_tokens(
     let kind = node.kind();
 
     if kind == "chord" {
-        // Found a chord - increment chord_id for this chord group
-        let current_chord_id = *chord_id;
-        *chord_id += 1;
+        let mut chord_tokens = Vec::new();
+        let mut has_note = false;
 
-        // Extract all notes within the chord
+        // Extract all supported items within the chord. Tree-sitter error recovery can
+        // synthesize a note_with_modifier with a missing note; only treat the group as a
+        // chord when at least one real note was present.
         if cursor.goto_first_child() {
             loop {
                 let child_node = cursor.node();
@@ -111,31 +112,34 @@ fn extract_tokens(
                     // Extract note, modifier, length, and dots from note_with_modifier
                     let (note_value, modifier, note_length, dots) =
                         extract_note_and_modifier(cursor, source);
-                    tokens.push(Token {
-                        token_type: "note".to_string(),
-                        value: note_value,
-                        channel_group,
-                        chord_id: Some(current_chord_id),
-                        modifier,
-                        note_length,
-                        dots,
-                    });
+                    if !note_value.is_empty() {
+                        has_note = true;
+                        chord_tokens.push(Token {
+                            token_type: "note".to_string(),
+                            value: note_value,
+                            channel_group,
+                            chord_id: None,
+                            modifier,
+                            note_length,
+                            dots,
+                        });
+                    }
                 } else if child_node.kind() == "octave_up" {
-                    tokens.push(Token {
+                    chord_tokens.push(Token {
                         token_type: "octave_up".to_string(),
                         value: "<".to_string(),
                         channel_group,
-                        chord_id: Some(current_chord_id),
+                        chord_id: None,
                         modifier: None,
                         note_length: None,
                         dots: None,
                     });
                 } else if child_node.kind() == "octave_down" {
-                    tokens.push(Token {
+                    chord_tokens.push(Token {
                         token_type: "octave_down".to_string(),
                         value: ">".to_string(),
                         channel_group,
-                        chord_id: Some(current_chord_id),
+                        chord_id: None,
                         modifier: None,
                         note_length: None,
                         dots: None,
@@ -147,18 +151,30 @@ fn extract_tokens(
             }
             cursor.goto_parent();
         }
+
+        if has_note {
+            let current_chord_id = *chord_id;
+            *chord_id += 1;
+            for token in &mut chord_tokens {
+                token.chord_id = Some(current_chord_id);
+            }
+        }
+
+        tokens.extend(chord_tokens);
     } else if kind == "note_with_modifier" {
         // Extract note, modifier, length, and dots from note_with_modifier
         let (note_value, modifier, note_length, dots) = extract_note_and_modifier(cursor, source);
-        tokens.push(Token {
-            token_type: "note".to_string(),
-            value: note_value,
-            channel_group,
-            chord_id: None,
-            modifier,
-            note_length,
-            dots,
-        });
+        if !note_value.is_empty() {
+            tokens.push(Token {
+                token_type: "note".to_string(),
+                value: note_value,
+                channel_group,
+                chord_id: None,
+                modifier,
+                note_length,
+                dots,
+            });
+        }
     } else if kind == "octave_up" {
         tokens.push(Token {
             token_type: "octave_up".to_string(),

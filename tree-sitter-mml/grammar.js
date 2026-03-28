@@ -30,7 +30,13 @@ module.exports = grammar({
 
     chord: $ => seq(
       "'",
-      repeat1(choice($.note_with_modifier, $.octave_up, $.octave_down)),
+      repeat(choice($.octave_up, $.octave_down)),
+      $.note_with_modifier,
+      repeat(seq(
+        repeat(choice($.octave_up, $.octave_down)),
+        $.note_with_modifier
+      )),
+      repeat(choice($.octave_up, $.octave_down)),
       "'"
     ),
 

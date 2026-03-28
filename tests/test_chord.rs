@@ -310,6 +310,17 @@ fn test_chord_with_internal_octave_commands_tokenized() {
 }
 
 #[test]
+fn test_chord_with_leading_and_trailing_octave_commands_tokenized() {
+    let tokens = pass1_parser::parse_mml("'<c>'");
+
+    assert_eq!(tokens.len(), 3);
+    assert_eq!(tokens[0].token_type, "octave_up");
+    assert_eq!(tokens[1].token_type, "note");
+    assert_eq!(tokens[2].token_type, "octave_down");
+    assert!(tokens.iter().all(|token| token.chord_id == Some(0)));
+}
+
+#[test]
 fn test_chord_with_internal_octave_commands_affect_following_chord_notes() {
     let tokens = pass1_parser::parse_mml("'c<e>g'");
     let ast = pass2_ast::tokens_to_ast(&tokens);
@@ -319,6 +330,16 @@ fn test_chord_with_internal_octave_commands_affect_following_chord_notes() {
     assert_eq!(ast.notes[0].pitch, 60); // C4 in the default chord octave
     assert_eq!(ast.notes[1].pitch, 76); // E one octave up after <
     assert_eq!(ast.notes[2].pitch, 67); // G back to the original octave after >
+}
+
+#[test]
+fn test_octave_only_chord_syntax_is_not_treated_as_a_chord() {
+    let tokens = pass1_parser::parse_mml("'<>'");
+
+    assert_eq!(tokens.len(), 2);
+    assert_eq!(tokens[0].token_type, "octave_up");
+    assert_eq!(tokens[1].token_type, "octave_down");
+    assert!(tokens.iter().all(|token| token.chord_id.is_none()));
 }
 
 #[test]
