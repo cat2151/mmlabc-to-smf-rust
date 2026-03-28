@@ -1,4 +1,4 @@
-Last updated: 2026-03-19
+Last updated: 2026-03-29
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -109,6 +109,8 @@ Last updated: 2026-03-19
 - .github/actions-tmp/.github/workflows/call-check-large-files.yml
 - .github/actions-tmp/.github/workflows/call-daily-project-summary.yml
 - .github/actions-tmp/.github/workflows/call-issue-note.yml
+- .github/actions-tmp/.github/workflows/call-rust-fmt-commit.yml
+- .github/actions-tmp/.github/workflows/call-rust-windows-cargo-check.yml
 - .github/actions-tmp/.github/workflows/call-rust-windows-check.yml
 - .github/actions-tmp/.github/workflows/call-translate-readme.yml
 - .github/actions-tmp/.github/workflows/callgraph.yml
@@ -116,6 +118,8 @@ Last updated: 2026-03-19
 - .github/actions-tmp/.github/workflows/check-recent-human-commit.yml
 - .github/actions-tmp/.github/workflows/daily-project-summary.yml
 - .github/actions-tmp/.github/workflows/issue-note.yml
+- .github/actions-tmp/.github/workflows/rust-fmt-commit.yml
+- .github/actions-tmp/.github/workflows/rust-windows-cargo-check.yml
 - .github/actions-tmp/.github/workflows/rust-windows-check.yml
 - .github/actions-tmp/.github/workflows/translate-readme.yml
 - .github/actions-tmp/.github_automation/callgraph/codeql-queries/callgraph.ql
@@ -159,6 +163,7 @@ Last updated: 2026-03-19
 - .github/actions-tmp/.github_automation/translate/scripts/translate-readme.cjs
 - .github/actions-tmp/.gitignore
 - .github/actions-tmp/.vscode/settings.json
+- .github/actions-tmp/AGENTS.md
 - .github/actions-tmp/LICENSE
 - .github/actions-tmp/README.ja.md
 - .github/actions-tmp/README.md
@@ -199,7 +204,8 @@ Last updated: 2026-03-19
 - .github/actions-tmp/issue-notes/4.md
 - .github/actions-tmp/issue-notes/40.md
 - .github/actions-tmp/issue-notes/44.md
-- .github/actions-tmp/issue-notes/52.md
+- .github/actions-tmp/issue-notes/57.md
+- .github/actions-tmp/issue-notes/67.md
 - .github/actions-tmp/issue-notes/7.md
 - .github/actions-tmp/issue-notes/8.md
 - .github/actions-tmp/issue-notes/9.md
@@ -255,7 +261,7 @@ Last updated: 2026-03-19
 - googled947dc864c270e07.html
 - issue-notes/103.md
 - issue-notes/123.md
-- issue-notes/129.md
+- issue-notes/131.md
 - issue-notes/39.md
 - issue-notes/44.md
 - mmlabc-to-smf-rust.toml.example
@@ -318,30 +324,33 @@ Last updated: 2026-03-19
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-b09033c Merge pull request #130 from cat2151/copilot/fix-waveform-visualizer-quality
-00361ba Remove FFT/realtime visualizers; fix generated waveform display with per-pixel min/max
-20a2728 Add issue note for #129 [auto]
-048ad92 Initial plan
-80c6652 Merge pull request #128 from cat2151/copilot/investigate-fft-output-quality
-df87923 fix: improve FFT viewer quality by increasing FFT size to 4096 and aggregating bins per pixel
-de819b1 Initial plan
-d2f00dc Add issue note for #127 [auto]
-7d52c7b Add issue note for #125 [auto]
-ac95912 Update project summaries (overview & development status) [auto]
+d75e41b Merge pull request #132 from cat2151/copilot/enable-octave-up-down-in-chord-command
+34c62f8 Add instructions for pull requests and libraries
+3521021 Revise overview and update contribution guidelines
+8a73f6a fix: require at least one note in chord grammar
+d420e9d test: add regression coverage for octave commands in chords
+b6d391f Initial plan
+b00f684 Add issue note for #131 [auto]
 
 ### 変更されたファイル:
+.github/copilot-instructions.md
 demo/index.html
 demo/src/audioPlayback.ts
-demo/src/main.ts
 demo/src/state.ts
 demo/src/visualization.ts
 generated-docs/development-status-generated-prompt.md
 generated-docs/development-status.md
 generated-docs/project-overview-generated-prompt.md
 generated-docs/project-overview.md
-issue-notes/121.md
-issue-notes/129.md
+issue-notes/127.md
+issue-notes/131.md
+src/pass1_parser.rs
+tests/test_chord.rs
+tree-sitter-mml/grammar.js
+tree-sitter-mml/src/grammar.json
+tree-sitter-mml/src/node-types.json
+tree-sitter-mml/src/parser.c
 
 
 ---
-Generated at: 2026-03-19 07:10:02 JST
+Generated at: 2026-03-29 07:07:56 JST
