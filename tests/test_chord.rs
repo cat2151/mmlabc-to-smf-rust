@@ -333,6 +333,17 @@ fn test_chord_with_internal_octave_commands_affect_following_chord_notes() {
 }
 
 #[test]
+fn test_two_note_chord_with_internal_octave_command_affects_following_note() {
+    let tokens = pass1_parser::parse_mml("'c<g'");
+    let ast = pass2_ast::tokens_to_ast(&tokens);
+
+    assert_eq!(ast.notes.len(), 2);
+    assert!(ast.notes.iter().all(|note| note.chord_id == Some(0)));
+    assert_eq!(ast.notes[0].pitch, 60); // C4 in the default chord octave
+    assert_eq!(ast.notes[1].pitch, 79); // G one octave up after <
+}
+
+#[test]
 fn test_octave_only_chord_syntax_is_not_treated_as_a_chord() {
     let tokens = pass1_parser::parse_mml("'<>'");
 

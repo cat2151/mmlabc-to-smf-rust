@@ -6,6 +6,7 @@
 pub mod attachment_json;
 pub mod config;
 pub mod mml_preprocessor;
+pub mod parse_tree_tokens;
 #[cfg(feature = "cli")]
 pub mod pass1_parser;
 pub mod pass2_ast;
