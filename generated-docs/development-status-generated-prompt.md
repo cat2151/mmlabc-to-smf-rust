@@ -1,4 +1,4 @@
-Last updated: 2026-03-29
+Last updated: 2026-04-19
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -104,7 +104,8 @@ Last updated: 2026-03-29
 
 ## プロジェクトのファイル一覧
 - .editorconfig
-- .github/IMPLEMENTATION_SUMMARY.md
+- .gitattributes
+- .github/actions-tmp/.gitattributes
 - .github/actions-tmp/.github/workflows/call-callgraph.yml
 - .github/actions-tmp/.github/workflows/call-check-large-files.yml
 - .github/actions-tmp/.github/workflows/call-daily-project-summary.yml
@@ -219,15 +220,15 @@ Last updated: 2026-03-29
 - .github/workflows/call-check-large-files.yml
 - .github/workflows/call-daily-project-summary.yml
 - .github/workflows/call-issue-note.yml
+- .github/workflows/call-mmlabc-to-smf-rust-windows-cargo-check.yml
+- .github/workflows/call-rust-fmt-commit.yml
 - .github/workflows/call-translate-readme.yml
 - .github/workflows/deploy-github-pages.yml
 - .gitignore
 - .vscode/settings.json
 - Cargo.lock
 - Cargo.toml
-- IMPLEMENTATION_REPORT.md
 - LICENSE
-- OPTION_A_IMPLEMENTATION.md
 - README.ja.md
 - README.md
 - _codeql_detected_source_root
@@ -261,7 +262,7 @@ Last updated: 2026-03-29
 - googled947dc864c270e07.html
 - issue-notes/103.md
 - issue-notes/123.md
-- issue-notes/131.md
+- issue-notes/133.md
 - issue-notes/39.md
 - issue-notes/44.md
 - mmlabc-to-smf-rust.toml.example
@@ -269,6 +270,7 @@ Last updated: 2026-03-29
 - mmlabc-to-smf-wasm/Cargo.toml
 - mmlabc-to-smf-wasm/src/lib.rs
 - mmlabc-to-smf-wasm/src/token_extractor.rs
+- mmlabc-to-smf-wasm/tests/parity.rs
 - package.json
 - scripts/README.md
 - scripts/build-demo.sh
@@ -278,6 +280,7 @@ Last updated: 2026-03-29
 - src/lib.rs
 - src/main.rs
 - src/mml_preprocessor.rs
+- src/parse_tree_tokens.rs
 - src/pass1_parser.rs
 - src/pass2_ast.rs
 - src/pass3_events.rs
@@ -324,33 +327,37 @@ Last updated: 2026-03-29
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-d75e41b Merge pull request #132 from cat2151/copilot/enable-octave-up-down-in-chord-command
-34c62f8 Add instructions for pull requests and libraries
-3521021 Revise overview and update contribution guidelines
-8a73f6a fix: require at least one note in chord grammar
-d420e9d test: add regression coverage for octave commands in chords
-b6d391f Initial plan
-b00f684 Add issue note for #131 [auto]
+c6aea99 CI で Rust vs WASM 整合性testも通すようにした
+8861e01 Merge branch 'main' of github.com:cat2151/mmlabc-to-smf-rust
+2705433 CI Rust
+c0d1994 Merge pull request #136 from cat2151/copilot/fix-build-errors-github-actions
+4cf91ed fix: enable cli dependency only for wasm tests
+5173186 fix: avoid enabling cli feature in wasm build
+6393b5a Initial plan
+4d01ce4 fix: web版の和音内octaveバグを修正、そのため構成変更
+41bcfb5 agent改行破壊対策
+444437d Auto-translate README.ja.md to README.md [auto]
 
 ### 変更されたファイル:
-.github/copilot-instructions.md
-demo/index.html
-demo/src/audioPlayback.ts
-demo/src/state.ts
-demo/src/visualization.ts
-generated-docs/development-status-generated-prompt.md
-generated-docs/development-status.md
-generated-docs/project-overview-generated-prompt.md
-generated-docs/project-overview.md
-issue-notes/127.md
-issue-notes/131.md
+.gitattributes
+.github/IMPLEMENTATION_SUMMARY.md
+.github/workflows/call-mmlabc-to-smf-rust-windows-cargo-check.yml
+.github/workflows/call-rust-fmt-commit.yml
+IMPLEMENTATION_REPORT.md
+OPTION_A_IMPLEMENTATION.md
+README.ja.md
+README.md
+mmlabc-to-smf-wasm/Cargo.lock
+mmlabc-to-smf-wasm/Cargo.toml
+mmlabc-to-smf-wasm/src/token_extractor.rs
+mmlabc-to-smf-wasm/tests/parity.rs
+src/lib.rs
+src/parse_tree_tokens.rs
 src/pass1_parser.rs
 tests/test_chord.rs
-tree-sitter-mml/grammar.js
-tree-sitter-mml/src/grammar.json
-tree-sitter-mml/src/node-types.json
-tree-sitter-mml/src/parser.c
+tests/test_cli.rs
+tests/test_config.rs
 
 
 ---
-Generated at: 2026-03-29 07:07:56 JST
+Generated at: 2026-04-19 07:10:00 JST
