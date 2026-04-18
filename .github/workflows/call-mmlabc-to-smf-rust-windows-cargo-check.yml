@@ -1,5 +1,5 @@
-# 用途 : GitHub Copilot Coding AgentにRustでWindows版アプリをcodingさせたとき、Windowsランナーでcargo checkが通るかを早期検知する用
-name: Call Rust Windows Runner Cargo Check
+# 注意 : 他projectと違うので上書きしないこと（詳しくは末尾を参照）
+name: Call Windows Cargo Check for mmlabc-to-smf-rust
 
 on:
   pull_request: # メリットは最速で致命的な問題発生を検知できること。デメリットは頻繁すぎ？対策はしばらく運用して様子見
@@ -16,3 +16,10 @@ permissions:
 jobs:
   rust-windows-cargo-check:
     uses: cat2151/github-actions/.github/workflows/rust-windows-cargo-check.yml@main
+    with:
+      # この repo 固有差分:
+      # - Cargo.toml だけでは wasm crate 側のテストを拾えない
+      # - Windows runner 前提なので manifest path も Windows 形式で渡す
+      extra-test-commands: |
+        cargo test --all-targets
+        cargo test --manifest-path mmlabc-to-smf-wasm\Cargo.toml --all-targets
