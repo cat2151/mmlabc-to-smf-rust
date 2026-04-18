@@ -6,245 +6,175 @@
   <a href="https://deepwiki.com/cat2151/mmlabc-to-smf-rust"><img src="https://img.shields.io/badge/📖-DeepWiki-blue.svg" alt="DeepWiki"></a>
 </p>
 
-Music Macro Language (MML) から Standard MIDI File (SMF) への変換ライブラリ
+Music Macro Language (MML) を Standard MIDI File (SMF) に変換する Rust 製ライブラリ兼 CLI です。
 
 ## 概要
 
-このライブラリは、Music Macro Language（MML）形式の文字列を、Standard MIDI Fileに変換します。Rustで書かれています。
+- Rust ライブラリ: `mmlabc_to_smf`
+- CLI バイナリ: `mmlabc-to-smf`
+- 4 パス構成で MML を SMF に変換
+- 各パスの中間結果を JSON で出力
+- ブラウザ向けに `mmlabc-to-smf-wasm/`、動作確認用に `demo/` と `demo-library/` を同梱
 
-## 用途
+## 現在の実装状況
 
-- ライブラリとして `cat-play-mml` から利用しています。ネイティブアプリ用のRustライブラリクレート。利用方式その1。
-- ライブラリとして `smf-to-ym2151log-rust` の ブラウザdemo から利用しています。ブラウザアプリ用のWASMライブラリ。利用方式その2。
+README の内容を実装に合わせて更新しました。現在のコードベースでは、少なくとも以下が実装・テストされています。
 
-## 状況
+- 基本音符: `c d e f g a b`
+- シャープ / フラット: `+`, `-`
+- 休符: `r`
+- 音長指定: `c4`, `d8`, `l8`, `l4.`
+- 付点音符: `c4.`, `c4..`, `c1....`
+- オクターブ操作: `<`, `>`, `o4`, `o5`
+- 和音: `'ceg'`
+- 複数チャンネル: `;`
+- テンポ: `t120`
+- ベロシティ: `v1` 〜 `v15`
+- プログラムチェンジ: `@0` 〜 `@127`
+- キー移調: `kt1`, `kt-2`
+- 添付 JSON 出力: `--attachment-output`
+- MML 先頭の埋め込み添付 JSON: `[{"ProgramChange":1,"Tone":{"events":[]}}]@1cde`
+- `@128` を含むチャンネルのドラムチャンネル割当用特殊マーカー（設定で無効化可能）
 
-頻繁に破壊的変更をしています
-
-READMEがメンテ不足です。実際はもっと多数のMMLコマンドが実装済みです。あとでREADMEをメンテ予定です
-
-実装されたMMLを知りたい場合、まず [tree-sitter-mml/grammar.js](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/tree-sitter-mml/grammar.js) をお読みください（ただし今後、破壊的変更されます）
-
-### 実装済み機能 ✅
-- **基本音符変換**: `cdefgab` → MIDI音符への変換
-- **4パスアーキテクチャ**: 完全実装済み
-  - パス1: MML文字列のトークン化（tree-sitterパーサー使用）
-  - パス2: トークンからAST（抽象構文木）への変換
-  - パス3: ASTからMIDIイベントの生成
-  - パス4: MIDIイベントからStandard MIDI File作成
-- **tree-sitter統合**: MML構文解析のための完全なtree-sitterパーサー統合
-- **チャンネル機能**: セミコロン（`;`）による多チャンネル対応
-- **JSON デバッグ出力**: 各パスの中間結果をJSONで出力
-- **CLI**: コマンドライン引数による基本操作
-- **包括的テスト**: 35個のテストケースがすべて通過
-
-### 動作確認
-```bash
-# 基本音階変換
-cargo run -- "cdefgab"
-
-# 多チャンネル
-cargo run -- "c;e;g"
-
-# カスタム出力ファイル
-cargo run -- "cde" -o my_song.mid
-```
-
-## 今後の見通し
-
-### 短期目標 🚧
-- **リポジトリ設定**: フォーマッター、リンター等の設定整備
-- **エラーハンドリング**: より詳細なエラーメッセージ
-
-### 長期目標 🎯
-- **mmlabcコマンド実装**: 完全なmmlabcフォーマット対応
-  - 音長指定（4分音符、8分音符等）
-  - オクターブ指定（`>`, `<`）
-  - テンポ、音量等の制御コマンド
-  - 和音機能の拡張
-- **パフォーマンス最適化**: 大規模MMLファイルの高速処理
-
-### 参考資料
-- mmlabcについては、[mml2abc](https://github.com/cat2151/mml2abc)リポジトリを参照
-
-## 特徴
-
-- **4パスアーキテクチャ**:
-  - **パス1**: MML文字列をトークンに解析（tree-sitterパーサー使用）
-  - **パス2**: トークンを抽象構文木（AST）に変換
-  - **パス3**: ASTからMIDIイベントを生成
-  - **パス4**: Standard MIDI Fileを作成
-- **多チャンネル対応**: セミコロン（`;`）による同時発音チャンネル分離
-- **JSON デバッグ出力**: 各パスの中間結果をJSON形式で保存・確認可能
-- **包括的テスト**: ユニットテスト・統合テスト合計35個のテストケース
-- **安全な設計**: Rustの型システムと所有権モデルによるメモリ安全性
-
-## 必要要件
-
-- Rust 1.70.0以上
-- Cargo
-
-## インストール
-
-### 開発版（現在の状態）
-
-```bash
-git clone https://github.com/cat2151/mmlabc-to-smf-rust
-cd mmlabc-to-smf-rust
-cargo build --release
-```
-
-### 直接実行（Cargo経由）
-
-```bash
-cargo run -- "cdefgab"
-```
+テスト件数や一覧は `cargo test -- --list` で確認できます。
 
 ## 使い方
 
-### 基本的な使い方
+### CLI
 
 ```bash
-# 基本音階の変換（デフォルトでcat-play-mmlで自動再生されます）
-cargo run -- "cdefgab"
-
-# 多チャンネル（同時発音）
-cargo run -- "c;e;g"  # Cメジャーコード
-
-# カスタム出力ファイル
-cargo run -- "cde" -o my_song.mid
-
-# 自動再生を無効化
-cargo run -- "cde" --no-play
+cargo run -- "cdefgab" --no-play
+cargo run -- "t120 l4 c d e f" --no-play
+cargo run -- "o4 'ceg' r8 >c" --no-play
+cargo run -- "@0c;@128d;@1e" --no-play -o output.mid
 ```
 
-### 自動再生機能
+主なオプション:
 
-デフォルトでは、MIDIファイル生成後に自動的に `cat-play-mml` コマンドで再生されます。
-これによりMML開発時に即座に音を確認できます。
+- `-o, --output <PATH>`: 出力 SMF ファイル（既定値: `output.mid`）
+- `--attachment-output <PATH>`: 添付 JSON を出力
+- `--no-play`: 生成後の自動再生を無効化
 
-- 自動再生を無効化するには `--no-play` オプションを使用してください
-- `cat-play-mml` がインストールされていない場合、警告メッセージが表示されますがMIDIファイルは正常に生成されます
+デフォルトでは生成した MIDI を `cat-play-mml` で再生しようとします。設定ファイルで別のプレイヤーに変更できます。
 
-#### カスタムプレイヤーの設定
+### ライブラリ
 
-ツールを実行するディレクトリに `mmlabc-to-smf-rust.toml` ファイルを作成することで、カスタムMIDIプレイヤーを設定できます。
+公開モジュール:
 
-設定ファイルの例：
+- `attachment_json`
+- `config`
+- `mml_preprocessor`
+- `pass2_ast`
+- `pass3_events`
+- `pass4_midi`
+- `types`
+- `pass1_parser`, `tree_sitter_mml`（`cli` feature 有効時）
+
+## 対応している MML 記法
+
+| 種別 | 記法 | 例 |
+| --- | --- | --- |
+| 音符 | `cdefgab` | `cde` |
+| 修飾 | `+`, `-` | `c+ d-` |
+| 休符 | `r` | `cr8d` |
+| 音長 | 数字 / `l` | `c4`, `l8cde` |
+| 付点 | `.` | `c4.`, `l4..c` |
+| オクターブ | `<` = 1オクターブ上げる, `>` = 1オクターブ下げる, `oN` = オクターブ設定 | `o4c<d>e` |
+| 和音 | `'...'` | `'ceg'` |
+| チャンネル分割 | `;` | `c;e;g` |
+| テンポ | `tN` | `t120c` |
+| ベロシティ | `vN` | `v8cde` |
+| プログラム | `@N` | `@1c` |
+| キー移調 | `ktN`, `kt-N` | `kt2c`, `kt-1d` |
+
+補足:
+
+- デフォルト音長は `l8`（8 分音符）です。
+- `v1`〜`v15` は内部で MIDI velocity (`0`〜`127`) に変換されます。
+- `@128` は `;` で区切られたチャンネル内で使われた場合に、既定で MIDI channel 9 (0-based) に割り当てられます。
+
+## 添付 JSON
+
+`--attachment-output` を使うと、Program Change ごとの添付 JSON を出力できます。
+
+```bash
+cargo run -- "@1cde" --no-play \
+  --attachment-output attachment.json \
+  -o output.mid
+```
+
+また、MML 文字列の先頭に JSON オブジェクトまたは JSON 配列を書くと、その部分を添付 JSON として抽出して利用します。
+
+```text
+[{"ProgramChange":1,"Tone":{"events":[]}}]@1cde
+```
+
+## 設定ファイル
+
+実行ディレクトリに `mmlabc-to-smf-rust.toml` を置くと挙動を変更できます。
+
 ```toml
-# mmlabc-to-smf-rust.toml
-external_smf_player = "timidity"
+external_smf_player = "cat-play-mml"
+use_drum_channel_for_128 = true
 ```
 
-設定可能な一般的なMIDIプレイヤー：
-- `timidity` - TiMidity++ MIDIプレイヤー
-- `fluidsynth` - FluidSynthソフトウェアシンセサイザー
-- `vlc` - VLCメディアプレイヤー
-- `cat-play-mml` (デフォルト)
+- `external_smf_player`: 自動再生に使うコマンド
+- `use_drum_channel_for_128`: `@128` を含むチャンネルをドラムチャンネルに割り当てるかどうか
 
-設定ファイルが存在しない場合、デフォルトで `cat-play-mml` が使用されます。
+詳細は [`mmlabc-to-smf-rust.toml.example`](mmlabc-to-smf-rust.toml.example) を参照してください。
 
-サンプル設定ファイルは `mmlabc-to-smf-rust.toml.example` を参照してください。
+## デバッグ出力
 
-### 出力ファイル
+CLI 実行時には以下のファイルが出力されます。
 
-実行すると以下のファイルが生成されます：
-- `pass1_tokens.json` - パス1のトークン情報（デバッグ用）
-- `pass2_ast.json` - パス2のAST情報（デバッグ用）
-- `pass3_events.json` - パス3のMIDIイベント情報（デバッグ用）
-- `output.mid` - 最終的なMIDIファイル
-
-### 対応MML記法
-
-現在対応している記法：
-- **基本音符**: `c`, `d`, `e`, `f`, `g`, `a`, `b` (大文字・小文字対応)
-- **多チャンネル**: `;` でチャンネル分離（同時発音）
-
-例：
-```
-cdefgab     → ドレミファソラシの連続再生
-c;e;g       → C・E・G音の同時再生（Cメジャーコード）
-```
+- `pass1_tokens.json`
+- `pass2_ast.json`
+- `pass3_events.json`
+- `output.mid`（または `--output` で指定したファイル）
+- `--attachment-output` 指定時は添付 JSON
 
 ## 開発
 
-### ビルド
+### ビルド / テスト / Lint
 
 ```bash
-cargo build        # デバッグビルド
-cargo build --release  # リリースビルド
+cargo build
+cargo test
+cargo clippy --all-targets --all-features
+cargo fmt --check
 ```
 
-### テスト
+必要に応じて整形:
 
 ```bash
-cargo test         # 全テスト実行（35個のテストケース）
+cargo fmt
 ```
 
-### フォーマット・Lint
+### tree-sitter 文法を変更する場合
+
+`tree-sitter-mml/grammar.js` を更新したときは、生成物も合わせて更新します。
 
 ```bash
-cargo clippy       # コード品質チェック
-cargo fmt --check  # フォーマットチェック
-cargo fmt          # フォーマット適用
-```
-
-### tree-sitter パーサーファイル
-
-tree-sitter パーサーファイル（`tree-sitter-mml/src/` 配下）は、crates.io での信頼性のある配布のため、tree-sitter のベストプラクティスに従い **git で追跡されています**。
-
-**開発ワークフロー：**
-- C言語ソースファイル（`parser.c`、`grammar.json`、`node-types.json`、および `tree_sitter/` ディレクトリ）は、[grammar.js](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/tree-sitter-mml/grammar.js) が変更されたときに自動的に再生成されます
-- ビルドスクリプトがファイルの更新時刻をチェックし、必要な場合にのみ再生成します
-- **必要条件**：文法を更新する場合は、システムに Node.js と npx がインストールされている必要があります
-- 通常のビルド（文法変更なし）は、コミット済みのC言語ファイルを使用するため、Node.js なしで動作します
-
-**生成ファイルをコミットする理由**
-これは tree-sitter エコシステムのベストプラクティスに従っています：
-- crates.io からインストールするユーザーは Node.js や tree-sitter-cli を必要としません
-- 文法とパーサーのバージョンが正確に一致することを保証します
-- CI/CD とクロスプラットフォームビルドを簡素化します
-- すべての tree-sitter 言語クレートの標準的な慣行です
-
-**文法の更新：**
-[tree-sitter-mml/grammar.js](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/tree-sitter-mml/grammar.js) を変更する場合：
-1. `cargo build` を実行 - ビルドスクリプトが変更を検出し、パーサーファイルを再生成します
-2. [grammar.js](https://github.com/cat2151/mmlabc-to-smf-rust/blob/main/tree-sitter-mml/grammar.js) と再生成されたC言語ファイルの両方を一緒にコミットします
-3. これにより、文法とパーサーが同期した状態を保ちます
-
-パーサーファイルを手動で再生成する場合：
-```bash
+cargo build
+# または
 cd tree-sitter-mml
-npm install  # tree-sitter-cli がまだインストールされていない場合
+npm install
 npx tree-sitter generate
 ```
 
-### プロジェクト構造
+通常の Rust ビルドだけなら、コミット済みの生成物があるため Node.js は必須ではありません。
 
-```
-src/
-├── main.rs              # CLI エントリーポイント
-├── lib.rs               # ライブラリルート
-├── pass1_parser.rs      # パス1: トークン解析
-├── pass2_ast.rs         # パス2: AST変換
-├── pass3_events.rs      # パス3: MIDIイベント生成
-├── pass4_midi.rs        # パス4: MIDI ファイル作成
-├── tree_sitter_mml.rs   # tree-sitter MML統合
-└── types.rs             # 共通型定義
+### デモ
 
-tests/
-├── integration_test.rs  # 統合テスト
-├── test_channel.rs      # チャンネル機能テスト
-├── test_pass1.rs        # パス1テスト
-├── test_pass2.rs        # パス2テスト
-├── test_pass3.rs        # パス3テスト
-└── test_pass4.rs        # パス4テスト
-```
-
-## ライセンス
-
-MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してください。
+- `demo/`: ブラウザデモ
+- `demo-library/`: ライブラリ利用例
+- `mmlabc-to-smf-wasm/`: Web 向け WASM クレート
 
 ## 参考
 
-- オリジナルのPython実装: [cat2151/mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf)
+- mmlabc コマンド体系: [cat2151/mml2abc](https://github.com/cat2151/mml2abc)
+- オリジナル Python 実装: [cat2151/mmlabc-to-smf](https://github.com/cat2151/mmlabc-to-smf)
+
+## ライセンス
+
+MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
