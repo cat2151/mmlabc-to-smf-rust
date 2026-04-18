@@ -20,4 +20,5 @@ serde_json = "1.0"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3"
+mmlabc-to-smf = { path = "..", default-features = false, features = ["cli"] }
 tree-sitter = "0.22"
