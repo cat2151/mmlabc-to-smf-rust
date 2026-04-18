@@ -13,11 +13,12 @@ wasm-opt = false
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-mmlabc-to-smf = { path = "..", default-features = false, features = ["cli"] }
+mmlabc-to-smf = { path = "..", default-features = false }
 wasm-bindgen = "0.2"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3"
+mmlabc-to-smf = { path = "..", default-features = false, features = ["cli"] }
 tree-sitter = "0.22"
