@@ -344,6 +344,18 @@ fn test_two_note_chord_with_internal_octave_command_affects_following_note() {
 }
 
 #[test]
+fn test_trailing_chord_octave_command_does_not_affect_next_chord() {
+    let tokens = pass1_parser::parse_mml("'c<''c'");
+    let ast = pass2_ast::tokens_to_ast(&tokens);
+
+    assert_eq!(ast.notes.len(), 2);
+    assert_eq!(ast.notes[0].chord_id, Some(0));
+    assert_eq!(ast.notes[1].chord_id, Some(1));
+    assert_eq!(ast.notes[0].pitch, 60); // First C in the default chord octave
+    assert_eq!(ast.notes[1].pitch, ast.notes[0].pitch); // Next chord C stays in the same octave
+}
+
+#[test]
 fn test_octave_only_chord_syntax_is_not_treated_as_a_chord() {
     let tokens = pass1_parser::parse_mml("'<>'");
 

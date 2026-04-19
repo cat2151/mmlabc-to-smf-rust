@@ -52,6 +52,11 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     // Default transpose is 0 (no transposition)
     let mut current_transposes: HashMap<Option<usize>, i8> = HashMap::new();
 
+    // Track octave changes that happen inside a chord. Internal chord octave
+    // commands affect only later notes in the same chord and do not leak to
+    // following notes or chords.
+    let mut active_chord_octave: Option<(usize, Option<usize>, u8)> = None;
+
     // Pre-scan tokens to find each chord's explicit length/dots.
     // Per MML dialect, any one note in a chord can specify the length and dots
     // (e.g., 'c2.eg' and 'ceg2.' are equivalent); that value applies to all
@@ -72,6 +77,22 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
         std::collections::HashSet::new();
 
     for token in tokens {
+        if let Some(chord_id) = token.chord_id {
+            let should_start_chord_scope =
+                active_chord_octave
+                    .as_ref()
+                    .is_none_or(|(active_id, active_channel_group, _)| {
+                        *active_id != chord_id || *active_channel_group != token.channel_group
+                    });
+
+            if should_start_chord_scope {
+                let octave = *current_octaves.get(&token.channel_group).unwrap_or(&5);
+                active_chord_octave = Some((chord_id, token.channel_group, octave));
+            }
+        } else {
+            active_chord_octave = None;
+        }
+
         if token.token_type == "note" {
             let note_offset = note_to_offset
                 .get(token.value.as_str())
@@ -79,7 +100,14 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 .unwrap_or(0);
 
             // Get current octave for this channel (default to 5)
-            let octave = *current_octaves.get(&token.channel_group).unwrap_or(&5);
+            let octave = if token.chord_id.is_some() {
+                active_chord_octave
+                    .as_ref()
+                    .map(|(_, _, octave)| *octave)
+                    .unwrap_or(5)
+            } else {
+                *current_octaves.get(&token.channel_group).unwrap_or(&5)
+            };
 
             // Look up the chord's explicit length/dots (from whichever chord note
             // carries them).  Any note in a chord may specify the length; that
@@ -147,12 +175,24 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
             });
         } else if token.token_type == "octave_up" {
             // < means octave up
-            let octave = current_octaves.entry(token.channel_group).or_insert(5);
-            *octave = octave.saturating_add(1);
+            if token.chord_id.is_some() {
+                if let Some((_, _, octave)) = &mut active_chord_octave {
+                    *octave = octave.saturating_add(1);
+                }
+            } else {
+                let octave = current_octaves.entry(token.channel_group).or_insert(5);
+                *octave = octave.saturating_add(1);
+            }
         } else if token.token_type == "octave_down" {
             // > means octave down
-            let octave = current_octaves.entry(token.channel_group).or_insert(5);
-            *octave = octave.saturating_sub(1);
+            if token.chord_id.is_some() {
+                if let Some((_, _, octave)) = &mut active_chord_octave {
+                    *octave = octave.saturating_sub(1);
+                }
+            } else {
+                let octave = current_octaves.entry(token.channel_group).or_insert(5);
+                *octave = octave.saturating_sub(1);
+            }
         } else if token.token_type == "octave_set" {
             // o command sets absolute octave (e.g., "o5" sets octave to 5)
             if let Some(octave_str) = token.value.strip_prefix('o') {
