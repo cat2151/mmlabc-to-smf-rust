@@ -1,4 +1,4 @@
-Last updated: 2026-04-19
+Last updated: 2026-04-20
 
 
 # プロジェクト概要生成プロンプト（来訪者向け）
@@ -2148,6 +2148,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                                       🌐 index.html
                                                       📊 package.json
                                                     📁 generated-docs/
+                                                      📖 development-status-generated-prompt.md
                                                     🌐 googled947dc864c270e07.html
                                                     📁 issue-notes/
                                                       📖 103.md
@@ -2249,6 +2250,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                                     🌐 index.html
                                                     📊 package.json
                                                   📁 generated-docs/
+                                                    📖 development-status-generated-prompt.md
                                                   🌐 googled947dc864c270e07.html
                                                   📁 issue-notes/
                                                     📖 103.md
@@ -2350,6 +2352,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                                   🌐 index.html
                                                   📊 package.json
                                                 📁 generated-docs/
+                                                  📖 development-status-generated-prompt.md
                                                 🌐 googled947dc864c270e07.html
                                                 📁 issue-notes/
                                                   📖 103.md
@@ -2451,6 +2454,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                                 🌐 index.html
                                                 📊 package.json
                                               📁 generated-docs/
+                                                📖 development-status-generated-prompt.md
                                               🌐 googled947dc864c270e07.html
                                               📁 issue-notes/
                                                 📖 103.md
@@ -2552,6 +2556,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                               🌐 index.html
                                               📊 package.json
                                             📁 generated-docs/
+                                              📖 development-status-generated-prompt.md
                                             🌐 googled947dc864c270e07.html
                                             📁 issue-notes/
                                               📖 103.md
@@ -2653,6 +2658,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                             🌐 index.html
                                             📊 package.json
                                           📁 generated-docs/
+                                            📖 development-status-generated-prompt.md
                                           🌐 googled947dc864c270e07.html
                                           📁 issue-notes/
                                             📖 103.md
@@ -2754,6 +2760,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                           🌐 index.html
                                           📊 package.json
                                         📁 generated-docs/
+                                          📖 development-status-generated-prompt.md
                                         🌐 googled947dc864c270e07.html
                                         📁 issue-notes/
                                           📖 103.md
@@ -2855,6 +2862,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                         🌐 index.html
                                         📊 package.json
                                       📁 generated-docs/
+                                        📖 development-status-generated-prompt.md
                                       🌐 googled947dc864c270e07.html
                                       📁 issue-notes/
                                         📖 103.md
@@ -2956,6 +2964,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                       🌐 index.html
                                       📊 package.json
                                     📁 generated-docs/
+                                      📖 development-status-generated-prompt.md
                                     🌐 googled947dc864c270e07.html
                                     📁 issue-notes/
                                       📖 103.md
@@ -3057,6 +3066,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                     🌐 index.html
                                     📊 package.json
                                   📁 generated-docs/
+                                    📖 development-status-generated-prompt.md
                                   🌐 googled947dc864c270e07.html
                                   📁 issue-notes/
                                     📖 103.md
@@ -3158,6 +3168,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                   🌐 index.html
                                   📊 package.json
                                 📁 generated-docs/
+                                  📖 development-status-generated-prompt.md
                                 🌐 googled947dc864c270e07.html
                                 📁 issue-notes/
                                   📖 103.md
@@ -3259,6 +3270,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                                 🌐 index.html
                                 📊 package.json
                               📁 generated-docs/
+                                📖 development-status-generated-prompt.md
                               🌐 googled947dc864c270e07.html
                               📁 issue-notes/
                                 📖 103.md
@@ -3360,6 +3372,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                               🌐 index.html
                               📊 package.json
                             📁 generated-docs/
+                              📖 development-status-generated-prompt.md
                             🌐 googled947dc864c270e07.html
                             📁 issue-notes/
                               📖 103.md
@@ -3461,6 +3474,7 @@ MIT License. 詳細は [LICENSE](LICENSE) を参照してください。
                             🌐 index.html
                             📊 package.json
                           📁 generated-docs/
+                            📖 development-status-generated-prompt.md
                           🌐 googled947dc864c270e07.html
                           📁 issue-notes/
                             📖 103.md
@@ -8237,4 +8251,4 @@ googled947dc864c270e07.html
 
 
 ---
-Generated at: 2026-04-19 07:10:03 JST
+Generated at: 2026-04-20 07:10:53 JST
