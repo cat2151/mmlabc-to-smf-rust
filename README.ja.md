@@ -13,7 +13,8 @@ Music Macro Language (MML) を Standard MIDI File (SMF) に変換する Rust 製
 - Rust ライブラリ: `mmlabc_to_smf`
 - CLI バイナリ: `mmlabc-to-smf`
 - 4 パス構成で MML を SMF に変換
-- 各パスの中間結果を JSON で出力
+- ライブラリAPIでは中間ファイルを出力せず、メモリ上で SMF バイト列を生成可能
+- CLI 実行時はデバッグ用に各パスの中間結果を JSON で出力
 - ブラウザ向けに `mmlabc-to-smf-wasm/`、動作確認用に `demo/` と `demo-library/` を同梱
 
 ## 現在の実装状況
@@ -59,6 +60,25 @@ cargo run -- "@0c;@128d;@1e" --no-play -o output.mid
 
 ### ライブラリ
 
+中間 JSON ファイルを作らず、SMF バイト列だけを得るにはトップレベルAPIを使います。
+
+```toml
+mmlabc-to-smf = { git = "https://github.com/cat2151/mmlabc-to-smf-rust.git", package = "mmlabc-to-smf", default-features = false, features = ["parser"] }
+```
+
+```rust
+use mmlabc_to_smf::{mml_to_smf_bytes, raw_mml_to_smf_bytes_with_options, SmfConversionOptions};
+
+let smf_bytes = mml_to_smf_bytes("cde")?;
+
+let options = SmfConversionOptions {
+    use_drum_channel_for_128: false,
+};
+let smf_bytes = raw_mml_to_smf_bytes_with_options("@0c;@128d", options)?;
+```
+
+`mml_to_smf_bytes` は MML 先頭の埋め込み添付 JSON を取り除いてから変換します。すでにJSONを除去済みのMMLには `raw_mml_to_smf_bytes` / `raw_mml_to_smf_bytes_with_options` を使えます。
+
 公開モジュール:
 
 - `attachment_json`
@@ -68,7 +88,7 @@ cargo run -- "@0c;@128d;@1e" --no-play -o output.mid
 - `pass3_events`
 - `pass4_midi`
 - `types`
-- `pass1_parser`, `tree_sitter_mml`（`cli` feature 有効時）
+- `pass1_parser`, `tree_sitter_mml`（`parser` feature 有効時。`cli` feature は `parser` を含む）
 
 ## 対応している MML 記法
 

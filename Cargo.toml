@@ -17,7 +17,8 @@ required-features = ["cli"]
 
 [features]
 default = ["cli"]
-cli = ["tree-sitter", "clap", "cc"]
+parser = ["tree-sitter", "cc"]
+cli = ["parser", "clap"]
 
 [build-dependencies]
 cc = { version = "1.0", optional = true }

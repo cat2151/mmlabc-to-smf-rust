@@ -1,6 +1,6 @@
 fn main() {
-    // Only build tree-sitter when the cli feature is enabled
-    #[cfg(feature = "cli")]
+    // Only build tree-sitter when the parser feature is enabled
+    #[cfg(feature = "parser")]
     {
         use std::path::PathBuf;
         use std::process::Command;
