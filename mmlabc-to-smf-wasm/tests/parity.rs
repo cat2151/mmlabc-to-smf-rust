@@ -1,6 +1,6 @@
+use mmlabc_to_smf::{pass1_parser, tree_sitter_mml};
 use mmlabc_to_smf::{pass2_ast, pass3_events, pass4_midi};
 use mmlabc_to_smf_wasm::{parse_tree_to_tokens, ParseTreeNode, Position};
-use mmlabc_to_smf::{pass1_parser, tree_sitter_mml};
 use tree_sitter::{Node, Parser};
 
 const PARITY_CASES: &[&str] = &[
@@ -185,8 +185,9 @@ fn parse_tree_from_mml(mml: &str) -> ParseTreeNode {
 fn convert_node(node: Node<'_>, source: &[u8]) -> ParseTreeNode {
     let start = node.start_position();
     let end = node.end_position();
-    let children = (0..node.child_count())
-        .filter_map(|idx| node.child(idx))
+    let mut cursor = node.walk();
+    let children = node
+        .children(&mut cursor)
         .map(|child| convert_node(child, source))
         .collect::<Vec<_>>();
 

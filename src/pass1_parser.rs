@@ -33,8 +33,9 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
 }
 
 fn tree_sitter_node_to_generic(node: tree_sitter::Node<'_>, source: &[u8]) -> GenericParseTreeNode {
-    let children = (0..node.child_count())
-        .filter_map(|idx| node.child(idx))
+    let mut cursor = node.walk();
+    let children = node
+        .children(&mut cursor)
         .map(|child| tree_sitter_node_to_generic(child, source))
         .collect();
 
