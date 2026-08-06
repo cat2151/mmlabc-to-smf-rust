@@ -232,18 +232,18 @@ fn test_128_only_applies_to_its_track() {
         .collect();
 
     // Channel 0 notes (3 notes)
-    for i in 0..3 {
-        assert_eq!(note_on_events[i].channel, 0);
+    for event in note_on_events.iter().take(3) {
+        assert_eq!(event.channel, 0);
     }
 
     // Channel 1 notes (3 notes, mapped to 9)
-    for i in 3..6 {
-        assert_eq!(note_on_events[i].channel, 9);
+    for event in note_on_events.iter().skip(3).take(3) {
+        assert_eq!(event.channel, 9);
     }
 
     // Channel 2 notes (3 notes)
-    for i in 6..9 {
-        assert_eq!(note_on_events[i].channel, 2);
+    for event in note_on_events.iter().skip(6).take(3) {
+        assert_eq!(event.channel, 2);
     }
 }
 

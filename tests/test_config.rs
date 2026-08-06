@@ -21,7 +21,7 @@ fn test_cli_no_play_with_toml_config() {
     write_toml_config(dir.path(), "definitely-missing-player-command");
 
     let output = Command::new(env!("CARGO_BIN_EXE_mmlabc-to-smf"))
-        .args(&["cde", "-o", mid_path.to_str().unwrap(), "--no-play"])
+        .args(["cde", "-o", mid_path.to_str().unwrap(), "--no-play"])
         .current_dir(dir.path())
         .output()
         .expect("Failed to execute command");
@@ -42,7 +42,7 @@ fn test_cli_no_play_with_toml_config() {
 #[test]
 fn test_cli_help_mentions_toml() {
     let output = Command::new(env!("CARGO_BIN_EXE_mmlabc-to-smf"))
-        .args(&["--help"])
+        .args(["--help"])
         .output()
         .expect("Failed to execute command");
 

@@ -11,7 +11,7 @@ fn test_cli_no_play() {
     let mid_path = dir.path().join("output.mid");
 
     let output = Command::new(env!("CARGO_BIN_EXE_mmlabc-to-smf"))
-        .args(&["cde", "--no-play", "-o", mid_path.to_str().unwrap()])
+        .args(["cde", "--no-play", "-o", mid_path.to_str().unwrap()])
         .output()
         .expect("Failed to execute command");
 
@@ -27,7 +27,7 @@ fn test_cli_no_play() {
 #[test]
 fn test_cli_help_includes_no_play() {
     let output = Command::new(env!("CARGO_BIN_EXE_mmlabc-to-smf"))
-        .args(&["--help"])
+        .args(["--help"])
         .output()
         .expect("Failed to execute command");
 
@@ -46,7 +46,7 @@ fn test_cli_attachment_output() {
     let json_path = dir.path().join("attachment.json");
 
     let output = Command::new(env!("CARGO_BIN_EXE_mmlabc-to-smf"))
-        .args(&[
+        .args([
             "@1cde",
             "--no-play",
             "-o",
@@ -84,7 +84,7 @@ fn test_cli_no_attachment_output_by_default() {
     let json_path = dir.path().join("attachment.json");
 
     let output = Command::new(env!("CARGO_BIN_EXE_mmlabc-to-smf"))
-        .args(&["@1cde", "--no-play", "-o", mid_path.to_str().unwrap()])
+        .args(["@1cde", "--no-play", "-o", mid_path.to_str().unwrap()])
         .output()
         .expect("Failed to execute command");
 
