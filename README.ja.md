@@ -12,10 +12,13 @@ Music Macro Language (MML) を Standard MIDI File (SMF) に変換する Rust 製
 
 - Rust ライブラリ: `mmlabc_to_smf`
 - CLI バイナリ: `mmlabc-to-smf`
-- 4 パス構成で MML を SMF に変換
+- ブラウザ向けに `mmlabc-to-smf-wasm/`、動作確認用に `demo/` と `demo-library/` を同梱
+- 主な用途は、clap-mml-render-tui や web-ym2151 等のMMLコンパイルエンジンとして
+
+### 補足
+- MML から SMF への変換は、4 パス構成
 - ライブラリAPIでは中間ファイルを出力せず、メモリ上で SMF バイト列を生成可能
 - CLI 実行時はデバッグ用に各パスの中間結果を JSON で出力
-- ブラウザ向けに `mmlabc-to-smf-wasm/`、動作確認用に `demo/` と `demo-library/` を同梱
 
 ## 現在の実装状況
 
@@ -105,7 +108,7 @@ let smf_bytes = raw_mml_to_smf_bytes_with_options("@0c;@128d", options)?;
 | テンポ | `tN` | `t120c` |
 | ベロシティ | `vN` | `v8cde` |
 | プログラム | `@N` | `@1c` |
-| キー移調 | `ktN`, `kt-N` | `kt2c`, `kt-1d` |
+| キー トランスポーズ | `ktN`, `kt-N` | `kt2c`, `kt-1d` |
 
 補足:
 
