@@ -24,6 +24,11 @@ pub struct PreprocessResult {
     pub embedded_json: Option<String>,
     /// The remaining MML text (after stripping the JSON prefix).
     pub remaining_mml: String,
+    /// Byte offset of `remaining_mml` within the original input.
+    ///
+    /// Callers that need to map positions inside `remaining_mml` back to the
+    /// original text (editor cursors, diagnostics) add this offset.
+    pub remaining_offset: usize,
 }
 
 /// Extract a leading JSON block (object or array) from MML text.
@@ -34,22 +39,21 @@ pub struct PreprocessResult {
 /// equal to the original `mml`.
 pub fn extract_embedded_json(mml: &str) -> PreprocessResult {
     let trimmed = mml.trim_start();
+    let trimmed_offset = mml.len() - trimmed.len();
+
+    let unchanged = || PreprocessResult {
+        embedded_json: None,
+        remaining_mml: mml.to_string(),
+        remaining_offset: 0,
+    };
 
     let first = match trimmed.chars().next() {
         Some(c) => c,
-        None => {
-            return PreprocessResult {
-                embedded_json: None,
-                remaining_mml: mml.to_string(),
-            }
-        }
+        None => return unchanged(),
     };
 
     if first != '{' && first != '[' {
-        return PreprocessResult {
-            embedded_json: None,
-            remaining_mml: mml.to_string(),
-        };
+        return unchanged();
     }
 
     match find_json_end(trimmed) {
@@ -57,22 +61,18 @@ pub fn extract_embedded_json(mml: &str) -> PreprocessResult {
             let json_str = &trimmed[..=end_idx];
             // Validate it is actually parseable JSON
             if serde_json::from_str::<serde_json::Value>(json_str).is_ok() {
-                let rest = trimmed[end_idx + 1..].trim_start();
+                let after_json = &trimmed[end_idx + 1..];
+                let rest = after_json.trim_start();
                 PreprocessResult {
                     embedded_json: Some(json_str.to_string()),
+                    remaining_offset: trimmed_offset + (trimmed.len() - rest.len()),
                     remaining_mml: rest.to_string(),
                 }
             } else {
-                PreprocessResult {
-                    embedded_json: None,
-                    remaining_mml: mml.to_string(),
-                }
+                unchanged()
             }
         }
-        Err(_) => PreprocessResult {
-            embedded_json: None,
-            remaining_mml: mml.to_string(),
-        },
+        Err(_) => unchanged(),
     }
 }
 
@@ -229,6 +229,36 @@ mod tests {
             serde_json::from_str(result.embedded_json.as_deref().unwrap()).unwrap();
         assert!(parsed.is_array());
         assert_eq!(parsed.as_array().unwrap().len(), 2);
+    }
+
+    // --- remaining_offset ---
+
+    #[test]
+    fn test_remaining_offset_is_zero_without_json() {
+        let result = extract_embedded_json("cde");
+        assert_eq!(result.remaining_offset, 0);
+    }
+
+    #[test]
+    fn test_remaining_offset_points_at_mml_in_original_text() {
+        let mml = r#"[{"ProgramChange":1}]@1cde"#;
+        let result = extract_embedded_json(mml);
+        assert_eq!(&mml[result.remaining_offset..], result.remaining_mml);
+    }
+
+    #[test]
+    fn test_remaining_offset_skips_surrounding_whitespace() {
+        let mml = r#"  [{"ProgramChange":1}]   @1cde"#;
+        let result = extract_embedded_json(mml);
+        assert_eq!(&mml[result.remaining_offset..], result.remaining_mml);
+    }
+
+    #[test]
+    fn test_remaining_offset_at_end_when_json_only() {
+        let mml = r#"[{"ProgramChange":1}]"#;
+        let result = extract_embedded_json(mml);
+        assert_eq!(result.remaining_offset, mml.len());
+        assert_eq!(result.remaining_mml, "");
     }
 
     // --- find_json_end ---

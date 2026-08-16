@@ -21,6 +21,12 @@ pub struct ParseTreeNode {
     pub start_position: Option<Position>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub end_position: Option<Position>,
+    /// Byte offsets, when web-tree-sitter's `startIndex` / `endIndex` are sent.
+    /// Only needed by callers that map positions back to source text.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub start_index: Option<usize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub end_index: Option<usize>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub children: Option<Vec<ParseTreeNode>>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -44,6 +50,13 @@ fn to_generic_parse_tree(node: &ParseTreeNode) -> GenericParseTreeNode {
     GenericParseTreeNode {
         node_type: node.node_type.clone(),
         text: node.text.clone(),
+        byte_range: node
+            .start_index
+            .zip(node.end_index)
+            .map(|(start, end)| start..end),
+        // web-tree-sitter's JSON does not say which nodes it invented to recover
+        // from a syntax error, so this path cannot report them.
+        is_missing: false,
         children: node
             .children
             .as_ref()

@@ -15,6 +15,8 @@ pub mod pass2_ast;
 pub mod pass3_events;
 pub mod pass4_midi;
 #[cfg(feature = "parser")]
+pub mod sounding_units;
+#[cfg(feature = "parser")]
 pub mod tree_sitter_mml;
 pub mod types;
 

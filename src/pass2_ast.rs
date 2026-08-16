@@ -16,6 +16,16 @@ use std::io::Write;
 /// # Returns
 /// AST structure with note events (with channel assignments for multi-channel notes)
 pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
+    tokens_to_ast_with_sources(tokens).0
+}
+
+/// Convert tokens to AST, also reporting where each AST entry came from.
+///
+/// # Returns
+/// The AST, plus one token index per `ast.notes` entry (same length, same
+/// order). Callers that know a token's source span can therefore tell which
+/// AST entries a piece of MML text produced.
+pub fn tokens_to_ast_with_sources(tokens: &[Token]) -> (Ast, Vec<usize>) {
     // Map note names to their offset within an octave (C=0, D=2, E=4, etc.)
     let note_to_offset: HashMap<&str, u8> = [
         ("c", 0),
@@ -31,6 +41,8 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     .collect();
 
     let mut notes = Vec::new();
+    // Token index each entry of `notes` came from, kept in step with `notes`.
+    let mut note_sources: Vec<usize> = Vec::new();
     // Track current octave per channel (channel_group)
     // Default octave is 5 (where C5 = MIDI 60)
     // Use None as key for single-channel mode, Some(n) for multi-channel mode
@@ -76,7 +88,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
     let mut channel_groups_with_128: std::collections::HashSet<usize> =
         std::collections::HashSet::new();
 
-    for token in tokens {
+    for (token_index, token) in tokens.iter().enumerate() {
         if let Some(chord_id) = token.chord_id {
             let should_start_chord_scope =
                 active_chord_octave
@@ -173,6 +185,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 dots: Some(dots),
                 velocity: Some(velocity),
             });
+            note_sources.push(token_index);
         } else if token.token_type == "octave_up" {
             // < means octave up
             if token.chord_id.is_some() {
@@ -255,6 +268,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                 dots: Some(dots),
                 velocity: None, // Velocity is not used for rests
             });
+            note_sources.push(token_index);
         } else if token.token_type == "program_change" {
             // @ command sets MIDI program (instrument)
             if let Some(program_str) = token.value.strip_prefix('@') {
@@ -279,6 +293,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                         dots: None,
                         velocity: None, // Velocity is not used for program changes
                     });
+                    note_sources.push(token_index);
                 }
             }
         } else if token.token_type == "tempo_set" {
@@ -302,6 +317,7 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
                         dots: None,
                         velocity: None, // Velocity is not used for tempo changes
                     });
+                    note_sources.push(token_index);
                 }
             }
         } else if token.token_type == "key_transpose" {
@@ -329,11 +345,20 @@ pub fn tokens_to_ast(tokens: &[Token]) -> Ast {
         None
     };
 
-    Ast {
-        ast_type: "sequence".to_string(),
-        notes,
-        drum_channel_groups,
-    }
+    debug_assert_eq!(
+        notes.len(),
+        note_sources.len(),
+        "every AST entry must record the token it came from"
+    );
+
+    (
+        Ast {
+            ast_type: "sequence".to_string(),
+            notes,
+            drum_channel_groups,
+        },
+        note_sources,
+    )
 }
 
 #[derive(Serialize)]

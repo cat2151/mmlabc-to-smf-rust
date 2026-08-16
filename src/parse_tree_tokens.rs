@@ -1,12 +1,34 @@
 //! Shared token extraction from a normalized parse tree.
 
+use std::ops::Range;
+
 use crate::types::Token;
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct GenericParseTreeNode {
     pub node_type: String,
     pub text: Option<String>,
+    /// Byte range of this node in the source text, when the producer knows it.
+    ///
+    /// `pass1_parser` fills this in from tree-sitter. Producers that only have a
+    /// serialized parse tree without byte offsets leave it `None`.
+    pub byte_range: Option<Range<usize>>,
+    /// tree-sitter inserted this node to recover from a syntax error, so the
+    /// source text does not actually contain it (e.g. the closing `'` of an
+    /// unfinished chord).
+    pub is_missing: bool,
     pub children: Vec<GenericParseTreeNode>,
+}
+
+/// A token together with the source text it came from.
+#[derive(Debug, Clone, PartialEq)]
+pub struct SpannedToken {
+    pub token: Token,
+    /// Byte range of the *sounding unit* this token belongs to. Every token of a
+    /// chord carries the whole chord's range, both quotes included.
+    pub byte_range: Option<Range<usize>>,
+    /// The unit is syntactically unfinished (e.g. `'ceg` with no closing quote).
+    pub incomplete: bool,
 }
 
 pub fn parse_generic_tree_to_tokens(
@@ -14,14 +36,54 @@ pub fn parse_generic_tree_to_tokens(
     channel_group: Option<usize>,
     chord_id: &mut usize,
 ) -> Vec<Token> {
+    parse_generic_tree_to_spanned_tokens(parse_tree, channel_group, chord_id)
+        .into_iter()
+        .map(|spanned| spanned.token)
+        .collect()
+}
+
+/// Same as [`parse_generic_tree_to_tokens`], but each token keeps the byte range
+/// of the sounding unit it came from.
+pub fn parse_generic_tree_to_spanned_tokens(
+    parse_tree: &GenericParseTreeNode,
+    channel_group: Option<usize>,
+    chord_id: &mut usize,
+) -> Vec<SpannedToken> {
     let mut tokens = Vec::new();
     extract_tokens_from_node(parse_tree, &mut tokens, channel_group, chord_id);
     tokens
 }
 
+/// Whether the subtree contains a node tree-sitter had to invent to recover
+/// from a syntax error.
+fn has_missing(node: &GenericParseTreeNode) -> bool {
+    node.is_missing || node.children.iter().any(has_missing)
+}
+
+fn push_spanned(tokens: &mut Vec<SpannedToken>, node: &GenericParseTreeNode, token: Token) {
+    tokens.push(SpannedToken {
+        token,
+        byte_range: node.byte_range.clone(),
+        incomplete: has_missing(node),
+    });
+}
+
+/// A token that only carries the node's own text, such as `o5` or `@1`.
+fn text_token(token_type: &str, value: String, channel_group: Option<usize>) -> Token {
+    Token {
+        token_type: token_type.to_string(),
+        value,
+        channel_group,
+        chord_id: None,
+        modifier: None,
+        note_length: None,
+        dots: None,
+    }
+}
+
 fn extract_tokens_from_node(
     node: &GenericParseTreeNode,
-    tokens: &mut Vec<Token>,
+    tokens: &mut Vec<SpannedToken>,
     channel_group: Option<usize>,
     chord_id: &mut usize,
 ) {
@@ -59,26 +121,8 @@ fn extract_tokens_from_node(
                     note_length,
                     dots,
                 });
-            } else if child.node_type == "octave_up" {
-                chord_tokens.push(Token {
-                    token_type: "octave_up".to_string(),
-                    value: "<".to_string(),
-                    channel_group,
-                    chord_id: None,
-                    modifier: None,
-                    note_length: None,
-                    dots: None,
-                });
-            } else if child.node_type == "octave_down" {
-                chord_tokens.push(Token {
-                    token_type: "octave_down".to_string(),
-                    value: ">".to_string(),
-                    channel_group,
-                    chord_id: None,
-                    modifier: None,
-                    note_length: None,
-                    dots: None,
-                });
+            } else if let Some((token_type, value)) = octave_shift_token(&child.node_type) {
+                chord_tokens.push(text_token(token_type, value.to_string(), channel_group));
             }
         }
 
@@ -90,52 +134,34 @@ fn extract_tokens_from_node(
             }
         }
 
-        tokens.extend(chord_tokens);
+        // The chord is one sounding unit, so every one of its tokens points at
+        // the chord node's range rather than at the single note inside it.
+        for token in chord_tokens {
+            push_spanned(tokens, node, token);
+        }
     } else if kind == "note_with_modifier" {
         let (note_value, modifier, note_length, dots) = extract_note_and_modifier(node);
         if !note_value.is_empty() {
-            tokens.push(Token {
-                token_type: "note".to_string(),
-                value: note_value,
-                channel_group,
-                chord_id: None,
-                modifier,
-                note_length,
-                dots,
-            });
+            push_spanned(
+                tokens,
+                node,
+                Token {
+                    token_type: "note".to_string(),
+                    value: note_value,
+                    channel_group,
+                    chord_id: None,
+                    modifier,
+                    note_length,
+                    dots,
+                },
+            );
         }
-    } else if kind == "octave_up" {
-        tokens.push(Token {
-            token_type: "octave_up".to_string(),
-            value: "<".to_string(),
-            channel_group,
-            chord_id: None,
-            modifier: None,
-            note_length: None,
-            dots: None,
-        });
-    } else if kind == "octave_down" {
-        tokens.push(Token {
-            token_type: "octave_down".to_string(),
-            value: ">".to_string(),
-            channel_group,
-            chord_id: None,
-            modifier: None,
-            note_length: None,
-            dots: None,
-        });
-    } else if kind == "octave_set" {
-        if let Some(text) = &node.text {
-            tokens.push(Token {
-                token_type: "octave_set".to_string(),
-                value: text.clone(),
-                channel_group,
-                chord_id: None,
-                modifier: None,
-                note_length: None,
-                dots: None,
-            });
-        }
+    } else if let Some((token_type, value)) = octave_shift_token(kind) {
+        push_spanned(
+            tokens,
+            node,
+            text_token(token_type, value.to_string(), channel_group),
+        );
     } else if kind == "rest" {
         let mut rest_length = None;
         let mut rest_dots = None;
@@ -154,15 +180,19 @@ fn extract_tokens_from_node(
             }
         }
 
-        tokens.push(Token {
-            token_type: "rest".to_string(),
-            value: "r".to_string(),
-            channel_group,
-            chord_id: None,
-            modifier: None,
-            note_length: rest_length,
-            dots: rest_dots,
-        });
+        push_spanned(
+            tokens,
+            node,
+            Token {
+                token_type: "rest".to_string(),
+                value: "r".to_string(),
+                channel_group,
+                chord_id: None,
+                modifier: None,
+                note_length: rest_length,
+                dots: rest_dots,
+            },
+        );
     } else if kind == "length_set" {
         let mut length_value = None;
         let mut length_dots = None;
@@ -183,68 +213,41 @@ fn extract_tokens_from_node(
                 }
             }
 
-            tokens.push(Token {
-                token_type: "length_set".to_string(),
-                value: text.clone(),
-                channel_group,
-                chord_id: None,
-                modifier: None,
-                note_length: length_value,
-                dots: length_dots,
-            });
+            push_spanned(
+                tokens,
+                node,
+                Token {
+                    token_type: "length_set".to_string(),
+                    value: text.clone(),
+                    channel_group,
+                    chord_id: None,
+                    modifier: None,
+                    note_length: length_value,
+                    dots: length_dots,
+                },
+            );
         }
-    } else if kind == "program_change" {
+    } else if matches!(
+        kind,
+        "octave_set" | "program_change" | "tempo_set" | "velocity_set" | "key_transpose"
+    ) {
         if let Some(text) = &node.text {
-            tokens.push(Token {
-                token_type: "program_change".to_string(),
-                value: text.clone(),
-                channel_group,
-                chord_id: None,
-                modifier: None,
-                note_length: None,
-                dots: None,
-            });
-        }
-    } else if kind == "tempo_set" {
-        if let Some(text) = &node.text {
-            tokens.push(Token {
-                token_type: "tempo_set".to_string(),
-                value: text.clone(),
-                channel_group,
-                chord_id: None,
-                modifier: None,
-                note_length: None,
-                dots: None,
-            });
-        }
-    } else if kind == "velocity_set" {
-        if let Some(text) = &node.text {
-            tokens.push(Token {
-                token_type: "velocity_set".to_string(),
-                value: text.clone(),
-                channel_group,
-                chord_id: None,
-                modifier: None,
-                note_length: None,
-                dots: None,
-            });
-        }
-    } else if kind == "key_transpose" {
-        if let Some(text) = &node.text {
-            tokens.push(Token {
-                token_type: "key_transpose".to_string(),
-                value: text.clone(),
-                channel_group,
-                chord_id: None,
-                modifier: None,
-                note_length: None,
-                dots: None,
-            });
+            push_spanned(tokens, node, text_token(kind, text.clone(), channel_group));
         }
     } else {
         for child in &node.children {
             extract_tokens_from_node(child, tokens, channel_group, chord_id);
         }
+    }
+}
+
+/// `<` / `>` are the only tokens whose value is fixed by their node type.
+/// Returns the token type and its literal value.
+fn octave_shift_token(kind: &str) -> Option<(&'static str, &'static str)> {
+    match kind {
+        "octave_up" => Some(("octave_up", "<")),
+        "octave_down" => Some(("octave_down", ">")),
+        _ => None,
     }
 }
 

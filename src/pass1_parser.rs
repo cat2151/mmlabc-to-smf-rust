@@ -1,7 +1,9 @@
 //! Pass 1: Parse MML string and create token list using tree-sitter
 //! Outputs debug JSON.
 
-use crate::parse_tree_tokens::{parse_generic_tree_to_tokens, GenericParseTreeNode};
+use crate::parse_tree_tokens::{
+    parse_generic_tree_to_spanned_tokens, GenericParseTreeNode, SpannedToken,
+};
 use crate::tree_sitter_mml;
 use crate::types::Token;
 use anyhow::Result;
@@ -18,6 +20,17 @@ use tree_sitter::Parser;
 /// # Returns
 /// List of token structures with type, value, and channel_group
 pub fn parse_mml(mml_string: &str) -> Vec<Token> {
+    parse_mml_spanned(mml_string)
+        .into_iter()
+        .map(|spanned| spanned.token)
+        .collect()
+}
+
+/// Parse MML string into tokens that keep the byte range they came from.
+///
+/// Same tokens as [`parse_mml`]; the byte ranges are relative to `mml_string`,
+/// which must already have any embedded attachment JSON stripped.
+pub fn parse_mml_spanned(mml_string: &str) -> Vec<SpannedToken> {
     let mut parser = Parser::new();
     let language = tree_sitter_mml::language();
     parser
@@ -29,7 +42,7 @@ pub fn parse_mml(mml_string: &str) -> Vec<Token> {
         .expect("Failed to parse MML string");
     let mut global_chord_id = 0;
     let normalized_tree = tree_sitter_node_to_generic(tree.root_node(), mml_string.as_bytes());
-    parse_generic_tree_to_tokens(&normalized_tree, None, &mut global_chord_id)
+    parse_generic_tree_to_spanned_tokens(&normalized_tree, None, &mut global_chord_id)
 }
 
 fn tree_sitter_node_to_generic(node: tree_sitter::Node<'_>, source: &[u8]) -> GenericParseTreeNode {
@@ -42,6 +55,8 @@ fn tree_sitter_node_to_generic(node: tree_sitter::Node<'_>, source: &[u8]) -> Ge
     GenericParseTreeNode {
         node_type: node.kind().to_string(),
         text: node.utf8_text(source).ok().map(ToOwned::to_owned),
+        byte_range: Some(node.byte_range()),
+        is_missing: node.is_missing(),
         children,
     }
 }
